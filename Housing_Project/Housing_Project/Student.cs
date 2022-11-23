@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace Housing_Project
 {
-    public partial class Student : Form
+    public partial class FormStudent : Form
     {
-        public Student()
+        public FormStudent()
         {
             InitializeComponent();
         }
+
     }
 }

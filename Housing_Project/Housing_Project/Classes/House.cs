@@ -10,5 +10,6 @@ namespace Housing_Project.Classes
     {
         private List<Tenant> _tenantsOfHouse = new List<Tenant>();
         private Supervisor _supervisorOfHouse = new Supervisor();
+
     }
 }

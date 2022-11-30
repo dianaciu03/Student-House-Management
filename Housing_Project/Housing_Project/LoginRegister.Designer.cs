@@ -49,6 +49,7 @@
             this.loginpasswordlbl = new System.Windows.Forms.Label();
             this.loginbtn = new System.Windows.Forms.Button();
             this.tabControlLoginRegister = new System.Windows.Forms.TabControl();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabPageRegister.SuspendLayout();
             this.tabPageLogin.SuspendLayout();
             this.tabControlLoginRegister.SuspendLayout();
@@ -132,6 +133,7 @@
             this.passwordtxt.Location = new System.Drawing.Point(20, 327);
             this.passwordtxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.passwordtxt.Name = "passwordtxt";
+            this.passwordtxt.PasswordChar = '*';
             this.passwordtxt.Size = new System.Drawing.Size(401, 34);
             this.passwordtxt.TabIndex = 22;
             // 
@@ -200,16 +202,15 @@
             // 
             // loginpasswordtxt
             // 
-            this.loginpasswordtxt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginpasswordtxt.Location = new System.Drawing.Point(20, 209);
             this.loginpasswordtxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.loginpasswordtxt.Name = "loginpasswordtxt";
+            this.loginpasswordtxt.PasswordChar = '*';
             this.loginpasswordtxt.Size = new System.Drawing.Size(401, 34);
             this.loginpasswordtxt.TabIndex = 14;
             // 
             // loginemailtxt
             // 
-            this.loginemailtxt.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginemailtxt.Location = new System.Drawing.Point(20, 107);
             this.loginemailtxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.loginemailtxt.Name = "loginemailtxt";
@@ -259,6 +260,7 @@
             // 
             // loginbtn
             // 
+            this.loginbtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.loginbtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.loginbtn.Location = new System.Drawing.Point(20, 286);
             this.loginbtn.Name = "loginbtn";
@@ -324,5 +326,6 @@
         private Label loginpasswordlbl;
         private Button loginbtn;
         private TabControl tabControlLoginRegister;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

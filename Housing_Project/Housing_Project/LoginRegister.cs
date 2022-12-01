@@ -1,41 +1,19 @@
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 namespace Housing_Project
 {
     public partial class LoginRegister : Form
     {
+        //The code of Alex vvvv
         public LoginRegister()
         {
             InitializeComponent();
-            ShowMessages(false);
-            ShowRegisterField(false);
+            ShowMessages(false,"login");
+            ShowMessages(false, "register");
+            tabControlLoginRegister.SelectTab("tabPageLogin");
         }
 
-        private void ShowRegisterField(bool trueorfalse)
-        { 
-            fullnamelbl.Visible = trueorfalse;
-            fullnametxt.Visible = trueorfalse;
-            phonenumberlbl.Visible = trueorfalse;
-            phonenumbertxt.Visible = trueorfalse;
-            emailadresslbl.Visible = trueorfalse;
-            emailadresstxt.Visible = trueorfalse;
-            passwordtxt.Visible = trueorfalse;
-            passwordlbl.Visible = trueorfalse;
-            registerbtn.Visible = trueorfalse; // actual register btn
-            registerbtnshow.Visible = !trueorfalse; // show the register form btn
-
-            loginbtn.Visible = !trueorfalse; // actual log in btn
-            loginshowbtn.Visible = trueorfalse; // show the log in form
-
-        }
-        private void ShowLoginField(bool trueorfalse)
-        {
-            loginemaillbl.Visible = trueorfalse;
-            loginemailtxt.Visible = trueorfalse;
-            loginpasswordlbl.Visible = trueorfalse;
-            loginpasswordtxt.Visible = trueorfalse;
-
-            loginbtn.Visible = trueorfalse;
-            loginshowbtn.Visible = !trueorfalse;
-        }
         private void ClearFields()
         {
             //Login field
@@ -54,17 +32,16 @@ namespace Housing_Project
             student.ShowDialog();
             this.Close();
         }
-        private void ShowMessages(bool trueorfalse) 
+        private void ShowMessages(bool trueorfalse,string RegisterOrLogin) 
         {
-            wrongcredentialslbl.Visible = trueorfalse;
-        }
-
-        private void loginshowbtn_Click(object sender, EventArgs e) // show log in form
-        {
-            ShowMessages(false);
-            ShowRegisterField(false);
-            ShowLoginField(true);
-
+            if (RegisterOrLogin == "register")
+            {
+                registerwrongcredentialslbl.Visible = trueorfalse;
+            }
+            if (RegisterOrLogin == "login")
+            {
+                loginwrongcredentialslbl.Visible = trueorfalse;
+            }
         }
 
         private void loginbtn_Click(object sender, EventArgs e) // actual log in button
@@ -77,7 +54,7 @@ namespace Housing_Project
             {
                 if (loginemailtxt.Text!="" || loginpasswordtxt.Text != "")
                 {
-                    ShowMessages(true);
+                    ShowMessages(true,"login");
                     ClearFields();
                 }
                 else
@@ -86,27 +63,14 @@ namespace Housing_Project
                 }
             }
         }
-
-        private void registerbtn_Click_1(object sender, EventArgs e) // show register form
+        private void registerbtn_Click_1(object sender, EventArgs e)// actial register
         {
-            ShowMessages(false);
-            ShowRegisterField(true);
-            ShowLoginField(false);
-        }
-
-        private void registerbtn_Click(object sender, EventArgs e) // actial register
-        {      
-            //this.Hide()
-            //Student student = new Student();
-            //student.ShowDialog();
-            //this.Close();
-
-            if (fullnametxt.Text == "" 
-                || phonenumbertxt.Text == "" 
-                || emailadresstxt.Text == "" 
+            if (fullnametxt.Text == ""
+                || phonenumbertxt.Text == ""
+                || emailadresstxt.Text == ""
                 || passwordtxt.Text == "")
             {
-                ShowMessages(true);
+                ShowMessages(true,"register");
             }
             else
             {
@@ -114,6 +78,13 @@ namespace Housing_Project
                 OpenStudents();
             }
         }
+        
+        private void tabControlLoginRegister_Click(object sender, EventArgs e) //CreateAccountTAB
+        {
+            registerwrongcredentialslbl.Visible = false;
+            loginwrongcredentialslbl.Visible=false;
+        }
 
+        //The code of Alex ^^^^
     }
 }

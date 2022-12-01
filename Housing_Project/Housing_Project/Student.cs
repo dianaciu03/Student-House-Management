@@ -17,5 +17,14 @@ namespace Housing_Project
             InitializeComponent();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
+                this.Hide();
+                FormStudent Supervisor = new FormStudent();
+                Supervisor.ShowDialog();
+                this.Close();
+           
+        }
     }
 }

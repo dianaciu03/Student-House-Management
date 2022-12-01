@@ -9,93 +9,75 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection;
 
 namespace Housing_Project
 {
     public partial class Supervisor : Form
     {
+        
+        List<string> rules = new List<string>();
+        Tenant tenant;
+       
         public Supervisor()
         {
             InitializeComponent();
+            tbrule.Visible = false;
+            lbresult2.Visible = false;
+            
+            
         }
 
         private void Supervisor_Load(object sender, EventArgs e)
         {
-            //DataTable dt = new DataTable();
-            //dt.Columns.AddRange(new DataColumn[3] { new DataColumn("Id", typeof(int)),
-            //            new DataColumn("Name", typeof(string)),
-            //            new DataColumn("Country",typeof(string)) });
-            //dt.Rows.Add(1, "John Hammond", "United States");
-            //dt.Rows.Add(2, "Mudassar Khan", "India");
-            //dt.Rows.Add(3, "Suzanne Mathews", "France");
-            //dt.Rows.Add(4, "Robert Schidner", "Russia");
-            //this.dataGridView1.DataSource = dt;
-            //this.dataGridView1.AllowUserToAddRows = false;
+
         }
 
         private void report_problem_Click(object sender, EventArgs e)
         {
-            //try
-
-            //{
-
-            //    String str = "";
-
-            //    String query = "select * from data";
-
-            //    SqlConnection con = new SqlConnection(str);
-
-            //    SqlCommand cmd = new SqlCommand(query, con);
-
-            //    con.Open();
-
-            //    DataSet ds = new DataSet();
-
-            //    MessageBox.Show("connect with sql server");
-
-            //    con.Close();
-
-            //}
-
-            //catch (Exception es)
-
-            //{
-
-            //    MessageBox.Show(es.Message);
-
-
-
-            //}
+  
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-        //    //Table start.
-        //    string html = "<table cellpadding='5' cellspacing='0' style='border: 1px solid #ccc;font-size: 9pt;font-family:arial'>";
+        
+        }
 
-        //    //Adding HeaderRow.
-        //    html += "<tr>";
-        //    foreach (DataGridViewColumn column in dataGridView1.Columns)
-        //    {
-        //        html += "<th style='background-color: #B8DBFD;border: 1px solid #ccc'>" + column.HeaderText + "</th>";
-        //    }
-        //    html += "</tr>";
+        private void editRul_Click(object sender, EventArgs e)
+        {
+            tbrule.Visible = true;
+            int numberofrule = Convert.ToInt32(tbnumberofrule.Text);
+            string found_rule = rules.ElementAt(numberofrule);
+            string new_rule = tbrule.Text;
+            rules.Remove(found_rule);
+            rules.Add(new_rule);
+        }
 
-        //    //Adding DataRow.
-        //    foreach (DataGridViewRow row in dataGridView1.Rows)
-        //    {
-        //        html += "<tr>";
-        //        foreach (DataGridViewCell cell in row.Cells)
-        //        {
-        //            html += "<td style='width:120px;border: 1px solid #ccc'>" + cell.Value.ToString() + "</td>";
-        //        }
-        //        html += "</tr>";
-        //    }
+        private void addNewRule_Click(object sender, EventArgs e)
+        {
+            tbrule.Visible = true;
+            string rule_to_be_added = tbrule.Text;
+            rules.Add(rule_to_be_added);
+        }
 
-        //    //Table end.
-        //    html += "</table>";
+        private void Add_user_Click(object sender, EventArgs e)
+        {
 
-        //    File.WriteAllText(@"E:\Files\DataGridView.htm", html);
+        }
+
+        private void add_user_Click_1(object sender, EventArgs e)
+        {
+            lbresult2.Visible = true;
+            tenant = new Tenant(tbname.Text, tbemail.Text, tbnrofapartment.Text);
+
+        }
+
+        private void add_tenant_Click(object sender, EventArgs e)
+        {
+            CheckBox dynamicCheckBox = new CheckBox();
+            dynamicCheckBox.Text = tenant.GetTenant();
+            Controls.Add(dynamicCheckBox);
         }
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 
 namespace Housing_Project
 {
-    public partial class Supervisor : Form
+    public internal class Supervisor : Form
     {
         
         List<string> rules = new List<string>();

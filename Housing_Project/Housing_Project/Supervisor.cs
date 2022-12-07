@@ -14,70 +14,42 @@ using System.Reflection;
 
 namespace Housing_Project
 {
-    public internal class Supervisor : Form
+    public partial class FormSupervisor : Form
     {
-        
+        //we need to make class rule and class tenant in order to add objects to the lists instead of strings
         List<string> rules = new List<string>();
-        Tenant tenant;
+        List<string> tenants = new List<string>();
        
-        public Supervisor()
+        public FormSupervisor()
         {
-            InitializeComponent();
-            tbrule.Visible = false;
-            lbresult2.Visible = false;
-            
-            
+            InitializeComponent();        
         }
 
-        private void Supervisor_Load(object sender, EventArgs e)
+        private void btnSubmitChanges_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void report_problem_Click(object sender, EventArgs e)
-        {
-  
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-        
-        }
-
-        private void editRul_Click(object sender, EventArgs e)
-        {
-            tbrule.Visible = true;
-            int numberofrule = Convert.ToInt32(tbnumberofrule.Text);
+            int numberofrule = Convert.ToInt32(numRuleNr.Text);
             string found_rule = rules.ElementAt(numberofrule);
-            string new_rule = tbrule.Text;
+            string new_rule = tbRule.Text;
             rules.Remove(found_rule);
             rules.Add(new_rule);
         }
-
         private void addNewRule_Click(object sender, EventArgs e)
         {
-            tbrule.Visible = true;
-            string rule_to_be_added = tbrule.Text;
+            string rule_to_be_added = tbRule.Text;
             rules.Add(rule_to_be_added);
         }
 
-        private void Add_user_Click(object sender, EventArgs e)
+        private void btnEditSelectedRule_Click(object sender, EventArgs e)
         {
-
+            int ruleID = Convert.ToInt32(numRuleNr.Text);
+            //tbRule.Show(Rule.GetDescription(ruleID));
         }
 
-        private void add_user_Click_1(object sender, EventArgs e)
+        private void btnAddTenant_Click(object sender, EventArgs e)
         {
-            lbresult2.Visible = true;
-            tenant = new Tenant(tbname.Text, tbemail.Text, tbnrofapartment.Text);
-
-        }
-
-        private void add_tenant_Click(object sender, EventArgs e)
-        {
-            CheckBox dynamicCheckBox = new CheckBox();
-            dynamicCheckBox.Text = tenant.GetTenant();
-            Controls.Add(dynamicCheckBox);
+            //we need constructor for tenant
+            //Tenant tenant = new Tenant(tbTenantName.Text, tbTenantEmail.Text, tbTenantPhone.Text, Convert.ToInt32(tbRoomNr.Text));
+            //tenants.Add(tenant);
         }
     }
 }

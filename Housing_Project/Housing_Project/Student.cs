@@ -15,16 +15,12 @@ namespace Housing_Project
         public FormStudent()
         {
             InitializeComponent();
+            //we need to add info to list boxes in contact info tab when we initialize the FormStudent
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSendReportTask_Click(object sender, EventArgs e)
         {
-            
-                this.Hide();
-                FormStudent Supervisor = new FormStudent();
-                Supervisor.ShowDialog();
-                this.Close();
-           
+            //nothing yet
         }
     }
 }

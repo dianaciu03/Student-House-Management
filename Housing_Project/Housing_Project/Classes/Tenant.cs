@@ -13,6 +13,6 @@ namespace Housing_Project.Classes
         private string _email;
         private string _password;
         private string _phoneNumber;
-        private string _currentAdress;
+        private int _roomNumber;
     }
 }

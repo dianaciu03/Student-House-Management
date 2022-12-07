@@ -78,23 +78,23 @@
             this.lbAgreementsDisplay = new System.Windows.Forms.ListBox();
             this.lblAgreements = new System.Windows.Forms.Label();
             this.gbMakeAProposal = new System.Windows.Forms.GroupBox();
+            this.lblProposalDescription = new System.Windows.Forms.Label();
+            this.tbProposalTitle = new System.Windows.Forms.TextBox();
+            this.lblProposalTitle = new System.Windows.Forms.Label();
             this.btnSubmitProposal = new System.Windows.Forms.Button();
             this.tbProposalContent = new System.Windows.Forms.TextBox();
             this.tabReport = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSendReport = new System.Windows.Forms.Button();
+            this.gbFileAReport = new System.Windows.Forms.GroupBox();
+            this.lblReportDescription = new System.Windows.Forms.Label();
+            this.tbReportTitle = new System.Windows.Forms.TextBox();
+            this.lblReportTitle = new System.Windows.Forms.Label();
+            this.btnSubmitReport = new System.Windows.Forms.Button();
+            this.tbReportContext = new System.Windows.Forms.TextBox();
             this.cbTenantsToReport = new System.Windows.Forms.ComboBox();
             this.lblAdressReportToSomeone = new System.Windows.Forms.Label();
+            this.tbWarnings = new System.Windows.Forms.TextBox();
+            this.lblWarnings = new System.Windows.Forms.Label();
             this.lblStudentHouseBV = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabControlStudent.SuspendLayout();
             this.tabHouseRules.SuspendLayout();
             this.tabCleaningSchedule.SuspendLayout();
@@ -103,7 +103,7 @@
             this.tabAgreements.SuspendLayout();
             this.gbMakeAProposal.SuspendLayout();
             this.tabReport.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.gbFileAReport.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlStudent
@@ -225,6 +225,7 @@
             this.btnSendReportTask.TabIndex = 8;
             this.btnSendReportTask.Text = "Send Report";
             this.btnSendReportTask.UseVisualStyleBackColor = true;
+            this.btnSendReportTask.Click += new System.EventHandler(this.btnSendReportTask_Click);
             // 
             // tbCommentReportTask
             // 
@@ -652,9 +653,9 @@
             // 
             // gbMakeAProposal
             // 
-            this.gbMakeAProposal.Controls.Add(this.label19);
-            this.gbMakeAProposal.Controls.Add(this.textBox7);
-            this.gbMakeAProposal.Controls.Add(this.label18);
+            this.gbMakeAProposal.Controls.Add(this.lblProposalDescription);
+            this.gbMakeAProposal.Controls.Add(this.tbProposalTitle);
+            this.gbMakeAProposal.Controls.Add(this.lblProposalTitle);
             this.gbMakeAProposal.Controls.Add(this.btnSubmitProposal);
             this.gbMakeAProposal.Controls.Add(this.tbProposalContent);
             this.gbMakeAProposal.Location = new System.Drawing.Point(770, 76);
@@ -663,6 +664,33 @@
             this.gbMakeAProposal.TabIndex = 0;
             this.gbMakeAProposal.TabStop = false;
             this.gbMakeAProposal.Text = "Make a proposal";
+            // 
+            // lblProposalDescription
+            // 
+            this.lblProposalDescription.AutoSize = true;
+            this.lblProposalDescription.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblProposalDescription.Location = new System.Drawing.Point(15, 98);
+            this.lblProposalDescription.Name = "lblProposalDescription";
+            this.lblProposalDescription.Size = new System.Drawing.Size(100, 23);
+            this.lblProposalDescription.TabIndex = 9;
+            this.lblProposalDescription.Text = "Description:";
+            // 
+            // tbProposalTitle
+            // 
+            this.tbProposalTitle.Location = new System.Drawing.Point(76, 44);
+            this.tbProposalTitle.Name = "tbProposalTitle";
+            this.tbProposalTitle.Size = new System.Drawing.Size(217, 34);
+            this.tbProposalTitle.TabIndex = 8;
+            // 
+            // lblProposalTitle
+            // 
+            this.lblProposalTitle.AutoSize = true;
+            this.lblProposalTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblProposalTitle.Location = new System.Drawing.Point(15, 47);
+            this.lblProposalTitle.Name = "lblProposalTitle";
+            this.lblProposalTitle.Size = new System.Drawing.Size(46, 23);
+            this.lblProposalTitle.TabIndex = 7;
+            this.lblProposalTitle.Text = "Title:";
             // 
             // btnSubmitProposal
             // 
@@ -683,9 +711,9 @@
             // 
             // tabReport
             // 
-            this.tabReport.Controls.Add(this.groupBox1);
-            this.tabReport.Controls.Add(this.textBox1);
-            this.tabReport.Controls.Add(this.label1);
+            this.tabReport.Controls.Add(this.gbFileAReport);
+            this.tabReport.Controls.Add(this.tbWarnings);
+            this.tabReport.Controls.Add(this.lblWarnings);
             this.tabReport.Location = new System.Drawing.Point(4, 41);
             this.tabReport.Name = "tabReport";
             this.tabReport.Padding = new System.Windows.Forms.Padding(3);
@@ -694,33 +722,67 @@
             this.tabReport.Text = "Report a problem ";
             this.tabReport.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // gbFileAReport
             // 
-            this.textBox1.Location = new System.Drawing.Point(31, 458);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(720, 194);
-            this.textBox1.TabIndex = 7;
+            this.gbFileAReport.Controls.Add(this.lblReportDescription);
+            this.gbFileAReport.Controls.Add(this.tbReportTitle);
+            this.gbFileAReport.Controls.Add(this.lblReportTitle);
+            this.gbFileAReport.Controls.Add(this.btnSubmitReport);
+            this.gbFileAReport.Controls.Add(this.tbReportContext);
+            this.gbFileAReport.Controls.Add(this.cbTenantsToReport);
+            this.gbFileAReport.Controls.Add(this.lblAdressReportToSomeone);
+            this.gbFileAReport.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.gbFileAReport.Location = new System.Drawing.Point(31, 30);
+            this.gbFileAReport.Name = "gbFileAReport";
+            this.gbFileAReport.Size = new System.Drawing.Size(1085, 351);
+            this.gbFileAReport.TabIndex = 8;
+            this.gbFileAReport.TabStop = false;
+            this.gbFileAReport.Text = "File a report";
             // 
-            // label1
+            // lblReportDescription
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(31, 408);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 35);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Warnings";
+            this.lblReportDescription.AutoSize = true;
+            this.lblReportDescription.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblReportDescription.Location = new System.Drawing.Point(15, 101);
+            this.lblReportDescription.Name = "lblReportDescription";
+            this.lblReportDescription.Size = new System.Drawing.Size(100, 23);
+            this.lblReportDescription.TabIndex = 13;
+            this.lblReportDescription.Text = "Description:";
             // 
-            // btnSendReport
+            // tbReportTitle
             // 
-            this.btnSendReport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSendReport.Location = new System.Drawing.Point(739, 168);
-            this.btnSendReport.Name = "btnSendReport";
-            this.btnSendReport.Size = new System.Drawing.Size(188, 46);
-            this.btnSendReport.TabIndex = 5;
-            this.btnSendReport.Text = "Submit report";
-            this.btnSendReport.UseVisualStyleBackColor = true;
+            this.tbReportTitle.Location = new System.Drawing.Point(76, 47);
+            this.tbReportTitle.Name = "tbReportTitle";
+            this.tbReportTitle.Size = new System.Drawing.Size(217, 39);
+            this.tbReportTitle.TabIndex = 12;
+            // 
+            // lblReportTitle
+            // 
+            this.lblReportTitle.AutoSize = true;
+            this.lblReportTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblReportTitle.Location = new System.Drawing.Point(15, 50);
+            this.lblReportTitle.Name = "lblReportTitle";
+            this.lblReportTitle.Size = new System.Drawing.Size(46, 23);
+            this.lblReportTitle.TabIndex = 11;
+            this.lblReportTitle.Text = "Title:";
+            // 
+            // btnSubmitReport
+            // 
+            this.btnSubmitReport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnSubmitReport.Location = new System.Drawing.Point(739, 168);
+            this.btnSubmitReport.Name = "btnSubmitReport";
+            this.btnSubmitReport.Size = new System.Drawing.Size(188, 46);
+            this.btnSubmitReport.TabIndex = 5;
+            this.btnSubmitReport.Text = "Submit report";
+            this.btnSubmitReport.UseVisualStyleBackColor = true;
+            // 
+            // tbReportContext
+            // 
+            this.tbReportContext.Location = new System.Drawing.Point(130, 102);
+            this.tbReportContext.Multiline = true;
+            this.tbReportContext.Name = "tbReportContext";
+            this.tbReportContext.Size = new System.Drawing.Size(394, 216);
+            this.tbReportContext.TabIndex = 10;
             // 
             // cbTenantsToReport
             // 
@@ -740,6 +802,24 @@
             this.lblAdressReportToSomeone.TabIndex = 2;
             this.lblAdressReportToSomeone.Text = "Do you adress this report to someone?";
             // 
+            // tbWarnings
+            // 
+            this.tbWarnings.Location = new System.Drawing.Point(31, 458);
+            this.tbWarnings.Multiline = true;
+            this.tbWarnings.Name = "tbWarnings";
+            this.tbWarnings.Size = new System.Drawing.Size(720, 194);
+            this.tbWarnings.TabIndex = 7;
+            // 
+            // lblWarnings
+            // 
+            this.lblWarnings.AutoSize = true;
+            this.lblWarnings.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblWarnings.Location = new System.Drawing.Point(31, 408);
+            this.lblWarnings.Name = "lblWarnings";
+            this.lblWarnings.Size = new System.Drawing.Size(125, 35);
+            this.lblWarnings.TabIndex = 6;
+            this.lblWarnings.Text = "Warnings";
+            // 
             // lblStudentHouseBV
             // 
             this.lblStudentHouseBV.BackColor = System.Drawing.Color.MediumTurquoise;
@@ -752,85 +832,6 @@
             this.lblStudentHouseBV.TabIndex = 1;
             this.lblStudentHouseBV.Text = "Student House BV";
             this.lblStudentHouseBV.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label19.Location = new System.Drawing.Point(15, 98);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(100, 23);
-            this.label19.TabIndex = 9;
-            this.label19.Text = "Description:";
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(76, 44);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(217, 34);
-            this.textBox7.TabIndex = 8;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label18.Location = new System.Drawing.Point(15, 47);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(46, 23);
-            this.label18.TabIndex = 7;
-            this.label18.Text = "Title:";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.btnSendReport);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.cbTenantsToReport);
-            this.groupBox1.Controls.Add(this.lblAdressReportToSomeone);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.groupBox1.Location = new System.Drawing.Point(31, 30);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1085, 351);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "File a report";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(15, 101);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 23);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Description:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(76, 47);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(217, 39);
-            this.textBox2.TabIndex = 12;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(15, 50);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(46, 23);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Title:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(130, 102);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(394, 216);
-            this.textBox3.TabIndex = 10;
             // 
             // FormStudent
             // 
@@ -856,8 +857,8 @@
             this.gbMakeAProposal.PerformLayout();
             this.tabReport.ResumeLayout(false);
             this.tabReport.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbFileAReport.ResumeLayout(false);
+            this.gbFileAReport.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -901,7 +902,7 @@
         private Button btnSubmitProposal;
         private TextBox tbProposalContent;
         private Label lblAgreements;
-        private Button btnSendReport;
+        private Button btnSubmitReport;
         private ComboBox cbTenantsToReport;
         private Label lblAdressReportToSomeone;
         private ListBox lbAgreementsDisplay;
@@ -920,15 +921,15 @@
         private Label lblPayments;
         private ListBox lbPaymentsInfo;
         private Button btnSubmitPayment;
-        private TextBox textBox1;
-        private Label label1;
-        private Label label19;
-        private TextBox textBox7;
-        private Label label18;
-        private GroupBox groupBox1;
-        private Label label2;
-        private TextBox textBox2;
-        private Label label3;
-        private TextBox textBox3;
+        private TextBox tbWarnings;
+        private Label lblWarnings;
+        private Label lblProposalDescription;
+        private TextBox tbProposalTitle;
+        private Label lblProposalTitle;
+        private GroupBox gbFileAReport;
+        private Label lblReportDescription;
+        private TextBox tbReportTitle;
+        private Label lblReportTitle;
+        private TextBox tbReportContext;
     }
 }

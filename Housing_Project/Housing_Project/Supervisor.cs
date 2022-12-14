@@ -27,11 +27,11 @@ namespace Housing_Project
 
         private void btnSubmitChanges_Click(object sender, EventArgs e)
         {
-            int numberofrule = Convert.ToInt32(numRuleNr.Text);
-            string found_rule = rules.ElementAt(numberofrule);
-            string new_rule = tbRule.Text;
-            rules.Remove(found_rule);
-            rules.Add(new_rule);
+            //
+            //string found_rule = rules.ElementAt(numberofrule);
+            //string new_rule = tbRule.Text;
+            //rules.Remove(found_rule);
+            //rules.Add(new_rule);
         }
         private void addNewRule_Click(object sender, EventArgs e)
         {
@@ -39,11 +39,11 @@ namespace Housing_Project
             rules.Add(rule_to_be_added);
         }
 
-        private void btnEditSelectedRule_Click(object sender, EventArgs e)
-        {
-            int ruleID = Convert.ToInt32(numRuleNr.Text);
-            //tbRule.Show(Rule.GetDescription(ruleID));
-        }
+        //private void btnEditSelectedRule_Click(object sender, EventArgs e)
+        //{
+        //    int ruleID = Convert.ToInt32(numRuleNr.Text);
+        //    //tbRule.Show(Rule.GetDescription(ruleID));
+        //}
 
         private void btnAddTenant_Click(object sender, EventArgs e)
         {

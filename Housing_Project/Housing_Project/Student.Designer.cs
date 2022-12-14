@@ -185,7 +185,7 @@
             this.lbHouseRules.ItemHeight = 23;
             this.lbHouseRules.Location = new System.Drawing.Point(22, 71);
             this.lbHouseRules.Name = "lbHouseRules";
-            this.lbHouseRules.Size = new System.Drawing.Size(1137, 165);
+            this.lbHouseRules.Size = new System.Drawing.Size(1137, 188);
             this.lbHouseRules.TabIndex = 1;
             // 
             // lblHouseRules
@@ -366,6 +366,7 @@
             this.btnSubmitPayment.TabIndex = 17;
             this.btnSubmitPayment.Text = "Submit";
             this.btnSubmitPayment.UseVisualStyleBackColor = true;
+            this.btnSubmitPayment.Click += new System.EventHandler(this.btnSubmitPayment_Click);
             // 
             // tbTotalPrice
             // 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
-    internal class Tenant
+    public class Tenant
     {
         private string _firstName;
         private string _lastName;

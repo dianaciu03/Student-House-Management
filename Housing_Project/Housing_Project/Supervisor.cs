@@ -56,12 +56,12 @@ namespace Housing_Project
                 subjecttxt.Text = "";
                 tbRule.Text = "";
                 indexBox.Clear(); //supervisor
-                lbRules.Items.Clear();//supervisor
-                lbRules.SelectionMode = SelectionMode.One;
+                rulesListBox.Items.Clear();//supervisor
+                rulesListBox.SelectionMode = SelectionMode.One;
 
                 for (int i = 0; i < Rule.GetRules().Count; i++)
                 {
-                    lbRules.Items.Add($"Number {i + 1}: {Rule.GetRules()[i].GetInfo("short")}");
+                    rulesListBox.Items.Add($"Number {i + 1}: {Rule.GetRules()[i].GetInfo("short")}");
                 }
             }
 
@@ -90,15 +90,15 @@ namespace Housing_Project
         {
             if (supervisorOrtenant == "supervisor")
             {
-                if (lbRules.SelectedIndex != -1)
+                if (rulesListBox.SelectedIndex != -1)
                 {
                     btnSubmitChanges.Visible = false;
                     showinfobtn.Visible = false;
                     for (int i = 0; i < Rule.GetRules().Count; i++)
                     {
-                        if (lbRules.SelectedItem.ToString() == $"Number {i + 1}: {Rule.GetRules()[i].GetInfo("short")}")//
+                        if (rulesListBox.SelectedItem.ToString() == $"Number {i + 1}: {Rule.GetRules()[i].GetInfo("short")}")//
                         {
-                            editbtn.Visible = false;
+                            editbtnRules.Visible = false;
                             btnSubmitChanges.Visible = true;
 
                             subjecttxt.Text = Rule.GetRules()[i].Subject;
@@ -107,7 +107,7 @@ namespace Housing_Project
                             indexBox.Text = (selectedIndex + 1).ToString();
                         }
                     }
-                    lbRules.SelectionMode = SelectionMode.None;
+                    rulesListBox.SelectionMode = SelectionMode.None;
                 }
             }
 
@@ -176,9 +176,9 @@ namespace Housing_Project
 
         private void showinfobtn_Click(object sender, EventArgs e)
         {
-            if (lbRules.SelectedIndex != -1)
+            if (rulesListBox.SelectedIndex != -1)
             {
-                Rule.DisplayFullInfo(lbRules);
+                Rule.DisplayFullInfo(rulesListBox);
             }
         }
 

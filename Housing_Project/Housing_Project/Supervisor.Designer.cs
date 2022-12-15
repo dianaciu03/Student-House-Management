@@ -32,18 +32,20 @@
             this.tabRules = new System.Windows.Forms.TabPage();
             this.gbEditRules = new System.Windows.Forms.GroupBox();
             this.showinfobtn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.editingrulenumberrules = new System.Windows.Forms.Label();
             this.indexBox = new System.Windows.Forms.TextBox();
-            this.editbtn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.editbtnRules = new System.Windows.Forms.Button();
+            this.lbldescriptionrules = new System.Windows.Forms.Label();
+            this.lblsubjectrules = new System.Windows.Forms.Label();
             this.subjecttxt = new System.Windows.Forms.RichTextBox();
             this.btnSubmitChanges = new System.Windows.Forms.Button();
             this.btnAddRule = new System.Windows.Forms.Button();
             this.tbRule = new System.Windows.Forms.RichTextBox();
             this.lblHouseRules = new System.Windows.Forms.Label();
-            this.lbRules = new System.Windows.Forms.ListBox();
+            this.rulesListBox = new System.Windows.Forms.ListBox();
             this.tabContactInfo = new System.Windows.Forms.TabPage();
+            this.indexboxTenants = new System.Windows.Forms.TextBox();
+            this.lbleditingusernumbercontactinfo = new System.Windows.Forms.Label();
             this.gbEditSupervisor = new System.Windows.Forms.GroupBox();
             this.btnAddSupervisor = new System.Windows.Forms.Button();
             this.btnSubmitChangesSupervisor = new System.Windows.Forms.Button();
@@ -54,8 +56,6 @@
             this.tbSupervisorName = new System.Windows.Forms.TextBox();
             this.lblSupervisorName = new System.Windows.Forms.Label();
             this.gbEditTenant = new System.Windows.Forms.GroupBox();
-            this.indexboxTenants = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.edittenantbtn = new System.Windows.Forms.Button();
             this.btnAddTenant = new System.Windows.Forms.Button();
             this.btnSubmitChangesTenant = new System.Windows.Forms.Button();
@@ -135,7 +135,7 @@
             // 
             this.tabRules.Controls.Add(this.gbEditRules);
             this.tabRules.Controls.Add(this.lblHouseRules);
-            this.tabRules.Controls.Add(this.lbRules);
+            this.tabRules.Controls.Add(this.rulesListBox);
             this.tabRules.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabRules.Location = new System.Drawing.Point(4, 30);
             this.tabRules.Name = "tabRules";
@@ -148,11 +148,11 @@
             // gbEditRules
             // 
             this.gbEditRules.Controls.Add(this.showinfobtn);
-            this.gbEditRules.Controls.Add(this.label3);
+            this.gbEditRules.Controls.Add(this.editingrulenumberrules);
             this.gbEditRules.Controls.Add(this.indexBox);
-            this.gbEditRules.Controls.Add(this.editbtn);
-            this.gbEditRules.Controls.Add(this.label2);
-            this.gbEditRules.Controls.Add(this.label1);
+            this.gbEditRules.Controls.Add(this.editbtnRules);
+            this.gbEditRules.Controls.Add(this.lbldescriptionrules);
+            this.gbEditRules.Controls.Add(this.lblsubjectrules);
             this.gbEditRules.Controls.Add(this.subjecttxt);
             this.gbEditRules.Controls.Add(this.btnSubmitChanges);
             this.gbEditRules.Controls.Add(this.btnAddRule);
@@ -177,14 +177,14 @@
             this.showinfobtn.UseVisualStyleBackColor = true;
             this.showinfobtn.Click += new System.EventHandler(this.showinfobtn_Click);
             // 
-            // label3
+            // editingrulenumberrules
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(148, 30);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 21);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Editing rule number:";
+            this.editingrulenumberrules.AutoSize = true;
+            this.editingrulenumberrules.Location = new System.Drawing.Point(148, 30);
+            this.editingrulenumberrules.Name = "editingrulenumberrules";
+            this.editingrulenumberrules.Size = new System.Drawing.Size(151, 21);
+            this.editingrulenumberrules.TabIndex = 11;
+            this.editingrulenumberrules.Text = "Editing rule number:";
             // 
             // indexBox
             // 
@@ -194,33 +194,33 @@
             this.indexBox.Size = new System.Drawing.Size(43, 29);
             this.indexBox.TabIndex = 10;
             // 
-            // editbtn
+            // editbtnRules
             // 
-            this.editbtn.Location = new System.Drawing.Point(14, 256);
-            this.editbtn.Name = "editbtn";
-            this.editbtn.Size = new System.Drawing.Size(144, 34);
-            this.editbtn.TabIndex = 7;
-            this.editbtn.Text = "Edit";
-            this.editbtn.UseVisualStyleBackColor = true;
-            this.editbtn.Click += new System.EventHandler(this.editbtn_Click);
+            this.editbtnRules.Location = new System.Drawing.Point(14, 256);
+            this.editbtnRules.Name = "editbtnRules";
+            this.editbtnRules.Size = new System.Drawing.Size(144, 34);
+            this.editbtnRules.TabIndex = 7;
+            this.editbtnRules.Text = "Edit";
+            this.editbtnRules.UseVisualStyleBackColor = true;
+            this.editbtnRules.Click += new System.EventHandler(this.editbtn_Click);
             // 
-            // label2
+            // lbldescriptionrules
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 127);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 21);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Description";
+            this.lbldescriptionrules.AutoSize = true;
+            this.lbldescriptionrules.Location = new System.Drawing.Point(14, 127);
+            this.lbldescriptionrules.Name = "lbldescriptionrules";
+            this.lbldescriptionrules.Size = new System.Drawing.Size(89, 21);
+            this.lbldescriptionrules.TabIndex = 9;
+            this.lbldescriptionrules.Text = "Description";
             // 
-            // label1
+            // lblsubjectrules
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 21);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Subject:";
+            this.lblsubjectrules.AutoSize = true;
+            this.lblsubjectrules.Location = new System.Drawing.Point(14, 50);
+            this.lblsubjectrules.Name = "lblsubjectrules";
+            this.lblsubjectrules.Size = new System.Drawing.Size(64, 21);
+            this.lblsubjectrules.TabIndex = 8;
+            this.lblsubjectrules.Text = "Subject:";
             // 
             // subjecttxt
             // 
@@ -268,20 +268,20 @@
             this.lblHouseRules.TabIndex = 5;
             this.lblHouseRules.Text = "House Rules";
             // 
-            // lbRules
+            // rulesListBox
             // 
-            this.lbRules.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lbRules.FormattingEnabled = true;
-            this.lbRules.ItemHeight = 17;
-            this.lbRules.Location = new System.Drawing.Point(21, 56);
-            this.lbRules.Name = "lbRules";
-            this.lbRules.Size = new System.Drawing.Size(460, 361);
-            this.lbRules.TabIndex = 0;
+            this.rulesListBox.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rulesListBox.FormattingEnabled = true;
+            this.rulesListBox.ItemHeight = 17;
+            this.rulesListBox.Location = new System.Drawing.Point(21, 56);
+            this.rulesListBox.Name = "rulesListBox";
+            this.rulesListBox.Size = new System.Drawing.Size(460, 361);
+            this.rulesListBox.TabIndex = 0;
             // 
             // tabContactInfo
             // 
             this.tabContactInfo.Controls.Add(this.indexboxTenants);
-            this.tabContactInfo.Controls.Add(this.label4);
+            this.tabContactInfo.Controls.Add(this.lbleditingusernumbercontactinfo);
             this.tabContactInfo.Controls.Add(this.gbEditSupervisor);
             this.tabContactInfo.Controls.Add(this.gbEditTenant);
             this.tabContactInfo.Controls.Add(this.lbSupervisorsInfo);
@@ -294,6 +294,23 @@
             this.tabContactInfo.TabIndex = 3;
             this.tabContactInfo.Text = "Contact Info";
             this.tabContactInfo.UseVisualStyleBackColor = true;
+            // 
+            // indexboxTenants
+            // 
+            this.indexboxTenants.Location = new System.Drawing.Point(830, 255);
+            this.indexboxTenants.Name = "indexboxTenants";
+            this.indexboxTenants.ReadOnly = true;
+            this.indexboxTenants.Size = new System.Drawing.Size(43, 29);
+            this.indexboxTenants.TabIndex = 15;
+            // 
+            // lbleditingusernumbercontactinfo
+            // 
+            this.lbleditingusernumbercontactinfo.AutoSize = true;
+            this.lbleditingusernumbercontactinfo.Location = new System.Drawing.Point(673, 258);
+            this.lbleditingusernumbercontactinfo.Name = "lbleditingusernumbercontactinfo";
+            this.lbleditingusernumbercontactinfo.Size = new System.Drawing.Size(154, 21);
+            this.lbleditingusernumbercontactinfo.TabIndex = 16;
+            this.lbleditingusernumbercontactinfo.Text = "Editing user number:";
             // 
             // gbEditSupervisor
             // 
@@ -408,23 +425,6 @@
             this.gbEditTenant.TabIndex = 13;
             this.gbEditTenant.TabStop = false;
             this.gbEditTenant.Text = "Edit tenant ";
-            // 
-            // indexboxTenants
-            // 
-            this.indexboxTenants.Location = new System.Drawing.Point(830, 255);
-            this.indexboxTenants.Name = "indexboxTenants";
-            this.indexboxTenants.ReadOnly = true;
-            this.indexboxTenants.Size = new System.Drawing.Size(43, 29);
-            this.indexboxTenants.TabIndex = 15;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(673, 258);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(151, 21);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Editing rule number:";
             // 
             // edittenantbtn
             // 
@@ -967,7 +967,7 @@
         private Label lblSubmittedReports;
         private RichTextBox tbRule;
         private Button btnAddRule;
-        private ListBox lbRules;
+        private ListBox rulesListBox;
         private Label lblStudentHouseBV;
         private Label lblHouseRules;
         private GroupBox gbEditRules;
@@ -1024,15 +1024,15 @@
         private TextBox tbAnnouncementTitle;
         private Label lblAnnouncementTitle;
         private ListBox lbEvents;
-        private Label label2;
-        private Label label1;
+        private Label lbldescriptionrules;
+        private Label lblsubjectrules;
         private RichTextBox subjecttxt;
-        private Button editbtn;
-        private Label label3;
+        private Button editbtnRules;
+        private Label editingrulenumberrules;
         private TextBox indexBox;
         private Button showinfobtn;
         private Button edittenantbtn;
         private TextBox indexboxTenants;
-        private Label label4;
+        private Label lbleditingusernumbercontactinfo;
     }
 }

@@ -78,6 +78,8 @@
             this.lbAgreementsDisplay = new System.Windows.Forms.ListBox();
             this.lblAgreements = new System.Windows.Forms.Label();
             this.gbMakeAProposal = new System.Windows.Forms.GroupBox();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.dateTimePickerAgreements = new System.Windows.Forms.DateTimePicker();
             this.lblProposalDescription = new System.Windows.Forms.Label();
             this.tbProposalTitle = new System.Windows.Forms.TextBox();
             this.lblProposalTitle = new System.Windows.Forms.Label();
@@ -307,7 +309,7 @@
             // 
             this.lblPayments.AutoSize = true;
             this.lblPayments.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPayments.Location = new System.Drawing.Point(636, 26);
+            this.lblPayments.Location = new System.Drawing.Point(584, 33);
             this.lblPayments.Name = "lblPayments";
             this.lblPayments.Size = new System.Drawing.Size(104, 28);
             this.lblPayments.TabIndex = 2;
@@ -317,10 +319,12 @@
             // 
             this.lbPaymentsInfo.FormattingEnabled = true;
             this.lbPaymentsInfo.ItemHeight = 28;
-            this.lbPaymentsInfo.Location = new System.Drawing.Point(636, 64);
+            this.lbPaymentsInfo.Location = new System.Drawing.Point(584, 64);
             this.lbPaymentsInfo.Name = "lbPaymentsInfo";
-            this.lbPaymentsInfo.Size = new System.Drawing.Size(472, 452);
+            this.lbPaymentsInfo.Size = new System.Drawing.Size(524, 452);
             this.lbPaymentsInfo.TabIndex = 1;
+            this.lbPaymentsInfo.DoubleClick += new System.EventHandler(this.btnSubmitProposal_Click);
+            this.lbPaymentsInfo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbPaymentsInfo_MouseDoubleClick);
             // 
             // gbSupplies
             // 
@@ -352,7 +356,7 @@
             this.gbSupplies.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.gbSupplies.Location = new System.Drawing.Point(31, 33);
             this.gbSupplies.Name = "gbSupplies";
-            this.gbSupplies.Size = new System.Drawing.Size(533, 624);
+            this.gbSupplies.Size = new System.Drawing.Size(523, 624);
             this.gbSupplies.TabIndex = 0;
             this.gbSupplies.TabStop = false;
             this.gbSupplies.Text = "Supplies";
@@ -641,6 +645,7 @@
             this.lbAgreementsDisplay.Name = "lbAgreementsDisplay";
             this.lbAgreementsDisplay.Size = new System.Drawing.Size(521, 564);
             this.lbAgreementsDisplay.TabIndex = 2;
+            this.lbAgreementsDisplay.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbAgreementsDisplay_MouseDoubleClick);
             // 
             // lblAgreements
             // 
@@ -654,17 +659,37 @@
             // 
             // gbMakeAProposal
             // 
+            this.gbMakeAProposal.Controls.Add(this.lblDate);
+            this.gbMakeAProposal.Controls.Add(this.dateTimePickerAgreements);
             this.gbMakeAProposal.Controls.Add(this.lblProposalDescription);
             this.gbMakeAProposal.Controls.Add(this.tbProposalTitle);
             this.gbMakeAProposal.Controls.Add(this.lblProposalTitle);
             this.gbMakeAProposal.Controls.Add(this.btnSubmitProposal);
             this.gbMakeAProposal.Controls.Add(this.tbProposalContent);
-            this.gbMakeAProposal.Location = new System.Drawing.Point(770, 76);
+            this.gbMakeAProposal.Location = new System.Drawing.Point(738, 76);
             this.gbMakeAProposal.Name = "gbMakeAProposal";
-            this.gbMakeAProposal.Size = new System.Drawing.Size(401, 436);
+            this.gbMakeAProposal.Size = new System.Drawing.Size(435, 486);
             this.gbMakeAProposal.TabIndex = 0;
             this.gbMakeAProposal.TabStop = false;
             this.gbMakeAProposal.Text = "Make a proposal";
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblDate.Location = new System.Drawing.Point(15, 383);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(50, 23);
+            this.lblDate.TabIndex = 12;
+            this.lblDate.Text = "Date:";
+            // 
+            // dateTimePickerAgreements
+            // 
+            this.dateTimePickerAgreements.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dateTimePickerAgreements.Location = new System.Drawing.Point(71, 377);
+            this.dateTimePickerAgreements.Name = "dateTimePickerAgreements";
+            this.dateTimePickerAgreements.Size = new System.Drawing.Size(348, 30);
+            this.dateTimePickerAgreements.TabIndex = 10;
             // 
             // lblProposalDescription
             // 
@@ -678,9 +703,9 @@
             // 
             // tbProposalTitle
             // 
-            this.tbProposalTitle.Location = new System.Drawing.Point(76, 44);
+            this.tbProposalTitle.Location = new System.Drawing.Point(67, 39);
             this.tbProposalTitle.Name = "tbProposalTitle";
-            this.tbProposalTitle.Size = new System.Drawing.Size(217, 34);
+            this.tbProposalTitle.Size = new System.Drawing.Size(352, 34);
             this.tbProposalTitle.TabIndex = 8;
             // 
             // lblProposalTitle
@@ -695,19 +720,20 @@
             // 
             // btnSubmitProposal
             // 
-            this.btnSubmitProposal.Location = new System.Drawing.Point(290, 377);
+            this.btnSubmitProposal.Location = new System.Drawing.Point(325, 429);
             this.btnSubmitProposal.Name = "btnSubmitProposal";
             this.btnSubmitProposal.Size = new System.Drawing.Size(94, 40);
             this.btnSubmitProposal.TabIndex = 1;
             this.btnSubmitProposal.Text = "Submit";
             this.btnSubmitProposal.UseVisualStyleBackColor = true;
+            this.btnSubmitProposal.Click += new System.EventHandler(this.btnSubmitProposal_Click);
             // 
             // tbProposalContent
             // 
             this.tbProposalContent.Location = new System.Drawing.Point(15, 136);
             this.tbProposalContent.Multiline = true;
             this.tbProposalContent.Name = "tbProposalContent";
-            this.tbProposalContent.Size = new System.Drawing.Size(369, 216);
+            this.tbProposalContent.Size = new System.Drawing.Size(404, 216);
             this.tbProposalContent.TabIndex = 0;
             // 
             // tabReport
@@ -817,9 +843,9 @@
             this.lblWarnings.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblWarnings.Location = new System.Drawing.Point(31, 408);
             this.lblWarnings.Name = "lblWarnings";
-            this.lblWarnings.Size = new System.Drawing.Size(125, 35);
+            this.lblWarnings.Size = new System.Drawing.Size(232, 35);
             this.lblWarnings.TabIndex = 6;
-            this.lblWarnings.Text = "Warnings";
+            this.lblWarnings.Text = "Warnings received";
             // 
             // lblStudentHouseBV
             // 
@@ -932,5 +958,7 @@
         private TextBox tbReportTitle;
         private Label lblReportTitle;
         private TextBox tbReportContext;
+        private Label lblDate;
+        private DateTimePicker dateTimePickerAgreements;
     }
 }

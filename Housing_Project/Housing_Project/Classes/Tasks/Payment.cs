@@ -8,46 +8,49 @@ namespace Housing_Project.Classes.Tasks
 {
     public class Payment
     {
+        private int _paymentID = 0;
         private List<string> _items= new List<string>();
         private string _buyer;
-        private decimal _totalPrice;
-        private decimal _pricePerPerson;
-        private int _paymentID;
+        private double _totalPrice;
 
-        public Payment(List<string> list, string buyer, decimal totalPrice)
+        public Payment(int id, List<string> list, string buyer, double totalPrice)
         {
+            this._paymentID = id;
             this._items = list;
             this._buyer = buyer;
             this._totalPrice = totalPrice;
         }
 
+        public int PaymentID { get { return _paymentID; } }
+
         public List<string> Items { get { return _items; } }
 
         public string Buyer { get { return _buyer; } }
 
-        public decimal TotalPrice { get { return _totalPrice; } }
+        public double TotalPrice { get { return _totalPrice; } }
 
         public void AddItem(string item)
         {
             _items.Add(item);
         }
 
-        public void CalculatePricePerPerson()
-        {
-            _pricePerPerson = _totalPrice / 7;
-            //Manager.GetTenants().Count()
-        }
-
         public string GetInfoPayment()
         {
-            return $"{this._paymentID}. {this._buyer} bought {this._items}.\n" +
-                $"Total price: {this._totalPrice}, Price per person: {this._pricePerPerson}\n" +
-                $"----------------------------------";
+            string info = $"{this._paymentID}. {this._buyer} bought: ";
+            foreach (string item in _items)
+                info += item + ", ";
+            info += $"\nTotal price: {this._totalPrice}, Price per person: {PaymentManager.PricePerPerson:f2}";
+            return info;
+        }
+
+        public string GetInfoPaymentDisplay()
+        {
+            return $"{this.PaymentID}. {this._buyer} bought supplies worth {this._totalPrice} euros.";
         }
 
         public override string ToString()
         {
-            return GetInfoPayment();
+            return GetInfoPaymentDisplay();
         }
 
 

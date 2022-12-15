@@ -182,7 +182,6 @@
             this.btnEditSelectedRule.TabIndex = 5;
             this.btnEditSelectedRule.Text = "Edit selected rule";
             this.btnEditSelectedRule.UseVisualStyleBackColor = true;
-            this.btnEditSelectedRule.Click += new System.EventHandler(this.btnEditSelectedRule_Click);
             // 
             // numRuleNr
             // 

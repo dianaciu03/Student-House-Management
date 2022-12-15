@@ -1,4 +1,5 @@
-﻿using Housing_Project.Classes.Tasks;
+﻿using Housing_Project.Classes.Agreements_Problems;
+using Housing_Project.Classes.Tasks;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,12 +42,12 @@ namespace Housing_Project
         private void btnSubmitPayment_Click(object sender, EventArgs e)
         {
             List<string> items = new List<string>();
-            string buyer = "Tenant.Name";
-            decimal totalPrice = 0;
+            string buyer = "CurrentTenant.Name";
+            double totalPrice = 0;
  
             try
             {
-                totalPrice = Convert.ToDecimal(tbTotalPrice.Text);
+                totalPrice = Convert.ToDouble(tbTotalPrice.Text);
             }
             catch (Exception)
             {
@@ -73,9 +74,50 @@ namespace Housing_Project
             }
 
             if (items.Count > 0 && totalPrice > 0)
-                lbPaymentsInfo.Items.Add(new Payment(items, buyer, totalPrice));
+            {
+                PaymentManager.AddPaymentToList(items, buyer, totalPrice);
+            }
 
+            foreach (Payment p in PaymentManager.GetPayments())
+                lbPaymentsInfo.Items.Add(p);
+        }
+        private void lbPaymentsInfo_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbPaymentsInfo.SelectedIndex;
+            MessageBox.Show(PaymentManager.GetPayment(index).GetInfoPayment());
+        }
 
+        //
+        //AGREEMENTS TAB
+        //
+
+        private void btnSubmitProposal_Click(object sender, EventArgs e)
+        {
+            lbAgreementsDisplay.Items.Clear();
+            try
+            {
+                string title = tbProposalTitle.Text;
+                string description = tbProposalContent.Text;
+                DateTime date = dateTimePickerAgreements.Value;
+
+                if(!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
+                {
+                    AgreementManager.AddAgreementToList(title, description, date);
+                }
+
+                foreach (Agreement a in AgreementManager.GetAgreements()) 
+                    lbAgreementsDisplay.Items.Add(a);
+            }
+            catch(Exception)
+            {
+                return;
+            }
+        }
+
+        private void lbAgreementsDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbAgreementsDisplay.SelectedIndex;
+            MessageBox.Show(AgreementManager.GetAgreement(index).GetInfoAgreement());
         }
     }
 }

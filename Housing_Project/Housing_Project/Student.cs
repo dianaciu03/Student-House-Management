@@ -29,9 +29,14 @@ namespace Housing_Project
             };
         }
 
+        //
+        //EVENT SCHEDULE TAB
+        //
+
         private void btnSendReportTask_Click(object sender, EventArgs e)
         {
             //nothing yet
+           // DateTime date = MonthCalendar.ModifierKeys
         }
 
 
@@ -41,6 +46,8 @@ namespace Housing_Project
 
         private void btnSubmitPayment_Click(object sender, EventArgs e)
         {
+            lbPaymentsInfo.Items.Clear();
+            
             List<string> items = new List<string>();
             string buyer = "CurrentTenant.Name";
             double totalPrice = 0;
@@ -80,10 +87,13 @@ namespace Housing_Project
 
             foreach (Payment p in PaymentManager.GetPayments())
                 lbPaymentsInfo.Items.Add(p);
+                      
         }
+
         private void lbPaymentsInfo_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int index = lbPaymentsInfo.SelectedIndex;
+            PaymentManager.CalculatePricePerPerson(PaymentManager.GetPayment(index));
             MessageBox.Show(PaymentManager.GetPayment(index).GetInfoPayment());
         }
 
@@ -94,6 +104,7 @@ namespace Housing_Project
         private void btnSubmitProposal_Click(object sender, EventArgs e)
         {
             lbAgreementsDisplay.Items.Clear();
+
             try
             {
                 string title = tbProposalTitle.Text;
@@ -118,6 +129,31 @@ namespace Housing_Project
         {
             int index = lbAgreementsDisplay.SelectedIndex;
             MessageBox.Show(AgreementManager.GetAgreement(index).GetInfoAgreement());
+        }
+
+        //
+        //REPORT TAB
+        //
+
+        private void btnSubmitReport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string title = tbReportTitle.Text;
+                string description = tbReportContent.Text;
+
+                if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
+                {
+                    
+                }
+
+                //foreach (Agreement a in AgreementManager.GetAgreements())
+                    //lbAgreementsDisplay.Items.Add(a);
+            }
+            catch(Exception)
+            {
+                return;
+            }
         }
     }
 }

@@ -91,7 +91,7 @@
             this.tbReportTitle = new System.Windows.Forms.TextBox();
             this.lblReportTitle = new System.Windows.Forms.Label();
             this.btnSubmitReport = new System.Windows.Forms.Button();
-            this.tbReportContext = new System.Windows.Forms.TextBox();
+            this.tbReportContent = new System.Windows.Forms.TextBox();
             this.cbTenantsToReport = new System.Windows.Forms.ComboBox();
             this.lblAdressReportToSomeone = new System.Windows.Forms.Label();
             this.tbWarnings = new System.Windows.Forms.TextBox();
@@ -119,7 +119,7 @@
             this.tabControlStudent.Location = new System.Drawing.Point(11, 101);
             this.tabControlStudent.Multiline = true;
             this.tabControlStudent.Name = "tabControlStudent";
-            this.tabControlStudent.Padding = new System.Drawing.Point(40, 5);
+            this.tabControlStudent.Padding = new System.Drawing.Point(45, 5);
             this.tabControlStudent.SelectedIndex = 0;
             this.tabControlStudent.Size = new System.Drawing.Size(1209, 725);
             this.tabControlStudent.TabIndex = 0;
@@ -216,7 +216,7 @@
             this.tabCleaningSchedule.Padding = new System.Windows.Forms.Padding(3);
             this.tabCleaningSchedule.Size = new System.Drawing.Size(1201, 680);
             this.tabCleaningSchedule.TabIndex = 2;
-            this.tabCleaningSchedule.Text = "Cleaning Schedule";
+            this.tabCleaningSchedule.Text = "Event Schedule";
             this.tabCleaningSchedule.UseVisualStyleBackColor = true;
             // 
             // btnSendReportTask
@@ -755,7 +755,7 @@
             this.gbFileAReport.Controls.Add(this.tbReportTitle);
             this.gbFileAReport.Controls.Add(this.lblReportTitle);
             this.gbFileAReport.Controls.Add(this.btnSubmitReport);
-            this.gbFileAReport.Controls.Add(this.tbReportContext);
+            this.gbFileAReport.Controls.Add(this.tbReportContent);
             this.gbFileAReport.Controls.Add(this.cbTenantsToReport);
             this.gbFileAReport.Controls.Add(this.lblAdressReportToSomeone);
             this.gbFileAReport.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -802,14 +802,15 @@
             this.btnSubmitReport.TabIndex = 5;
             this.btnSubmitReport.Text = "Submit report";
             this.btnSubmitReport.UseVisualStyleBackColor = true;
+            this.btnSubmitReport.Click += new System.EventHandler(this.btnSubmitReport_Click);
             // 
-            // tbReportContext
+            // tbReportContent
             // 
-            this.tbReportContext.Location = new System.Drawing.Point(130, 102);
-            this.tbReportContext.Multiline = true;
-            this.tbReportContext.Name = "tbReportContext";
-            this.tbReportContext.Size = new System.Drawing.Size(394, 216);
-            this.tbReportContext.TabIndex = 10;
+            this.tbReportContent.Location = new System.Drawing.Point(130, 102);
+            this.tbReportContent.Multiline = true;
+            this.tbReportContent.Name = "tbReportContent";
+            this.tbReportContent.Size = new System.Drawing.Size(394, 216);
+            this.tbReportContent.TabIndex = 10;
             // 
             // cbTenantsToReport
             // 
@@ -957,7 +958,7 @@
         private Label lblReportDescription;
         private TextBox tbReportTitle;
         private Label lblReportTitle;
-        private TextBox tbReportContext;
+        private TextBox tbReportContent;
         private Label lblDate;
         private DateTimePicker dateTimePickerAgreements;
     }

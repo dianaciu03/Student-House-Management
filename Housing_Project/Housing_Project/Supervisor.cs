@@ -56,9 +56,10 @@ namespace Housing_Project
 
             selectedIndex = -1; //both
 
-            if (Tab=="tabRules")
+            if (Tab=="tabRules")//supervisor
             {
                 btnSubmitChanges.Visible = false;
+                editbtnRules.Visible = true;
                 showinfobtn.Visible = true; //supervisor
                 //supervisor
                 subjecttxt.Text = "";
@@ -73,7 +74,7 @@ namespace Housing_Project
                 }
             }
 
-            else if (Tab== "tabContactInfo")
+            else if (Tab== "tabContactInfo")//tenant
             {
                 btnAddTenant.Visible = true;
                 edittenantbtn.Visible = true;

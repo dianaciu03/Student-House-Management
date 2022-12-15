@@ -86,7 +86,7 @@ namespace Housing_Project
                 || emailadresstxt.Text == ""
                 || passwordtxt.Text == "")
             {
-                ShowMessages(true,"register");
+                ShowMessages(true, "register");
             }
             else
             {
@@ -94,7 +94,7 @@ namespace Housing_Project
                 OpenUser("student");
             }
         }
-        
+
         private void tabControlLoginRegister_Click(object sender, EventArgs e) //CreateAccountTAB
         {
             registerwrongcredentialslbl.Visible = false;

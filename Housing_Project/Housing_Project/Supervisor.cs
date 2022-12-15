@@ -12,20 +12,28 @@ using System.IO;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Reflection;
 using Housing_Project.Classes;
+using Microsoft.VisualBasic;
 using Rule = Housing_Project.Classes.Agreements_Problems.Rule;
 
 namespace Housing_Project
 {
     public partial class FormSupervisor : Form
     {
+        //denitsa VVV
+        Report report;
+        cleaningTask cleaning;
+        //denitsa ^^^
         //we need to make class rule and class tenant in order to add objects to the lists instead of strings
         //List<Classes.Agreements_Problems.Rule> rules;
 
         private int selectedIndex;
         public FormSupervisor()
         {
-            InitializeComponent();
 
+            InitializeComponent();
+            //denitsa
+            cbSelectTenantToAssignTask.Text = "E";
+            
             selectedIndex = -1;
             btnSubmitChanges.Visible = false;
             btnSubmitChangesTenant.Visible= false;
@@ -197,6 +205,55 @@ namespace Housing_Project
         private void btnSubmitChangesTenant_Click(object sender, EventArgs e)
         {
             SubmitChanges("tenant");
+        }
+
+        //denitsa
+        private void btnSendWarning_Click(object sender, EventArgs e)
+        {
+            report = new Report(tbtitle.Text,tbdescription.Text,tbadressedPerson.Text);
+            MessageBox.Show(report.GetInfo());
+        }
+
+        private void btnSubmitTask_Click(object sender, EventArgs e)
+        {
+            //DateRangeEventHandler dateSelected = monthCalendarSupervisor.selcte;
+            //cleaning.SetDate(monthCalendarSupervisor.ToString())
+            cleaning.GetDate(); 
+            if (cbCleanBathroom1.Checked)
+            {
+                lbEvents.Text = cbCleanBathroom1.Text + cleaning.GetInfo();
+               
+            }
+           else  if (cbCleanBathroom2.Checked)
+            {
+                lbEvents.Text = cbCleanBathroom2.Text + cleaning.GetInfo();
+            }
+           else if (cbCleanTheKitchen.Checked)
+            {
+                lbEvents.Text = cbCleanTheKitchen.Text + cleaning.GetInfo();
+            }
+           else if (cbCleanTheLivingRoom.Checked)
+            {
+                lbEvents.Text = cbCleanTheLivingRoom.Text + cleaning.GetInfo();
+            }
+            else if (cbCleanTheStarirs.Checked)
+            {
+                lbEvents.Text = cbCleanTheStarirs.Text + cleaning.GetInfo();
+            }
+  
+            else if (cbTakeOutTheTrash.Checked)
+            {
+                lbEvents.Text = cbTakeOutTheTrash.Text + cleaning.GetInfo();
+            }
+       
+        }
+
+        private void btnSubmitAnnouncement_Click(object sender, EventArgs e)
+        {
+            string announcement = tbAnnouncementTitle.Text;
+            string description = tbAnnouncementDescription.Text;
+            MessageBox.Show($"Title:{announcement},Description:{description}");
+
         }
     }
 }

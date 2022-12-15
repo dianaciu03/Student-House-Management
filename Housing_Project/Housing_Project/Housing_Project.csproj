@@ -9,7 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
+	  <Compile Include="C:\Users\sando\Repositories\project-housing\Housing_Project\Housing_Project\Supervisor.cs" Link="Supervisor.cs" />
+	  <Compile Include="C:\Users\sando\Repositories\project-housing\Housing_Project\Housing_Project\Supervisor.Designer.cs" Link="Supervisor.Designer.cs" />
+  </ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

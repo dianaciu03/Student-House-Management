@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
-    public class House
+    internal class Manager
     {
-        private List<Tenant> _tenantsOfHouse = new List<Tenant>();
-        private Supervisor _supervisorOfHouse = new Supervisor();
-
     }
 }

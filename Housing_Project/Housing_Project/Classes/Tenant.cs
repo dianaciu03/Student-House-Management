@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Housing_Project.Classes
 {
-    internal class Tenant
+    public class Tenant
     {
         private string _name;
         private string _email;

@@ -25,12 +25,24 @@ namespace Housing_Project
             passwordtxt.Clear();
             phonenumbertxt.Clear();
         }
-        private void OpenStudents()
+        private void OpenUser(string user)
         {
-            this.Hide();
-            FormStudent student = new FormStudent();
-            student.ShowDialog();
-            this.Close();
+            if (user == "student")
+            {
+                this.Hide();
+                FormStudent student = new FormStudent();
+                student.ShowDialog();
+                this.Close();
+            }
+
+            if (user == "supervisor")
+            {
+                this.Hide();
+                FormSupervisor supervisor = new FormSupervisor();
+                supervisor.ShowDialog();
+                this.Close();
+            }
+
         }
         private void ShowMessages(bool trueorfalse,string RegisterOrLogin) 
         {
@@ -46,9 +58,13 @@ namespace Housing_Project
 
         private void loginbtn_Click(object sender, EventArgs e) // actual log in button
         {        
-            if (loginemailtxt.Text == "admin" && loginpasswordtxt.Text == "123")
+            if (loginemailtxt.Text == "1" && loginpasswordtxt.Text == "1")
             {
-                OpenStudents();
+                OpenUser("student");
+            }
+            else if (loginemailtxt.Text == "2" && loginpasswordtxt.Text == "2")
+            {
+                OpenUser("supervisor");
             }
             else 
             {
@@ -75,7 +91,7 @@ namespace Housing_Project
             else
             {
                 ClearFields();
-                OpenStudents();
+                OpenUser("student");
             }
         }
         

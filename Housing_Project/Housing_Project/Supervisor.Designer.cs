@@ -31,6 +31,13 @@
             this.tabControlSupervisor = new System.Windows.Forms.TabControl();
             this.tabRules = new System.Windows.Forms.TabPage();
             this.gbEditRules = new System.Windows.Forms.GroupBox();
+            this.showinfobtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.indexBox = new System.Windows.Forms.TextBox();
+            this.editbtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.subjecttxt = new System.Windows.Forms.RichTextBox();
             this.btnSubmitChanges = new System.Windows.Forms.Button();
             this.btnAddRule = new System.Windows.Forms.Button();
             this.tbRule = new System.Windows.Forms.RichTextBox();
@@ -46,9 +53,10 @@
             this.lblSupervisorEmail = new System.Windows.Forms.Label();
             this.tbSupervisorName = new System.Windows.Forms.TextBox();
             this.lblSupervisorName = new System.Windows.Forms.Label();
-            this.numSupervisorID = new System.Windows.Forms.NumericUpDown();
-            this.lblSupervisorToEdit = new System.Windows.Forms.Label();
             this.gbEditTenant = new System.Windows.Forms.GroupBox();
+            this.indexboxTenants = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.edittenantbtn = new System.Windows.Forms.Button();
             this.btnAddTenant = new System.Windows.Forms.Button();
             this.btnSubmitChangesTenant = new System.Windows.Forms.Button();
             this.tbRoomNumber = new System.Windows.Forms.TextBox();
@@ -59,8 +67,6 @@
             this.lblTenantEmail = new System.Windows.Forms.Label();
             this.tbTenantName = new System.Windows.Forms.TextBox();
             this.lblTenantName = new System.Windows.Forms.Label();
-            this.numTenantID = new System.Windows.Forms.NumericUpDown();
-            this.lblTenantToEdit = new System.Windows.Forms.Label();
             this.lbSupervisorsInfo = new System.Windows.Forms.ListBox();
             this.lblSupervisorContactInfo = new System.Windows.Forms.Label();
             this.lblTenantsContactInfo = new System.Windows.Forms.Label();
@@ -102,9 +108,7 @@
             this.gbEditRules.SuspendLayout();
             this.tabContactInfo.SuspendLayout();
             this.gbEditSupervisor.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSupervisorID)).BeginInit();
             this.gbEditTenant.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTenantID)).BeginInit();
             this.tabManageReports.SuspendLayout();
             this.gbReport.SuspendLayout();
             this.tabAssignTasks.SuspendLayout();
@@ -125,6 +129,7 @@
             this.tabControlSupervisor.SelectedIndex = 0;
             this.tabControlSupervisor.Size = new System.Drawing.Size(907, 514);
             this.tabControlSupervisor.TabIndex = 3;
+            this.tabControlSupervisor.Click += new System.EventHandler(this.tabControlSupervisor_Click);
             // 
             // tabRules
             // 
@@ -134,7 +139,7 @@
             this.tabRules.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabRules.Location = new System.Drawing.Point(4, 30);
             this.tabRules.Name = "tabRules";
-            this.tabRules.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabRules.Padding = new System.Windows.Forms.Padding(3);
             this.tabRules.Size = new System.Drawing.Size(899, 480);
             this.tabRules.TabIndex = 0;
             this.tabRules.Text = "Rules";
@@ -142,6 +147,13 @@
             // 
             // gbEditRules
             // 
+            this.gbEditRules.Controls.Add(this.showinfobtn);
+            this.gbEditRules.Controls.Add(this.label3);
+            this.gbEditRules.Controls.Add(this.indexBox);
+            this.gbEditRules.Controls.Add(this.editbtn);
+            this.gbEditRules.Controls.Add(this.label2);
+            this.gbEditRules.Controls.Add(this.label1);
+            this.gbEditRules.Controls.Add(this.subjecttxt);
             this.gbEditRules.Controls.Add(this.btnSubmitChanges);
             this.gbEditRules.Controls.Add(this.btnAddRule);
             this.gbEditRules.Controls.Add(this.tbRule);
@@ -150,16 +162,79 @@
             this.gbEditRules.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbEditRules.Name = "gbEditRules";
             this.gbEditRules.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbEditRules.Size = new System.Drawing.Size(363, 308);
+            this.gbEditRules.Size = new System.Drawing.Size(363, 340);
             this.gbEditRules.TabIndex = 6;
             this.gbEditRules.TabStop = false;
             this.gbEditRules.Text = "Edit Rules Set";
+            // 
+            // showinfobtn
+            // 
+            this.showinfobtn.Location = new System.Drawing.Point(14, 296);
+            this.showinfobtn.Name = "showinfobtn";
+            this.showinfobtn.Size = new System.Drawing.Size(334, 39);
+            this.showinfobtn.TabIndex = 12;
+            this.showinfobtn.Text = "Show detailed info";
+            this.showinfobtn.UseVisualStyleBackColor = true;
+            this.showinfobtn.Click += new System.EventHandler(this.showinfobtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(148, 30);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(151, 21);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Editing rule number:";
+            // 
+            // indexBox
+            // 
+            this.indexBox.Location = new System.Drawing.Point(305, 27);
+            this.indexBox.Name = "indexBox";
+            this.indexBox.ReadOnly = true;
+            this.indexBox.Size = new System.Drawing.Size(43, 29);
+            this.indexBox.TabIndex = 10;
+            // 
+            // editbtn
+            // 
+            this.editbtn.Location = new System.Drawing.Point(14, 256);
+            this.editbtn.Name = "editbtn";
+            this.editbtn.Size = new System.Drawing.Size(144, 34);
+            this.editbtn.TabIndex = 7;
+            this.editbtn.Text = "Edit";
+            this.editbtn.UseVisualStyleBackColor = true;
+            this.editbtn.Click += new System.EventHandler(this.editbtn_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(14, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 21);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Description";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(14, 50);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(64, 21);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Subject:";
+            // 
+            // subjecttxt
+            // 
+            this.subjecttxt.Location = new System.Drawing.Point(14, 74);
+            this.subjecttxt.Name = "subjecttxt";
+            this.subjecttxt.Size = new System.Drawing.Size(334, 31);
+            this.subjecttxt.TabIndex = 7;
+            this.subjecttxt.Text = "";
             // 
             // btnSubmitChanges
             // 
             this.btnSubmitChanges.Location = new System.Drawing.Point(14, 256);
             this.btnSubmitChanges.Name = "btnSubmitChanges";
-            this.btnSubmitChanges.Size = new System.Drawing.Size(144, 34);
+            this.btnSubmitChanges.Size = new System.Drawing.Size(334, 34);
             this.btnSubmitChanges.TabIndex = 6;
             this.btnSubmitChanges.Text = "Submit changes";
             this.btnSubmitChanges.UseVisualStyleBackColor = true;
@@ -177,9 +252,9 @@
             // 
             // tbRule
             // 
-            this.tbRule.Location = new System.Drawing.Point(14, 27);
+            this.tbRule.Location = new System.Drawing.Point(14, 151);
             this.tbRule.Name = "tbRule";
-            this.tbRule.Size = new System.Drawing.Size(334, 214);
+            this.tbRule.Size = new System.Drawing.Size(334, 90);
             this.tbRule.TabIndex = 3;
             this.tbRule.Text = "";
             // 
@@ -205,6 +280,8 @@
             // 
             // tabContactInfo
             // 
+            this.tabContactInfo.Controls.Add(this.indexboxTenants);
+            this.tabContactInfo.Controls.Add(this.label4);
             this.tabContactInfo.Controls.Add(this.gbEditSupervisor);
             this.tabContactInfo.Controls.Add(this.gbEditTenant);
             this.tabContactInfo.Controls.Add(this.lbSupervisorsInfo);
@@ -228,8 +305,6 @@
             this.gbEditSupervisor.Controls.Add(this.lblSupervisorEmail);
             this.gbEditSupervisor.Controls.Add(this.tbSupervisorName);
             this.gbEditSupervisor.Controls.Add(this.lblSupervisorName);
-            this.gbEditSupervisor.Controls.Add(this.numSupervisorID);
-            this.gbEditSupervisor.Controls.Add(this.lblSupervisorToEdit);
             this.gbEditSupervisor.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.gbEditSupervisor.Location = new System.Drawing.Point(509, 284);
             this.gbEditSupervisor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -262,7 +337,7 @@
             // 
             // tbSupervisorPhone
             // 
-            this.tbSupervisorPhone.Location = new System.Drawing.Point(144, 111);
+            this.tbSupervisorPhone.Location = new System.Drawing.Point(124, 98);
             this.tbSupervisorPhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbSupervisorPhone.Name = "tbSupervisorPhone";
             this.tbSupervisorPhone.Size = new System.Drawing.Size(150, 25);
@@ -270,7 +345,7 @@
             // 
             // tbSupervisorEmail
             // 
-            this.tbSupervisorEmail.Location = new System.Drawing.Point(144, 81);
+            this.tbSupervisorEmail.Location = new System.Drawing.Point(124, 68);
             this.tbSupervisorEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbSupervisorEmail.Name = "tbSupervisorEmail";
             this.tbSupervisorEmail.Size = new System.Drawing.Size(150, 25);
@@ -279,7 +354,7 @@
             // lblSupervisorPhone
             // 
             this.lblSupervisorPhone.AutoSize = true;
-            this.lblSupervisorPhone.Location = new System.Drawing.Point(84, 113);
+            this.lblSupervisorPhone.Location = new System.Drawing.Point(64, 100);
             this.lblSupervisorPhone.Name = "lblSupervisorPhone";
             this.lblSupervisorPhone.Size = new System.Drawing.Size(51, 19);
             this.lblSupervisorPhone.TabIndex = 10;
@@ -288,7 +363,7 @@
             // lblSupervisorEmail
             // 
             this.lblSupervisorEmail.AutoSize = true;
-            this.lblSupervisorEmail.Location = new System.Drawing.Point(91, 83);
+            this.lblSupervisorEmail.Location = new System.Drawing.Point(71, 70);
             this.lblSupervisorEmail.Name = "lblSupervisorEmail";
             this.lblSupervisorEmail.Size = new System.Drawing.Size(44, 19);
             this.lblSupervisorEmail.TabIndex = 9;
@@ -296,7 +371,7 @@
             // 
             // tbSupervisorName
             // 
-            this.tbSupervisorName.Location = new System.Drawing.Point(144, 50);
+            this.tbSupervisorName.Location = new System.Drawing.Point(124, 36);
             this.tbSupervisorName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbSupervisorName.Name = "tbSupervisorName";
             this.tbSupervisorName.Size = new System.Drawing.Size(150, 25);
@@ -305,33 +380,15 @@
             // lblSupervisorName
             // 
             this.lblSupervisorName.AutoSize = true;
-            this.lblSupervisorName.Location = new System.Drawing.Point(87, 52);
+            this.lblSupervisorName.Location = new System.Drawing.Point(67, 39);
             this.lblSupervisorName.Name = "lblSupervisorName";
             this.lblSupervisorName.Size = new System.Drawing.Size(48, 19);
             this.lblSupervisorName.TabIndex = 7;
             this.lblSupervisorName.Text = "Name:";
             // 
-            // numSupervisorID
-            // 
-            this.numSupervisorID.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numSupervisorID.Location = new System.Drawing.Point(144, 18);
-            this.numSupervisorID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.numSupervisorID.Name = "numSupervisorID";
-            this.numSupervisorID.Size = new System.Drawing.Size(150, 25);
-            this.numSupervisorID.TabIndex = 6;
-            // 
-            // lblSupervisorToEdit
-            // 
-            this.lblSupervisorToEdit.AutoSize = true;
-            this.lblSupervisorToEdit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSupervisorToEdit.Location = new System.Drawing.Point(10, 20);
-            this.lblSupervisorToEdit.Name = "lblSupervisorToEdit";
-            this.lblSupervisorToEdit.Size = new System.Drawing.Size(120, 19);
-            this.lblSupervisorToEdit.TabIndex = 5;
-            this.lblSupervisorToEdit.Text = "Supervisor to edit:";
-            // 
             // gbEditTenant
             // 
+            this.gbEditTenant.Controls.Add(this.edittenantbtn);
             this.gbEditTenant.Controls.Add(this.btnAddTenant);
             this.gbEditTenant.Controls.Add(this.btnSubmitChangesTenant);
             this.gbEditTenant.Controls.Add(this.tbRoomNumber);
@@ -342,8 +399,6 @@
             this.gbEditTenant.Controls.Add(this.lblTenantEmail);
             this.gbEditTenant.Controls.Add(this.tbTenantName);
             this.gbEditTenant.Controls.Add(this.lblTenantName);
-            this.gbEditTenant.Controls.Add(this.numTenantID);
-            this.gbEditTenant.Controls.Add(this.lblTenantToEdit);
             this.gbEditTenant.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.gbEditTenant.Location = new System.Drawing.Point(509, 28);
             this.gbEditTenant.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -354,9 +409,37 @@
             this.gbEditTenant.TabStop = false;
             this.gbEditTenant.Text = "Edit tenant ";
             // 
+            // indexboxTenants
+            // 
+            this.indexboxTenants.Location = new System.Drawing.Point(830, 255);
+            this.indexboxTenants.Name = "indexboxTenants";
+            this.indexboxTenants.ReadOnly = true;
+            this.indexboxTenants.Size = new System.Drawing.Size(43, 29);
+            this.indexboxTenants.TabIndex = 15;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(673, 258);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(151, 21);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Editing rule number:";
+            // 
+            // edittenantbtn
+            // 
+            this.edittenantbtn.Location = new System.Drawing.Point(22, 176);
+            this.edittenantbtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.edittenantbtn.Name = "edittenantbtn";
+            this.edittenantbtn.Size = new System.Drawing.Size(144, 29);
+            this.edittenantbtn.TabIndex = 17;
+            this.edittenantbtn.Text = "Edit";
+            this.edittenantbtn.UseVisualStyleBackColor = true;
+            this.edittenantbtn.Click += new System.EventHandler(this.edittenantbtn_Click);
+            // 
             // btnAddTenant
             // 
-            this.btnAddTenant.Location = new System.Drawing.Point(202, 181);
+            this.btnAddTenant.Location = new System.Drawing.Point(206, 176);
             this.btnAddTenant.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddTenant.Name = "btnAddTenant";
             this.btnAddTenant.Size = new System.Drawing.Size(144, 29);
@@ -367,17 +450,18 @@
             // 
             // btnSubmitChangesTenant
             // 
-            this.btnSubmitChangesTenant.Location = new System.Drawing.Point(18, 181);
+            this.btnSubmitChangesTenant.Location = new System.Drawing.Point(22, 176);
             this.btnSubmitChangesTenant.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSubmitChangesTenant.Name = "btnSubmitChangesTenant";
-            this.btnSubmitChangesTenant.Size = new System.Drawing.Size(144, 29);
+            this.btnSubmitChangesTenant.Size = new System.Drawing.Size(328, 29);
             this.btnSubmitChangesTenant.TabIndex = 15;
             this.btnSubmitChangesTenant.Text = "Submit changes";
             this.btnSubmitChangesTenant.UseVisualStyleBackColor = true;
+            this.btnSubmitChangesTenant.Click += new System.EventHandler(this.btnSubmitChangesTenant_Click);
             // 
             // tbRoomNumber
             // 
-            this.tbRoomNumber.Location = new System.Drawing.Point(120, 144);
+            this.tbRoomNumber.Location = new System.Drawing.Point(124, 139);
             this.tbRoomNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbRoomNumber.Name = "tbRoomNumber";
             this.tbRoomNumber.Size = new System.Drawing.Size(71, 25);
@@ -385,7 +469,7 @@
             // 
             // tbTenantPhone
             // 
-            this.tbTenantPhone.Location = new System.Drawing.Point(120, 116);
+            this.tbTenantPhone.Location = new System.Drawing.Point(124, 111);
             this.tbTenantPhone.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbTenantPhone.Name = "tbTenantPhone";
             this.tbTenantPhone.Size = new System.Drawing.Size(150, 25);
@@ -393,7 +477,7 @@
             // 
             // tbTenantEmail
             // 
-            this.tbTenantEmail.Location = new System.Drawing.Point(120, 86);
+            this.tbTenantEmail.Location = new System.Drawing.Point(124, 81);
             this.tbTenantEmail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbTenantEmail.Name = "tbTenantEmail";
             this.tbTenantEmail.Size = new System.Drawing.Size(150, 25);
@@ -402,7 +486,7 @@
             // lblRoomNr
             // 
             this.lblRoomNr.AutoSize = true;
-            this.lblRoomNr.Location = new System.Drawing.Point(41, 146);
+            this.lblRoomNr.Location = new System.Drawing.Point(45, 141);
             this.lblRoomNr.Name = "lblRoomNr";
             this.lblRoomNr.Size = new System.Drawing.Size(68, 19);
             this.lblRoomNr.TabIndex = 11;
@@ -411,7 +495,7 @@
             // lblTenantPhone
             // 
             this.lblTenantPhone.AutoSize = true;
-            this.lblTenantPhone.Location = new System.Drawing.Point(60, 118);
+            this.lblTenantPhone.Location = new System.Drawing.Point(64, 113);
             this.lblTenantPhone.Name = "lblTenantPhone";
             this.lblTenantPhone.Size = new System.Drawing.Size(51, 19);
             this.lblTenantPhone.TabIndex = 10;
@@ -420,7 +504,7 @@
             // lblTenantEmail
             // 
             this.lblTenantEmail.AutoSize = true;
-            this.lblTenantEmail.Location = new System.Drawing.Point(66, 88);
+            this.lblTenantEmail.Location = new System.Drawing.Point(70, 83);
             this.lblTenantEmail.Name = "lblTenantEmail";
             this.lblTenantEmail.Size = new System.Drawing.Size(44, 19);
             this.lblTenantEmail.TabIndex = 9;
@@ -428,7 +512,7 @@
             // 
             // tbTenantName
             // 
-            this.tbTenantName.Location = new System.Drawing.Point(120, 55);
+            this.tbTenantName.Location = new System.Drawing.Point(124, 50);
             this.tbTenantName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbTenantName.Name = "tbTenantName";
             this.tbTenantName.Size = new System.Drawing.Size(150, 25);
@@ -437,30 +521,11 @@
             // lblTenantName
             // 
             this.lblTenantName.AutoSize = true;
-            this.lblTenantName.Location = new System.Drawing.Point(62, 57);
+            this.lblTenantName.Location = new System.Drawing.Point(66, 52);
             this.lblTenantName.Name = "lblTenantName";
             this.lblTenantName.Size = new System.Drawing.Size(48, 19);
             this.lblTenantName.TabIndex = 7;
             this.lblTenantName.Text = "Name:";
-            // 
-            // numTenantID
-            // 
-            this.numTenantID.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.numTenantID.Location = new System.Drawing.Point(120, 23);
-            this.numTenantID.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.numTenantID.Name = "numTenantID";
-            this.numTenantID.Size = new System.Drawing.Size(150, 25);
-            this.numTenantID.TabIndex = 6;
-            // 
-            // lblTenantToEdit
-            // 
-            this.lblTenantToEdit.AutoSize = true;
-            this.lblTenantToEdit.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblTenantToEdit.Location = new System.Drawing.Point(10, 25);
-            this.lblTenantToEdit.Name = "lblTenantToEdit";
-            this.lblTenantToEdit.Size = new System.Drawing.Size(97, 19);
-            this.lblTenantToEdit.TabIndex = 5;
-            this.lblTenantToEdit.Text = "Tenant to edit:";
             // 
             // lbSupervisorsInfo
             // 
@@ -495,6 +560,7 @@
             // lbTenantsInfo
             // 
             this.lbTenantsInfo.FormattingEnabled = true;
+            this.lbTenantsInfo.HorizontalScrollbar = true;
             this.lbTenantsInfo.ItemHeight = 21;
             this.lbTenantsInfo.Location = new System.Drawing.Point(12, 38);
             this.lbTenantsInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -854,7 +920,7 @@
             this.lblStudentHouseBV.Image = global::Housing_Project.Properties.Resources.house;
             this.lblStudentHouseBV.Location = new System.Drawing.Point(12, 15);
             this.lblStudentHouseBV.Name = "lblStudentHouseBV";
-            this.lblStudentHouseBV.Size = new System.Drawing.Size(904, 58);
+            this.lblStudentHouseBV.Size = new System.Drawing.Size(907, 58);
             this.lblStudentHouseBV.TabIndex = 4;
             this.lblStudentHouseBV.Text = "Student House BV";
             this.lblStudentHouseBV.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -872,14 +938,13 @@
             this.tabRules.ResumeLayout(false);
             this.tabRules.PerformLayout();
             this.gbEditRules.ResumeLayout(false);
+            this.gbEditRules.PerformLayout();
             this.tabContactInfo.ResumeLayout(false);
             this.tabContactInfo.PerformLayout();
             this.gbEditSupervisor.ResumeLayout(false);
             this.gbEditSupervisor.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numSupervisorID)).EndInit();
             this.gbEditTenant.ResumeLayout(false);
             this.gbEditTenant.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numTenantID)).EndInit();
             this.tabManageReports.ResumeLayout(false);
             this.tabManageReports.PerformLayout();
             this.gbReport.ResumeLayout(false);
@@ -912,8 +977,6 @@
         private Label lblSupervisorContactInfo;
         private GroupBox gbEditTenant;
         private Label lblTenantName;
-        private NumericUpDown numTenantID;
-        private Label lblTenantToEdit;
         private ListBox lbSupervisorsInfo;
         private GroupBox gbEditSupervisor;
         private Button btnAddSupervisor;
@@ -924,8 +987,6 @@
         private Label lblSupervisorEmail;
         private TextBox tbSupervisorName;
         private Label lblSupervisorName;
-        private NumericUpDown numSupervisorID;
-        private Label lblSupervisorToEdit;
         private Button btnAddTenant;
         private Button btnSubmitChangesTenant;
         private TextBox tbRoomNumber;
@@ -963,5 +1024,15 @@
         private TextBox tbAnnouncementTitle;
         private Label lblAnnouncementTitle;
         private ListBox lbEvents;
+        private Label label2;
+        private Label label1;
+        private RichTextBox subjecttxt;
+        private Button editbtn;
+        private Label label3;
+        private TextBox indexBox;
+        private Button showinfobtn;
+        private Button edittenantbtn;
+        private TextBox indexboxTenants;
+        private Label label4;
     }
 }

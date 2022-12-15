@@ -70,11 +70,7 @@
             this.btnSendWarning = new System.Windows.Forms.Button();
             this.cbTenantToSendWarning = new System.Windows.Forms.ComboBox();
             this.lblSelectTenant = new System.Windows.Forms.Label();
-            this.tbTenantReportAdressedTo = new System.Windows.Forms.TextBox();
             this.lblPersonAdressedTo = new System.Windows.Forms.Label();
-            this.tbReportDescription = new System.Windows.Forms.TextBox();
-            this.lblReportDescription = new System.Windows.Forms.Label();
-            this.tbSubmittedReports = new System.Windows.Forms.RichTextBox();
             this.lblSubmittedReports = new System.Windows.Forms.Label();
             this.tabAssignTasks = new System.Windows.Forms.TabPage();
             this.lbEvents = new System.Windows.Forms.ListBox();
@@ -97,6 +93,13 @@
             this.lblSelectTenantAssignTask = new System.Windows.Forms.Label();
             this.monthCalendarSupervisor = new System.Windows.Forms.MonthCalendar();
             this.lblStudentHouseBV = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbtitle = new System.Windows.Forms.TextBox();
+            this.tbadressedPerson = new System.Windows.Forms.TextBox();
+            this.tbdescription = new System.Windows.Forms.RichTextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.roomNr = new System.Windows.Forms.TextBox();
             this.tabControlSupervisor.SuspendLayout();
             this.tabRules.SuspendLayout();
             this.gbEditRules.SuspendLayout();
@@ -134,7 +137,7 @@
             this.tabRules.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabRules.Location = new System.Drawing.Point(4, 30);
             this.tabRules.Name = "tabRules";
-            this.tabRules.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabRules.Padding = new System.Windows.Forms.Padding(3);
             this.tabRules.Size = new System.Drawing.Size(899, 480);
             this.tabRules.TabIndex = 0;
             this.tabRules.Text = "Rules";
@@ -504,8 +507,11 @@
             // 
             // tabManageReports
             // 
+            this.tabManageReports.Controls.Add(this.tbdescription);
+            this.tabManageReports.Controls.Add(this.tbtitle);
+            this.tabManageReports.Controls.Add(this.label2);
+            this.tabManageReports.Controls.Add(this.label1);
             this.tabManageReports.Controls.Add(this.gbReport);
-            this.tabManageReports.Controls.Add(this.tbSubmittedReports);
             this.tabManageReports.Controls.Add(this.lblSubmittedReports);
             this.tabManageReports.Location = new System.Drawing.Point(4, 30);
             this.tabManageReports.Name = "tabManageReports";
@@ -517,12 +523,10 @@
             // gbReport
             // 
             this.gbReport.Controls.Add(this.btnSendWarning);
+            this.gbReport.Controls.Add(this.tbadressedPerson);
             this.gbReport.Controls.Add(this.cbTenantToSendWarning);
             this.gbReport.Controls.Add(this.lblSelectTenant);
-            this.gbReport.Controls.Add(this.tbTenantReportAdressedTo);
             this.gbReport.Controls.Add(this.lblPersonAdressedTo);
-            this.gbReport.Controls.Add(this.tbReportDescription);
-            this.gbReport.Controls.Add(this.lblReportDescription);
             this.gbReport.Location = new System.Drawing.Point(416, 41);
             this.gbReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbReport.Name = "gbReport";
@@ -541,11 +545,12 @@
             this.btnSendWarning.TabIndex = 6;
             this.btnSendWarning.Text = "Send warning";
             this.btnSendWarning.UseVisualStyleBackColor = true;
+            this.btnSendWarning.Click += new System.EventHandler(this.btnSendWarning_Click);
             // 
             // cbTenantToSendWarning
             // 
             this.cbTenantToSendWarning.FormattingEnabled = true;
-            this.cbTenantToSendWarning.Location = new System.Drawing.Point(158, 230);
+            this.cbTenantToSendWarning.Location = new System.Drawing.Point(156, 127);
             this.cbTenantToSendWarning.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTenantToSendWarning.Name = "cbTenantToSendWarning";
             this.cbTenantToSendWarning.Size = new System.Drawing.Size(252, 29);
@@ -555,56 +560,21 @@
             // 
             this.lblSelectTenant.AutoSize = true;
             this.lblSelectTenant.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSelectTenant.Location = new System.Drawing.Point(49, 236);
+            this.lblSelectTenant.Location = new System.Drawing.Point(49, 133);
             this.lblSelectTenant.Name = "lblSelectTenant";
             this.lblSelectTenant.Size = new System.Drawing.Size(91, 19);
             this.lblSelectTenant.TabIndex = 4;
             this.lblSelectTenant.Text = "Select tenant:";
             // 
-            // tbTenantReportAdressedTo
-            // 
-            this.tbTenantReportAdressedTo.Location = new System.Drawing.Point(158, 173);
-            this.tbTenantReportAdressedTo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbTenantReportAdressedTo.Name = "tbTenantReportAdressedTo";
-            this.tbTenantReportAdressedTo.Size = new System.Drawing.Size(252, 29);
-            this.tbTenantReportAdressedTo.TabIndex = 3;
-            // 
             // lblPersonAdressedTo
             // 
             this.lblPersonAdressedTo.AutoSize = true;
             this.lblPersonAdressedTo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPersonAdressedTo.Location = new System.Drawing.Point(14, 179);
+            this.lblPersonAdressedTo.Location = new System.Drawing.Point(22, 72);
             this.lblPersonAdressedTo.Name = "lblPersonAdressedTo";
             this.lblPersonAdressedTo.Size = new System.Drawing.Size(128, 19);
             this.lblPersonAdressedTo.TabIndex = 2;
             this.lblPersonAdressedTo.Text = "Person adressed to:";
-            // 
-            // tbReportDescription
-            // 
-            this.tbReportDescription.Location = new System.Drawing.Point(14, 50);
-            this.tbReportDescription.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbReportDescription.Multiline = true;
-            this.tbReportDescription.Name = "tbReportDescription";
-            this.tbReportDescription.Size = new System.Drawing.Size(396, 115);
-            this.tbReportDescription.TabIndex = 1;
-            // 
-            // lblReportDescription
-            // 
-            this.lblReportDescription.AutoSize = true;
-            this.lblReportDescription.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblReportDescription.Location = new System.Drawing.Point(14, 31);
-            this.lblReportDescription.Name = "lblReportDescription";
-            this.lblReportDescription.Size = new System.Drawing.Size(124, 19);
-            this.lblReportDescription.TabIndex = 0;
-            this.lblReportDescription.Text = "Report description:";
-            // 
-            // tbSubmittedReports
-            // 
-            this.tbSubmittedReports.Location = new System.Drawing.Point(30, 52);
-            this.tbSubmittedReports.Name = "tbSubmittedReports";
-            this.tbSubmittedReports.Size = new System.Drawing.Size(335, 320);
-            this.tbSubmittedReports.TabIndex = 5;
-            this.tbSubmittedReports.Text = "";
             // 
             // lblSubmittedReports
             // 
@@ -668,6 +638,7 @@
             this.btnSubmitAnnouncement.TabIndex = 11;
             this.btnSubmitAnnouncement.Text = "Submit announcement";
             this.btnSubmitAnnouncement.UseVisualStyleBackColor = true;
+            this.btnSubmitAnnouncement.Click += new System.EventHandler(this.btnSubmitAnnouncement_Click);
             // 
             // tbAnnouncementDescription
             // 
@@ -708,6 +679,8 @@
             // 
             // gbAssignTask
             // 
+            this.gbAssignTask.Controls.Add(this.roomNr);
+            this.gbAssignTask.Controls.Add(this.label3);
             this.gbAssignTask.Controls.Add(this.btnSubmitTask);
             this.gbAssignTask.Controls.Add(this.cbTakeOutTheTrash);
             this.gbAssignTask.Controls.Add(this.cbCleanTheLivingRoom);
@@ -737,6 +710,7 @@
             this.btnSubmitTask.TabIndex = 10;
             this.btnSubmitTask.Text = "Submit task";
             this.btnSubmitTask.UseVisualStyleBackColor = true;
+            this.btnSubmitTask.Click += new System.EventHandler(this.btnSubmitTask_Click);
             // 
             // cbTakeOutTheTrash
             // 
@@ -814,7 +788,7 @@
             // 
             this.lblSelectTask.AutoSize = true;
             this.lblSelectTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSelectTask.Location = new System.Drawing.Point(13, 70);
+            this.lblSelectTask.Location = new System.Drawing.Point(13, 79);
             this.lblSelectTask.Name = "lblSelectTask";
             this.lblSelectTask.Size = new System.Drawing.Size(76, 19);
             this.lblSelectTask.TabIndex = 3;
@@ -823,7 +797,7 @@
             // cbSelectTenantToAssignTask
             // 
             this.cbSelectTenantToAssignTask.FormattingEnabled = true;
-            this.cbSelectTenantToAssignTask.Location = new System.Drawing.Point(118, 25);
+            this.cbSelectTenantToAssignTask.Location = new System.Drawing.Point(118, 21);
             this.cbSelectTenantToAssignTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbSelectTenantToAssignTask.Name = "cbSelectTenantToAssignTask";
             this.cbSelectTenantToAssignTask.Size = new System.Drawing.Size(236, 29);
@@ -833,7 +807,7 @@
             // 
             this.lblSelectTenantAssignTask.AutoSize = true;
             this.lblSelectTenantAssignTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSelectTenantAssignTask.Location = new System.Drawing.Point(13, 31);
+            this.lblSelectTenantAssignTask.Location = new System.Drawing.Point(13, 24);
             this.lblSelectTenantAssignTask.Name = "lblSelectTenantAssignTask";
             this.lblSelectTenantAssignTask.Size = new System.Drawing.Size(91, 19);
             this.lblSelectTenantAssignTask.TabIndex = 1;
@@ -858,6 +832,62 @@
             this.lblStudentHouseBV.TabIndex = 4;
             this.lblStudentHouseBV.Text = "Student House BV";
             this.lblStudentHouseBV.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 21);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Report title:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(30, 207);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(141, 21);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Report description:";
+            // 
+            // tbtitle
+            // 
+            this.tbtitle.Location = new System.Drawing.Point(177, 87);
+            this.tbtitle.Name = "tbtitle";
+            this.tbtitle.Size = new System.Drawing.Size(210, 29);
+            this.tbtitle.TabIndex = 10;
+            // 
+            // tbadressedPerson
+            // 
+            this.tbadressedPerson.Location = new System.Drawing.Point(188, 66);
+            this.tbadressedPerson.Name = "tbadressedPerson";
+            this.tbadressedPerson.Size = new System.Drawing.Size(210, 29);
+            this.tbadressedPerson.TabIndex = 12;
+            // 
+            // tbdescription
+            // 
+            this.tbdescription.Location = new System.Drawing.Point(177, 204);
+            this.tbdescription.Name = "tbdescription";
+            this.tbdescription.Size = new System.Drawing.Size(210, 77);
+            this.tbdescription.TabIndex = 13;
+            this.tbdescription.Text = "";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 58);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 21);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Room:";
+            // 
+            // roomNr
+            // 
+            this.roomNr.Location = new System.Drawing.Point(118, 55);
+            this.roomNr.Name = "roomNr";
+            this.roomNr.Size = new System.Drawing.Size(100, 29);
+            this.roomNr.TabIndex = 12;
             // 
             // FormSupervisor
             // 
@@ -898,7 +928,6 @@
         private TabPage tabRules;
         private TabPage tabContactInfo;
         private TabPage tabManageReports;
-        private RichTextBox tbSubmittedReports;
         private Label lblSubmittedReports;
         private RichTextBox tbRule;
         private Button btnAddRule;
@@ -939,10 +968,7 @@
         private Button btnSendWarning;
         private ComboBox cbTenantToSendWarning;
         private Label lblSelectTenant;
-        private TextBox tbTenantReportAdressedTo;
         private Label lblPersonAdressedTo;
-        private TextBox tbReportDescription;
-        private Label lblReportDescription;
         private TabPage tabAssignTasks;
         private MonthCalendar monthCalendarSupervisor;
         private GroupBox gbAssignTask;
@@ -963,5 +989,12 @@
         private TextBox tbAnnouncementTitle;
         private Label lblAnnouncementTitle;
         private ListBox lbEvents;
+        private TextBox tbadressedPerson;
+        private TextBox tbtitle;
+        private Label label2;
+        private Label label1;
+        private RichTextBox tbdescription;
+        private TextBox roomNr;
+        private Label label3;
     }
 }

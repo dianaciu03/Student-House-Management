@@ -38,7 +38,26 @@ namespace Housing_Project
             //nothing yet
            // DateTime date = MonthCalendar.ModifierKeys
         }
+        
+        private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            lbTasks.Items.Clear();
+            DateTime selectedDate = eventCalendar.SelectionRange.Start;
+            List<Agreement> selectedAgreements = new List<Agreement>();
+            selectedAgreements = AgreementManager.GetAgreementsOnDate(selectedDate);
+            
+            foreach (Agreement agreementInfo in selectedAgreements)
+            {
+                lbTasks.Items.Add(agreementInfo);
+                
+            }
 
+        }
+        private void lbTasks_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbTasks.SelectedIndex;
+            MessageBox.Show(AgreementManager.GetAgreement(index).GetInfoAgreement());
+        }
 
         //
         //SUPPLIES TAB
@@ -87,7 +106,16 @@ namespace Housing_Project
 
             foreach (Payment p in PaymentManager.GetPayments())
                 lbPaymentsInfo.Items.Add(p);
-                      
+
+            foreach (CheckBox checkBox in checkBoxes)
+            {
+                if (checkBox.Checked)
+                {
+                    checkBox.Checked = false;
+                }
+            }
+            tbTotalPrice.Clear();
+            tbOtherProducts.Clear();
         }
 
         private void lbPaymentsInfo_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -131,6 +159,7 @@ namespace Housing_Project
             MessageBox.Show(AgreementManager.GetAgreement(index).GetInfoAgreement());
         }
 
+
         //
         //REPORT TAB
         //
@@ -141,7 +170,8 @@ namespace Housing_Project
             {
                 string title = tbReportTitle.Text;
                 string description = tbReportContent.Text;
-
+                tbReportTitle.Text = "";
+                tbReportContent.Text = "";
                 if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
                 {
                     
@@ -154,6 +184,11 @@ namespace Housing_Project
             {
                 return;
             }
+        }
+
+        private void tabControlStudent_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

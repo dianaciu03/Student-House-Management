@@ -30,5 +30,27 @@ namespace Housing_Project
         {
             return _agreements[index];
         }
+
+        public static List<Agreement> GetAgreementsOnDate(DateTime date)
+        {
+            List<Agreement> _agreementsOnDate = new List<Agreement>();
+            List<String> _agreementsOnDateString = new List<String>();
+
+            foreach (Agreement agreement in _agreements)
+            {
+                if (agreement.Date.Day == date.Day && agreement.Date.Month == date.Month && agreement.Date.Year == date.Year)
+                {
+                    
+                    _agreementsOnDate.Add(agreement);
+                }
+            }
+
+            foreach (Agreement agreement in _agreementsOnDate)
+            {
+                _agreementsOnDateString.Add(agreement.GetInfoAgreement());
+            }
+
+            return _agreementsOnDate;
+        }
     }
 }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Housing_Project.Classes.Agreements_Problems
+namespace Housing_Project.Classes
 {
     public class Rule
     {
@@ -17,10 +17,10 @@ namespace Housing_Project.Classes.Agreements_Problems
 
         public Rule(string Subject, string Message)
         {
-            this.subject = Subject;
-            this.message = Message;
-            this.subject = Subject;
-            this.message = Message;
+            subject = Subject;
+            message = Message;
+            subject = Subject;
+            message = Message;
             //this.sender = Sender;
         }
 
@@ -28,11 +28,11 @@ namespace Housing_Project.Classes.Agreements_Problems
         {
             get
             {
-                return this.subject;
+                return subject;
             }
             set
             {
-                this.subject = value;
+                subject = value;
             }
         }
 
@@ -40,11 +40,11 @@ namespace Housing_Project.Classes.Agreements_Problems
         {
             get
             {
-                return this.message;
+                return message;
             }
             set
             {
-                this.message = value;
+                message = value;
             }
         }
 
@@ -52,11 +52,11 @@ namespace Housing_Project.Classes.Agreements_Problems
         {
             get
             {
-                return this.sender;
+                return sender;
             }
             set
             {
-                this.sender = value;
+                sender = value;
             }
         }
 
@@ -67,7 +67,7 @@ namespace Housing_Project.Classes.Agreements_Problems
                 string subject = subjextBox.Text;
                 string rule_to_be_added = messageBox.Text;
 
-                Classes.Agreements_Problems.Rule newRule = new Classes.Agreements_Problems.Rule(subject, rule_to_be_added);
+                Rule newRule = new Rule(subject, rule_to_be_added);
 
                 rules.Add(newRule);
                 subjextBox.Text = "";
@@ -79,7 +79,7 @@ namespace Housing_Project.Classes.Agreements_Problems
             }
         }
 
-        static public void PushChanges(TextBox indexBox,RichTextBox subjectBox ,RichTextBox messageBox)
+        static public void PushChanges(TextBox indexBox, RichTextBox subjectBox, RichTextBox messageBox)
         {
             try
             {
@@ -93,15 +93,15 @@ namespace Housing_Project.Classes.Agreements_Problems
                 throw;
             }
         }
-        
+
         public string GetInfo(string shortOrfull)
         {
-            if (shortOrfull =="short")
+            if (shortOrfull == "short")
             {
                 return $"Subject: {Subject}    Sender: {Sender}";
             }
 
-            if (shortOrfull =="long")
+            if (shortOrfull == "long")
             {
                 return $"Subject: {Subject}\nMessage: {Message}\nSender: {Sender}";
             }

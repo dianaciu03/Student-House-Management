@@ -13,7 +13,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Reflection;
 using Housing_Project.Classes;
 using Microsoft.VisualBasic;
-using Rule = Housing_Project.Classes.Agreements_Problems.Rule;
+using Rule = Housing_Project.Classes.Rule;
 
 namespace Housing_Project
 {
@@ -23,6 +23,7 @@ namespace Housing_Project
         Report report;
         cleaningTask cleaning;
         //denitsa ^^^
+
         //we need to make class rule and class tenant in order to add objects to the lists instead of strings
         //List<Classes.Agreements_Problems.Rule> rules;
 

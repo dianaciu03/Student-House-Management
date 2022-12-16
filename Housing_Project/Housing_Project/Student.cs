@@ -1,5 +1,4 @@
-﻿using Housing_Project.Classes.Agreements_Problems;
-using Housing_Project.Classes.Tasks;
+﻿using Housing_Project.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -187,6 +186,11 @@ namespace Housing_Project
         }
 
         private void tabControlStudent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logoutpicturebox_Click(object sender, EventArgs e)
         {
 
         }

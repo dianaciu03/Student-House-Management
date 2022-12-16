@@ -129,7 +129,5 @@ namespace Housing_Project.Classes
             return tenants;
         }
     }
-
-
 }
 

@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Housing_Project.Classes.Tasks
+namespace Housing_Project.Classes
 {
     public class Payment
     {
         private int _paymentID = 0;
-        private List<string> _items= new List<string>();
+        private List<string> _items = new List<string>();
         private string _buyer;
         private double _totalPrice;
 
         public Payment(int id, List<string> list, string buyer, double totalPrice)
         {
-            this._paymentID = id;
-            this._items = list;
-            this._buyer = buyer;
-            this._totalPrice = totalPrice;
+            _paymentID = id;
+            _items = list;
+            _buyer = buyer;
+            _totalPrice = totalPrice;
         }
 
         public int PaymentID { get { return _paymentID; } }
@@ -36,16 +36,16 @@ namespace Housing_Project.Classes.Tasks
 
         public string GetInfoPayment()
         {
-            string info = $"{this._paymentID}. {this._buyer} bought: ";
+            string info = $"{_paymentID}. {_buyer} bought: ";
             foreach (string item in _items)
                 info += item + ", ";
-            info += $"\nTotal price: {this._totalPrice}, Price per person: {PaymentManager.PricePerPerson:f2}";
+            info += $"\nTotal price: {_totalPrice}, Price per person: {PaymentManager.PricePerPerson:f2}";
             return info;
         }
 
         public string GetInfoPaymentDisplay()
         {
-            return $"{this.PaymentID}. {this._buyer} bought supplies worth {this._totalPrice} euros.";
+            return $"{PaymentID}. {_buyer} bought supplies worth {_totalPrice} euros.";
         }
 
         public override string ToString()
@@ -56,5 +56,5 @@ namespace Housing_Project.Classes.Tasks
 
     }
 
-    
+
 }

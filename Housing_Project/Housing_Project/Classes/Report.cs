@@ -33,6 +33,5 @@ namespace Housing_Project.Classes
         {
             return $"Title:{this.GetTitle()},Description:{this.GetDescription()},Adressed to:{this.GetAdressedPerson()}";
         }
-
     }
 }

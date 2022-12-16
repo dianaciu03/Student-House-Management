@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStudent));
             this.tabControlStudent = new System.Windows.Forms.TabControl();
             this.tabHouseRules = new System.Windows.Forms.TabPage();
             this.lbSupervisorInfo = new System.Windows.Forms.ListBox();
@@ -98,6 +99,7 @@
             this.tbWarnings = new System.Windows.Forms.TextBox();
             this.lblWarnings = new System.Windows.Forms.Label();
             this.lblStudentHouseBV = new System.Windows.Forms.Label();
+            this.logoutpicturebox = new System.Windows.Forms.PictureBox();
             this.tabControlStudent.SuspendLayout();
             this.tabHouseRules.SuspendLayout();
             this.tabCleaningSchedule.SuspendLayout();
@@ -107,6 +109,7 @@
             this.gbMakeAProposal.SuspendLayout();
             this.tabReport.SuspendLayout();
             this.gbFileAReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoutpicturebox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlStudent
@@ -117,12 +120,14 @@
             this.tabControlStudent.Controls.Add(this.tabAgreements);
             this.tabControlStudent.Controls.Add(this.tabReport);
             this.tabControlStudent.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabControlStudent.Location = new System.Drawing.Point(11, 101);
+            this.tabControlStudent.Location = new System.Drawing.Point(10, 76);
+            this.tabControlStudent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControlStudent.Multiline = true;
             this.tabControlStudent.Name = "tabControlStudent";
             this.tabControlStudent.Padding = new System.Drawing.Point(45, 5);
             this.tabControlStudent.SelectedIndex = 0;
-            this.tabControlStudent.Size = new System.Drawing.Size(1209, 725);
+            this.tabControlStudent.Size = new System.Drawing.Size(1058, 544);
+            this.tabControlStudent.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControlStudent.TabIndex = 0;
             this.tabControlStudent.Click += new System.EventHandler(this.tabControlStudent_Click);
             // 
@@ -134,10 +139,11 @@
             this.tabHouseRules.Controls.Add(this.lblTenantsContactInfo);
             this.tabHouseRules.Controls.Add(this.lbHouseRules);
             this.tabHouseRules.Controls.Add(this.lblHouseRules);
-            this.tabHouseRules.Location = new System.Drawing.Point(4, 41);
+            this.tabHouseRules.Location = new System.Drawing.Point(4, 34);
+            this.tabHouseRules.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabHouseRules.Name = "tabHouseRules";
-            this.tabHouseRules.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabHouseRules.Size = new System.Drawing.Size(1201, 680);
+            this.tabHouseRules.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabHouseRules.Size = new System.Drawing.Size(1050, 506);
             this.tabHouseRules.TabIndex = 0;
             this.tabHouseRules.Text = "House Rules & Contact Info";
             this.tabHouseRules.UseVisualStyleBackColor = true;
@@ -146,29 +152,31 @@
             // 
             this.lbSupervisorInfo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbSupervisorInfo.FormattingEnabled = true;
-            this.lbSupervisorInfo.ItemHeight = 23;
-            this.lbSupervisorInfo.Location = new System.Drawing.Point(629, 329);
+            this.lbSupervisorInfo.ItemHeight = 17;
+            this.lbSupervisorInfo.Location = new System.Drawing.Point(550, 247);
+            this.lbSupervisorInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbSupervisorInfo.Name = "lbSupervisorInfo";
-            this.lbSupervisorInfo.Size = new System.Drawing.Size(530, 303);
+            this.lbSupervisorInfo.Size = new System.Drawing.Size(464, 225);
             this.lbSupervisorInfo.TabIndex = 5;
             // 
             // lbTenantsContactInfo
             // 
             this.lbTenantsContactInfo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbTenantsContactInfo.FormattingEnabled = true;
-            this.lbTenantsContactInfo.ItemHeight = 23;
-            this.lbTenantsContactInfo.Location = new System.Drawing.Point(22, 329);
+            this.lbTenantsContactInfo.ItemHeight = 17;
+            this.lbTenantsContactInfo.Location = new System.Drawing.Point(19, 247);
+            this.lbTenantsContactInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbTenantsContactInfo.Name = "lbTenantsContactInfo";
-            this.lbTenantsContactInfo.Size = new System.Drawing.Size(530, 303);
+            this.lbTenantsContactInfo.Size = new System.Drawing.Size(464, 225);
             this.lbTenantsContactInfo.TabIndex = 4;
             // 
             // lblSupervisorContactInfo
             // 
             this.lblSupervisorContactInfo.AutoSize = true;
             this.lblSupervisorContactInfo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblSupervisorContactInfo.Location = new System.Drawing.Point(744, 277);
+            this.lblSupervisorContactInfo.Location = new System.Drawing.Point(651, 208);
             this.lblSupervisorContactInfo.Name = "lblSupervisorContactInfo";
-            this.lblSupervisorContactInfo.Size = new System.Drawing.Size(311, 32);
+            this.lblSupervisorContactInfo.Size = new System.Drawing.Size(243, 25);
             this.lblSupervisorContactInfo.TabIndex = 3;
             this.lblSupervisorContactInfo.Text = "Supervisor(s) contact info";
             // 
@@ -176,9 +184,9 @@
             // 
             this.lblTenantsContactInfo.AutoSize = true;
             this.lblTenantsContactInfo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTenantsContactInfo.Location = new System.Drawing.Point(149, 277);
+            this.lblTenantsContactInfo.Location = new System.Drawing.Point(130, 208);
             this.lblTenantsContactInfo.Name = "lblTenantsContactInfo";
-            this.lblTenantsContactInfo.Size = new System.Drawing.Size(247, 32);
+            this.lblTenantsContactInfo.Size = new System.Drawing.Size(192, 25);
             this.lblTenantsContactInfo.TabIndex = 2;
             this.lblTenantsContactInfo.Text = "Tenants contact info";
             // 
@@ -186,19 +194,20 @@
             // 
             this.lbHouseRules.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbHouseRules.FormattingEnabled = true;
-            this.lbHouseRules.ItemHeight = 23;
-            this.lbHouseRules.Location = new System.Drawing.Point(22, 71);
+            this.lbHouseRules.ItemHeight = 17;
+            this.lbHouseRules.Location = new System.Drawing.Point(19, 53);
+            this.lbHouseRules.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbHouseRules.Name = "lbHouseRules";
-            this.lbHouseRules.Size = new System.Drawing.Size(1137, 165);
+            this.lbHouseRules.Size = new System.Drawing.Size(995, 123);
             this.lbHouseRules.TabIndex = 1;
             // 
             // lblHouseRules
             // 
             this.lblHouseRules.AutoSize = true;
             this.lblHouseRules.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblHouseRules.Location = new System.Drawing.Point(22, 27);
+            this.lblHouseRules.Location = new System.Drawing.Point(19, 20);
             this.lblHouseRules.Name = "lblHouseRules";
-            this.lblHouseRules.Size = new System.Drawing.Size(155, 32);
+            this.lblHouseRules.Size = new System.Drawing.Size(121, 25);
             this.lblHouseRules.TabIndex = 0;
             this.lblHouseRules.Text = "House Rules";
             // 
@@ -214,27 +223,28 @@
             this.tabCleaningSchedule.Controls.Add(this.lbTasks);
             this.tabCleaningSchedule.Controls.Add(this.lblTasksFor);
             this.tabCleaningSchedule.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabCleaningSchedule.Location = new System.Drawing.Point(4, 78);
+            this.tabCleaningSchedule.Location = new System.Drawing.Point(4, 34);
+            this.tabCleaningSchedule.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabCleaningSchedule.Name = "tabCleaningSchedule";
-            this.tabCleaningSchedule.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabCleaningSchedule.Size = new System.Drawing.Size(1201, 643);
+            this.tabCleaningSchedule.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabCleaningSchedule.Size = new System.Drawing.Size(1050, 506);
             this.tabCleaningSchedule.TabIndex = 2;
             this.tabCleaningSchedule.Text = "Event Schedule";
             this.tabCleaningSchedule.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(181, 56);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Location = new System.Drawing.Point(158, 42);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 31);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
             // 
             // btnSendReportTask
             // 
-            this.btnSendReportTask.Location = new System.Drawing.Point(742, 587);
+            this.btnSendReportTask.Location = new System.Drawing.Point(649, 440);
+            this.btnSendReportTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSendReportTask.Name = "btnSendReportTask";
-            this.btnSendReportTask.Size = new System.Drawing.Size(142, 45);
+            this.btnSendReportTask.Size = new System.Drawing.Size(124, 34);
             this.btnSendReportTask.TabIndex = 8;
             this.btnSendReportTask.Text = "Send Report";
             this.btnSendReportTask.UseVisualStyleBackColor = true;
@@ -242,36 +252,38 @@
             // 
             // tbCommentReportTask
             // 
-            this.tbCommentReportTask.Location = new System.Drawing.Point(285, 481);
+            this.tbCommentReportTask.Location = new System.Drawing.Point(249, 361);
+            this.tbCommentReportTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbCommentReportTask.Multiline = true;
             this.tbCommentReportTask.Name = "tbCommentReportTask";
-            this.tbCommentReportTask.Size = new System.Drawing.Size(431, 153);
+            this.tbCommentReportTask.Size = new System.Drawing.Size(378, 116);
             this.tbCommentReportTask.TabIndex = 7;
             // 
             // lblAddCommentReportTask
             // 
             this.lblAddCommentReportTask.AutoSize = true;
-            this.lblAddCommentReportTask.Location = new System.Drawing.Point(123, 483);
+            this.lblAddCommentReportTask.Location = new System.Drawing.Point(108, 362);
             this.lblAddCommentReportTask.Name = "lblAddCommentReportTask";
-            this.lblAddCommentReportTask.Size = new System.Drawing.Size(141, 28);
+            this.lblAddCommentReportTask.Size = new System.Drawing.Size(111, 21);
             this.lblAddCommentReportTask.TabIndex = 6;
             this.lblAddCommentReportTask.Text = "Add comment:";
             // 
             // cbReportTask
             // 
             this.cbReportTask.FormattingEnabled = true;
-            this.cbReportTask.Location = new System.Drawing.Point(285, 409);
+            this.cbReportTask.Location = new System.Drawing.Point(249, 307);
+            this.cbReportTask.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbReportTask.Name = "cbReportTask";
-            this.cbReportTask.Size = new System.Drawing.Size(431, 36);
+            this.cbReportTask.Size = new System.Drawing.Size(378, 29);
             this.cbReportTask.TabIndex = 5;
             // 
             // lblReportTask
             // 
             this.lblReportTask.AutoSize = true;
             this.lblReportTask.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblReportTask.Location = new System.Drawing.Point(112, 409);
+            this.lblReportTask.Location = new System.Drawing.Point(98, 307);
             this.lblReportTask.Name = "lblReportTask";
-            this.lblReportTask.Size = new System.Drawing.Size(153, 32);
+            this.lblReportTask.Size = new System.Drawing.Size(121, 25);
             this.lblReportTask.TabIndex = 4;
             this.lblReportTask.Text = "Report task:";
             // 
@@ -279,7 +291,8 @@
             // 
             this.eventCalendar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.eventCalendar.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.eventCalendar.Location = new System.Drawing.Point(869, 93);
+            this.eventCalendar.Location = new System.Drawing.Point(760, 70);
+            this.eventCalendar.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.eventCalendar.MaxSelectionCount = 1;
             this.eventCalendar.Name = "eventCalendar";
             this.eventCalendar.TabIndex = 0;
@@ -288,10 +301,11 @@
             // lbTasks
             // 
             this.lbTasks.FormattingEnabled = true;
-            this.lbTasks.ItemHeight = 28;
-            this.lbTasks.Location = new System.Drawing.Point(51, 93);
+            this.lbTasks.ItemHeight = 21;
+            this.lbTasks.Location = new System.Drawing.Point(45, 70);
+            this.lbTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbTasks.Name = "lbTasks";
-            this.lbTasks.Size = new System.Drawing.Size(665, 284);
+            this.lbTasks.Size = new System.Drawing.Size(582, 214);
             this.lbTasks.TabIndex = 3;
             this.lbTasks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbTasks_MouseDoubleClick);
             // 
@@ -299,9 +313,9 @@
             // 
             this.lblTasksFor.AutoSize = true;
             this.lblTasksFor.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTasksFor.Location = new System.Drawing.Point(51, 47);
+            this.lblTasksFor.Location = new System.Drawing.Point(45, 35);
             this.lblTasksFor.Name = "lblTasksFor";
-            this.lblTasksFor.Size = new System.Drawing.Size(137, 32);
+            this.lblTasksFor.Size = new System.Drawing.Size(107, 25);
             this.lblTasksFor.TabIndex = 1;
             this.lblTasksFor.Text = "Events for:";
             // 
@@ -311,10 +325,11 @@
             this.tabSupplies.Controls.Add(this.lbPaymentsInfo);
             this.tabSupplies.Controls.Add(this.gbSupplies);
             this.tabSupplies.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabSupplies.Location = new System.Drawing.Point(4, 78);
+            this.tabSupplies.Location = new System.Drawing.Point(4, 34);
+            this.tabSupplies.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabSupplies.Name = "tabSupplies";
-            this.tabSupplies.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabSupplies.Size = new System.Drawing.Size(1201, 643);
+            this.tabSupplies.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabSupplies.Size = new System.Drawing.Size(1050, 506);
             this.tabSupplies.TabIndex = 3;
             this.tabSupplies.Text = "Supplies";
             this.tabSupplies.UseVisualStyleBackColor = true;
@@ -323,19 +338,20 @@
             // 
             this.lblPayments.AutoSize = true;
             this.lblPayments.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblPayments.Location = new System.Drawing.Point(584, 33);
+            this.lblPayments.Location = new System.Drawing.Point(511, 25);
             this.lblPayments.Name = "lblPayments";
-            this.lblPayments.Size = new System.Drawing.Size(104, 28);
+            this.lblPayments.Size = new System.Drawing.Size(85, 21);
             this.lblPayments.TabIndex = 2;
             this.lblPayments.Text = "Payments";
             // 
             // lbPaymentsInfo
             // 
             this.lbPaymentsInfo.FormattingEnabled = true;
-            this.lbPaymentsInfo.ItemHeight = 28;
-            this.lbPaymentsInfo.Location = new System.Drawing.Point(584, 64);
+            this.lbPaymentsInfo.ItemHeight = 21;
+            this.lbPaymentsInfo.Location = new System.Drawing.Point(511, 48);
+            this.lbPaymentsInfo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbPaymentsInfo.Name = "lbPaymentsInfo";
-            this.lbPaymentsInfo.Size = new System.Drawing.Size(524, 452);
+            this.lbPaymentsInfo.Size = new System.Drawing.Size(459, 340);
             this.lbPaymentsInfo.TabIndex = 1;
             this.lbPaymentsInfo.DoubleClick += new System.EventHandler(this.btnSubmitProposal_Click);
             this.lbPaymentsInfo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbPaymentsInfo_MouseDoubleClick);
@@ -368,9 +384,11 @@
             this.gbSupplies.Controls.Add(this.cbDishSoap);
             this.gbSupplies.Controls.Add(this.cbSponges);
             this.gbSupplies.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.gbSupplies.Location = new System.Drawing.Point(31, 33);
+            this.gbSupplies.Location = new System.Drawing.Point(27, 25);
+            this.gbSupplies.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbSupplies.Name = "gbSupplies";
-            this.gbSupplies.Size = new System.Drawing.Size(523, 624);
+            this.gbSupplies.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbSupplies.Size = new System.Drawing.Size(458, 468);
             this.gbSupplies.TabIndex = 0;
             this.gbSupplies.TabStop = false;
             this.gbSupplies.Text = "Supplies";
@@ -378,9 +396,10 @@
             // btnSubmitPayment
             // 
             this.btnSubmitPayment.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSubmitPayment.Location = new System.Drawing.Point(325, 579);
+            this.btnSubmitPayment.Location = new System.Drawing.Point(284, 434);
+            this.btnSubmitPayment.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSubmitPayment.Name = "btnSubmitPayment";
-            this.btnSubmitPayment.Size = new System.Drawing.Size(94, 35);
+            this.btnSubmitPayment.Size = new System.Drawing.Size(82, 26);
             this.btnSubmitPayment.TabIndex = 17;
             this.btnSubmitPayment.Text = "Submit";
             this.btnSubmitPayment.UseVisualStyleBackColor = true;
@@ -388,26 +407,28 @@
             // 
             // tbTotalPrice
             // 
-            this.tbTotalPrice.Location = new System.Drawing.Point(146, 579);
+            this.tbTotalPrice.Location = new System.Drawing.Point(128, 434);
+            this.tbTotalPrice.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbTotalPrice.Name = "tbTotalPrice";
-            this.tbTotalPrice.Size = new System.Drawing.Size(172, 34);
+            this.tbTotalPrice.Size = new System.Drawing.Size(151, 29);
             this.tbTotalPrice.TabIndex = 2;
             // 
             // tbOtherProducts
             // 
-            this.tbOtherProducts.Location = new System.Drawing.Point(283, 324);
+            this.tbOtherProducts.Location = new System.Drawing.Point(248, 243);
+            this.tbOtherProducts.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbOtherProducts.Multiline = true;
             this.tbOtherProducts.Name = "tbOtherProducts";
-            this.tbOtherProducts.Size = new System.Drawing.Size(220, 127);
+            this.tbOtherProducts.Size = new System.Drawing.Size(193, 96);
             this.tbOtherProducts.TabIndex = 16;
             // 
             // lblTotalPrice
             // 
             this.lblTotalPrice.AutoSize = true;
             this.lblTotalPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTotalPrice.Location = new System.Drawing.Point(23, 581);
+            this.lblTotalPrice.Location = new System.Drawing.Point(20, 436);
             this.lblTotalPrice.Name = "lblTotalPrice";
-            this.lblTotalPrice.Size = new System.Drawing.Size(117, 28);
+            this.lblTotalPrice.Size = new System.Drawing.Size(94, 21);
             this.lblTotalPrice.TabIndex = 1;
             this.lblTotalPrice.Text = "Total price:";
             // 
@@ -415,9 +436,9 @@
             // 
             this.lblOthers.AutoSize = true;
             this.lblOthers.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblOthers.Location = new System.Drawing.Point(283, 283);
+            this.lblOthers.Location = new System.Drawing.Point(248, 212);
             this.lblOthers.Name = "lblOthers";
-            this.lblOthers.Size = new System.Drawing.Size(70, 28);
+            this.lblOthers.Size = new System.Drawing.Size(57, 21);
             this.lblOthers.TabIndex = 12;
             this.lblOthers.Text = "Others";
             // 
@@ -425,9 +446,10 @@
             // 
             this.cbGlassCleaner.AutoSize = true;
             this.cbGlassCleaner.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbGlassCleaner.Location = new System.Drawing.Point(23, 520);
+            this.cbGlassCleaner.Location = new System.Drawing.Point(20, 390);
+            this.cbGlassCleaner.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbGlassCleaner.Name = "cbGlassCleaner";
-            this.cbGlassCleaner.Size = new System.Drawing.Size(131, 27);
+            this.cbGlassCleaner.Size = new System.Drawing.Size(107, 23);
             this.cbGlassCleaner.TabIndex = 2;
             this.cbGlassCleaner.Text = "Glass cleaner";
             this.cbGlassCleaner.UseVisualStyleBackColor = true;
@@ -436,9 +458,10 @@
             // 
             this.cbFiberCloth.AutoSize = true;
             this.cbFiberCloth.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbFiberCloth.Location = new System.Drawing.Point(23, 489);
+            this.cbFiberCloth.Location = new System.Drawing.Point(20, 367);
+            this.cbFiberCloth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbFiberCloth.Name = "cbFiberCloth";
-            this.cbFiberCloth.Size = new System.Drawing.Size(112, 27);
+            this.cbFiberCloth.Size = new System.Drawing.Size(92, 23);
             this.cbFiberCloth.TabIndex = 15;
             this.cbFiberCloth.Text = "Fiber cloth";
             this.cbFiberCloth.UseVisualStyleBackColor = true;
@@ -447,9 +470,10 @@
             // 
             this.cbAntiCalcarSolution.AutoSize = true;
             this.cbAntiCalcarSolution.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbAntiCalcarSolution.Location = new System.Drawing.Point(23, 423);
+            this.cbAntiCalcarSolution.Location = new System.Drawing.Point(20, 317);
+            this.cbAntiCalcarSolution.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAntiCalcarSolution.Name = "cbAntiCalcarSolution";
-            this.cbAntiCalcarSolution.Size = new System.Drawing.Size(178, 27);
+            this.cbAntiCalcarSolution.Size = new System.Drawing.Size(144, 23);
             this.cbAntiCalcarSolution.TabIndex = 2;
             this.cbAntiCalcarSolution.Text = "Anti calcar solution";
             this.cbAntiCalcarSolution.UseVisualStyleBackColor = true;
@@ -458,9 +482,10 @@
             // 
             this.cbHygienizer.AutoSize = true;
             this.cbHygienizer.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbHygienizer.Location = new System.Drawing.Point(23, 456);
+            this.cbHygienizer.Location = new System.Drawing.Point(20, 342);
+            this.cbHygienizer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbHygienizer.Name = "cbHygienizer";
-            this.cbHygienizer.Size = new System.Drawing.Size(112, 27);
+            this.cbHygienizer.Size = new System.Drawing.Size(92, 23);
             this.cbHygienizer.TabIndex = 14;
             this.cbHygienizer.Text = "Hygienizer";
             this.cbHygienizer.UseVisualStyleBackColor = true;
@@ -469,9 +494,10 @@
             // 
             this.cbAntiGreaseSolution.AutoSize = true;
             this.cbAntiGreaseSolution.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbAntiGreaseSolution.Location = new System.Drawing.Point(23, 389);
+            this.cbAntiGreaseSolution.Location = new System.Drawing.Point(20, 292);
+            this.cbAntiGreaseSolution.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbAntiGreaseSolution.Name = "cbAntiGreaseSolution";
-            this.cbAntiGreaseSolution.Size = new System.Drawing.Size(184, 27);
+            this.cbAntiGreaseSolution.Size = new System.Drawing.Size(150, 23);
             this.cbAntiGreaseSolution.TabIndex = 13;
             this.cbAntiGreaseSolution.Text = "Anti grease solution";
             this.cbAntiGreaseSolution.UseVisualStyleBackColor = true;
@@ -480,9 +506,10 @@
             // 
             this.cbFloorCleaner.AutoSize = true;
             this.cbFloorCleaner.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbFloorCleaner.Location = new System.Drawing.Point(23, 357);
+            this.cbFloorCleaner.Location = new System.Drawing.Point(20, 268);
+            this.cbFloorCleaner.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbFloorCleaner.Name = "cbFloorCleaner";
-            this.cbFloorCleaner.Size = new System.Drawing.Size(133, 27);
+            this.cbFloorCleaner.Size = new System.Drawing.Size(109, 23);
             this.cbFloorCleaner.TabIndex = 12;
             this.cbFloorCleaner.Text = "Floor Cleaner";
             this.cbFloorCleaner.UseVisualStyleBackColor = true;
@@ -491,9 +518,10 @@
             // 
             this.cbFreshener.AutoSize = true;
             this.cbFreshener.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbFreshener.Location = new System.Drawing.Point(283, 227);
+            this.cbFreshener.Location = new System.Drawing.Point(248, 170);
+            this.cbFreshener.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbFreshener.Name = "cbFreshener";
-            this.cbFreshener.Size = new System.Drawing.Size(106, 27);
+            this.cbFreshener.Size = new System.Drawing.Size(88, 23);
             this.cbFreshener.TabIndex = 11;
             this.cbFreshener.Text = "Freshener";
             this.cbFreshener.UseVisualStyleBackColor = true;
@@ -502,9 +530,10 @@
             // 
             this.cbSoap.AutoSize = true;
             this.cbSoap.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbSoap.Location = new System.Drawing.Point(283, 193);
+            this.cbSoap.Location = new System.Drawing.Point(248, 145);
+            this.cbSoap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbSoap.Name = "cbSoap";
-            this.cbSoap.Size = new System.Drawing.Size(70, 27);
+            this.cbSoap.Size = new System.Drawing.Size(58, 23);
             this.cbSoap.TabIndex = 10;
             this.cbSoap.Text = "Soap";
             this.cbSoap.UseVisualStyleBackColor = true;
@@ -513,9 +542,10 @@
             // 
             this.cbMopCap.AutoSize = true;
             this.cbMopCap.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbMopCap.Location = new System.Drawing.Point(23, 324);
+            this.cbMopCap.Location = new System.Drawing.Point(20, 243);
+            this.cbMopCap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbMopCap.Name = "cbMopCap";
-            this.cbMopCap.Size = new System.Drawing.Size(99, 27);
+            this.cbMopCap.Size = new System.Drawing.Size(82, 23);
             this.cbMopCap.TabIndex = 2;
             this.cbMopCap.Text = "Mop cap";
             this.cbMopCap.UseVisualStyleBackColor = true;
@@ -524,9 +554,9 @@
             // 
             this.lblCleaningProducts.AutoSize = true;
             this.lblCleaningProducts.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCleaningProducts.Location = new System.Drawing.Point(23, 283);
+            this.lblCleaningProducts.Location = new System.Drawing.Point(20, 212);
             this.lblCleaningProducts.Name = "lblCleaningProducts";
-            this.lblCleaningProducts.Size = new System.Drawing.Size(171, 28);
+            this.lblCleaningProducts.Size = new System.Drawing.Size(136, 21);
             this.lblCleaningProducts.TabIndex = 9;
             this.lblCleaningProducts.Text = "Cleaning products";
             // 
@@ -534,9 +564,10 @@
             // 
             this.cbLaundrySoftener.AutoSize = true;
             this.cbLaundrySoftener.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbLaundrySoftener.Location = new System.Drawing.Point(283, 160);
+            this.cbLaundrySoftener.Location = new System.Drawing.Point(248, 120);
+            this.cbLaundrySoftener.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbLaundrySoftener.Name = "cbLaundrySoftener";
-            this.cbLaundrySoftener.Size = new System.Drawing.Size(160, 27);
+            this.cbLaundrySoftener.Size = new System.Drawing.Size(132, 23);
             this.cbLaundrySoftener.TabIndex = 8;
             this.cbLaundrySoftener.Text = "Laundry softener";
             this.cbLaundrySoftener.UseVisualStyleBackColor = true;
@@ -545,9 +576,10 @@
             // 
             this.cbLaundryPods.AutoSize = true;
             this.cbLaundryPods.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbLaundryPods.Location = new System.Drawing.Point(283, 127);
+            this.cbLaundryPods.Location = new System.Drawing.Point(248, 95);
+            this.cbLaundryPods.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbLaundryPods.Name = "cbLaundryPods";
-            this.cbLaundryPods.Size = new System.Drawing.Size(135, 27);
+            this.cbLaundryPods.Size = new System.Drawing.Size(112, 23);
             this.cbLaundryPods.TabIndex = 1;
             this.cbLaundryPods.Text = "Laundry pods";
             this.cbLaundryPods.UseVisualStyleBackColor = true;
@@ -556,9 +588,10 @@
             // 
             this.cbToiletPaper.AutoSize = true;
             this.cbToiletPaper.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbToiletPaper.Location = new System.Drawing.Point(283, 93);
+            this.cbToiletPaper.Location = new System.Drawing.Point(248, 70);
+            this.cbToiletPaper.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbToiletPaper.Name = "cbToiletPaper";
-            this.cbToiletPaper.Size = new System.Drawing.Size(121, 27);
+            this.cbToiletPaper.Size = new System.Drawing.Size(99, 23);
             this.cbToiletPaper.TabIndex = 7;
             this.cbToiletPaper.Text = "Toilet paper";
             this.cbToiletPaper.UseVisualStyleBackColor = true;
@@ -567,9 +600,9 @@
             // 
             this.lblBathroom.AutoSize = true;
             this.lblBathroom.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblBathroom.Location = new System.Drawing.Point(283, 53);
+            this.lblBathroom.Location = new System.Drawing.Point(248, 40);
             this.lblBathroom.Name = "lblBathroom";
-            this.lblBathroom.Size = new System.Drawing.Size(99, 28);
+            this.lblBathroom.Size = new System.Drawing.Size(79, 21);
             this.lblBathroom.TabIndex = 6;
             this.lblBathroom.Text = "Bathroom";
             // 
@@ -577,9 +610,10 @@
             // 
             this.cbGarbageBags.AutoSize = true;
             this.cbGarbageBags.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbGarbageBags.Location = new System.Drawing.Point(23, 227);
+            this.cbGarbageBags.Location = new System.Drawing.Point(20, 170);
+            this.cbGarbageBags.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbGarbageBags.Name = "cbGarbageBags";
-            this.cbGarbageBags.Size = new System.Drawing.Size(138, 27);
+            this.cbGarbageBags.Size = new System.Drawing.Size(113, 23);
             this.cbGarbageBags.TabIndex = 5;
             this.cbGarbageBags.Text = "Garbage bags";
             this.cbGarbageBags.UseVisualStyleBackColor = true;
@@ -588,9 +622,10 @@
             // 
             this.cbNapkins.AutoSize = true;
             this.cbNapkins.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbNapkins.Location = new System.Drawing.Point(23, 193);
+            this.cbNapkins.Location = new System.Drawing.Point(20, 145);
+            this.cbNapkins.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbNapkins.Name = "cbNapkins";
-            this.cbNapkins.Size = new System.Drawing.Size(93, 27);
+            this.cbNapkins.Size = new System.Drawing.Size(77, 23);
             this.cbNapkins.TabIndex = 4;
             this.cbNapkins.Text = "Napkins";
             this.cbNapkins.UseVisualStyleBackColor = true;
@@ -599,9 +634,10 @@
             // 
             this.cbPaperRolls.AutoSize = true;
             this.cbPaperRolls.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbPaperRolls.Location = new System.Drawing.Point(23, 160);
+            this.cbPaperRolls.Location = new System.Drawing.Point(20, 120);
+            this.cbPaperRolls.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbPaperRolls.Name = "cbPaperRolls";
-            this.cbPaperRolls.Size = new System.Drawing.Size(111, 27);
+            this.cbPaperRolls.Size = new System.Drawing.Size(92, 23);
             this.cbPaperRolls.TabIndex = 3;
             this.cbPaperRolls.Text = "Paper rolls";
             this.cbPaperRolls.UseVisualStyleBackColor = true;
@@ -610,9 +646,9 @@
             // 
             this.lblKitchen.AutoSize = true;
             this.lblKitchen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblKitchen.Location = new System.Drawing.Point(23, 53);
+            this.lblKitchen.Location = new System.Drawing.Point(20, 40);
             this.lblKitchen.Name = "lblKitchen";
-            this.lblKitchen.Size = new System.Drawing.Size(77, 28);
+            this.lblKitchen.Size = new System.Drawing.Size(61, 21);
             this.lblKitchen.TabIndex = 2;
             this.lblKitchen.Text = "Kitchen";
             // 
@@ -620,9 +656,10 @@
             // 
             this.cbDishSoap.AutoSize = true;
             this.cbDishSoap.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbDishSoap.Location = new System.Drawing.Point(23, 127);
+            this.cbDishSoap.Location = new System.Drawing.Point(20, 95);
+            this.cbDishSoap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbDishSoap.Name = "cbDishSoap";
-            this.cbDishSoap.Size = new System.Drawing.Size(106, 27);
+            this.cbDishSoap.Size = new System.Drawing.Size(88, 23);
             this.cbDishSoap.TabIndex = 1;
             this.cbDishSoap.Text = "Dish soap";
             this.cbDishSoap.UseVisualStyleBackColor = true;
@@ -631,9 +668,10 @@
             // 
             this.cbSponges.AutoSize = true;
             this.cbSponges.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbSponges.Location = new System.Drawing.Point(23, 93);
+            this.cbSponges.Location = new System.Drawing.Point(20, 70);
+            this.cbSponges.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbSponges.Name = "cbSponges";
-            this.cbSponges.Size = new System.Drawing.Size(97, 27);
+            this.cbSponges.Size = new System.Drawing.Size(80, 23);
             this.cbSponges.TabIndex = 0;
             this.cbSponges.Text = "Sponges";
             this.cbSponges.UseVisualStyleBackColor = true;
@@ -643,10 +681,11 @@
             this.tabAgreements.Controls.Add(this.lbAgreementsDisplay);
             this.tabAgreements.Controls.Add(this.lblAgreements);
             this.tabAgreements.Controls.Add(this.gbMakeAProposal);
-            this.tabAgreements.Location = new System.Drawing.Point(4, 41);
+            this.tabAgreements.Location = new System.Drawing.Point(4, 34);
+            this.tabAgreements.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAgreements.Name = "tabAgreements";
-            this.tabAgreements.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabAgreements.Size = new System.Drawing.Size(1201, 680);
+            this.tabAgreements.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabAgreements.Size = new System.Drawing.Size(1050, 506);
             this.tabAgreements.TabIndex = 4;
             this.tabAgreements.Text = "Agreements";
             this.tabAgreements.UseVisualStyleBackColor = true;
@@ -654,10 +693,11 @@
             // lbAgreementsDisplay
             // 
             this.lbAgreementsDisplay.FormattingEnabled = true;
-            this.lbAgreementsDisplay.ItemHeight = 28;
-            this.lbAgreementsDisplay.Location = new System.Drawing.Point(30, 76);
+            this.lbAgreementsDisplay.ItemHeight = 21;
+            this.lbAgreementsDisplay.Location = new System.Drawing.Point(26, 57);
+            this.lbAgreementsDisplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbAgreementsDisplay.Name = "lbAgreementsDisplay";
-            this.lbAgreementsDisplay.Size = new System.Drawing.Size(521, 564);
+            this.lbAgreementsDisplay.Size = new System.Drawing.Size(456, 424);
             this.lbAgreementsDisplay.TabIndex = 2;
             this.lbAgreementsDisplay.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbAgreementsDisplay_MouseDoubleClick);
             // 
@@ -665,9 +705,9 @@
             // 
             this.lblAgreements.AutoSize = true;
             this.lblAgreements.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblAgreements.Location = new System.Drawing.Point(27, 28);
+            this.lblAgreements.Location = new System.Drawing.Point(24, 21);
             this.lblAgreements.Name = "lblAgreements";
-            this.lblAgreements.Size = new System.Drawing.Size(152, 32);
+            this.lblAgreements.Size = new System.Drawing.Size(119, 25);
             this.lblAgreements.TabIndex = 1;
             this.lblAgreements.Text = "Agreements";
             // 
@@ -680,9 +720,11 @@
             this.gbMakeAProposal.Controls.Add(this.lblProposalTitle);
             this.gbMakeAProposal.Controls.Add(this.btnSubmitProposal);
             this.gbMakeAProposal.Controls.Add(this.tbProposalContent);
-            this.gbMakeAProposal.Location = new System.Drawing.Point(738, 76);
+            this.gbMakeAProposal.Location = new System.Drawing.Point(646, 57);
+            this.gbMakeAProposal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbMakeAProposal.Name = "gbMakeAProposal";
-            this.gbMakeAProposal.Size = new System.Drawing.Size(435, 485);
+            this.gbMakeAProposal.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbMakeAProposal.Size = new System.Drawing.Size(381, 364);
             this.gbMakeAProposal.TabIndex = 0;
             this.gbMakeAProposal.TabStop = false;
             this.gbMakeAProposal.Text = "Make a proposal";
@@ -691,52 +733,55 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblDate.Location = new System.Drawing.Point(15, 383);
+            this.lblDate.Location = new System.Drawing.Point(13, 287);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(50, 23);
+            this.lblDate.Size = new System.Drawing.Size(41, 19);
             this.lblDate.TabIndex = 12;
             this.lblDate.Text = "Date:";
             // 
             // dateTimePickerAgreements
             // 
             this.dateTimePickerAgreements.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateTimePickerAgreements.Location = new System.Drawing.Point(71, 377);
+            this.dateTimePickerAgreements.Location = new System.Drawing.Point(62, 283);
+            this.dateTimePickerAgreements.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dateTimePickerAgreements.Name = "dateTimePickerAgreements";
-            this.dateTimePickerAgreements.Size = new System.Drawing.Size(348, 30);
+            this.dateTimePickerAgreements.Size = new System.Drawing.Size(305, 25);
             this.dateTimePickerAgreements.TabIndex = 10;
             // 
             // lblProposalDescription
             // 
             this.lblProposalDescription.AutoSize = true;
             this.lblProposalDescription.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblProposalDescription.Location = new System.Drawing.Point(15, 99);
+            this.lblProposalDescription.Location = new System.Drawing.Point(13, 74);
             this.lblProposalDescription.Name = "lblProposalDescription";
-            this.lblProposalDescription.Size = new System.Drawing.Size(100, 23);
+            this.lblProposalDescription.Size = new System.Drawing.Size(81, 19);
             this.lblProposalDescription.TabIndex = 9;
             this.lblProposalDescription.Text = "Description:";
             // 
             // tbProposalTitle
             // 
-            this.tbProposalTitle.Location = new System.Drawing.Point(67, 39);
+            this.tbProposalTitle.Location = new System.Drawing.Point(59, 29);
+            this.tbProposalTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbProposalTitle.Name = "tbProposalTitle";
-            this.tbProposalTitle.Size = new System.Drawing.Size(351, 34);
+            this.tbProposalTitle.Size = new System.Drawing.Size(308, 29);
             this.tbProposalTitle.TabIndex = 8;
             // 
             // lblProposalTitle
             // 
             this.lblProposalTitle.AutoSize = true;
             this.lblProposalTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblProposalTitle.Location = new System.Drawing.Point(15, 47);
+            this.lblProposalTitle.Location = new System.Drawing.Point(13, 35);
             this.lblProposalTitle.Name = "lblProposalTitle";
-            this.lblProposalTitle.Size = new System.Drawing.Size(46, 23);
+            this.lblProposalTitle.Size = new System.Drawing.Size(37, 19);
             this.lblProposalTitle.TabIndex = 7;
             this.lblProposalTitle.Text = "Title:";
             // 
             // btnSubmitProposal
             // 
-            this.btnSubmitProposal.Location = new System.Drawing.Point(325, 429);
+            this.btnSubmitProposal.Location = new System.Drawing.Point(284, 322);
+            this.btnSubmitProposal.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSubmitProposal.Name = "btnSubmitProposal";
-            this.btnSubmitProposal.Size = new System.Drawing.Size(94, 40);
+            this.btnSubmitProposal.Size = new System.Drawing.Size(82, 30);
             this.btnSubmitProposal.TabIndex = 1;
             this.btnSubmitProposal.Text = "Submit";
             this.btnSubmitProposal.UseVisualStyleBackColor = true;
@@ -744,10 +789,11 @@
             // 
             // tbProposalContent
             // 
-            this.tbProposalContent.Location = new System.Drawing.Point(15, 136);
+            this.tbProposalContent.Location = new System.Drawing.Point(13, 102);
+            this.tbProposalContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbProposalContent.Multiline = true;
             this.tbProposalContent.Name = "tbProposalContent";
-            this.tbProposalContent.Size = new System.Drawing.Size(404, 216);
+            this.tbProposalContent.Size = new System.Drawing.Size(354, 163);
             this.tbProposalContent.TabIndex = 0;
             // 
             // tabReport
@@ -755,10 +801,11 @@
             this.tabReport.Controls.Add(this.gbFileAReport);
             this.tabReport.Controls.Add(this.tbWarnings);
             this.tabReport.Controls.Add(this.lblWarnings);
-            this.tabReport.Location = new System.Drawing.Point(4, 41);
+            this.tabReport.Location = new System.Drawing.Point(4, 34);
+            this.tabReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabReport.Name = "tabReport";
-            this.tabReport.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabReport.Size = new System.Drawing.Size(1201, 680);
+            this.tabReport.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabReport.Size = new System.Drawing.Size(1050, 506);
             this.tabReport.TabIndex = 5;
             this.tabReport.Text = "Report a problem ";
             this.tabReport.UseVisualStyleBackColor = true;
@@ -773,9 +820,11 @@
             this.gbFileAReport.Controls.Add(this.cbTenantsToReport);
             this.gbFileAReport.Controls.Add(this.lblAdressReportToSomeone);
             this.gbFileAReport.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.gbFileAReport.Location = new System.Drawing.Point(31, 29);
+            this.gbFileAReport.Location = new System.Drawing.Point(27, 22);
+            this.gbFileAReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbFileAReport.Name = "gbFileAReport";
-            this.gbFileAReport.Size = new System.Drawing.Size(1085, 351);
+            this.gbFileAReport.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gbFileAReport.Size = new System.Drawing.Size(949, 263);
             this.gbFileAReport.TabIndex = 8;
             this.gbFileAReport.TabStop = false;
             this.gbFileAReport.Text = "File a report";
@@ -784,35 +833,37 @@
             // 
             this.lblReportDescription.AutoSize = true;
             this.lblReportDescription.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblReportDescription.Location = new System.Drawing.Point(15, 101);
+            this.lblReportDescription.Location = new System.Drawing.Point(13, 76);
             this.lblReportDescription.Name = "lblReportDescription";
-            this.lblReportDescription.Size = new System.Drawing.Size(100, 23);
+            this.lblReportDescription.Size = new System.Drawing.Size(81, 19);
             this.lblReportDescription.TabIndex = 13;
             this.lblReportDescription.Text = "Description:";
             // 
             // tbReportTitle
             // 
-            this.tbReportTitle.Location = new System.Drawing.Point(75, 47);
+            this.tbReportTitle.Location = new System.Drawing.Point(66, 35);
+            this.tbReportTitle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbReportTitle.Name = "tbReportTitle";
-            this.tbReportTitle.Size = new System.Drawing.Size(217, 39);
+            this.tbReportTitle.Size = new System.Drawing.Size(190, 32);
             this.tbReportTitle.TabIndex = 12;
             // 
             // lblReportTitle
             // 
             this.lblReportTitle.AutoSize = true;
             this.lblReportTitle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblReportTitle.Location = new System.Drawing.Point(15, 51);
+            this.lblReportTitle.Location = new System.Drawing.Point(13, 38);
             this.lblReportTitle.Name = "lblReportTitle";
-            this.lblReportTitle.Size = new System.Drawing.Size(46, 23);
+            this.lblReportTitle.Size = new System.Drawing.Size(37, 19);
             this.lblReportTitle.TabIndex = 11;
             this.lblReportTitle.Text = "Title:";
             // 
             // btnSubmitReport
             // 
             this.btnSubmitReport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSubmitReport.Location = new System.Drawing.Point(739, 168);
+            this.btnSubmitReport.Location = new System.Drawing.Point(647, 126);
+            this.btnSubmitReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSubmitReport.Name = "btnSubmitReport";
-            this.btnSubmitReport.Size = new System.Drawing.Size(187, 45);
+            this.btnSubmitReport.Size = new System.Drawing.Size(164, 34);
             this.btnSubmitReport.TabIndex = 5;
             this.btnSubmitReport.Text = "Submit report";
             this.btnSubmitReport.UseVisualStyleBackColor = true;
@@ -820,45 +871,48 @@
             // 
             // tbReportContent
             // 
-            this.tbReportContent.Location = new System.Drawing.Point(130, 101);
+            this.tbReportContent.Location = new System.Drawing.Point(114, 76);
+            this.tbReportContent.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbReportContent.Multiline = true;
             this.tbReportContent.Name = "tbReportContent";
-            this.tbReportContent.Size = new System.Drawing.Size(394, 216);
+            this.tbReportContent.Size = new System.Drawing.Size(345, 163);
             this.tbReportContent.TabIndex = 10;
             // 
             // cbTenantsToReport
             // 
             this.cbTenantsToReport.FormattingEnabled = true;
-            this.cbTenantsToReport.Location = new System.Drawing.Point(650, 101);
+            this.cbTenantsToReport.Location = new System.Drawing.Point(569, 76);
+            this.cbTenantsToReport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbTenantsToReport.Name = "cbTenantsToReport";
-            this.cbTenantsToReport.Size = new System.Drawing.Size(350, 39);
+            this.cbTenantsToReport.Size = new System.Drawing.Size(307, 33);
             this.cbTenantsToReport.TabIndex = 3;
             // 
             // lblAdressReportToSomeone
             // 
             this.lblAdressReportToSomeone.AutoSize = true;
             this.lblAdressReportToSomeone.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblAdressReportToSomeone.Location = new System.Drawing.Point(672, 51);
+            this.lblAdressReportToSomeone.Location = new System.Drawing.Point(588, 38);
             this.lblAdressReportToSomeone.Name = "lblAdressReportToSomeone";
-            this.lblAdressReportToSomeone.Size = new System.Drawing.Size(306, 23);
+            this.lblAdressReportToSomeone.Size = new System.Drawing.Size(248, 19);
             this.lblAdressReportToSomeone.TabIndex = 2;
             this.lblAdressReportToSomeone.Text = "Do you adress this report to someone?";
             // 
             // tbWarnings
             // 
-            this.tbWarnings.Location = new System.Drawing.Point(31, 459);
+            this.tbWarnings.Location = new System.Drawing.Point(27, 344);
+            this.tbWarnings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbWarnings.Multiline = true;
             this.tbWarnings.Name = "tbWarnings";
-            this.tbWarnings.Size = new System.Drawing.Size(719, 193);
+            this.tbWarnings.Size = new System.Drawing.Size(630, 146);
             this.tbWarnings.TabIndex = 7;
             // 
             // lblWarnings
             // 
             this.lblWarnings.AutoSize = true;
             this.lblWarnings.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblWarnings.Location = new System.Drawing.Point(31, 408);
+            this.lblWarnings.Location = new System.Drawing.Point(27, 306);
             this.lblWarnings.Name = "lblWarnings";
-            this.lblWarnings.Size = new System.Drawing.Size(232, 35);
+            this.lblWarnings.Size = new System.Drawing.Size(187, 28);
             this.lblWarnings.TabIndex = 6;
             this.lblWarnings.Text = "Warnings received";
             // 
@@ -868,20 +922,33 @@
             this.lblStudentHouseBV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblStudentHouseBV.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblStudentHouseBV.Image = global::Housing_Project.Properties.Resources.house;
-            this.lblStudentHouseBV.Location = new System.Drawing.Point(16, 9);
+            this.lblStudentHouseBV.Location = new System.Drawing.Point(10, 16);
             this.lblStudentHouseBV.Name = "lblStudentHouseBV";
-            this.lblStudentHouseBV.Size = new System.Drawing.Size(1261, 77);
+            this.lblStudentHouseBV.Size = new System.Drawing.Size(949, 58);
             this.lblStudentHouseBV.TabIndex = 1;
             this.lblStudentHouseBV.Text = "Student House BV";
             this.lblStudentHouseBV.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // logoutpicturebox
+            // 
+            this.logoutpicturebox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.logoutpicturebox.Image = ((System.Drawing.Image)(resources.GetObject("logoutpicturebox.Image")));
+            this.logoutpicturebox.Location = new System.Drawing.Point(997, 16);
+            this.logoutpicturebox.Name = "logoutpicturebox";
+            this.logoutpicturebox.Size = new System.Drawing.Size(64, 58);
+            this.logoutpicturebox.TabIndex = 3;
+            this.logoutpicturebox.TabStop = false;
+            this.logoutpicturebox.Click += new System.EventHandler(this.logoutpicturebox_Click);
+            // 
             // FormStudent
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1295, 837);
+            this.ClientSize = new System.Drawing.Size(1076, 628);
+            this.Controls.Add(this.logoutpicturebox);
             this.Controls.Add(this.lblStudentHouseBV);
             this.Controls.Add(this.tabControlStudent);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormStudent";
             this.Text = "Student";
             this.tabControlStudent.ResumeLayout(false);
@@ -901,6 +968,7 @@
             this.tabReport.PerformLayout();
             this.gbFileAReport.ResumeLayout(false);
             this.gbFileAReport.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoutpicturebox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -976,5 +1044,6 @@
         private Label lblDate;
         private DateTimePicker dateTimePickerAgreements;
         private Button button1;
+        private PictureBox logoutpicturebox;
     }
 }

@@ -1,12 +1,10 @@
-﻿using Housing_Project.Classes;
-using Housing_Project.Classes.Tasks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Housing_Project
+namespace Housing_Project.Classes
 {
     public static class PaymentManager
     {
@@ -18,7 +16,7 @@ namespace Housing_Project
 
         public static void CalculatePricePerPerson(Payment payment)
         {
-            _pricePerPerson = (double) payment.TotalPrice / 7; //dummy data
+            _pricePerPerson = (double)payment.TotalPrice / 7; //dummy data
             //Manager.GetTenants().Count()
         }
 
@@ -43,6 +41,6 @@ namespace Housing_Project
 
 
 
-    
+
 
 }

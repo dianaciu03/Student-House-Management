@@ -1,12 +1,11 @@
-﻿using Housing_Project.Classes.Agreements_Problems;
-using Housing_Project.Classes.Tasks;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Housing_Project
+namespace Housing_Project.Classes
 {
     public static class AgreementManager
     {
@@ -34,13 +33,13 @@ namespace Housing_Project
         public static List<Agreement> GetAgreementsOnDate(DateTime date)
         {
             List<Agreement> _agreementsOnDate = new List<Agreement>();
-            List<String> _agreementsOnDateString = new List<String>();
+            List<string> _agreementsOnDateString = new List<string>();
 
             foreach (Agreement agreement in _agreements)
             {
                 if (agreement.Date.Day == date.Day && agreement.Date.Month == date.Month && agreement.Date.Year == date.Year)
                 {
-                    
+
                     _agreementsOnDate.Add(agreement);
                 }
             }

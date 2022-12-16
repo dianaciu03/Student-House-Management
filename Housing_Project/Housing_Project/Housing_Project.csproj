@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <Compile Include="C:\Users\sando\Repositories\project-housing\Housing_Project\Housing_Project\Supervisor.cs" Link="Supervisor.cs" />
-	  <Compile Include="C:\Users\sando\Repositories\project-housing\Housing_Project\Housing_Project\Supervisor.Designer.cs" Link="Supervisor.Designer.cs" />
+	  <Compile Include="C:\Users\Antonio\OneDrive\Desktop\Laina BV\project-housing\Housing_Project\project-housing\Housing_Project\Housing_Project\Supervisor.cs" Link="Supervisor.cs" />
+	  <Compile Include="C:\Users\Antonio\OneDrive\Desktop\Laina BV\project-housing\Housing_Project\project-housing\Housing_Project\Housing_Project\Supervisor.Designer.cs" Link="Supervisor.Designer.cs" />
   </ItemGroup>
 
 	<ItemGroup>

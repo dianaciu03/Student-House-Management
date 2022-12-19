@@ -1,3 +1,5 @@
+using Housing_Project.Classes;
+
 namespace Housing_Project
 {
     internal static class Program
@@ -10,6 +12,7 @@ namespace Housing_Project
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            Rule.AddExampleRule();
             ApplicationConfiguration.Initialize();
             Application.Run(new LoginRegister());
         }

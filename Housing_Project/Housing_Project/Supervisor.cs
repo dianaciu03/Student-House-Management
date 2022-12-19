@@ -14,6 +14,7 @@ using System.Reflection;
 using Housing_Project.Classes;
 using Microsoft.VisualBasic;
 using Rule = Housing_Project.Classes.Rule;
+using System.Xml.Linq;
 
 namespace Housing_Project
 {
@@ -28,17 +29,21 @@ namespace Housing_Project
         //List<Classes.Agreements_Problems.Rule> rules;
 
         private int selectedIndex;
-        public FormSupervisor()
+        private string currentUserField;
+        public FormSupervisor(string currentUser)
         {
-
+            currentUserField = currentUser;
             InitializeComponent();
             //denitsa
             cbSelectTenantToAssignTask.Text = "E";
-            
+            //
+            this.Text = $"{currentUser}";//upper bar text
             selectedIndex = -1;
             btnSubmitChanges.Visible = false;
             btnSubmitChangesTenant.Visible= false;
+            Refresh("tabRules");
         }
+
         private void tabControlSupervisor_Click(object sender, EventArgs e)
         {
             if (tabControlSupervisor.SelectedTab == tabRules)
@@ -49,12 +54,9 @@ namespace Housing_Project
             {
                 Refresh("tabContactInfo");
             }
-            
-
         }
         private void Refresh(string Tab)
         {
-
             selectedIndex = -1; //both
 
             if (Tab=="tabRules")//supervisor
@@ -66,8 +68,10 @@ namespace Housing_Project
                 subjecttxt.Text = "";
                 tbRule.Text = "";
                 indexBox.Clear(); //supervisor
+
                 rulesListBox.Items.Clear();//supervisor
                 rulesListBox.SelectionMode = SelectionMode.One;
+
 
                 for (int i = 0; i < Rule.GetRules().Count; i++)
                 {
@@ -89,13 +93,13 @@ namespace Housing_Project
 
                 lbTenantsInfo.Items.Clear(); //tenant
                 lbTenantsInfo.SelectionMode = SelectionMode.One;
-                for (int i = 0; i < Tenant.GetTenants().Count; i++)
+                for (int i = 0; i < Manager.GetTenants().Count; i++)
                 {
-                    lbTenantsInfo.Items.Add($"Number {i + 1}: {Tenant.GetTenants()[i].GetInfo()}");
+                    lbTenantsInfo.Items.Add($"Number {i + 1}: {Manager.GetTenants()[i].GetInfo()}");
                 }
             }
-            
         }
+
         private void EditUser(string supervisorOrtenant)
         {
             if (supervisorOrtenant == "supervisor")
@@ -126,17 +130,17 @@ namespace Housing_Project
                 if (lbTenantsInfo.SelectedIndex != -1)
                 {
                     btnAddTenant.Visible = false;
-                    for (int i = 0; i < Tenant.GetTenants().Count; i++)
+                    for (int i = 0; i < Manager.GetTenants().Count; i++)
                     {
-                        if (lbTenantsInfo.SelectedItem.ToString() == $"Number {i + 1}: {Tenant.GetTenants()[i].GetInfo()}")
+                        if (lbTenantsInfo.SelectedItem.ToString() == $"Number {i + 1}: {Manager.GetTenants()[i].GetInfo()}")
                         {
                             edittenantbtn.Visible = false;
                             btnSubmitChangesTenant.Visible = true;
 
-                            tbTenantName.Text = Tenant.GetTenants()[i].Name;
-                            tbTenantEmail.Text = Tenant.GetTenants()[i].Email;
-                            tbTenantPhone.Text = Tenant.GetTenants()[i].PhoneNumber;
-                            tbRoomNumber.Text = (Tenant.GetTenants()[i].RoomNumber).ToString();
+                            tbTenantName.Text = Manager.GetTenants()[i].Name;
+                            tbTenantEmail.Text = Manager.GetTenants()[i].Email;
+                            tbTenantPhone.Text = Manager.GetTenants()[i].PhoneNumber;
+                            tbRoomNumber.Text = (Manager.GetTenants()[i].RoomNumber).ToString();
 
                             selectedIndex = i;
                             indexboxTenants.Text = (selectedIndex + 1).ToString();
@@ -170,7 +174,7 @@ namespace Housing_Project
         //Supervisor
         private void addNewRule_Click(object sender, EventArgs e)
         {
-            Rule.AddRule(subjecttxt,tbRule);
+            Rule.AddRule(subjecttxt,tbRule,currentUserField);
             Refresh("tabRules");
         }
 
@@ -226,15 +230,15 @@ namespace Housing_Project
                 lbEvents.Text = cbCleanBathroom1.Text + cleaning.GetInfo();
                
             }
-           else  if (cbCleanBathroom2.Checked)
+            else  if (cbCleanBathroom2.Checked)
             {
                 lbEvents.Text = cbCleanBathroom2.Text + cleaning.GetInfo();
             }
-           else if (cbCleanTheKitchen.Checked)
+            else if (cbCleanTheKitchen.Checked)
             {
                 lbEvents.Text = cbCleanTheKitchen.Text + cleaning.GetInfo();
             }
-           else if (cbCleanTheLivingRoom.Checked)
+            else if (cbCleanTheLivingRoom.Checked)
             {
                 lbEvents.Text = cbCleanTheLivingRoom.Text + cleaning.GetInfo();
             }
@@ -256,6 +260,16 @@ namespace Housing_Project
             string description = tbAnnouncementDescription.Text;
             MessageBox.Show($"Title:{announcement},Description:{description}");
 
+        }
+
+        private void logoutpicturebox_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+            LoginRegister loginpage = new LoginRegister();
+            this.Close();
+            loginpage.ShowDialog();
+            
         }
     }
 }

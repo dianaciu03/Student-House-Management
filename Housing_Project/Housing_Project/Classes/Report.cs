@@ -19,6 +19,7 @@ namespace Housing_Project.Classes
         }   
         public string GetTitle()
         {
+
             return this._title;
         }
         public string GetDescription()

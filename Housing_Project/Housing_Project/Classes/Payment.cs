@@ -9,6 +9,7 @@ namespace Housing_Project.Classes
     public class Payment
     {
         private int _paymentID = 0;
+
         private List<string> _items = new List<string>();
         private string _buyer;
         private double _totalPrice;

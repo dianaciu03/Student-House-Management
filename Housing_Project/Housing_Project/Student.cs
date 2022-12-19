@@ -14,11 +14,13 @@ namespace Housing_Project
     public partial class FormStudent : Form
     {
         CheckBox[] checkBoxes;
-        public FormStudent()
+        private string currentUserField;
+        public FormStudent(string currentUser)
         {
+            currentUserField = currentUser;
             InitializeComponent();
             //we need to add info to list boxes in contact info tab when we initialize the FormStudent
-
+            this.Text = $"{currentUser}";
 
             //Array of checkboxes
             checkBoxes = new CheckBox[]
@@ -48,7 +50,6 @@ namespace Housing_Project
             foreach (Agreement agreementInfo in selectedAgreements)
             {
                 lbTasks.Items.Add(agreementInfo);
-                
             }
 
         }
@@ -67,7 +68,7 @@ namespace Housing_Project
             lbPaymentsInfo.Items.Clear();
             
             List<string> items = new List<string>();
-            string buyer = "CurrentTenant.Name";
+            string buyer = currentUserField;
             double totalPrice = 0;
  
             try
@@ -192,7 +193,11 @@ namespace Housing_Project
 
         private void logoutpicturebox_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            LoginRegister loginpage= new LoginRegister();
+            this.Close();
+            loginpage.ShowDialog();
+            
         }
     }
 }

@@ -1,3 +1,4 @@
+using Housing_Project.Classes;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -25,12 +26,12 @@ namespace Housing_Project
             passwordtxt.Clear();
             phonenumbertxt.Clear();
         }
-        private void OpenUser(string user)
+        private void OpenUser(string user, string name)
         {
             if (user == "student")
             {
                 this.Hide();
-                FormStudent student = new FormStudent();
+                FormStudent student = new FormStudent(name);
                 student.ShowDialog();
                 this.Close();
             }
@@ -38,7 +39,7 @@ namespace Housing_Project
             if (user == "supervisor")
             {
                 this.Hide();
-                FormSupervisor supervisor = new FormSupervisor();
+                FormSupervisor supervisor = new FormSupervisor(name);
                 supervisor.ShowDialog();
                 this.Close();
             }
@@ -58,13 +59,14 @@ namespace Housing_Project
 
         private void loginbtn_Click(object sender, EventArgs e) // actual log in button
         {        
-            if (loginemailtxt.Text == "1" && loginpasswordtxt.Text == "1")
+            if (loginemailtxt.Text == "1" && loginpasswordtxt.Text == "1" || (loginemailtxt.Text == "0" && loginpasswordtxt.Text == "0"))
             {
-                OpenUser("student");
+                OpenUser("student", loginemailtxt.Text);
+
             }
-            else if (loginemailtxt.Text == "2" && loginpasswordtxt.Text == "2")
+            else if (loginemailtxt.Text == "2" && loginpasswordtxt.Text == "2" || (loginemailtxt.Text == "3" && loginpasswordtxt.Text == "3"))
             {
-                OpenUser("supervisor");
+                OpenUser("supervisor",loginemailtxt.Text);
             }
             else 
             {
@@ -91,7 +93,7 @@ namespace Housing_Project
             else
             {
                 ClearFields();
-                OpenUser("student");
+                OpenUser("student", loginemailtxt.Text);
             }
         }
 

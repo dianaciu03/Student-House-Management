@@ -16,7 +16,7 @@ namespace Housing_Project.Classes
         private string _phoneNumber;
         private int _roomNumber;
 
-        static List<Tenant> tenants = new List<Tenant>();
+        
 
         public Tenant(string name, string email, string phoneNumber, int roomNumber)
         {
@@ -81,7 +81,7 @@ namespace Housing_Project.Classes
                 try
                 {
                     Tenant newtenant = new Tenant(nameBox.Text, emailBox.Text, phoneNumberBox.Text, int.Parse(roomNumberBox.Text));
-                    tenants.Add(newtenant);
+                    Manager.GetTenants().Add(newtenant);
                     nameBox.Text = "";
                     emailBox.Text = "";
                     phoneNumberBox.Text = "";
@@ -102,10 +102,10 @@ namespace Housing_Project.Classes
         {
             try
             {
-                tenants[int.Parse(IndexboxTenants.Text) - 1].Name = tbTenantName.Text;
-                tenants[int.Parse(IndexboxTenants.Text) - 1].Email = tbTenantEmail.Text;
-                tenants[int.Parse(IndexboxTenants.Text) - 1].PhoneNumber = tbTenantPhone.Text;
-                tenants[int.Parse(IndexboxTenants.Text) - 1].RoomNumber = int.Parse(tbRoomNumber.Text);
+                Manager.GetTenants()[int.Parse(IndexboxTenants.Text) - 1].Name = tbTenantName.Text;
+                Manager.GetTenants()[int.Parse(IndexboxTenants.Text) - 1].Email = tbTenantEmail.Text;
+                Manager.GetTenants()[int.Parse(IndexboxTenants.Text) - 1].PhoneNumber = tbTenantPhone.Text;
+                Manager.GetTenants()[int.Parse(IndexboxTenants.Text) - 1].RoomNumber = int.Parse(tbRoomNumber.Text);
 
                 MessageBox.Show("Success");
             }
@@ -124,10 +124,6 @@ namespace Housing_Project.Classes
         //{
         //    MessageBox.Show($"{rules[listOfRules.SelectedIndex].GetInfo("long")}");
         //}
-        static public List<Tenant> GetTenants()
-        {
-            return tenants;
-        }
     }
 }
 

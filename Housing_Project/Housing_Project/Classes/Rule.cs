@@ -11,10 +11,11 @@ namespace Housing_Project.Classes
     {
         private string subject;
         private string message;
-        private string sender = "CurrentUser";
+        private string currentUser;
 
         static List<Rule> rules = new List<Rule>();
-
+        
+        
         public Rule(string Subject, string Message)
         {
             subject = Subject;
@@ -22,6 +23,15 @@ namespace Housing_Project.Classes
             subject = Subject;
             message = Message;
             //this.sender = Sender;
+        }
+        public Rule(string Subject, string Message,string CurrentUser)
+        {
+            subject = Subject;
+            message = Message;
+            subject = Subject;
+            message = Message;
+            //this.sender = Sender;
+            this.currentUser = CurrentUser;
         }
 
         public string Subject
@@ -48,26 +58,26 @@ namespace Housing_Project.Classes
             }
         }
 
-        private string Sender
-        {
-            get
-            {
-                return sender;
-            }
-            set
-            {
-                sender = value;
-            }
-        }
+        //private string Sender
+        //{
+        //    get
+        //    {
+        //        return sender;
+        //    }
+        //    set
+        //    {
+        //        sender = value;
+        //    }
+        //}
 
-        static public void AddRule(RichTextBox subjextBox, RichTextBox messageBox)
+        static public void AddRule(RichTextBox subjextBox, RichTextBox messageBox, string currentUser)
         {
             if (messageBox.Text != "")
             {
                 string subject = subjextBox.Text;
                 string rule_to_be_added = messageBox.Text;
-
-                Rule newRule = new Rule(subject, rule_to_be_added);
+                
+                Rule newRule = new Rule(subject, rule_to_be_added, currentUser);
 
                 rules.Add(newRule);
                 subjextBox.Text = "";
@@ -77,6 +87,15 @@ namespace Housing_Project.Classes
             {
                 MessageBox.Show("Box is empty");
             }
+        }
+        static public void AddExampleRule()
+        {
+            Rule example1 = new Rule("Example Subject1", "Example Message1", "User1");
+            Rule example2 = new Rule("Example Subject2", "Example Message2", "User2");
+            Rule example3 = new Rule("Example Subject3", "Example Message3", "User3");
+            rules.Add(example1);
+            rules.Add(example2);
+            rules.Add(example3);
         }
 
         static public void PushChanges(TextBox indexBox, RichTextBox subjectBox, RichTextBox messageBox)
@@ -98,12 +117,12 @@ namespace Housing_Project.Classes
         {
             if (shortOrfull == "short")
             {
-                return $"Subject: {Subject}    Sender: {Sender}";
+                return $"Subject: {Subject}    Sender: {currentUser}";
             }
 
             if (shortOrfull == "long")
             {
-                return $"Subject: {Subject}\nMessage: {Message}\nSender: {Sender}";
+                return $"Subject: {Subject}\nMessage: {Message}\nSender: {currentUser}";
             }
 
             return null;

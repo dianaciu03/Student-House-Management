@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSupervisor));
             this.tabControlSupervisor = new System.Windows.Forms.TabControl();
             this.tabRules = new System.Windows.Forms.TabPage();
             this.gbEditRules = new System.Windows.Forms.GroupBox();
@@ -72,8 +73,13 @@
             this.lblTenantsContactInfo = new System.Windows.Forms.Label();
             this.lbTenantsInfo = new System.Windows.Forms.ListBox();
             this.tabManageReports = new System.Windows.Forms.TabPage();
+            this.tbdescription = new System.Windows.Forms.RichTextBox();
+            this.tbtitle = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.gbReport = new System.Windows.Forms.GroupBox();
             this.btnSendWarning = new System.Windows.Forms.Button();
+            this.tbadressedPerson = new System.Windows.Forms.TextBox();
             this.cbTenantToSendWarning = new System.Windows.Forms.ComboBox();
             this.lblSelectTenant = new System.Windows.Forms.Label();
             this.lblPersonAdressedTo = new System.Windows.Forms.Label();
@@ -87,6 +93,8 @@
             this.tbAnnouncementTitle = new System.Windows.Forms.TextBox();
             this.lblAnnouncementTitle = new System.Windows.Forms.Label();
             this.gbAssignTask = new System.Windows.Forms.GroupBox();
+            this.roomNr = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnSubmitTask = new System.Windows.Forms.Button();
             this.cbTakeOutTheTrash = new System.Windows.Forms.CheckBox();
             this.cbCleanTheLivingRoom = new System.Windows.Forms.CheckBox();
@@ -99,13 +107,7 @@
             this.lblSelectTenantAssignTask = new System.Windows.Forms.Label();
             this.monthCalendarSupervisor = new System.Windows.Forms.MonthCalendar();
             this.lblStudentHouseBV = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbtitle = new System.Windows.Forms.TextBox();
-            this.tbadressedPerson = new System.Windows.Forms.TextBox();
-            this.tbdescription = new System.Windows.Forms.RichTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.roomNr = new System.Windows.Forms.TextBox();
+            this.logoutpicturebox = new System.Windows.Forms.PictureBox();
             this.tabControlSupervisor.SuspendLayout();
             this.tabRules.SuspendLayout();
             this.gbEditRules.SuspendLayout();
@@ -117,6 +119,7 @@
             this.tabAssignTasks.SuspendLayout();
             this.gbMakeAnnouncement.SuspendLayout();
             this.gbAssignTask.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoutpicturebox)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControlSupervisor
@@ -586,6 +589,39 @@
             this.tabManageReports.Text = "Manage Reports";
             this.tabManageReports.UseVisualStyleBackColor = true;
             // 
+            // tbdescription
+            // 
+            this.tbdescription.Location = new System.Drawing.Point(177, 204);
+            this.tbdescription.Name = "tbdescription";
+            this.tbdescription.Size = new System.Drawing.Size(210, 77);
+            this.tbdescription.TabIndex = 13;
+            this.tbdescription.Text = "";
+            // 
+            // tbtitle
+            // 
+            this.tbtitle.Location = new System.Drawing.Point(177, 87);
+            this.tbtitle.Name = "tbtitle";
+            this.tbtitle.Size = new System.Drawing.Size(210, 29);
+            this.tbtitle.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(30, 207);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(141, 21);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Report description:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 95);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 21);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Report title:";
+            // 
             // gbReport
             // 
             this.gbReport.Controls.Add(this.btnSendWarning);
@@ -612,6 +648,13 @@
             this.btnSendWarning.Text = "Send warning";
             this.btnSendWarning.UseVisualStyleBackColor = true;
             this.btnSendWarning.Click += new System.EventHandler(this.btnSendWarning_Click);
+            // 
+            // tbadressedPerson
+            // 
+            this.tbadressedPerson.Location = new System.Drawing.Point(188, 66);
+            this.tbadressedPerson.Name = "tbadressedPerson";
+            this.tbadressedPerson.Size = new System.Drawing.Size(210, 29);
+            this.tbadressedPerson.TabIndex = 12;
             // 
             // cbTenantToSendWarning
             // 
@@ -766,6 +809,22 @@
             this.gbAssignTask.TabStop = false;
             this.gbAssignTask.Text = "Assign task";
             // 
+            // roomNr
+            // 
+            this.roomNr.Location = new System.Drawing.Point(118, 55);
+            this.roomNr.Name = "roomNr";
+            this.roomNr.Size = new System.Drawing.Size(100, 29);
+            this.roomNr.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 58);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 21);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Room:";
+            // 
             // btnSubmitTask
             // 
             this.btnSubmitTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -894,72 +953,28 @@
             this.lblStudentHouseBV.Image = global::Housing_Project.Properties.Resources.house;
             this.lblStudentHouseBV.Location = new System.Drawing.Point(12, 15);
             this.lblStudentHouseBV.Name = "lblStudentHouseBV";
-            this.lblStudentHouseBV.Size = new System.Drawing.Size(907, 58);
+            this.lblStudentHouseBV.Size = new System.Drawing.Size(821, 58);
             this.lblStudentHouseBV.TabIndex = 4;
             this.lblStudentHouseBV.Text = "Student House BV";
             this.lblStudentHouseBV.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label1
+            // logoutpicturebox
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(30, 95);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 21);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Report title:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(30, 207);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 21);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Report description:";
-            // 
-            // tbtitle
-            // 
-            this.tbtitle.Location = new System.Drawing.Point(177, 87);
-            this.tbtitle.Name = "tbtitle";
-            this.tbtitle.Size = new System.Drawing.Size(210, 29);
-            this.tbtitle.TabIndex = 10;
-            // 
-            // tbadressedPerson
-            // 
-            this.tbadressedPerson.Location = new System.Drawing.Point(188, 66);
-            this.tbadressedPerson.Name = "tbadressedPerson";
-            this.tbadressedPerson.Size = new System.Drawing.Size(210, 29);
-            this.tbadressedPerson.TabIndex = 12;
-            // 
-            // tbdescription
-            // 
-            this.tbdescription.Location = new System.Drawing.Point(177, 204);
-            this.tbdescription.Name = "tbdescription";
-            this.tbdescription.Size = new System.Drawing.Size(210, 77);
-            this.tbdescription.TabIndex = 13;
-            this.tbdescription.Text = "";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 58);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 21);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Room:";
-            // 
-            // roomNr
-            // 
-            this.roomNr.Location = new System.Drawing.Point(118, 55);
-            this.roomNr.Name = "roomNr";
-            this.roomNr.Size = new System.Drawing.Size(100, 29);
-            this.roomNr.TabIndex = 12;
+            this.logoutpicturebox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.logoutpicturebox.Image = ((System.Drawing.Image)(resources.GetObject("logoutpicturebox.Image")));
+            this.logoutpicturebox.Location = new System.Drawing.Point(851, 15);
+            this.logoutpicturebox.Name = "logoutpicturebox";
+            this.logoutpicturebox.Size = new System.Drawing.Size(64, 58);
+            this.logoutpicturebox.TabIndex = 5;
+            this.logoutpicturebox.TabStop = false;
+            this.logoutpicturebox.Click += new System.EventHandler(this.logoutpicturebox_Click);
             // 
             // FormSupervisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(970, 608);
+            this.ClientSize = new System.Drawing.Size(928, 608);
+            this.Controls.Add(this.logoutpicturebox);
             this.Controls.Add(this.lblStudentHouseBV);
             this.Controls.Add(this.tabControlSupervisor);
             this.Name = "FormSupervisor";
@@ -984,6 +999,7 @@
             this.gbMakeAnnouncement.PerformLayout();
             this.gbAssignTask.ResumeLayout(false);
             this.gbAssignTask.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logoutpicturebox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1067,5 +1083,6 @@
         private RichTextBox tbdescription;
         private TextBox roomNr;
         private Label label3;
+        private PictureBox logoutpicturebox;
     }
 }

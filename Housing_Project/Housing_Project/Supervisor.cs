@@ -34,10 +34,8 @@ namespace Housing_Project
         {
             currentUserField = currentUser;
             InitializeComponent();
-            //denitsa
-            cbSelectTenantToAssignTask.Text = "E";
-            //
-            this.Text = $"{currentUser}";//upper bar text
+            cbSelectTenantToAssignTask.Text = "E";//denitsa
+            this.Text = $"{currentUser}";//upper bar text for loggin user
             selectedIndex = -1;
             btnSubmitChanges.Visible = false;
             btnSubmitChangesTenant.Visible= false;
@@ -71,7 +69,6 @@ namespace Housing_Project
 
                 rulesListBox.Items.Clear();//supervisor
                 rulesListBox.SelectionMode = SelectionMode.One;
-
 
                 for (int i = 0; i < Rule.GetRules().Count; i++)
                 {
@@ -224,13 +221,12 @@ namespace Housing_Project
         {
             //DateRangeEventHandler dateSelected = monthCalendarSupervisor.selcte;
             //cleaning.SetDate(monthCalendarSupervisor.ToString())
-            cleaning.GetDate(); 
+            cleaning.GetDate();
             if (cbCleanBathroom1.Checked)
             {
                 lbEvents.Text = cbCleanBathroom1.Text + cleaning.GetInfo();
-               
             }
-            else  if (cbCleanBathroom2.Checked)
+            else if (cbCleanBathroom2.Checked)
             {
                 lbEvents.Text = cbCleanBathroom2.Text + cleaning.GetInfo();
             }
@@ -246,12 +242,10 @@ namespace Housing_Project
             {
                 lbEvents.Text = cbCleanTheStarirs.Text + cleaning.GetInfo();
             }
-  
             else if (cbTakeOutTheTrash.Checked)
             {
                 lbEvents.Text = cbTakeOutTheTrash.Text + cleaning.GetInfo();
             }
-       
         }
 
         private void btnSubmitAnnouncement_Click(object sender, EventArgs e)
@@ -259,17 +253,14 @@ namespace Housing_Project
             string announcement = tbAnnouncementTitle.Text;
             string description = tbAnnouncementDescription.Text;
             MessageBox.Show($"Title:{announcement},Description:{description}");
-
         }
 
         private void logoutpicturebox_Click(object sender, EventArgs e)
         {
-
             this.Hide();
             LoginRegister loginpage = new LoginRegister();
             this.Close();
             loginpage.ShowDialog();
-            
         }
     }
 }

@@ -11,14 +11,14 @@ namespace Housing_Project.Classes
         private int _paymentID = 0;
 
         private List<string> _items = new List<string>();
-        private string _buyer;
+        private Tenant tenant;
         private double _totalPrice;
 
-        public Payment(int id, List<string> list, string buyer, double totalPrice)
+        public Payment(int id, List<string> list, Tenant Tenant, double totalPrice)
         {
             _paymentID = id;
             _items = list;
-            _buyer = buyer;
+            tenant = Tenant;
             _totalPrice = totalPrice;
         }
 
@@ -26,7 +26,7 @@ namespace Housing_Project.Classes
 
         public List<string> Items { get { return _items; } }
 
-        public string Buyer { get { return _buyer; } }
+        public Tenant Tenant { get { return tenant; } }
 
         public double TotalPrice { get { return _totalPrice; } }
 
@@ -37,7 +37,7 @@ namespace Housing_Project.Classes
 
         public string GetInfoPayment()
         {
-            string info = $"{_paymentID}. {_buyer} bought: ";
+            string info = $"{_paymentID}. {tenant} bought: ";
             foreach (string item in _items)
                 info += item + ", ";
             info += $"\nTotal price: {_totalPrice}, Price per person: {PaymentManager.PricePerPerson:f2}";
@@ -46,7 +46,7 @@ namespace Housing_Project.Classes
 
         public string GetInfoPaymentDisplay()
         {
-            return $"{PaymentID}. {_buyer} bought supplies worth {_totalPrice} euros.";
+            return $"{PaymentID}. {tenant} bought supplies worth {_totalPrice} euros.";
         }
 
         public override string ToString()

@@ -22,10 +22,10 @@ namespace Housing_Project.Classes
             tenant = Tenant;
             _totalPrice = totalPrice;
         }
-        public Payment(List<string>list, string buyer, double totalPrice)
+        public Payment(List<string>list, Tenant Tenant, double totalPrice)
         {
             _items = list;
-            _buyer = buyer;
+            this.tenant = Tenant;
             _totalPrice = totalPrice;
         }
 

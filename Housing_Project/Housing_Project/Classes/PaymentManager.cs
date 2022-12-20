@@ -13,7 +13,6 @@ namespace Housing_Project.Classes
     {
         private static int _paymentIdSeeder = 1;
         private static double _pricePerPerson;
-        private static List<Payment> _payments = new List<Payment>();
 
         //private static List<Tenant> _tenantsPaid = new List<Tenant>();
         //private static List<Tenant> _tenantsNotPaid = new List<Tenant>();
@@ -30,10 +29,9 @@ namespace Housing_Project.Classes
 
         public static void AddPaymentToList(List<string> list, Tenant Tenant, double totalPrice)
         {
-            _payments.Add(new Payment(_paymentIdSeeder, list, buyer, totalPrice));
+            _payments.Add(new Payment(_paymentIdSeeder, list, Tenant, totalPrice));
             _paymentIdSeeder++;
         }
-
 
         public static Payment[] GetPayments()
         {

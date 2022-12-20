@@ -71,13 +71,13 @@ namespace Housing_Project
 
         private void btnSubmitPayment_Click(object sender, EventArgs e)
         {
-            
-
             lbPaymentsInfo.Items.Clear();
             
             List<string> items = new List<string>();
 
-            string buyer = currentUserField;
+            string buyer = currentUserField; // Tenant
+            Tenant tenant;//add logic for seaching
+
             double totalPrice = 0;
  
             try
@@ -111,7 +111,7 @@ namespace Housing_Project
             if (items.Count > 0 && totalPrice > 0)
             {//denitsa serialization
 
-                PaymentManager.AddPaymentToList(items, buyer, totalPrice);
+                PaymentManager.AddPaymentToList(items, tenant, totalPrice);
  
             }
 

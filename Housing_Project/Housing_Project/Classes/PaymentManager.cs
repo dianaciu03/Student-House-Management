@@ -13,9 +13,12 @@ namespace Housing_Project.Classes
     {
         private static int _paymentIdSeeder = 1;
         private static double _pricePerPerson;
-        //private static List<Tenant> _tenantsPaid = new List<Tenant>();
-        //private static List<Tenant> _tenantsNotPaid = new List<Tenant>(); 
         private static List<Payment> _payments = new List<Payment>();
+
+        //private static List<Tenant> _tenantsPaid = new List<Tenant>();
+        //private static List<Tenant> _tenantsNotPaid = new List<Tenant>();
+        private static List<Payment> _payments = new List<Payment>();
+
 
         public static void CalculatePricePerPerson(Payment payment)
         {
@@ -25,18 +28,9 @@ namespace Housing_Project.Classes
 
         public static double PricePerPerson { get { return _pricePerPerson; } }
 
-        public static void AddPaymentToList(List<string> list, string buyer, double totalPrice)
+        public static void AddPaymentToList(List<string> list, Tenant Tenant, double totalPrice)
         {
             _payments.Add(new Payment(_paymentIdSeeder, list, buyer, totalPrice));
-            //denitsa serialization
-            //makes a formatter object which transforms the object into binary code
-            //opens a stream which creates and writes into a file
-            //then close the stream
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("payments_info.txt", FileMode.Create, FileAccess.Write);
-            formatter.Serialize(stream, _payments);
-            stream.Close();
-
             _paymentIdSeeder++;
         }
 
@@ -51,9 +45,4 @@ namespace Housing_Project.Classes
             return _payments[index];
         }
     }
-
-
-
-
-
 }

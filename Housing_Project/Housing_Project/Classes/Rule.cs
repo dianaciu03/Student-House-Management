@@ -33,8 +33,7 @@ namespace Housing_Project.Classes
             message = Message;
             subject = Subject;
             message = Message;
-            //this.sender = Sender;
-            this.currentUser = CurrentUser;
+            currentUser = CurrentUser;
         }
 
         public string Subject
@@ -60,18 +59,6 @@ namespace Housing_Project.Classes
                 message = value;
             }
         }
-
-        //private string Sender
-        //{
-        //    get
-        //    {
-        //        return sender;
-        //    }
-        //    set
-        //    {
-        //        sender = value;
-        //    }
-        //}
 
         static public void AddRule(RichTextBox subjextBox, RichTextBox messageBox, string currentUser)
         {//denitsa

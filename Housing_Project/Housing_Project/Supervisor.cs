@@ -72,7 +72,6 @@ namespace Housing_Project
                 rulesListBox.Items.Clear();//supervisor
                 rulesListBox.SelectionMode = SelectionMode.One;
 
-
                 for (int i = 0; i < Rule.GetRules().Count; i++)
                 {
                     rulesListBox.Items.Add($"Number {i + 1}: {Rule.GetRules()[i].GetInfo("short")}");
@@ -218,62 +217,56 @@ namespace Housing_Project
         {
             report = new Report(tbtitle.Text,tbdescription.Text,tbadressedPerson.Text);
             MessageBox.Show(report.GetInfo());
-        }                                            
-                                                     
-        //private void btnSubmitTask_Click(object sen  s e)
-        //{    
-        //    cleaning.GetDate();                      
-        //    if (cbCleanBathroom1.Checked)           
-        //    {
-        //        lbEvents.Text = cbCleanBathroom1.Text + cleaning.GetInfo();
+        }
+
+        private void btnSubmitTask_Click(object sender, EventArgs e)
+        {
+            //DateRangeEventHandler dateSelected = monthCalendarSupervisor.selcte;
+            //cleaning.SetDate(monthCalendarSupervisor.ToString())
+            cleaning.GetDate(); 
+            if (cbCleanBathroom1.Checked)
+            {
+                lbEvents.Text = cbCleanBathroom1.Text + cleaning.GetInfo();
                
-        //    }
-        //    else  if (cbCleanBathroom2.Checked)
-        //    {
-        //        lbEvents.Text = cbCleanBathroom2.Text + cleaning.GetInfo();
-        //    }
-        //    else if (cbCleanTheKitchen.Checked)
-        //    {
-        //        lbEvents.Text = cbCleanTheKitchen.Text + cleaning.GetInfo();
-        //    }
-        //    else if (cbCleanTheLivingRoom.Checked)
-        //    {
-        //        lbEvents.Text = cbCleanTheLivingRoom.Text + cleaning.GetInfo();
-        //    }
-        //    else if (cbCleanTheStarirs.Checked)
-        //    {
-        //        lbEvents.Text = cbCleanTheStarirs.Text + cleaning.GetInfo();
-        //    }
+            }
+            else  if (cbCleanBathroom2.Checked)
+            {
+                lbEvents.Text = cbCleanBathroom2.Text + cleaning.GetInfo();
+            }
+            else if (cbCleanTheKitchen.Checked)
+            {
+                lbEvents.Text = cbCleanTheKitchen.Text + cleaning.GetInfo();
+            }
+            else if (cbCleanTheLivingRoom.Checked)
+            {
+                lbEvents.Text = cbCleanTheLivingRoom.Text + cleaning.GetInfo();
+            }
+            else if (cbCleanTheStarirs.Checked)
+            {
+                lbEvents.Text = cbCleanTheStarirs.Text + cleaning.GetInfo();
+            }
   
-        //    else if (cbTakeOutTheTrash.Checked)
-        //    {
-        //        lbEvents.Text = cbTakeOutTheTrash.Text + cleaning.GetInfo();
-        //    }
+            else if (cbTakeOutTheTrash.Checked)
+            {
+                lbEvents.Text = cbTakeOutTheTrash.Text + cleaning.GetInfo();
+            }
        
-        //}
+        }
 
         private void btnSubmitAnnouncement_Click(object sender, EventArgs e)
         {
             string announcement = tbAnnouncementTitle.Text;
             string description = tbAnnouncementDescription.Text;
             MessageBox.Show($"Title:{announcement},Description:{description}");
-
         }
 
         private void logoutpicturebox_Click(object sender, EventArgs e)
         {
-
             this.Hide();
             LoginRegister loginpage = new LoginRegister();
             this.Close();
             loginpage.ShowDialog();
             
-        }
-
-        private void btnSubmitTask_Click(object sender, EventArgs e)
-        { string roomNr1 = roomNr.Text;
-            string date = dateTimePicker1.Text;
-            //cleaning = new cleaningTask(roomNr1,)
         }
     }
 }

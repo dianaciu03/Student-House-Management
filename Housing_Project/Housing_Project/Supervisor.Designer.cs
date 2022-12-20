@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSupervisor));
             this.tabControlSupervisor = new System.Windows.Forms.TabControl();
             this.tabRules = new System.Windows.Forms.TabPage();
-            this.gbEditRules = new System.Windows.Forms.GroupBox();
             this.showinfobtn = new System.Windows.Forms.Button();
+            this.gbEditRules = new System.Windows.Forms.GroupBox();
             this.editingrulenumberrules = new System.Windows.Forms.Label();
             this.indexBox = new System.Windows.Forms.TextBox();
             this.editbtnRules = new System.Windows.Forms.Button();
@@ -85,6 +85,7 @@
             this.lblPersonAdressedTo = new System.Windows.Forms.Label();
             this.lblSubmittedReports = new System.Windows.Forms.Label();
             this.tabAssignTasks = new System.Windows.Forms.TabPage();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.lbEvents = new System.Windows.Forms.ListBox();
             this.gbMakeAnnouncement = new System.Windows.Forms.GroupBox();
             this.btnSubmitAnnouncement = new System.Windows.Forms.Button();
@@ -105,7 +106,6 @@
             this.lblSelectTask = new System.Windows.Forms.Label();
             this.cbSelectTenantToAssignTask = new System.Windows.Forms.ComboBox();
             this.lblSelectTenantAssignTask = new System.Windows.Forms.Label();
-            this.monthCalendarSupervisor = new System.Windows.Forms.MonthCalendar();
             this.lblStudentHouseBV = new System.Windows.Forms.Label();
             this.logoutpicturebox = new System.Windows.Forms.PictureBox();
             this.tabControlSupervisor.SuspendLayout();
@@ -139,6 +139,7 @@
             // 
             // tabRules
             // 
+            this.tabRules.Controls.Add(this.showinfobtn);
             this.tabRules.Controls.Add(this.gbEditRules);
             this.tabRules.Controls.Add(this.lblHouseRules);
             this.tabRules.Controls.Add(this.rulesListBox);
@@ -151,9 +152,18 @@
             this.tabRules.Text = "Rules";
             this.tabRules.UseVisualStyleBackColor = true;
             // 
+            // showinfobtn
+            // 
+            this.showinfobtn.Location = new System.Drawing.Point(523, 389);
+            this.showinfobtn.Name = "showinfobtn";
+            this.showinfobtn.Size = new System.Drawing.Size(334, 39);
+            this.showinfobtn.TabIndex = 12;
+            this.showinfobtn.Text = "Show detailed info";
+            this.showinfobtn.UseVisualStyleBackColor = true;
+            this.showinfobtn.Click += new System.EventHandler(this.showinfobtn_Click);
+            // 
             // gbEditRules
             // 
-            this.gbEditRules.Controls.Add(this.showinfobtn);
             this.gbEditRules.Controls.Add(this.editingrulenumberrules);
             this.gbEditRules.Controls.Add(this.indexBox);
             this.gbEditRules.Controls.Add(this.editbtnRules);
@@ -172,16 +182,6 @@
             this.gbEditRules.TabIndex = 6;
             this.gbEditRules.TabStop = false;
             this.gbEditRules.Text = "Edit Rules Set";
-            // 
-            // showinfobtn
-            // 
-            this.showinfobtn.Location = new System.Drawing.Point(14, 296);
-            this.showinfobtn.Name = "showinfobtn";
-            this.showinfobtn.Size = new System.Drawing.Size(334, 39);
-            this.showinfobtn.TabIndex = 12;
-            this.showinfobtn.Text = "Show detailed info";
-            this.showinfobtn.UseVisualStyleBackColor = true;
-            this.showinfobtn.Click += new System.EventHandler(this.showinfobtn_Click);
             // 
             // editingrulenumberrules
             // 
@@ -238,7 +238,7 @@
             // 
             // btnSubmitChanges
             // 
-            this.btnSubmitChanges.Location = new System.Drawing.Point(14, 256);
+            this.btnSubmitChanges.Location = new System.Drawing.Point(14, 301);
             this.btnSubmitChanges.Name = "btnSubmitChanges";
             this.btnSubmitChanges.Size = new System.Drawing.Size(334, 34);
             this.btnSubmitChanges.TabIndex = 6;
@@ -434,7 +434,7 @@
             // 
             // edittenantbtn
             // 
-            this.edittenantbtn.Location = new System.Drawing.Point(22, 176);
+            this.edittenantbtn.Location = new System.Drawing.Point(0, 176);
             this.edittenantbtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.edittenantbtn.Name = "edittenantbtn";
             this.edittenantbtn.Size = new System.Drawing.Size(144, 29);
@@ -445,7 +445,7 @@
             // 
             // btnAddTenant
             // 
-            this.btnAddTenant.Location = new System.Drawing.Point(206, 176);
+            this.btnAddTenant.Location = new System.Drawing.Point(214, 176);
             this.btnAddTenant.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAddTenant.Name = "btnAddTenant";
             this.btnAddTenant.Size = new System.Drawing.Size(144, 29);
@@ -697,10 +697,10 @@
             // 
             // tabAssignTasks
             // 
+            this.tabAssignTasks.Controls.Add(this.dateTimePicker1);
             this.tabAssignTasks.Controls.Add(this.lbEvents);
             this.tabAssignTasks.Controls.Add(this.gbMakeAnnouncement);
             this.tabAssignTasks.Controls.Add(this.gbAssignTask);
-            this.tabAssignTasks.Controls.Add(this.monthCalendarSupervisor);
             this.tabAssignTasks.Location = new System.Drawing.Point(4, 30);
             this.tabAssignTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabAssignTasks.Name = "tabAssignTasks";
@@ -710,14 +710,21 @@
             this.tabAssignTasks.Text = "Assign tasks";
             this.tabAssignTasks.UseVisualStyleBackColor = true;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(33, 198);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 29);
+            this.dateTimePicker1.TabIndex = 5;
+            // 
             // lbEvents
             // 
             this.lbEvents.FormattingEnabled = true;
             this.lbEvents.ItemHeight = 21;
-            this.lbEvents.Location = new System.Drawing.Point(340, 44);
+            this.lbEvents.Location = new System.Drawing.Point(33, 14);
             this.lbEvents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.lbEvents.Name = "lbEvents";
-            this.lbEvents.Size = new System.Drawing.Size(536, 151);
+            this.lbEvents.Size = new System.Drawing.Size(835, 172);
             this.lbEvents.TabIndex = 4;
             // 
             // gbMakeAnnouncement
@@ -938,13 +945,6 @@
             this.lblSelectTenantAssignTask.TabIndex = 1;
             this.lblSelectTenantAssignTask.Text = "Select tenant:";
             // 
-            // monthCalendarSupervisor
-            // 
-            this.monthCalendarSupervisor.Location = new System.Drawing.Point(33, 38);
-            this.monthCalendarSupervisor.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.monthCalendarSupervisor.Name = "monthCalendarSupervisor";
-            this.monthCalendarSupervisor.TabIndex = 0;
-            // 
             // lblStudentHouseBV
             // 
             this.lblStudentHouseBV.BackColor = System.Drawing.Color.MediumTurquoise;
@@ -1047,7 +1047,6 @@
         private Label lblSelectTenant;
         private Label lblPersonAdressedTo;
         private TabPage tabAssignTasks;
-        private MonthCalendar monthCalendarSupervisor;
         private GroupBox gbAssignTask;
         private CheckBox cbTakeOutTheTrash;
         private CheckBox cbCleanTheLivingRoom;
@@ -1084,5 +1083,6 @@
         private TextBox roomNr;
         private Label label3;
         private PictureBox logoutpicturebox;
+        private DateTimePicker dateTimePicker1;
     }
 }

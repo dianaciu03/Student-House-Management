@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Mime;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace Housing_Project.Classes
 {
+    [Serializable]
     public class Tenant
     {
+   
         private string _name;
         private string _email;
         private string _password;
@@ -77,10 +84,15 @@ namespace Housing_Project.Classes
         static public void AddTenant(TextBox nameBox, TextBox emailBox, TextBox phoneNumberBox,TextBox roomNumberBox)
         {
             if (nameBox.Text != "" && emailBox.Text != "" && phoneNumberBox.Text != "" && roomNumberBox.Text != "")
-            {
+            {IFormatter formatter = new BinaryFormatter();
+             Stream stream = new FileStream("tenant_info.txt", FileMode.Create, FileAccess.Write);
+
                 try
                 {
+                   
                     Tenant newtenant = new Tenant(nameBox.Text, emailBox.Text, phoneNumberBox.Text, int.Parse(roomNumberBox.Text));
+                    formatter.Serialize(stream, newtenant);
+                    stream.Close();
                     Manager.GetTenants().Add(newtenant);
                     nameBox.Text = "";
                     emailBox.Text = "";

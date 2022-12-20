@@ -48,6 +48,7 @@
             this.lbTasks = new System.Windows.Forms.ListBox();
             this.lblTasksFor = new System.Windows.Forms.Label();
             this.tabSupplies = new System.Windows.Forms.TabPage();
+            this.load_data = new System.Windows.Forms.Button();
             this.lblPayments = new System.Windows.Forms.Label();
             this.lbPaymentsInfo = new System.Windows.Forms.ListBox();
             this.gbSupplies = new System.Windows.Forms.GroupBox();
@@ -321,6 +322,7 @@
             // 
             // tabSupplies
             // 
+            this.tabSupplies.Controls.Add(this.load_data);
             this.tabSupplies.Controls.Add(this.lblPayments);
             this.tabSupplies.Controls.Add(this.lbPaymentsInfo);
             this.tabSupplies.Controls.Add(this.gbSupplies);
@@ -333,6 +335,16 @@
             this.tabSupplies.TabIndex = 3;
             this.tabSupplies.Text = "Supplies";
             this.tabSupplies.UseVisualStyleBackColor = true;
+            // 
+            // load_data
+            // 
+            this.load_data.Location = new System.Drawing.Point(491, 452);
+            this.load_data.Name = "load_data";
+            this.load_data.Size = new System.Drawing.Size(114, 40);
+            this.load_data.TabIndex = 3;
+            this.load_data.Text = "Load data";
+            this.load_data.UseVisualStyleBackColor = true;
+            this.load_data.Click += new System.EventHandler(this.load_data_Click);
             // 
             // lblPayments
             // 
@@ -353,6 +365,7 @@
             this.lbPaymentsInfo.Name = "lbPaymentsInfo";
             this.lbPaymentsInfo.Size = new System.Drawing.Size(459, 340);
             this.lbPaymentsInfo.TabIndex = 1;
+            this.lbPaymentsInfo.SelectedIndexChanged += new System.EventHandler(this.lbPaymentsInfo_SelectedIndexChanged);
             this.lbPaymentsInfo.DoubleClick += new System.EventHandler(this.btnSubmitProposal_Click);
             this.lbPaymentsInfo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbPaymentsInfo_MouseDoubleClick);
             // 
@@ -1045,5 +1058,6 @@
         private DateTimePicker dateTimePickerAgreements;
         private Button button1;
         private PictureBox logoutpicturebox;
+        private Button load_data;
     }
 }

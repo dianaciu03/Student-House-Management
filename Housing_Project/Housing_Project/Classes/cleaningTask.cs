@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
+    [Serializable]
     public  class cleaningTask
     {
         private string _room;
         private string _assignedPerson;
-        private DateTime SelectedDate;
-        public cleaningTask(string _room, string _assignedPerson, DateTime selectedDate)
+        private string SelectedDate;
+        public cleaningTask(string _room, string _assignedPerson, string selectedDate)
         {
             this._room = _room;
             this._assignedPerson = _assignedPerson;
            this.SelectedDate = selectedDate;
         } 
-        public void SetDate(DateTime selectedDate)
+        public void SetDate(string selectedDate)
         {
             this.SelectedDate = selectedDate;
         }
-        public DateTime GetDate()
+        public string GetDate()
         {
             return this.SelectedDate;
         }

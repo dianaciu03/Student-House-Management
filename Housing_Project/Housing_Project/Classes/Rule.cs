@@ -4,9 +4,12 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 namespace Housing_Project.Classes
 {
+    [Serializable]
     public class Rule
     {
         private string subject;
@@ -71,13 +74,17 @@ namespace Housing_Project.Classes
         //}
 
         static public void AddRule(RichTextBox subjextBox, RichTextBox messageBox, string currentUser)
-        {
+        {//denitsa
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("agreement_info.txt", FileMode.Create, FileAccess.Write);
             if (messageBox.Text != "")
             {
                 string subject = subjextBox.Text;
                 string rule_to_be_added = messageBox.Text;
                 
                 Rule newRule = new Rule(subject, rule_to_be_added, currentUser);
+                formatter.Serialize(stream, newRule);
+                stream.Close();
 
                 rules.Add(newRule);
                 subjextBox.Text = "";

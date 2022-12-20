@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
+    [Serializable]
     public class Payment
     {
         private int _paymentID = 0;
@@ -17,6 +18,12 @@ namespace Housing_Project.Classes
         public Payment(int id, List<string> list, string buyer, double totalPrice)
         {
             _paymentID = id;
+            _items = list;
+            _buyer = buyer;
+            _totalPrice = totalPrice;
+        }
+        public Payment(List<string>list, string buyer, double totalPrice)
+        {
             _items = list;
             _buyer = buyer;
             _totalPrice = totalPrice;

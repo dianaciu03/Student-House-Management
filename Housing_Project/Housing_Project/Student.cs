@@ -8,15 +8,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Housing_Project
 {
     public partial class FormStudent : Form
     {
+        IFormatter formatter = new BinaryFormatter();
         CheckBox[] checkBoxes;
         private string currentUserField;
+        
         public FormStudent(string currentUser)
         {
+            
             currentUserField = currentUser;
             InitializeComponent();
             //we need to add info to list boxes in contact info tab when we initialize the FormStudent
@@ -65,9 +71,12 @@ namespace Housing_Project
 
         private void btnSubmitPayment_Click(object sender, EventArgs e)
         {
+            
+
             lbPaymentsInfo.Items.Clear();
             
             List<string> items = new List<string>();
+
             string buyer = currentUserField;
             double totalPrice = 0;
  
@@ -100,12 +109,14 @@ namespace Housing_Project
             }
 
             if (items.Count > 0 && totalPrice > 0)
-            {
+            {//denitsa serialization
+
                 PaymentManager.AddPaymentToList(items, buyer, totalPrice);
+ 
             }
 
             foreach (Payment p in PaymentManager.GetPayments())
-                lbPaymentsInfo.Items.Add(p);
+            //lbPaymentsInfo.Items.Add(p);
 
             foreach (CheckBox checkBox in checkBoxes)
             {
@@ -116,6 +127,8 @@ namespace Housing_Project
             }
             tbTotalPrice.Clear();
             tbOtherProducts.Clear();
+            
+           
         }
 
         private void lbPaymentsInfo_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -177,8 +190,8 @@ namespace Housing_Project
                     
                 }
 
-                //foreach (Agreement a in AgreementManager.GetAgreements())
-                    //lbAgreementsDisplay.Items.Add(a);
+                foreach (Agreement a in AgreementManager.GetAgreements())
+                    lbAgreementsDisplay.Items.Add(a);
             }
             catch(Exception)
             {
@@ -199,5 +212,20 @@ namespace Housing_Project
             loginpage.ShowDialog();
             
         }
+
+        private void load_data_Click(object sender, EventArgs e)
+        {   //denitsa serialization
+            //opens and reads the file adds the object to the list box
+            Stream stream = new FileStream("payments_info.txt", FileMode.Open, FileAccess.Read);
+         lbPaymentsInfo.Items.Add(formatter.Deserialize(stream).ToString());
+            stream.Close();
+        }
+
+        private void lbPaymentsInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+  
     }
 }

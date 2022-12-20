@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 namespace Housing_Project.Classes
 {
+    [Serializable]
     public static class AgreementManager
     {
         private static int _agreementIdSeeder = 1;
@@ -15,8 +18,15 @@ namespace Housing_Project.Classes
         //private static List<Tenant> _tenantsDisagreed = new List<Tenant>();
 
         public static void AddAgreementToList(string title, string description, DateTime date)
-        {
+        {//denitsa
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("agreement_info.txt", FileMode.Create, FileAccess.Write);
+
             _agreements.Add(new Agreement(_agreementIdSeeder, title, description, date));
+
+            formatter.Serialize(stream, _agreements);
+            stream.Close();
+
             _agreementIdSeeder++;
         }
 

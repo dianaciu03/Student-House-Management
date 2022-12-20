@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
+    [Serializable]
     public class Manager
     {
         private static List<Tenant> tenants = new List<Tenant>();

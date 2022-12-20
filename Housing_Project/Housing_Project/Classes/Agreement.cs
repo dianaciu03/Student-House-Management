@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
+    [Serializable]
     public class Agreement
     {
         private string _title;

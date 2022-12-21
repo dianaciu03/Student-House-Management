@@ -30,7 +30,7 @@ namespace Housing_Project.Classes
             this.phoneNumber = phoneNumber;
         }
 
-        public Supervisor(string name, string email, string phoneNumber, string password)
+        public Supervisor(string name, string phoneNumber, string email, string password)
         {
             this.name = name;
             this.email = email;

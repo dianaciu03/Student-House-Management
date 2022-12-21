@@ -47,7 +47,7 @@ namespace Housing_Project
                 this.Close();
             }
 
-            if (t == typeof(Supervisor)) //if the user is a supervisor it will open the SupervisorForm
+            else if (t == typeof(Supervisor)) //if the user is a supervisor it will open the SupervisorForm
             {
                 this.Hide();
                 FormSupervisor supervisor = new FormSupervisor(user, userManager, ruleManager, reportManager);
@@ -70,7 +70,8 @@ namespace Housing_Project
                     if (email.Contains("student.com"))
                     {
                         if (userManager.GetTenants().Length > 0)
-                            foreach(Tenant t in userManager.GetTenants())
+                        {
+                            foreach (Tenant t in userManager.GetTenants())
                             {
                                 if (t.Email == email)
                                 {
@@ -86,6 +87,8 @@ namespace Housing_Project
                                     ClearFields();
                                 }
                             }
+                        }
+                            
                         else
                         {
                             Tenant tenant = new Tenant(name, phone, email, password);
@@ -97,19 +100,34 @@ namespace Housing_Project
 
                     else if (email.Contains("supervisor.com"))
                     {
-                        foreach (Supervisor s in userManager.GetSupervisors())
+                        if (userManager.GetSupervisors().Length > 0)
                         {
-                            if (s.Email == email)
+                            foreach (Supervisor s in userManager.GetSupervisors())
                             {
-                                registerlbl.Visible = true;
-                                registerlbl.Text = "Already registered with this email";
-                                ClearFields();
-                            }  
+                                if (s.Email == email)
+                                {
+                                    registerlbl.Visible = true;
+                                    registerlbl.Text = "Already registered with this email";
+                                    ClearFields();
+                                }
+                                else
+                                {
+                                    Supervisor supervisor = new Supervisor(name, phone, email, password);
+                                    userManager.AddSupervisorToList(supervisor);
+                                    MessageBox.Show("Account created successfully!");
+                                    ClearFields();
+                                }
+                            }
+                            
                         }
-                        Supervisor supervisor = new Supervisor(name, phone, email, password);
-                        userManager.AddSupervisorToList(supervisor);
-                        MessageBox.Show("Account created successfully!");
-                        ClearFields();
+                        else
+                        {
+                            Supervisor supervisor = new Supervisor(name, phone, email, password);
+                            userManager.AddSupervisorToList(supervisor);
+                            MessageBox.Show("Account created successfully!");
+                            ClearFields();
+                        }
+                        
                     }
                 }
                 else

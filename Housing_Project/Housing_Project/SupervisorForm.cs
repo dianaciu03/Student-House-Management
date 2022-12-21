@@ -16,6 +16,8 @@ using Microsoft.VisualBasic;
 using Rule = Housing_Project.Classes.Rule;
 using System.Xml.Linq;
 using System.Linq.Expressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using CheckBox = System.Windows.Forms.CheckBox;
 
 namespace Housing_Project
 {
@@ -23,7 +25,7 @@ namespace Housing_Project
     {
         //denitsa VVV
         cleaningTask cleaning;
-
+        CheckBox [] checkBoxes;
         private Supervisor currentUser;
         private UserManager userManager;
         private RuleManager ruleManager;
@@ -32,6 +34,7 @@ namespace Housing_Project
         public FormSupervisor(Object currentUser, UserManager userManager, RuleManager ruleManager, ReportManager reportManager)
         {
             InitializeComponent();
+       
             this.currentUser = (Supervisor)currentUser;
             this.userManager = userManager;
             this.ruleManager = ruleManager;
@@ -43,6 +46,12 @@ namespace Housing_Project
             this.Text = $"{currentUser}";//upper bar text
             btnSubmitChanges.Visible = false;
             btnSubmitChangesTenant.Visible = false;
+
+            checkBoxes = new CheckBox[]
+           {
+                cbCleanBathroom1,cbCleanBathroom2,cbCleanTheKitchen,cbCleanTheLivingRoom,cbCleanTheStarirs,cbTakeOutTheTrash
+
+           };
         }
 
         //Update tab on click
@@ -285,7 +294,6 @@ namespace Housing_Project
             int index = lbReceivedReports.SelectedIndex;
             MessageBox.Show(reportManager.GetReport(index).GetInfoReport());
         }
-
         private void btnRemoveReport_Click(object sender, EventArgs e)
         {
             try
@@ -326,34 +334,15 @@ namespace Housing_Project
         {
             //DateRangeEventHandler dateSelected = monthCalendarSupervisor.selcte;
             //cleaning.SetDate(monthCalendarSupervisor.ToString())
-            cleaning.GetDate(); 
-            if (cbCleanBathroom1.Checked)
+            cleaning.GetDate();
+            foreach (CheckBox checkBox in checkBoxes)
             {
-                lbEvents.Text = cbCleanBathroom1.Text + cleaning.GetInfo();
-               
+                if (checkBox.Checked)
+                {
+                    checkBox.Checked = false;
+                }
             }
-            else  if (cbCleanBathroom2.Checked)
-            {
-                lbEvents.Text = cbCleanBathroom2.Text + cleaning.GetInfo();
-            }
-            else if (cbCleanTheKitchen.Checked)
-            {
-                lbEvents.Text = cbCleanTheKitchen.Text + cleaning.GetInfo();
-            }
-            else if (cbCleanTheLivingRoom.Checked)
-            {
-                lbEvents.Text = cbCleanTheLivingRoom.Text + cleaning.GetInfo();
-            }
-            else if (cbCleanTheStarirs.Checked)
-            {
-                lbEvents.Text = cbCleanTheStarirs.Text + cleaning.GetInfo();
-            }
-  
-            else if (cbTakeOutTheTrash.Checked)
-            {
-                lbEvents.Text = cbTakeOutTheTrash.Text + cleaning.GetInfo();
-            }
-       
+
         }
 
         private void btnSubmitAnnouncement_Click(object sender, EventArgs e)

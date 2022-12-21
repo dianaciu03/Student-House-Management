@@ -16,7 +16,7 @@ namespace Housing_Project
 {
     public partial class FormStudent : Form
     {
-        IFormatter formatter = new BinaryFormatter();
+        
         CheckBox[] checkBoxes;
         private Tenant currentUser;
         private UserManager userManager;

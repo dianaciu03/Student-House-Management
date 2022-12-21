@@ -3,6 +3,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Housing_Project
@@ -94,17 +95,34 @@ namespace Housing_Project
 
                 if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone) && !String.IsNullOrEmpty(password))
                 {
-                    if (email.Contains("student.com") && email.Contains("student.com"))
+                    if (email.Contains("student.com"))
                     {
-                       tenant.AddEmailToList();
-                       if (tenant.GetEmailList().Contains(email) == true) { MessageBox.Show("Allready registered with this email"); }
-                       tenant = new Tenant(name, phone, email, password);
+                        foreach(Tenant t in userManager.GetTenants())
+                        {
+                            if (t.Email == email)
+                            {
+                                MessageBox.Show("Allready registered with this email");
+                            }
+                            else
+                            {
+                                tenant = new Tenant(name, phone, email, password);
+                            }
+                        } 
                     }
-                    else if (email.Contains("supervisor.com") && email.Contains("supervisor.com"))
+
+                    else if (email.Contains("supervisor.com"))
                     {
-                        supervisor.AddEmailToList();
-                        if (supervisor.GetEmailList().Contains(email) == true) { MessageBox.Show("Allready registered with this email"); }
-                        supervisor = new Supervisor(name, email, phone, password);
+                        foreach (Supervisor s in userManager.GetSupervisors())
+                        {
+                            if (s.Email == email)
+                            {
+                                MessageBox.Show("Allready registered with this email");
+                            }
+                            else
+                            {
+                                supervisor = new Supervisor(name, phone, email, password);
+                            }
+                        }
                     }
                 }
             }
@@ -123,7 +141,38 @@ namespace Housing_Project
 
         private void loginbtn_Click(object sender, EventArgs e)
         {
+            string email = loginemailtxt.Text;
+            string password = loginpasswordtxt.Text;
 
+            if (email.Contains("student.com"))
+            {
+                foreach (Tenant t in userManager.GetTenants())
+                {
+                    if (t.Password == password)
+                    {
+                        OpenUser(t);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Password is incorrect!");
+                    }
+                }
+            }
+
+            else if (email.Contains("supervisor.com"))
+            {
+                foreach (Supervisor s in userManager.GetSupervisors())
+                {
+                    if (s.Password == password)
+                    {
+                        OpenUser(s);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Password is incorrect!");
+                    }
+                }
+            }
         }
 
         //The code of Alex ^^^^

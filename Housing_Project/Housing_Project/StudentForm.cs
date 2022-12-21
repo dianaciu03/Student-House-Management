@@ -23,8 +23,9 @@ namespace Housing_Project
         private PaymentManager paymentManager;
         private AgreementManager agreementManager;
         private RuleManager ruleManager;
+        private ReportManager reportManager;
         
-        public FormStudent(Object currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager)
+        public FormStudent(Object currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager, ReportManager reportManager)
         {
             
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace Housing_Project
             this.paymentManager = paymentManager;
             this.agreementManager = agreementManager;
             this.ruleManager = ruleManager;
+            this.reportManager = reportManager;
 
             //we need to add info to list boxes in contact info tab when we initialize the FormStudent
             this.Text = $"{currentUser}";

@@ -9,11 +9,9 @@ namespace Housing_Project.Classes
     [Serializable]
     public class Supervisor
     {
-        private string firstName;
-        private string lastName;
+        private string name;
         private string email;
         private string password;
         private string phoneNumber;
-        private string currentAdressOfModeration;
     }
 }

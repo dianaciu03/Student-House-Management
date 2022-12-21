@@ -12,10 +12,6 @@ namespace Housing_Project.Classes
     [Serializable]
     public class UserManager
     {
-        private int tenantIdSeeder = 1;
-        private int supervisorIdSeeder = 1;
-
-
         private List<Tenant> tenants = new List<Tenant>();
         private List<Supervisor> supervisors = new List<Supervisor>();
 
@@ -28,12 +24,11 @@ namespace Housing_Project.Classes
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("tenant_info.txt", FileMode.Create, FileAccess.Write);
 
-            tenants.Add(new Tenant(tenantIdSeeder, name, email, phoneNumber));
+            tenants.Add(new Tenant(name, email, phoneNumber));
 
             formatter.Serialize(stream, tenants);
             stream.Close();
 
-            tenantIdSeeder++;
         }
 
         public void AddSupervisorToList(Supervisor supervisor)
@@ -46,7 +41,6 @@ namespace Housing_Project.Classes
             formatter.Serialize(stream, tenants);
             stream.Close();
 
-            supervisorIdSeeder++;
         }
 
         public void AddWarningToTenantList(Tenant tenant, Warning warning)

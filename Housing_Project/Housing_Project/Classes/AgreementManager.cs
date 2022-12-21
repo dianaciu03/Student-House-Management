@@ -10,56 +10,57 @@ using System.Runtime.Serialization;
 namespace Housing_Project.Classes
 {
     [Serializable]
-    public static class AgreementManager
+    public class AgreementManager
     {
-        private static int _agreementIdSeeder = 1;
-        private static List<Agreement> _agreements = new List<Agreement>();
-        //private static List<Tenant> _tenantsAgreed = new List<Tenant>();
-        //private static List<Tenant> _tenantsDisagreed = new List<Tenant>();
+        private int agreementIdSeeder = 1;
+        private List<Agreement> agreements = new List<Agreement>();
 
-        public static void AddAgreementToList(string title, string description, DateTime date)
+        public void AddAgreementToList(string title, string description, DateTime date)
         {//denitsa
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("agreement_info.txt", FileMode.Create, FileAccess.Write);
 
-            _agreements.Add(new Agreement(_agreementIdSeeder, title, description, date));
+            agreements.Add(new Agreement(agreementIdSeeder, title, description, date));
 
-            formatter.Serialize(stream, _agreements);
+            formatter.Serialize(stream, agreements);
             stream.Close();
 
-            _agreementIdSeeder++;
+            agreementIdSeeder++;
         }
 
-        public static Agreement[] GetAgreements()
+        public bool IsAgreementComplete(Agreement agreement)
         {
-            return _agreements.ToArray();
+            if (agreement.TenantsNotAnsweredCount() == 0)
+            {
+                agreements.Remove(agreement);
+                return true;
+            }
+            else
+                return false;
         }
 
-        public static Agreement GetAgreement(int index)
+        public Agreement[] GetAgreements()
         {
-            return _agreements[index];
+            return agreements.ToArray();
         }
 
-        public static List<Agreement> GetAgreementsOnDate(DateTime date)
+        public Agreement GetAgreement(int index)
         {
-            List<Agreement> _agreementsOnDate = new List<Agreement>();
-            List<string> _agreementsOnDateString = new List<string>();
+            return agreements[index];
+        }
 
-            foreach (Agreement agreement in _agreements)
+        public List<Agreement> GetAgreementsOnDate(DateTime date)
+        {
+            List<Agreement> agreementsOnDate = new List<Agreement>();
+
+            foreach (Agreement agreement in agreements)
             {
                 if (agreement.Date.Day == date.Day && agreement.Date.Month == date.Month && agreement.Date.Year == date.Year)
                 {
-
-                    _agreementsOnDate.Add(agreement);
+                    agreementsOnDate.Add(agreement);
                 }
             }
-
-            foreach (Agreement agreement in _agreementsOnDate)
-            {
-                _agreementsOnDateString.Add(agreement.GetInfoAgreement());
-            }
-
-            return _agreementsOnDate;
+            return agreementsOnDate;
         }
     }
 }

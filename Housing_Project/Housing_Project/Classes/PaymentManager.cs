@@ -9,40 +9,41 @@ using System.Runtime.Serialization;
 namespace Housing_Project.Classes
 {
     [Serializable]
-    public  class PaymentManager
+    public class PaymentManager
     {
-        private static int _paymentIdSeeder = 1;
-        private static double _pricePerPerson;
-        private static List<Payment> _payments = new List<Payment>();
+        private int paymentIdSeeder = 1;
+        private List<Payment> payments = new List<Payment>();
 
-        //private static List<Tenant> _tenantsPaid = new List<Tenant>();
-        //private static List<Tenant> _tenantsNotPaid = new List<Tenant>();
-        private static List<Payment> _payments = new List<Payment>();
-
-
-        public static void CalculatePricePerPerson(Payment payment)
+        public bool IsPaymentComplete(Payment payment)
         {
-            _pricePerPerson = (double)payment.TotalPrice / 7; //dummy data
-            //Manager.GetTenants().Count()
+            if (payment.TenantsNotPaidCount() == 0)
+            {
+                payments.Remove(payment);
+                return true;
+            }
+            else
+                return false;
         }
 
-        public static double PricePerPerson { get { return _pricePerPerson; } }
-
-        public static void AddPaymentToList(List<string> list, Tenant Tenant, double totalPrice)
+        public double CalculatePricePerPerson(Payment payment, int numberTenants)
         {
-            _payments.Add(new Payment(_paymentIdSeeder, list, buyer, totalPrice));
-            _paymentIdSeeder++;
+             return (double)payment.TotalPrice / numberTenants;
         }
 
-
-        public static Payment[] GetPayments()
+        public void AddPaymentToList(List<string> list, Tenant buyer, double totalPrice)
         {
-            return _payments.ToArray();
+            payments.Add(new Payment(paymentIdSeeder, list, buyer, totalPrice));
+            paymentIdSeeder++;
         }
 
-        public static Payment GetPayment(int index)
+        public Payment[] GetPayments()
         {
-            return _payments[index];
+            return payments.ToArray();
+        }
+
+        public Payment GetPayment(int index)
+        {
+            return payments[index];
         }
     }
 }

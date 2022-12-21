@@ -9,51 +9,61 @@ namespace Housing_Project.Classes
     [Serializable]
     public class Payment
     {
-        private int _paymentID = 0;
+        private int paymentID = 0;
+        private List<string> items = new List<string>();
+        private Tenant buyer;
+        private double totalPrice;
+        private List<Tenant> tenantsPaid = new List<Tenant>();
+        private List<Tenant> tenantsNotPaid = new List<Tenant>();
 
-        private List<string> _items = new List<string>();
-        private Tenant tenant;
-        private double _totalPrice;
-
-        public Payment(int id, List<string> list, Tenant Tenant, double totalPrice)
+        public Payment(int id, List<string> list, Tenant buyer, double totalPrice)
         {
-            _paymentID = id;
-            _items = list;
-            tenant = Tenant;
-            _totalPrice = totalPrice;
+            this.paymentID = id;
+            this.items = list;
+            this.buyer = buyer;
+            this.totalPrice = totalPrice;
         }
-        public Payment(List<string>list, string buyer, double totalPrice)
+        public int PaymentID { get { return paymentID; } }
+
+        public List<string> Items { get { return items; } }
+
+        public Tenant Tenant { get { return buyer; } }
+
+        public double TotalPrice { get { return totalPrice; } }
+
+        public void InitializeTenantsNotPaid(List<Tenant> tenants)
         {
-            _items = list;
-            _buyer = buyer;
-            _totalPrice = totalPrice;
+            this.tenantsNotPaid = tenants;
         }
 
-        public int PaymentID { get { return _paymentID; } }
-
-        public List<string> Items { get { return _items; } }
-
-        public Tenant Tenant { get { return tenant; } }
-
-        public double TotalPrice { get { return _totalPrice; } }
+        public void AddTenantsPaid(Tenant tenant)
+        {
+            tenantsNotPaid.Remove(tenant);
+            tenantsPaid.Add(tenant);
+        }
 
         public void AddItem(string item)
         {
-            _items.Add(item);
+            items.Add(item);
         }
 
-        public string GetInfoPayment()
+        public int TenantsNotPaidCount()
         {
-            string info = $"{_paymentID}. {tenant} bought: ";
-            foreach (string item in _items)
+            return tenantsNotPaid.Count;
+        }
+
+        public string GetInfoPayment(double pricePerPerson)
+        {
+            string info = $"{paymentID}. {buyer} bought: ";
+            foreach (string item in items)
                 info += item + ", ";
-            info += $"\nTotal price: {_totalPrice}, Price per person: {PaymentManager.PricePerPerson:f2}";
+            info += $"\nTotal price: {totalPrice}, Price per person: {pricePerPerson:f2}";
             return info;
         }
 
         public string GetInfoPaymentDisplay()
         {
-            return $"{PaymentID}. {tenant} bought supplies worth {_totalPrice} euros.";
+            return $"{PaymentID}. {buyer} bought supplies worth {totalPrice} euros.";
         }
 
         public override string ToString()

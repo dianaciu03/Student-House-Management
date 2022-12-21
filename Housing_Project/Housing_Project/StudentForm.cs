@@ -18,13 +18,22 @@ namespace Housing_Project
     {
         IFormatter formatter = new BinaryFormatter();
         CheckBox[] checkBoxes;
-        private string currentUserField;
+        private Tenant currentUser;
+        private UserManager userManager;
+        private PaymentManager paymentManager;
+        private AgreementManager agreementManager;
+        private RuleManager ruleManager;
         
-        public FormStudent(string currentUser)
+        public FormStudent(Object currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager)
         {
             
-            currentUserField = currentUser;
             InitializeComponent();
+            this.currentUser = (Tenant) currentUser;
+            this.userManager = userManager;
+            this.paymentManager = paymentManager;
+            this.agreementManager = agreementManager;
+            this.ruleManager = ruleManager;
+
             //we need to add info to list boxes in contact info tab when we initialize the FormStudent
             this.Text = $"{currentUser}";
 
@@ -43,7 +52,6 @@ namespace Housing_Project
         private void btnSendReportTask_Click(object sender, EventArgs e)
         {
             //nothing yet
-           // DateTime date = MonthCalendar.ModifierKeys
         }
         
         private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
@@ -51,7 +59,7 @@ namespace Housing_Project
             lbTasks.Items.Clear();
             DateTime selectedDate = eventCalendar.SelectionRange.Start;
             List<Agreement> selectedAgreements = new List<Agreement>();
-            selectedAgreements = AgreementManager.GetAgreementsOnDate(selectedDate);
+            selectedAgreements = agreementManager.GetAgreementsOnDate(selectedDate);
             
             foreach (Agreement agreementInfo in selectedAgreements)
             {
@@ -62,7 +70,7 @@ namespace Housing_Project
         private void lbTasks_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int index = lbTasks.SelectedIndex;
-            MessageBox.Show(AgreementManager.GetAgreement(index).GetInfoAgreement());
+            MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
         }
 
         //
@@ -77,7 +85,7 @@ namespace Housing_Project
             
             List<string> items = new List<string>();
 
-            string buyer = currentUserField;
+            Tenant buyer = currentUser;
             double totalPrice = 0;
  
             try
@@ -111,11 +119,11 @@ namespace Housing_Project
             if (items.Count > 0 && totalPrice > 0)
             {//denitsa serialization
 
-                PaymentManager.AddPaymentToList(items, buyer, totalPrice);
+                paymentManager.AddPaymentToList(items, buyer, totalPrice);
  
             }
 
-            foreach (Payment p in PaymentManager.GetPayments())
+            foreach (Payment p in paymentManager.GetPayments())
             //lbPaymentsInfo.Items.Add(p);
 
             foreach (CheckBox checkBox in checkBoxes)
@@ -127,15 +135,13 @@ namespace Housing_Project
             }
             tbTotalPrice.Clear();
             tbOtherProducts.Clear();
-            
-           
         }
 
         private void lbPaymentsInfo_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int index = lbPaymentsInfo.SelectedIndex;
-            PaymentManager.CalculatePricePerPerson(PaymentManager.GetPayment(index));
-            MessageBox.Show(PaymentManager.GetPayment(index).GetInfoPayment());
+            double pricePerPerson = paymentManager.CalculatePricePerPerson(paymentManager.GetPayment(index), userManager.NumberOfTenants());
+            MessageBox.Show(paymentManager.GetPayment(index).GetInfoPayment(pricePerPerson));
         }
 
         //
@@ -154,10 +160,10 @@ namespace Housing_Project
 
                 if(!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
                 {
-                    AgreementManager.AddAgreementToList(title, description, date);
+                    agreementManager.AddAgreementToList(title, description, date);
                 }
 
-                foreach (Agreement a in AgreementManager.GetAgreements()) 
+                foreach (Agreement a in agreementManager.GetAgreements()) 
                     lbAgreementsDisplay.Items.Add(a);
             }
             catch(Exception)
@@ -169,7 +175,7 @@ namespace Housing_Project
         private void lbAgreementsDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int index = lbAgreementsDisplay.SelectedIndex;
-            MessageBox.Show(AgreementManager.GetAgreement(index).GetInfoAgreement());
+            MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
         }
 
 
@@ -190,7 +196,7 @@ namespace Housing_Project
                     
                 }
 
-                foreach (Agreement a in AgreementManager.GetAgreements())
+                foreach (Agreement a in agreementManager.GetAgreements())
                     lbAgreementsDisplay.Items.Add(a);
             }
             catch(Exception)
@@ -217,7 +223,7 @@ namespace Housing_Project
         {   //denitsa serialization
             //opens and reads the file adds the object to the list box
             Stream stream = new FileStream("payments_info.txt", FileMode.Open, FileAccess.Read);
-         lbPaymentsInfo.Items.Add(formatter.Deserialize(stream).ToString());
+            lbPaymentsInfo.Items.Add(formatter.Deserialize(stream).ToString());
             stream.Close();
         }
 

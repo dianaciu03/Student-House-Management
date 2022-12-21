@@ -79,8 +79,6 @@ namespace Housing_Project
 
         private void btnSubmitPayment_Click(object sender, EventArgs e)
         {
-            
-
             lbPaymentsInfo.Items.Clear();
             
             List<string> items = new List<string>();

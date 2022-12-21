@@ -32,13 +32,13 @@ namespace Housing_Project.Classes
             this.phoneNumber = phoneNumber;
         }
        public Tenant(string name, string phoneNumber ,string email, string password)
-        {
+       {
             this.name = name;
             this.phoneNumber = phoneNumber;
             this.email = email;
             this.password = password;
     
-        }   
+       }   
 
         public string Name 
         { 

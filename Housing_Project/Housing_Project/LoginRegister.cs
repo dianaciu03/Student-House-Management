@@ -15,14 +15,14 @@ namespace Housing_Project
         PaymentManager paymentManager = new PaymentManager();
         RuleManager ruleManager = new RuleManager();
         ReportManager reportManager = new ReportManager();
-        Tenant tenant;
-        Supervisor supervisor;
 
         //The code of Alex vvvv
         public LoginRegister()
         {
             InitializeComponent();
             tabControlLoginRegister.SelectTab("tabPageLogin");
+            loginwrongcredentialslbl.Visible = false;
+            registerlbl.Visible = false;
         }
 
         private void ClearFields()
@@ -54,36 +54,8 @@ namespace Housing_Project
                 supervisor.ShowDialog();
                 this.Close();
             }
-
         }
 
-
-        //update this when tenant or supervisor objects are created from the register button
-        private void loginbtn_Click(object sender, EventArgs e,object user) // actual log in button
-        {
-            string userName = loginemailtxt.Text;
-            if (userName.Contains("student.com")  && userName.Contains("student.com") )
-            {
-               OpenUser(user);
-               
-
-            }
-            else if (userName.Contains("supervisor.com") && userName.Contains("supervisor.com") )
-            {
-                OpenUser(user);
-            }
-            else 
-            {
-                if (loginemailtxt.Text!="" || loginpasswordtxt.Text != "")
-                {
-                    ClearFields();
-                }
-                else
-                {
-                    ClearFields();
-                }
-            }
-        }
         private void registerbtn_Click_1(object sender, EventArgs e)// actial register
         {
             try 
@@ -97,17 +69,30 @@ namespace Housing_Project
                 {
                     if (email.Contains("student.com"))
                     {
-                        foreach(Tenant t in userManager.GetTenants())
+                        if (userManager.GetTenants().Length > 0)
+                            foreach(Tenant t in userManager.GetTenants())
+                            {
+                                if (t.Email == email)
+                                {
+                                    registerlbl.Visible = true;
+                                    registerlbl.Text = "Already registered with this email";
+                                    ClearFields();
+                                }
+                                else
+                                {
+                                    Tenant tenant = new Tenant(name, phone, email, password);
+                                    userManager.AddTenantToList(tenant);
+                                    MessageBox.Show("Account created successfully!");
+                                    ClearFields();
+                                }
+                            }
+                        else
                         {
-                            if (t.Email == email)
-                            {
-                                MessageBox.Show("Allready registered with this email");
-                            }
-                            else
-                            {
-                                tenant = new Tenant(name, phone, email, password);
-                            }
-                        } 
+                            Tenant tenant = new Tenant(name, phone, email, password);
+                            userManager.AddTenantToList(tenant);
+                            MessageBox.Show("Account created successfully!");
+                            ClearFields();
+                        }
                     }
 
                     else if (email.Contains("supervisor.com"))
@@ -116,27 +101,35 @@ namespace Housing_Project
                         {
                             if (s.Email == email)
                             {
-                                MessageBox.Show("Allready registered with this email");
-                            }
-                            else
-                            {
-                                supervisor = new Supervisor(name, phone, email, password);
-                            }
+                                registerlbl.Visible = true;
+                                registerlbl.Text = "Already registered with this email";
+                                ClearFields();
+                            }  
                         }
+                        Supervisor supervisor = new Supervisor(name, phone, email, password);
+                        userManager.AddSupervisorToList(supervisor);
+                        MessageBox.Show("Account created successfully!");
+                        ClearFields();
                     }
                 }
+                else
+                {
+                    registerlbl.Visible = true;
+                    registerlbl.Text = "You need to complete all fields!";
+                }
             }
-            catch(Exception)
+            catch(Exception ex)
             {
-                MessageBox.Show("You need to complete all fields!");
+                MessageBox.Show(ex.ToString());
                 return;
             }
         }
 
         private void tabControlLoginRegister_Click(object sender, EventArgs e) //CreateAccountTAB
         {
-            registerwrongcredentialslbl.Visible = false;
-            loginwrongcredentialslbl.Visible=false;
+            registerlbl.Visible = false;
+            registerlbl.Visible = false;
+            ClearFields();
         }
 
         private void loginbtn_Click(object sender, EventArgs e)
@@ -148,14 +141,13 @@ namespace Housing_Project
             {
                 foreach (Tenant t in userManager.GetTenants())
                 {
-                    if (t.Password == password)
+                    if (t.Email == email && t.Password == password)
                     {
                         OpenUser(t);
+                        break;
                     }
                     else
-                    {
-                        MessageBox.Show("Password is incorrect!");
-                    }
+                        loginwrongcredentialslbl.Visible = true;
                 }
             }
 
@@ -163,18 +155,15 @@ namespace Housing_Project
             {
                 foreach (Supervisor s in userManager.GetSupervisors())
                 {
-                    if (s.Password == password)
+                    if (s.Email == email && s.Password == password)
                     {
                         OpenUser(s);
+                        break;
                     }
                     else
-                    {
-                        MessageBox.Show("Password is incorrect!");
-                    }
+                        loginwrongcredentialslbl.Visible = true;
                 }
             }
         }
-
-        //The code of Alex ^^^^
     }
 }

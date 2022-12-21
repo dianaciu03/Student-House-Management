@@ -82,7 +82,6 @@ namespace Housing_Project
         private void btnSubmitPayment_Click(object sender, EventArgs e)
         {
             lbPaymentsInfo.Items.Clear();
-            
             List<string> items = new List<string>();
 
             Tenant buyer = currentUser;
@@ -91,50 +90,40 @@ namespace Housing_Project
             try
             {
                 totalPrice = Convert.ToDouble(tbTotalPrice.Text);
+
+                // Loop through the array of checkboxes
+                foreach (CheckBox checkBox in checkBoxes)
+                {
+                    if (checkBox.Checked)
+                    {
+                        items.Add(checkBox.Text);
+                    }
+                }
+
+                if (!String.IsNullOrEmpty(tbOtherProducts.Text))
+                    items.Add(tbOtherProducts.Text);
+
+                if (items.Count > 0 && totalPrice > 0)
+                    paymentManager.AddPaymentToList(items, buyer, totalPrice);
+                
+                //make method to update listboxes like in supervisor page
+                foreach (Payment p in paymentManager.GetPayments())
+                    lbPaymentsInfo.Items.Add(p);
+
+                foreach (CheckBox checkBox in checkBoxes)
+                {
+                    if (checkBox.Checked)
+                    {
+                        checkBox.Checked = false;
+                    }
+                }
+                tbTotalPrice.Clear();
+                tbOtherProducts.Clear();
             }
             catch (Exception)
             {
                 MessageBox.Show("Invalid input!");
             }
-
-            // Loop through the array of checkboxes
-            foreach (CheckBox checkBox in checkBoxes)
-            {
-                if (checkBox.Checked)
-                {
-                    items.Add(checkBox.Text);
-                }
-            }
-
-            try
-            {
-                if (!String.IsNullOrEmpty(tbOtherProducts.Text))
-                    items.Add(tbOtherProducts.Text);
-            }
-            catch(Exception)
-            {
-                return;
-            }
-
-            if (items.Count > 0 && totalPrice > 0)
-            {//denitsa serialization
-
-                paymentManager.AddPaymentToList(items, buyer, totalPrice);
- 
-            }
-
-            foreach (Payment p in paymentManager.GetPayments())
-            //lbPaymentsInfo.Items.Add(p);
-
-            foreach (CheckBox checkBox in checkBoxes)
-            {
-                if (checkBox.Checked)
-                {
-                    checkBox.Checked = false;
-                }
-            }
-            tbTotalPrice.Clear();
-            tbOtherProducts.Clear();
         }
 
         private void lbPaymentsInfo_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -147,7 +136,6 @@ namespace Housing_Project
         //
         //AGREEMENTS TAB
         //
-
         private void btnSubmitProposal_Click(object sender, EventArgs e)
         {
             lbAgreementsDisplay.Items.Clear();
@@ -182,7 +170,6 @@ namespace Housing_Project
         //
         //REPORT TAB
         //
-
         private void btnSubmitReport_Click(object sender, EventArgs e)
         {
             try
@@ -207,7 +194,7 @@ namespace Housing_Project
 
         private void tabControlStudent_Click(object sender, EventArgs e)
         {
-
+            //update tabs like in supervisor form
         }
 
         private void logoutpicturebox_Click(object sender, EventArgs e)
@@ -217,11 +204,6 @@ namespace Housing_Project
             this.Close();
             loginpage.ShowDialog();
             
-        }
-
-        private void load_data_Click(object sender, EventArgs e)
-        {   //denitsa serialization
-
         }
 
         private void lbPaymentsInfo_SelectedIndexChanged(object sender, EventArgs e)

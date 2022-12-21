@@ -218,7 +218,8 @@ namespace Housing_Project
 
                 if(!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone) && !String.IsNullOrEmpty(roomNumber.ToString())) 
                 {
-                    userManager.AddTenantToList(name, email, phone);
+                    Tenant tenant = new Tenant(name, email, phone);
+                    userManager.AddTenantToList(tenant);
                 }
 
                 UpdateListBox("tabContactInfo");

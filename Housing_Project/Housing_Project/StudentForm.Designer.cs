@@ -47,7 +47,6 @@
             this.lbTasks = new System.Windows.Forms.ListBox();
             this.lblTasksFor = new System.Windows.Forms.Label();
             this.tabSupplies = new System.Windows.Forms.TabPage();
-            this.load_data = new System.Windows.Forms.Button();
             this.lblPayments = new System.Windows.Forms.Label();
             this.lbPaymentsInfo = new System.Windows.Forms.ListBox();
             this.gbSupplies = new System.Windows.Forms.GroupBox();
@@ -302,7 +301,6 @@
             // 
             // tabSupplies
             // 
-            this.tabSupplies.Controls.Add(this.load_data);
             this.tabSupplies.Controls.Add(this.lblPayments);
             this.tabSupplies.Controls.Add(this.lbPaymentsInfo);
             this.tabSupplies.Controls.Add(this.gbSupplies);
@@ -314,17 +312,6 @@
             this.tabSupplies.TabIndex = 3;
             this.tabSupplies.Text = "Supplies";
             this.tabSupplies.UseVisualStyleBackColor = true;
-            // 
-            // load_data
-            // 
-            this.load_data.Location = new System.Drawing.Point(561, 603);
-            this.load_data.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.load_data.Name = "load_data";
-            this.load_data.Size = new System.Drawing.Size(130, 53);
-            this.load_data.TabIndex = 3;
-            this.load_data.Text = "Load data";
-            this.load_data.UseVisualStyleBackColor = true;
-            this.load_data.Click += new System.EventHandler(this.load_data_Click);
             // 
             // lblPayments
             // 
@@ -998,6 +985,5 @@
         private Label lblDate;
         private DateTimePicker dateTimePickerAgreements;
         private PictureBox logoutpicturebox;
-        private Button load_data;
     }
 }

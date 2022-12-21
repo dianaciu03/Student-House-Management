@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
-    [Serializable]
     public class UserManager
     {
         private List<Tenant> tenants = new List<Tenant>();
@@ -19,14 +18,14 @@ namespace Housing_Project.Classes
 
         public List<Supervisor> Supervisors { get { return supervisors; } }
 
-        public void AddTenantToList (string name, string email, string phoneNumber)
+        public void AddTenantToList (Tenant tenant)
         {
-            tenants.Add(new Tenant(name, email, phoneNumber));
+            tenants.Add(tenant);
         }
 
-        public void AddSupervisorToList(string name, string email, string phoneNumber)
+        public void AddSupervisorToList(Supervisor supervisor)
         {
-            supervisors.Add(new Supervisor(name, email, phoneNumber));
+            supervisors.Add(supervisor);
         }
 
         public void AddWarningToTenantList(Tenant tenant, Warning warning)

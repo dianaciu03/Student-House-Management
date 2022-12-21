@@ -16,23 +16,20 @@ namespace Housing_Project.Classes
     [Serializable]
     public class Tenant
     {
-        private int tenantID;
         private string name;
         private string email;
         private string password;
         private string phoneNumber;
         private int roomNumber;
         private List<Warning> warnings = new List<Warning>();
+        private List<cleaningTask> tasks = new List<cleaningTask>();
 
-        public Tenant(int tenantID, string name, string email, string phoneNumber)
+        public Tenant(string name, string email, string phoneNumber)
         {
-            this.tenantID = tenantID;
             this.name = name;
             this.email = email;
             this.phoneNumber = phoneNumber;
         }
-
-        public int TenantID { get { return tenantID; } }
 
         public string Name 
         { 

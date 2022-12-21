@@ -9,10 +9,12 @@ namespace Housing_Project.Classes
     [Serializable]
     public  class cleaningTask
     {
+        //remove underscores from variables
+        //use properties
         private string _room;
-        private string _assignedPerson;
+        private Tenant _assignedPerson;
         private string SelectedDate;
-        public cleaningTask(string _room, string _assignedPerson, string selectedDate)
+        public cleaningTask(string _room, Tenant _assignedPerson, string selectedDate)
         {
             this._room = _room;
             this._assignedPerson = _assignedPerson;

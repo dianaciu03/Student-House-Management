@@ -7,12 +7,16 @@ namespace Housing_Project
 {
     public partial class LoginRegister : Form
     {
+        UserManager userManager = new UserManager();
+        AgreementManager agreementManager = new AgreementManager();
+        PaymentManager paymentManager = new PaymentManager();
+        RuleManager ruleManager = new RuleManager();
+        ReportManager reportManager = new ReportManager();
+
         //The code of Alex vvvv
         public LoginRegister()
         {
             InitializeComponent();
-            ShowMessages(false,"login");
-            ShowMessages(false, "register");
             tabControlLoginRegister.SelectTab("tabPageLogin");
         }
 
@@ -27,55 +31,45 @@ namespace Housing_Project
             passwordtxt.Clear();
             phonenumbertxt.Clear();
         }
-        private void OpenUser(string user, string name)
+        private void OpenUser(Object user)
         {
-            if (user == "student")
+            Type t = user.GetType();
+            if (t == typeof(Tenant)) //if the user is a tenant it will open the TenantForm
             {
                 this.Hide();
-                FormStudent student = new FormStudent(name);
+                FormStudent student = new FormStudent(user, userManager, paymentManager, agreementManager, ruleManager, reportManager);
                 student.ShowDialog();
                 this.Close();
             }
 
-            if (user == "supervisor")
+            if (t == typeof(Supervisor)) //if the user is a supervisor it will open the SupervisorForm
             {
                 this.Hide();
-                FormSupervisor supervisor = new FormSupervisor(name);
+                FormSupervisor supervisor = new FormSupervisor(user, userManager, ruleManager, reportManager);
                 supervisor.ShowDialog();
                 this.Close();
             }
 
         }
-        private void ShowMessages(bool trueorfalse,string RegisterOrLogin) 
-        {
-            
-            if (RegisterOrLogin == "register")
-            {
-                registerwrongcredentialslbl.Visible = trueorfalse;
-            }
-            if (RegisterOrLogin == "login")
-            {
-                loginwrongcredentialslbl.Visible = trueorfalse;
-            }
-        }
 
+
+        //update this when tenant or supervisor objects are created from the register button
         private void loginbtn_Click(object sender, EventArgs e) // actual log in button
         {
             if (loginemailtxt.Text == "1" && loginpasswordtxt.Text == "1" || (loginemailtxt.Text == "0" && loginpasswordtxt.Text == "0"))
             {
-                OpenUser("student", loginemailtxt.Text);
+                OpenUser(user);
                 
 
             }
             else if (loginemailtxt.Text == "2" && loginpasswordtxt.Text == "2" || (loginemailtxt.Text == "3" && loginpasswordtxt.Text == "3"))
             {
-                OpenUser("supervisor",loginemailtxt.Text);
+                OpenUser(user);
             }
             else 
             {
                 if (loginemailtxt.Text!="" || loginpasswordtxt.Text != "")
                 {
-                    ShowMessages(true,"login");
                     ClearFields();
                 }
                 else
@@ -86,17 +80,22 @@ namespace Housing_Project
         }
         private void registerbtn_Click_1(object sender, EventArgs e)// actial register
         {
-            if (fullnametxt.Text == ""
-                || phonenumbertxt.Text == ""
-                || emailadresstxt.Text == ""
-                || passwordtxt.Text == "")
+            try 
             {
-                ShowMessages(true, "register");
+                string name = fullnametxt.Text;
+                string email = emailadresstxt.Text;
+                string phone = phonenumbertxt.Text;
+                string password = passwordtxt.Text;
+
+                if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone) && !String.IsNullOrEmpty(password))
+                {
+                    //check the email to see what type of user you create
+                }
             }
-            else
+            catch(Exception)
             {
-                ClearFields();
-                OpenUser("student", loginemailtxt.Text);
+                MessageBox.Show("You need to complete all fields!");
+                return;
             }
         }
 

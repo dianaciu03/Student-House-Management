@@ -108,6 +108,7 @@
             this.lblSelectTenantAssignTask = new System.Windows.Forms.Label();
             this.lblStudentHouseBV = new System.Windows.Forms.Label();
             this.logoutpicturebox = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.tabControlSupervisor.SuspendLayout();
             this.tabRules.SuspendLayout();
             this.gbEditRules.SuspendLayout();
@@ -692,7 +693,6 @@
             // 
             // tabAssignTasks
             // 
-            this.tabAssignTasks.Controls.Add(this.dateTimePicker1);
             this.tabAssignTasks.Controls.Add(this.lbEvents);
             this.tabAssignTasks.Controls.Add(this.gbMakeAnnouncement);
             this.tabAssignTasks.Controls.Add(this.gbAssignTask);
@@ -706,10 +706,10 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(38, 264);
+            this.dateTimePicker1.Location = new System.Drawing.Point(135, 71);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(228, 34);
+            this.dateTimePicker1.Size = new System.Drawing.Size(338, 34);
             this.dateTimePicker1.TabIndex = 5;
             // 
             // lbEvents
@@ -718,7 +718,7 @@
             this.lbEvents.ItemHeight = 28;
             this.lbEvents.Location = new System.Drawing.Point(38, 19);
             this.lbEvents.Name = "lbEvents";
-            this.lbEvents.Size = new System.Drawing.Size(954, 228);
+            this.lbEvents.Size = new System.Drawing.Size(954, 200);
             this.lbEvents.TabIndex = 4;
             // 
             // gbMakeAnnouncement
@@ -729,9 +729,9 @@
             this.gbMakeAnnouncement.Controls.Add(this.tbAnnouncementTitle);
             this.gbMakeAnnouncement.Controls.Add(this.lblAnnouncementTitle);
             this.gbMakeAnnouncement.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.gbMakeAnnouncement.Location = new System.Drawing.Point(565, 309);
+            this.gbMakeAnnouncement.Location = new System.Drawing.Point(565, 226);
             this.gbMakeAnnouncement.Name = "gbMakeAnnouncement";
-            this.gbMakeAnnouncement.Size = new System.Drawing.Size(437, 309);
+            this.gbMakeAnnouncement.Size = new System.Drawing.Size(437, 392);
             this.gbMakeAnnouncement.TabIndex = 3;
             this.gbMakeAnnouncement.TabStop = false;
             this.gbMakeAnnouncement.Text = "Make announcement";
@@ -739,7 +739,7 @@
             // btnSubmitAnnouncement
             // 
             this.btnSubmitAnnouncement.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSubmitAnnouncement.Location = new System.Drawing.Point(114, 256);
+            this.btnSubmitAnnouncement.Location = new System.Drawing.Point(116, 335);
             this.btnSubmitAnnouncement.Name = "btnSubmitAnnouncement";
             this.btnSubmitAnnouncement.Size = new System.Drawing.Size(203, 37);
             this.btnSubmitAnnouncement.TabIndex = 11;
@@ -752,7 +752,7 @@
             this.tbAnnouncementDescription.Location = new System.Drawing.Point(21, 133);
             this.tbAnnouncementDescription.Multiline = true;
             this.tbAnnouncementDescription.Name = "tbAnnouncementDescription";
-            this.tbAnnouncementDescription.Size = new System.Drawing.Size(387, 103);
+            this.tbAnnouncementDescription.Size = new System.Drawing.Size(387, 172);
             this.tbAnnouncementDescription.TabIndex = 7;
             // 
             // lblAnnouncementDescription
@@ -784,6 +784,8 @@
             // 
             // gbAssignTask
             // 
+            this.gbAssignTask.Controls.Add(this.label1);
+            this.gbAssignTask.Controls.Add(this.dateTimePicker1);
             this.gbAssignTask.Controls.Add(this.roomNr);
             this.gbAssignTask.Controls.Add(this.label3);
             this.gbAssignTask.Controls.Add(this.btnSubmitTask);
@@ -796,16 +798,16 @@
             this.gbAssignTask.Controls.Add(this.lblSelectTask);
             this.gbAssignTask.Controls.Add(this.cbSelectTenantToAssignTask);
             this.gbAssignTask.Controls.Add(this.lblSelectTenantAssignTask);
-            this.gbAssignTask.Location = new System.Drawing.Point(38, 309);
+            this.gbAssignTask.Location = new System.Drawing.Point(38, 226);
             this.gbAssignTask.Name = "gbAssignTask";
-            this.gbAssignTask.Size = new System.Drawing.Size(488, 309);
+            this.gbAssignTask.Size = new System.Drawing.Size(488, 392);
             this.gbAssignTask.TabIndex = 2;
             this.gbAssignTask.TabStop = false;
             this.gbAssignTask.Text = "Assign task";
             // 
             // roomNr
             // 
-            this.roomNr.Location = new System.Drawing.Point(135, 73);
+            this.roomNr.Location = new System.Drawing.Point(135, 118);
             this.roomNr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.roomNr.Name = "roomNr";
             this.roomNr.Size = new System.Drawing.Size(114, 34);
@@ -814,7 +816,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 77);
+            this.label3.Location = new System.Drawing.Point(41, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 28);
             this.label3.TabIndex = 11;
@@ -823,7 +825,7 @@
             // btnSubmitTask
             // 
             this.btnSubmitTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSubmitTask.Location = new System.Drawing.Point(135, 256);
+            this.btnSubmitTask.Location = new System.Drawing.Point(135, 335);
             this.btnSubmitTask.Name = "btnSubmitTask";
             this.btnSubmitTask.Size = new System.Drawing.Size(174, 37);
             this.btnSubmitTask.TabIndex = 10;
@@ -835,7 +837,7 @@
             // 
             this.cbTakeOutTheTrash.AutoSize = true;
             this.cbTakeOutTheTrash.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbTakeOutTheTrash.Location = new System.Drawing.Point(277, 199);
+            this.cbTakeOutTheTrash.Location = new System.Drawing.Point(277, 278);
             this.cbTakeOutTheTrash.Name = "cbTakeOutTheTrash";
             this.cbTakeOutTheTrash.Size = new System.Drawing.Size(169, 27);
             this.cbTakeOutTheTrash.TabIndex = 9;
@@ -846,7 +848,7 @@
             // 
             this.cbCleanTheLivingRoom.AutoSize = true;
             this.cbCleanTheLivingRoom.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbCleanTheLivingRoom.Location = new System.Drawing.Point(277, 133);
+            this.cbCleanTheLivingRoom.Location = new System.Drawing.Point(277, 212);
             this.cbCleanTheLivingRoom.Name = "cbCleanTheLivingRoom";
             this.cbCleanTheLivingRoom.Size = new System.Drawing.Size(196, 27);
             this.cbCleanTheLivingRoom.TabIndex = 8;
@@ -857,7 +859,7 @@
             // 
             this.cbCleanTheKitchen.AutoSize = true;
             this.cbCleanTheKitchen.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbCleanTheKitchen.Location = new System.Drawing.Point(277, 165);
+            this.cbCleanTheKitchen.Location = new System.Drawing.Point(277, 244);
             this.cbCleanTheKitchen.Name = "cbCleanTheKitchen";
             this.cbCleanTheKitchen.Size = new System.Drawing.Size(165, 27);
             this.cbCleanTheKitchen.TabIndex = 7;
@@ -868,7 +870,7 @@
             // 
             this.cbCleanTheStarirs.AutoSize = true;
             this.cbCleanTheStarirs.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbCleanTheStarirs.Location = new System.Drawing.Point(15, 199);
+            this.cbCleanTheStarirs.Location = new System.Drawing.Point(15, 278);
             this.cbCleanTheStarirs.Name = "cbCleanTheStarirs";
             this.cbCleanTheStarirs.Size = new System.Drawing.Size(149, 27);
             this.cbCleanTheStarirs.TabIndex = 6;
@@ -879,7 +881,7 @@
             // 
             this.cbCleanBathroom2.AutoSize = true;
             this.cbCleanBathroom2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbCleanBathroom2.Location = new System.Drawing.Point(15, 165);
+            this.cbCleanBathroom2.Location = new System.Drawing.Point(15, 244);
             this.cbCleanBathroom2.Name = "cbCleanBathroom2";
             this.cbCleanBathroom2.Size = new System.Drawing.Size(170, 27);
             this.cbCleanBathroom2.TabIndex = 5;
@@ -890,7 +892,7 @@
             // 
             this.cbCleanBathroom1.AutoSize = true;
             this.cbCleanBathroom1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.cbCleanBathroom1.Location = new System.Drawing.Point(15, 133);
+            this.cbCleanBathroom1.Location = new System.Drawing.Point(15, 212);
             this.cbCleanBathroom1.Name = "cbCleanBathroom1";
             this.cbCleanBathroom1.Size = new System.Drawing.Size(170, 27);
             this.cbCleanBathroom1.TabIndex = 4;
@@ -901,7 +903,7 @@
             // 
             this.lblSelectTask.AutoSize = true;
             this.lblSelectTask.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblSelectTask.Location = new System.Drawing.Point(15, 105);
+            this.lblSelectTask.Location = new System.Drawing.Point(15, 184);
             this.lblSelectTask.Name = "lblSelectTask";
             this.lblSelectTask.Size = new System.Drawing.Size(94, 23);
             this.lblSelectTask.TabIndex = 3;
@@ -912,7 +914,7 @@
             this.cbSelectTenantToAssignTask.FormattingEnabled = true;
             this.cbSelectTenantToAssignTask.Location = new System.Drawing.Point(135, 28);
             this.cbSelectTenantToAssignTask.Name = "cbSelectTenantToAssignTask";
-            this.cbSelectTenantToAssignTask.Size = new System.Drawing.Size(269, 36);
+            this.cbSelectTenantToAssignTask.Size = new System.Drawing.Size(338, 36);
             this.cbSelectTenantToAssignTask.TabIndex = 2;
             // 
             // lblSelectTenantAssignTask
@@ -949,6 +951,16 @@
             this.logoutpicturebox.TabIndex = 5;
             this.logoutpicturebox.TabStop = false;
             this.logoutpicturebox.Click += new System.EventHandler(this.logoutpicturebox_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(15, 81);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 23);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Select date:";
             // 
             // FormSupervisor
             // 
@@ -1067,5 +1079,6 @@
         private TextBox tbWarningSubject;
         private Label lblWarningSubject;
         private TextBox tbWarningDescription;
+        private Label label1;
     }
 }

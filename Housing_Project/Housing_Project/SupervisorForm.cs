@@ -236,7 +236,7 @@ namespace Housing_Project
             try
             {
                 Tenant tenant = (Tenant)lbTenantsInfo.SelectedItem;
-                indexboxUsers.Text = tenant.TenantID.ToString();
+                //indexboxUsers.Text = tenant.TenantID.ToString();
                 tbTenantEmail.Text = tenant.Email;
                 tbTenantName.Text = tenant.Name;
                 tbTenantPhone.Text = tenant.PhoneNumber;

@@ -9,7 +9,6 @@ using System.Runtime.Serialization;
 
 namespace Housing_Project.Classes
 {
-    [Serializable]
     public class AgreementManager
     {
         private int agreementIdSeeder = 1;
@@ -17,14 +16,7 @@ namespace Housing_Project.Classes
 
         public void AddAgreementToList(string title, string description, DateTime date)
         {//denitsa
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("agreement_info.txt", FileMode.Create, FileAccess.Write);
-
             agreements.Add(new Agreement(agreementIdSeeder, title, description, date));
-
-            formatter.Serialize(stream, agreements);
-            stream.Close();
-
             agreementIdSeeder++;
         }
 

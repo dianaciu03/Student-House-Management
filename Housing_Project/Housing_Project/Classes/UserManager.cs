@@ -21,26 +21,12 @@ namespace Housing_Project.Classes
 
         public void AddTenantToList (string name, string email, string phoneNumber)
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("tenant_info.txt", FileMode.Create, FileAccess.Write);
-
             tenants.Add(new Tenant(name, email, phoneNumber));
-
-            formatter.Serialize(stream, tenants);
-            stream.Close();
-
         }
 
-        public void AddSupervisorToList(Supervisor supervisor)
+        public void AddSupervisorToList(string name, string email, string phoneNumber)
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("supervisor_info.txt", FileMode.Create, FileAccess.Write);
-
-            //supervisors.Add(new Supervisor(supervisorIdSeeder, name, email, phoneNumber));
-
-            formatter.Serialize(stream, tenants);
-            stream.Close();
-
+            supervisors.Add(new Supervisor(name, email, phoneNumber));
         }
 
         public void AddWarningToTenantList(Tenant tenant, Warning warning)

@@ -17,14 +17,7 @@ namespace Housing_Project.Classes
 
         public void AddRuleToList(string title, string message, Supervisor sender)
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("rules_info.txt", FileMode.Create, FileAccess.Write);
-
             rules.Add(new Rule(ruleIdSeeder, title, message, sender));
-
-            formatter.Serialize(stream, rules);
-            stream.Close();
-
             ruleIdSeeder++;
         }
 

@@ -1,7 +1,9 @@
 using Housing_Project.Classes;
+using Microsoft.VisualBasic.ApplicationServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Housing_Project
 {
@@ -12,6 +14,8 @@ namespace Housing_Project
         PaymentManager paymentManager = new PaymentManager();
         RuleManager ruleManager = new RuleManager();
         ReportManager reportManager = new ReportManager();
+        Tenant tenant;
+        Supervisor supervisor;
 
         //The code of Alex vvvv
         public LoginRegister()
@@ -54,15 +58,16 @@ namespace Housing_Project
 
 
         //update this when tenant or supervisor objects are created from the register button
-        private void loginbtn_Click(object sender, EventArgs e) // actual log in button
+        private void loginbtn_Click(object sender, EventArgs e,object user) // actual log in button
         {
-            if (loginemailtxt.Text == "1" && loginpasswordtxt.Text == "1" || (loginemailtxt.Text == "0" && loginpasswordtxt.Text == "0"))
+            string userName = loginemailtxt.Text;
+            if (userName.Contains("student.com")  && userName.Contains("student.com") )
             {
-                OpenUser(user);
-                
+               OpenUser(user);
+               
 
             }
-            else if (loginemailtxt.Text == "2" && loginpasswordtxt.Text == "2" || (loginemailtxt.Text == "3" && loginpasswordtxt.Text == "3"))
+            else if (userName.Contains("supervisor.com") && userName.Contains("supervisor.com") )
             {
                 OpenUser(user);
             }
@@ -89,7 +94,18 @@ namespace Housing_Project
 
                 if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone) && !String.IsNullOrEmpty(password))
                 {
-                    //check the email to see what type of user you create
+                    if (email.Contains("student.com") && email.Contains("student.com"))
+                    {
+                       tenant.AddEmailToList();
+                       if (tenant.GetEmailList().Contains(email) == true) { MessageBox.Show("Allready registered with this email"); }
+                       tenant = new Tenant(name, phone, email, password);
+                    }
+                    else if (email.Contains("supervisor.com") && email.Contains("supervisor.com"))
+                    {
+                        supervisor.AddEmailToList();
+                        if (supervisor.GetEmailList().Contains(email) == true) { MessageBox.Show("Allready registered with this email"); }
+                        supervisor = new Supervisor(name, email, phone, password);
+                    }
                 }
             }
             catch(Exception)
@@ -103,6 +119,11 @@ namespace Housing_Project
         {
             registerwrongcredentialslbl.Visible = false;
             loginwrongcredentialslbl.Visible=false;
+        }
+
+        private void loginbtn_Click(object sender, EventArgs e)
+        {
+
         }
 
         //The code of Alex ^^^^

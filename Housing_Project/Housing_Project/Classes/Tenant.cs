@@ -23,6 +23,7 @@ namespace Housing_Project.Classes
         private int roomNumber;
         private List<Warning> warnings = new List<Warning>();
         private List<cleaningTask> tasks = new List<cleaningTask>();
+        private List<string> emails = new List<string>();
 
         public Tenant(string name, string email, string phoneNumber)
         {
@@ -30,6 +31,14 @@ namespace Housing_Project.Classes
             this.email = email;
             this.phoneNumber = phoneNumber;
         }
+       public Tenant(string name, string phoneNumber ,string email, string password)
+        {
+            this.name = name;
+            this.phoneNumber = phoneNumber;
+            this.email = email;
+            this.password = password;
+    
+        }   
 
         public string Name 
         { 
@@ -41,6 +50,15 @@ namespace Housing_Project.Classes
         {
             get { return email; }
             set { this.email = value; }
+        }
+
+        public void AddEmailToList()
+        {
+            emails.Add(email);
+        }
+        public List<string> GetEmailList()
+        {
+            return emails.ToList();
         }
 
         public string PhoneNumber

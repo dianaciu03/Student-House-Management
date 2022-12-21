@@ -26,18 +26,15 @@ namespace Housing_Project.Classes
                 return false;
         }
 
-
-        public static void CalculatePricePerPerson(Payment payment)
+        public double CalculatePricePerPerson(Payment payment, int numberTenants)
         {
-             return (double)payment.TotalPrice / numberTenants;
+            return (double)payment.TotalPrice / numberTenants;
         }
 
-        public static double PricePerPerson { get { return _pricePerPerson; } }
-
-        public static void AddPaymentToList(List<string> list, Tenant Tenant, double totalPrice)
+        public void AddPaymentToList(List<string> list, Tenant buyer, double totalPrice)
         {
-            _payments.Add(new Payment(_paymentIdSeeder, list, buyer, totalPrice));
-            _paymentIdSeeder++;
+            payments.Add(new Payment(paymentIdSeeder, list, buyer, totalPrice));
+            paymentIdSeeder++;
         }
 
         public Payment[] GetPayments()
@@ -50,10 +47,5 @@ namespace Housing_Project.Classes
             return payments[index];
         }
     }
-
-
-
-
-
 }
 

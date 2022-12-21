@@ -221,10 +221,7 @@ namespace Housing_Project
 
         private void load_data_Click(object sender, EventArgs e)
         {   //denitsa serialization
-            //opens and reads the file adds the object to the list box
-            Stream stream = new FileStream("payments_info.txt", FileMode.Open, FileAccess.Read);
-            lbPaymentsInfo.Items.Add(formatter.Deserialize(stream).ToString());
-            stream.Close();
+
         }
 
         private void lbPaymentsInfo_SelectedIndexChanged(object sender, EventArgs e)

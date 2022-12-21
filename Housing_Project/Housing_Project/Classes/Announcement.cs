@@ -10,14 +10,16 @@ namespace Housing_Project.Classes
     {
         private string title;
         private string description;
-        public Announcement(string title, string description)
+        private string date;
+        public Announcement(string title, string description,string date)
         {
             this.title = title;
             this.description = description;
+            this.date = date;   
         }
         public string GetAnnouncementInfo()
         {
-            return $"Title:{title},Description:{description}";
+            return $"Title:{title},Description:{description},Date:{date}";
         }
     }
 }

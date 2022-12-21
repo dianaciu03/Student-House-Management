@@ -30,6 +30,8 @@ namespace Housing_Project
         private UserManager userManager;
         private RuleManager ruleManager;
         private ReportManager reportManager;
+        cleaningTask task;
+        Announcement announcement;
 
         public FormSupervisor(Object currentUser, UserManager userManager, RuleManager ruleManager, ReportManager reportManager)
         {
@@ -42,6 +44,7 @@ namespace Housing_Project
 
             foreach (Tenant t in userManager.Tenants)
                 cbSelectTenantToAssignTask.Items.Add(t);
+            
 
             this.Text = $"{currentUser}";//upper bar text
             btnSubmitChanges.Visible = false;
@@ -332,24 +335,29 @@ namespace Housing_Project
         //
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
-            //DateRangeEventHandler dateSelected = monthCalendarSupervisor.selcte;
-            //cleaning.SetDate(monthCalendarSupervisor.ToString())
-            cleaning.GetDate();
-            foreach (CheckBox checkBox in checkBoxes)
-            {
-                if (checkBox.Checked)
-                {
-                    checkBox.Checked = false;
-                }
-            }
 
+
+            List<cleaningTask> tasks = new List<cleaningTask>();
+            string assignedPerson1 = cbSelectTenantToAssignTask.Text; 
+            //foreach (CheckBox checkBox in checkBoxes)
+            //{
+            //    if (checkBox.Checked)
+            //    {
+            //        task.tasks1.Add(checkBox.Text);
+            //    }
+            //}
+           string date =  dateTimePicker1.Text;
+            task = new cleaningTask(assignedPerson1, date);
+            lbEvents.Items.Add(task.GetInfo());
         }
 
         private void btnSubmitAnnouncement_Click(object sender, EventArgs e)
         {
-            string announcement = tbAnnouncementTitle.Text;
+            string announcement1 = tbAnnouncementTitle.Text;
             string description = tbAnnouncementDescription.Text;
-            MessageBox.Show($"Title:{announcement},Description:{description}");
+            string date = dateTimePicker2.Text;
+            announcement = new Announcement(announcement1, description, date);
+            MessageBox.Show(announcement.GetAnnouncementInfo());
         }
 
         //Log out button
@@ -361,6 +369,9 @@ namespace Housing_Project
             loginpage.ShowDialog();
         }
 
-        
+        private void tbAnnouncementDescription_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

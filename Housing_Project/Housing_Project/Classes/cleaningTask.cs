@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Housing_Project.Classes
@@ -12,35 +13,32 @@ namespace Housing_Project.Classes
     {
         //remove underscores from variables
         //use properties
-        private string room;
-        private Tenant assignedPerson;
-        private DateTime SelectedDate;
-        private List<Task> tasks;   
-        public cleaningTask(string room, Tenant assignedPerson, DateTime selectedDate)
+        
+        private string assignedPerson;
+        private string SelectedDate;
+        private List<string> tasks;   
+        public cleaningTask( string assignedPerson, string selectedDate)
         {
-            this.room = room;
             this.assignedPerson = assignedPerson;
-           this.SelectedDate = selectedDate;
+            this.SelectedDate = selectedDate;
         }
-        public void AddTaskToList(string room, Tenant assignedPerson, string selectedDate)
+        public List<string> tasks1
         {
-            //tasks.Add(new cleaningTask( room,  assignedPerson,  selectedDate);
+            get { return tasks; }
+            set { this.tasks = value; }
         }
-        public List<Task> GetEmailList()
-        {
-            return tasks.ToList();
-        }
-        public void SetDate(DateTime selectedDate)
+       
+        public void SetDate(string selectedDate)
         {
             this.SelectedDate = selectedDate;
         }
-        public DateTime GetDate()
+        public string GetDate()
         {
             return this.SelectedDate;
         }
         public string GetInfo()
         {
-            return $"{this.room},{this.assignedPerson}";
+            return $"Date:{SelectedDate},Person:{this.assignedPerson}";
         }
     }
 }

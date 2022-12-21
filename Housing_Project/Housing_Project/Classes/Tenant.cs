@@ -16,126 +16,65 @@ namespace Housing_Project.Classes
     [Serializable]
     public class Tenant
     {
-   
-        private string _name;
-        private string _email;
-        private string _password;
-        private string _phoneNumber;
-        private int _roomNumber;
+        private int tenantID;
+        private string name;
+        private string email;
+        private string password;
+        private string phoneNumber;
+        private int roomNumber;
+        private List<Warning> warnings = new List<Warning>();
 
-        
-
-        public Tenant(string name, string email, string phoneNumber, int roomNumber)
+        public Tenant(int tenantID, string name, string email, string phoneNumber)
         {
-            this._name = name;
-            this._email = email;
-            this._phoneNumber = phoneNumber;
-            this._roomNumber = roomNumber;
+            this.tenantID = tenantID;
+            this.name = name;
+            this.email = email;
+            this.phoneNumber = phoneNumber;
         }
 
-        public string Name
-        {
-            get
-            {
-                return this._name;
-            }
-            set
-            {
-                this._name = value;
-            }
+        public int TenantID { get { return tenantID; } }
+
+        public string Name 
+        { 
+            get { return name; } 
+            set { this.name = value; } 
         }
 
         public string Email
         {
-            get
-            {
-                return this._email;
-            }
-            set
-            {
-                this._email = value;
-            }
+            get { return email; }
+            set { this.email = value; }
         }
 
         public string PhoneNumber
         {
-            get
-            {
-                return this._phoneNumber;
-            }
-            set
-            {
-                this._phoneNumber = value;
-            }
+            get { return phoneNumber; }
+            set { this.phoneNumber = value; }
         }
 
         public int RoomNumber
         {
-            get
-            {
-                return this._roomNumber;
-            }
-            set
-            {
-                this._roomNumber = value;
-            }
+            get { return roomNumber; }
+            set { this.roomNumber = value; }
         }
 
-        static public void AddTenant(TextBox nameBox, TextBox emailBox, TextBox phoneNumberBox,TextBox roomNumberBox)
-        {
-            if (nameBox.Text != "" && emailBox.Text != "" && phoneNumberBox.Text != "" && roomNumberBox.Text != "")
-            {IFormatter formatter = new BinaryFormatter();
-             Stream stream = new FileStream("tenant_info.txt", FileMode.Create, FileAccess.Write);
-
-                try
-                {
-                   
-                    Tenant newtenant = new Tenant(nameBox.Text, emailBox.Text, phoneNumberBox.Text, int.Parse(roomNumberBox.Text));
-                    formatter.Serialize(stream, newtenant);
-                    stream.Close();
-                    Manager.GetTenants().Add(newtenant);
-                    nameBox.Text = "";
-                    emailBox.Text = "";
-                    phoneNumberBox.Text = "";
-                    roomNumberBox.Text = "";
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Invalid details");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Box is empty");
-            }
+        public string Password 
+        { 
+            get { return password; }
+            set { password = value; }
         }
 
-        static public void PushChanges(TextBox IndexboxTenants, TextBox tbTenantName, TextBox tbTenantEmail, TextBox tbTenantPhone,TextBox tbRoomNumber)
-        {
-            try
-            {
-                Manager.GetTenants()[int.Parse(IndexboxTenants.Text) - 1].Name = tbTenantName.Text;
-                Manager.GetTenants()[int.Parse(IndexboxTenants.Text) - 1].Email = tbTenantEmail.Text;
-                Manager.GetTenants()[int.Parse(IndexboxTenants.Text) - 1].PhoneNumber = tbTenantPhone.Text;
-                Manager.GetTenants()[int.Parse(IndexboxTenants.Text) - 1].RoomNumber = int.Parse(tbRoomNumber.Text);
-
-                MessageBox.Show("Success");
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show("Invalid details");
-                throw;
-            }
-        }
+        public List<Warning> Warnings { get { return warnings; } }
 
         public string GetInfo()
         {
             return $"Name: {Name} || Email: {Email} || Phone Number: {PhoneNumber} || Room Number: {RoomNumber}";
         }
-        //static public void DisplayFullInfo(ListBox listOfRules)
-        //{
-        //    MessageBox.Show($"{rules[listOfRules.SelectedIndex].GetInfo("long")}");
-        //}
+
+        public override string ToString()
+        {
+            return this.name;
+        }
     }
 }
 

@@ -9,31 +9,38 @@ namespace Housing_Project.Classes
     [Serializable]
     public class Report
     {
-        private string _title;
-        private string _description; 
-        private string _adressedPerson;
-        public Report(string title, string description, string adressedPerson)
-        {
-            _title = title;
-            _description = description;
-            _adressedPerson = adressedPerson;
-        }   
-        public string GetTitle()
-        {
+        private int reportID;
+        private string title;
+        private string message; 
+        private Tenant adressedPerson;
 
-            return this._title;
-        }
-        public string GetDescription()
+        public Report(int reportID, string title, string description, Tenant adressedPerson)
         {
-            return this._description;
+            this.reportID = reportID;
+            this.title = title;
+            this.message = description;
+            this.adressedPerson = adressedPerson;
         }
-        public string GetAdressedPerson()
+        
+        public string Title { get { return title; } }
+
+        public string Description { get { return message; } }
+
+        public Tenant AdressedPerson { get { return adressedPerson; } }
+
+        public string GetInfoReportDisplay()
         {
-            return this._adressedPerson;
+            return $"{this.reportID}. Title: {this.title} || Adressed to: {this.adressedPerson}";
         }
-        public string GetInfo()
+
+        public string GetInfoReport()
         {
-            return $"Title:{this.GetTitle()},Description:{this.GetDescription()},Adressed to:{this.GetAdressedPerson()}";
+            return $"Title: {this.title}\n\nDescription: {this.message}\n\nAdressed to: {this.adressedPerson}";
+        }
+
+        public override string ToString()
+        {
+            return GetInfoReportDisplay();
         }
     }
 }

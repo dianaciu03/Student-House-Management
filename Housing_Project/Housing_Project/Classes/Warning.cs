@@ -9,8 +9,17 @@ namespace Housing_Project.Classes
     [Serializable]
     public class Warning
     {
-        private int _NrWarnings;
-        private string _topic;
-        private string _personAdressed;
+        private string title;
+        private string message;
+        private Tenant personAdressed;
+        private Supervisor sender;
+
+        public Warning(string title, string message, Tenant personAdressed, Supervisor sender)
+        {
+            this.title = title;
+            this.message = message;
+            this.personAdressed = personAdressed;
+            this.sender = sender;
+        }
     }
 }

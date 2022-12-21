@@ -9,46 +9,65 @@ namespace Housing_Project.Classes
     [Serializable]
     public class Agreement
     {
-        private string _title;
-        private int _agreementId = 0;
-        private string _description;
-        private List<Tenant> _tenantsApproved;
-        private List<Tenant> _tenantsRejected;
-        private DateTime _date;
-
+        private string title;
+        private int agreementID = 0;
+        private string description;
+        private List<Tenant> tenantsApproved = new List<Tenant>();
+        private List<Tenant> tenantsRejected = new List<Tenant>();
+        private List<Tenant> tenantsNotAnswered = new List<Tenant>();
+        private DateTime date;
 
         public Agreement(int id, string title, string description, DateTime date)
         {
-            _agreementId = id;
-            _title = title;
-            _description = description;
-            _date = date;
+            this.agreementID = id;
+            this.title = title;
+            this.description = description;
+            this.date = date;
         }
 
-        public string Title { get { return _title; } }
+        public string Title { get { return title; } }
 
-        public int AgreementId
+        public int AgreementID { get { return agreementID; } }
+
+        public string Description { get { return description; } }
+
+        public List<Tenant> TenantsApproved { get { return tenantsApproved; } }
+
+        public List<Tenant> TenantsRejected { get { return tenantsRejected; } }
+
+        public List<Tenant> TenantsNotAnswered { get { return tenantsNotAnswered; } }
+        public DateTime Date { get { return date; } }
+
+        public void InitializeTenantsNotAnswered(List<Tenant> tenants)
         {
-            get { return _agreementId; }
-            set { _agreementId = value; }
+            tenantsNotAnswered = tenants;
         }
 
-        public string Description { get { return _description; } }
+        public void AddTenantsApproved(Tenant tenant)
+        {
+            tenantsApproved.Add(tenant);
+            tenantsNotAnswered.Remove(tenant);
+        }
 
-        public List<Tenant> TenantsApproved { get { return _tenantsApproved; } }
+        public void AddTenantsRejected(Tenant tenant)
+        {
+            tenantsRejected.Add(tenant);
+            tenantsNotAnswered.Remove(tenant);
+        }
 
-        public List<Tenant> TenantsRejected { get { return _tenantsRejected; } }
-
-        public DateTime Date { get { return _date; } }
+        public int TenantsNotAnsweredCount()
+        {
+            return tenantsNotAnswered.Count;
+        }
 
         public string GetInfoAgreement()
         {
-            return $"{_title}\n\n{_description}\n\n{_date}";
+            return $"{agreementID}. {title}\n\n{description}\n\n{date}";
         }
 
         public string GetInfoAgreementDisplay()
         {
-            return $"{AgreementId}. {_title} - {_date}";
+            return $"{agreementID}. {title} - {date}";
         }
 
         public override string ToString()

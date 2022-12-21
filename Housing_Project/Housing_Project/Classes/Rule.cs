@@ -12,124 +12,53 @@ namespace Housing_Project.Classes
     [Serializable]
     public class Rule
     {
+        private int ruleID;
         private string subject;
         private string message;
-        private string currentUser;
-
-        static List<Rule> rules = new List<Rule>();
+        private Supervisor sender;
         
-        
-        public Rule(string Subject, string Message)
+        public Rule(int ruleID, string subject, string message, Supervisor sender)
         {
-            subject = Subject;
-            message = Message;
-            subject = Subject;
-            message = Message;
-            //this.sender = Sender;
-        }
-        public Rule(string Subject, string Message,string CurrentUser)
-        {
-            subject = Subject;
-            message = Message;
-            subject = Subject;
-            message = Message;
-            currentUser = CurrentUser;
+            this.ruleID = ruleID;
+            this.subject = subject;
+            this.message = message;
+            this.sender = sender;
         }
 
-        public string Subject
-        {
-            get
-            {
-                return subject;
-            }
-            set
-            {
-                subject = value;
-            }
+        public int RuleID { get { return ruleID; } }
+
+        public string Subject 
+        {   
+            get { return subject; } 
+            set { subject = value; }
         }
 
         public string Message
         {
-            get
-            {
-                return message;
-            }
-            set
-            {
-                message = value;
-            }
+            get { return message; }
+            set { message = value; }
         }
 
-        static public void AddRule(RichTextBox subjextBox, RichTextBox messageBox, string currentUser)
-        {//denitsa
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("agreement_info.txt", FileMode.Create, FileAccess.Write);
-            if (messageBox.Text != "")
-            {
-                string subject = subjextBox.Text;
-                string rule_to_be_added = messageBox.Text;
-                
-                Rule newRule = new Rule(subject, rule_to_be_added, currentUser);
-                formatter.Serialize(stream, newRule);
-                stream.Close();
-
-                rules.Add(newRule);
-                subjextBox.Text = "";
-                messageBox.Text = "";
-            }
-            else
-            {
-                MessageBox.Show("Box is empty");
-            }
-        }
-        static public void AddExampleRule()
+        public Supervisor Sender
         {
-            Rule example1 = new Rule("Example Subject1", "Example Message1", "User1");
-            Rule example2 = new Rule("Example Subject2", "Example Message2", "User2");
-            Rule example3 = new Rule("Example Subject3", "Example Message3", "User3");
-            rules.Add(example1);
-            rules.Add(example2);
-            rules.Add(example3);
+            get { return sender; }
+            set { sender = value; }
         }
 
-        static public void PushChanges(TextBox indexBox, RichTextBox subjectBox, RichTextBox messageBox)
+        public string GetInfoRuleDisplay()
         {
-            try
-            {
-                rules[int.Parse(indexBox.Text) - 1].Message = messageBox.Text;
-                rules[int.Parse(indexBox.Text) - 1].Subject = subjectBox.Text;
-                MessageBox.Show("Success");
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show("Invalid details");
-                throw;
-            }
+            return $"{this.RuleID}. {this.subject} added by {this.sender}";
         }
 
-        public string GetInfo(string shortOrfull)
+        public string GetInfoRule()
         {
-            if (shortOrfull == "short")
-            {
-                return $"Subject: {Subject}    Sender: {currentUser}";
-            }
-
-            if (shortOrfull == "long")
-            {
-                return $"Subject: {Subject}\nMessage: {Message}\nSender: {currentUser}";
-            }
-
-            return null;
+            return $"{this.subject}\n\n{this.message}\n\nAdded by {this.sender}";
         }
 
-        static public void DisplayFullInfo(ListBox listOfRules)
+        public override string ToString()
         {
-            MessageBox.Show($"{rules[listOfRules.SelectedIndex].GetInfo("long")}");
+            return GetInfoRuleDisplay();
         }
 
-        static public List<Rule> GetRules()
-        {
-            return rules;
-        }
     }
 }

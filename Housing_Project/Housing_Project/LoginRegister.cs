@@ -2,13 +2,11 @@ using Housing_Project.Classes;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Housing_Project
 {
     public partial class LoginRegister : Form
     {
-     
         //The code of Alex vvvv
         public LoginRegister()
         {
@@ -63,9 +61,6 @@ namespace Housing_Project
 
         private void loginbtn_Click(object sender, EventArgs e) // actual log in button
         {
-        
-
-
             if (loginemailtxt.Text == "1" && loginpasswordtxt.Text == "1" || (loginemailtxt.Text == "0" && loginpasswordtxt.Text == "0"))
             {
                 OpenUser("student", loginemailtxt.Text);

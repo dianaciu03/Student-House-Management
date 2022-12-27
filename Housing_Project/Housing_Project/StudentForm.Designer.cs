@@ -37,14 +37,14 @@
             this.lblTenantsContactInfo = new System.Windows.Forms.Label();
             this.lbHouseRules = new System.Windows.Forms.ListBox();
             this.lblHouseRules = new System.Windows.Forms.Label();
-            this.tabCleaningSchedule = new System.Windows.Forms.TabPage();
+            this.tabEventSchedule = new System.Windows.Forms.TabPage();
             this.btnSendReportTask = new System.Windows.Forms.Button();
             this.tbCommentReportTask = new System.Windows.Forms.TextBox();
             this.lblAddCommentReportTask = new System.Windows.Forms.Label();
             this.cbReportTask = new System.Windows.Forms.ComboBox();
             this.lblReportTask = new System.Windows.Forms.Label();
             this.eventCalendar = new System.Windows.Forms.MonthCalendar();
-            this.lbTasks = new System.Windows.Forms.ListBox();
+            this.lbEvents = new System.Windows.Forms.ListBox();
             this.lblTasksFor = new System.Windows.Forms.Label();
             this.tabSupplies = new System.Windows.Forms.TabPage();
             this.lblPayments = new System.Windows.Forms.Label();
@@ -87,6 +87,7 @@
             this.btnSubmitProposal = new System.Windows.Forms.Button();
             this.tbProposalContent = new System.Windows.Forms.TextBox();
             this.tabReport = new System.Windows.Forms.TabPage();
+            this.lbWarnings = new System.Windows.Forms.ListBox();
             this.gbFileAReport = new System.Windows.Forms.GroupBox();
             this.lblReportDescription = new System.Windows.Forms.Label();
             this.tbReportTitle = new System.Windows.Forms.TextBox();
@@ -95,13 +96,14 @@
             this.tbReportContent = new System.Windows.Forms.TextBox();
             this.cbTenantsToReport = new System.Windows.Forms.ComboBox();
             this.lblAdressReportToSomeone = new System.Windows.Forms.Label();
-            this.tbWarnings = new System.Windows.Forms.TextBox();
             this.lblWarnings = new System.Windows.Forms.Label();
             this.lblStudentHouseBV = new System.Windows.Forms.Label();
             this.logoutpicturebox = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbTenantToReportTask = new System.Windows.Forms.ComboBox();
             this.tabControlStudent.SuspendLayout();
             this.tabHouseRules.SuspendLayout();
-            this.tabCleaningSchedule.SuspendLayout();
+            this.tabEventSchedule.SuspendLayout();
             this.tabSupplies.SuspendLayout();
             this.gbSupplies.SuspendLayout();
             this.tabAgreements.SuspendLayout();
@@ -114,7 +116,7 @@
             // tabControlStudent
             // 
             this.tabControlStudent.Controls.Add(this.tabHouseRules);
-            this.tabControlStudent.Controls.Add(this.tabCleaningSchedule);
+            this.tabControlStudent.Controls.Add(this.tabEventSchedule);
             this.tabControlStudent.Controls.Add(this.tabSupplies);
             this.tabControlStudent.Controls.Add(this.tabAgreements);
             this.tabControlStudent.Controls.Add(this.tabReport);
@@ -127,7 +129,7 @@
             this.tabControlStudent.Size = new System.Drawing.Size(1209, 725);
             this.tabControlStudent.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControlStudent.TabIndex = 0;
-            this.tabControlStudent.Click += new System.EventHandler(this.tabControlStudent_Click);
+            this.tabControlStudent.SelectedIndexChanged += new System.EventHandler(this.tabControlStudent_SelectedIndexChanged);
             // 
             // tabHouseRules
             // 
@@ -152,7 +154,7 @@
             this.lbSupervisorInfo.ItemHeight = 23;
             this.lbSupervisorInfo.Location = new System.Drawing.Point(629, 329);
             this.lbSupervisorInfo.Name = "lbSupervisorInfo";
-            this.lbSupervisorInfo.Size = new System.Drawing.Size(530, 280);
+            this.lbSupervisorInfo.Size = new System.Drawing.Size(530, 326);
             this.lbSupervisorInfo.TabIndex = 5;
             // 
             // lbTenantsContactInfo
@@ -162,7 +164,7 @@
             this.lbTenantsContactInfo.ItemHeight = 23;
             this.lbTenantsContactInfo.Location = new System.Drawing.Point(22, 329);
             this.lbTenantsContactInfo.Name = "lbTenantsContactInfo";
-            this.lbTenantsContactInfo.Size = new System.Drawing.Size(530, 280);
+            this.lbTenantsContactInfo.Size = new System.Drawing.Size(530, 326);
             this.lbTenantsContactInfo.TabIndex = 4;
             // 
             // lblSupervisorContactInfo
@@ -192,7 +194,7 @@
             this.lbHouseRules.ItemHeight = 23;
             this.lbHouseRules.Location = new System.Drawing.Point(22, 71);
             this.lbHouseRules.Name = "lbHouseRules";
-            this.lbHouseRules.Size = new System.Drawing.Size(1137, 142);
+            this.lbHouseRules.Size = new System.Drawing.Size(1137, 188);
             this.lbHouseRules.TabIndex = 1;
             // 
             // lblHouseRules
@@ -205,28 +207,30 @@
             this.lblHouseRules.TabIndex = 0;
             this.lblHouseRules.Text = "House Rules";
             // 
-            // tabCleaningSchedule
+            // tabEventSchedule
             // 
-            this.tabCleaningSchedule.Controls.Add(this.btnSendReportTask);
-            this.tabCleaningSchedule.Controls.Add(this.tbCommentReportTask);
-            this.tabCleaningSchedule.Controls.Add(this.lblAddCommentReportTask);
-            this.tabCleaningSchedule.Controls.Add(this.cbReportTask);
-            this.tabCleaningSchedule.Controls.Add(this.lblReportTask);
-            this.tabCleaningSchedule.Controls.Add(this.eventCalendar);
-            this.tabCleaningSchedule.Controls.Add(this.lbTasks);
-            this.tabCleaningSchedule.Controls.Add(this.lblTasksFor);
-            this.tabCleaningSchedule.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabCleaningSchedule.Location = new System.Drawing.Point(4, 41);
-            this.tabCleaningSchedule.Name = "tabCleaningSchedule";
-            this.tabCleaningSchedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCleaningSchedule.Size = new System.Drawing.Size(1201, 680);
-            this.tabCleaningSchedule.TabIndex = 2;
-            this.tabCleaningSchedule.Text = "Event Schedule";
-            this.tabCleaningSchedule.UseVisualStyleBackColor = true;
+            this.tabEventSchedule.Controls.Add(this.cbTenantToReportTask);
+            this.tabEventSchedule.Controls.Add(this.label1);
+            this.tabEventSchedule.Controls.Add(this.btnSendReportTask);
+            this.tabEventSchedule.Controls.Add(this.tbCommentReportTask);
+            this.tabEventSchedule.Controls.Add(this.lblAddCommentReportTask);
+            this.tabEventSchedule.Controls.Add(this.cbReportTask);
+            this.tabEventSchedule.Controls.Add(this.lblReportTask);
+            this.tabEventSchedule.Controls.Add(this.eventCalendar);
+            this.tabEventSchedule.Controls.Add(this.lbEvents);
+            this.tabEventSchedule.Controls.Add(this.lblTasksFor);
+            this.tabEventSchedule.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tabEventSchedule.Location = new System.Drawing.Point(4, 41);
+            this.tabEventSchedule.Name = "tabEventSchedule";
+            this.tabEventSchedule.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEventSchedule.Size = new System.Drawing.Size(1201, 680);
+            this.tabEventSchedule.TabIndex = 2;
+            this.tabEventSchedule.Text = "Event Schedule";
+            this.tabEventSchedule.UseVisualStyleBackColor = true;
             // 
             // btnSendReportTask
             // 
-            this.btnSendReportTask.Location = new System.Drawing.Point(742, 587);
+            this.btnSendReportTask.Location = new System.Drawing.Point(499, 554);
             this.btnSendReportTask.Name = "btnSendReportTask";
             this.btnSendReportTask.Size = new System.Drawing.Size(142, 45);
             this.btnSendReportTask.TabIndex = 8;
@@ -236,16 +240,16 @@
             // 
             // tbCommentReportTask
             // 
-            this.tbCommentReportTask.Location = new System.Drawing.Point(285, 481);
+            this.tbCommentReportTask.Location = new System.Drawing.Point(700, 418);
             this.tbCommentReportTask.Multiline = true;
             this.tbCommentReportTask.Name = "tbCommentReportTask";
-            this.tbCommentReportTask.Size = new System.Drawing.Size(431, 153);
+            this.tbCommentReportTask.Size = new System.Drawing.Size(431, 181);
             this.tbCommentReportTask.TabIndex = 7;
             // 
             // lblAddCommentReportTask
             // 
             this.lblAddCommentReportTask.AutoSize = true;
-            this.lblAddCommentReportTask.Location = new System.Drawing.Point(123, 483);
+            this.lblAddCommentReportTask.Location = new System.Drawing.Point(700, 387);
             this.lblAddCommentReportTask.Name = "lblAddCommentReportTask";
             this.lblAddCommentReportTask.Size = new System.Drawing.Size(141, 28);
             this.lblAddCommentReportTask.TabIndex = 6;
@@ -254,7 +258,7 @@
             // cbReportTask
             // 
             this.cbReportTask.FormattingEnabled = true;
-            this.cbReportTask.Location = new System.Drawing.Point(285, 409);
+            this.cbReportTask.Location = new System.Drawing.Point(210, 418);
             this.cbReportTask.Name = "cbReportTask";
             this.cbReportTask.Size = new System.Drawing.Size(431, 36);
             this.cbReportTask.TabIndex = 5;
@@ -263,7 +267,7 @@
             // 
             this.lblReportTask.AutoSize = true;
             this.lblReportTask.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblReportTask.Location = new System.Drawing.Point(112, 409);
+            this.lblReportTask.Location = new System.Drawing.Point(51, 418);
             this.lblReportTask.Name = "lblReportTask";
             this.lblReportTask.Size = new System.Drawing.Size(153, 32);
             this.lblReportTask.TabIndex = 4;
@@ -273,21 +277,22 @@
             // 
             this.eventCalendar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.eventCalendar.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.eventCalendar.Location = new System.Drawing.Point(869, 93);
+            this.eventCalendar.Location = new System.Drawing.Point(869, 86);
             this.eventCalendar.MaxSelectionCount = 1;
             this.eventCalendar.Name = "eventCalendar";
             this.eventCalendar.TabIndex = 0;
             this.eventCalendar.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar_DateChanged);
             // 
-            // lbTasks
+            // lbEvents
             // 
-            this.lbTasks.FormattingEnabled = true;
-            this.lbTasks.ItemHeight = 28;
-            this.lbTasks.Location = new System.Drawing.Point(51, 93);
-            this.lbTasks.Name = "lbTasks";
-            this.lbTasks.Size = new System.Drawing.Size(665, 284);
-            this.lbTasks.TabIndex = 3;
-            this.lbTasks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbTasks_MouseDoubleClick);
+            this.lbEvents.FormattingEnabled = true;
+            this.lbEvents.HorizontalScrollbar = true;
+            this.lbEvents.ItemHeight = 28;
+            this.lbEvents.Location = new System.Drawing.Point(51, 82);
+            this.lbEvents.Name = "lbEvents";
+            this.lbEvents.Size = new System.Drawing.Size(665, 228);
+            this.lbEvents.TabIndex = 3;
+            this.lbEvents.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbTasks_MouseDoubleClick);
             // 
             // lblTasksFor
             // 
@@ -331,7 +336,6 @@
             this.lbPaymentsInfo.Name = "lbPaymentsInfo";
             this.lbPaymentsInfo.Size = new System.Drawing.Size(524, 452);
             this.lbPaymentsInfo.TabIndex = 1;
-            this.lbPaymentsInfo.SelectedIndexChanged += new System.EventHandler(this.lbPaymentsInfo_SelectedIndexChanged);
             this.lbPaymentsInfo.DoubleClick += new System.EventHandler(this.btnSubmitProposal_Click);
             this.lbPaymentsInfo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbPaymentsInfo_MouseDoubleClick);
             // 
@@ -747,8 +751,8 @@
             // 
             // tabReport
             // 
+            this.tabReport.Controls.Add(this.lbWarnings);
             this.tabReport.Controls.Add(this.gbFileAReport);
-            this.tabReport.Controls.Add(this.tbWarnings);
             this.tabReport.Controls.Add(this.lblWarnings);
             this.tabReport.Location = new System.Drawing.Point(4, 41);
             this.tabReport.Name = "tabReport";
@@ -757,6 +761,16 @@
             this.tabReport.TabIndex = 5;
             this.tabReport.Text = "Report a problem ";
             this.tabReport.UseVisualStyleBackColor = true;
+            // 
+            // lbWarnings
+            // 
+            this.lbWarnings.FormattingEnabled = true;
+            this.lbWarnings.HorizontalScrollbar = true;
+            this.lbWarnings.ItemHeight = 28;
+            this.lbWarnings.Location = new System.Drawing.Point(31, 432);
+            this.lbWarnings.Name = "lbWarnings";
+            this.lbWarnings.Size = new System.Drawing.Size(1085, 228);
+            this.lbWarnings.TabIndex = 9;
             // 
             // gbFileAReport
             // 
@@ -839,19 +853,11 @@
             this.lblAdressReportToSomeone.TabIndex = 2;
             this.lblAdressReportToSomeone.Text = "Do you adress this report to someone?";
             // 
-            // tbWarnings
-            // 
-            this.tbWarnings.Location = new System.Drawing.Point(31, 459);
-            this.tbWarnings.Multiline = true;
-            this.tbWarnings.Name = "tbWarnings";
-            this.tbWarnings.Size = new System.Drawing.Size(719, 193);
-            this.tbWarnings.TabIndex = 7;
-            // 
             // lblWarnings
             // 
             this.lblWarnings.AutoSize = true;
             this.lblWarnings.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblWarnings.Location = new System.Drawing.Point(31, 408);
+            this.lblWarnings.Location = new System.Drawing.Point(31, 395);
             this.lblWarnings.Name = "lblWarnings";
             this.lblWarnings.Size = new System.Drawing.Size(232, 35);
             this.lblWarnings.TabIndex = 6;
@@ -882,6 +888,24 @@
             this.logoutpicturebox.TabStop = false;
             this.logoutpicturebox.Click += new System.EventHandler(this.logoutpicturebox_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(106, 481);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 32);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Tenant:";
+            // 
+            // cbTenantToReportTask
+            // 
+            this.cbTenantToReportTask.FormattingEnabled = true;
+            this.cbTenantToReportTask.Location = new System.Drawing.Point(210, 477);
+            this.cbTenantToReportTask.Name = "cbTenantToReportTask";
+            this.cbTenantToReportTask.Size = new System.Drawing.Size(431, 36);
+            this.cbTenantToReportTask.TabIndex = 10;
+            // 
             // FormStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -892,11 +916,12 @@
             this.Controls.Add(this.tabControlStudent);
             this.Name = "FormStudent";
             this.Text = "Student";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormStudent_FormClosing);
             this.tabControlStudent.ResumeLayout(false);
             this.tabHouseRules.ResumeLayout(false);
             this.tabHouseRules.PerformLayout();
-            this.tabCleaningSchedule.ResumeLayout(false);
-            this.tabCleaningSchedule.PerformLayout();
+            this.tabEventSchedule.ResumeLayout(false);
+            this.tabEventSchedule.PerformLayout();
             this.tabSupplies.ResumeLayout(false);
             this.tabSupplies.PerformLayout();
             this.gbSupplies.ResumeLayout(false);
@@ -917,7 +942,7 @@
         #endregion
         private TabPage tabHouseRules;
         private Label lblStudentHouseBV;
-        private TabPage tabCleaningSchedule;
+        private TabPage tabEventSchedule;
         private TabPage tabSupplies;
         private TabPage tabAgreements;
         private TabPage tabReport;
@@ -930,7 +955,7 @@
         private ListBox lbSupervisorInfo;
         private MonthCalendar eventCalendar;
         private Label lblTasksFor;
-        private ListBox lbTasks;
+        private ListBox lbEvents;
         private Label lblReportTask;
         private ComboBox cbReportTask;
         private TextBox tbCommentReportTask;
@@ -972,7 +997,6 @@
         private Label lblPayments;
         private ListBox lbPaymentsInfo;
         private Button btnSubmitPayment;
-        private TextBox tbWarnings;
         private Label lblWarnings;
         private Label lblProposalDescription;
         private TextBox tbProposalTitle;
@@ -985,5 +1009,8 @@
         private Label lblDate;
         private DateTimePicker dateTimePickerAgreements;
         private PictureBox logoutpicturebox;
+        private ListBox lbWarnings;
+        private ComboBox cbTenantToReportTask;
+        private Label label1;
     }
 }

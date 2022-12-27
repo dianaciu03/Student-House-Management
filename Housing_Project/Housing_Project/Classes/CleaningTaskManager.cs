@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,53 +9,54 @@ using System.Xml;
 namespace Housing_Project.Classes
 {
     [DataContract]
-    public class ReportManager
+    public class CleaningTaskManager
     {
-        [DataMember] private int reportIdSeeder = 1;
-        [DataMember] private List<Report> reports = new List<Report>();
-        private const string filePath = @"..\..\..\..\Data\reportData.txt";
+        [DataMember] List<CleaningTask> cleaningTasks = new List<CleaningTask>();
+        private const string filePath = @"..\..\..\..\Data\cleaningTaskData.txt";
 
-        public void AddReportToList(string title, string message, Tenant personAdressed)
+        public void AddCleaningTaskToList(CleaningTask cleaningTask)
         {
-            reports.Add(new Report(reportIdSeeder, title, message, personAdressed));
-            reportIdSeeder++;
+            cleaningTasks.Add(cleaningTask);
         }
 
-        public void RemoveReportFromList(Report report)
+        public List<CleaningTask> GetCleaningTasks()
         {
-            reports.Remove(report);
+            return cleaningTasks;
         }
 
-        public Report[] GetReports()
+        public List<CleaningTask> GetAnnouncementsOnDate(DateTime date)
         {
-            return reports.ToArray();
+            List<CleaningTask> cleaningTasksOnDate = new List<CleaningTask>();
+
+            foreach (CleaningTask ct in cleaningTasks)
+            {
+                if (ct.Date.Day == date.Day && ct.Date.Month == date.Month && ct.Date.Year == date.Year)
+                {
+                    cleaningTasksOnDate.Add(ct);
+                }
+            }
+            return cleaningTasksOnDate;
         }
 
-        public Report GetReport(int index)
-        {
-            return reports[index];
-        }
-
-
-        public ReportManager LoadData()
+        public CleaningTaskManager LoadData()
         {
             try
             {
-                ReportManager savedData = new ReportManager();
+                CleaningTaskManager savedData = new CleaningTaskManager();
 
                 using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    Type typeToSerialize = typeof(ReportManager);
+                    Type typeToSerialize = typeof(CleaningTaskManager);
 
                     List<Type> auxiliaryTypes = new List<Type>()
                     {
-                        typeof(Report),
+                        typeof(CleaningTask),
                     };
 
                     DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
                     XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
 
-                    savedData = (ReportManager)dcs.ReadObject(reader, true);
+                    savedData = (CleaningTaskManager)dcs.ReadObject(reader, true);
                     return savedData;
                 }
             }
@@ -67,18 +66,18 @@ namespace Housing_Project.Classes
             }
         }
 
-        public void WriteData(ReportManager data) //Param is data that needs to be saved
+        public void WriteData(CleaningTaskManager data) //Param is data that needs to be saved
         {
             try
             {
                 using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
                 using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
                 {
-                    Type typeToSerialize = typeof(ReportManager);
+                    Type typeToSerialize = typeof(CleaningTaskManager);
 
                     List<Type> auxiliaryTypes = new List<Type>()
                     {
-                        typeof(Report),
+                        typeof(CleaningTask),
                     };
 
                     DataContractSerializer dcs = new(typeToSerialize);

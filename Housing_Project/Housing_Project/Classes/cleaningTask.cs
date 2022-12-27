@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -8,34 +10,34 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace Housing_Project.Classes
 {
-    [Serializable]
-    public  class cleaningTask
+    [DataContract]
+    public  class CleaningTask
     {
-        //remove underscores from variables
-        //use properties
+        [DataMember] private Tenant assignedPerson;
+        [DataMember] private DateTime SelectedDate;
+        [DataMember] private List<string> content;
         
-        private string assignedPerson;
-        private string SelectedDate;
-        private List<string> tasks;   
-        public cleaningTask( string assignedPerson, string selectedDate)
+        public CleaningTask(Tenant assignedPerson, DateTime selectedDate, List<string> content)
         {
             this.assignedPerson = assignedPerson;
             this.SelectedDate = selectedDate;
+            this.content = content;
         }
-        public List<string> tasks1
+
+        public List<string> Content { get { return content; } }
+
+        public Tenant AssignedPerson 
+        { 
+            get { return assignedPerson; }
+            set { assignedPerson = value; }
+        }
+
+        public DateTime Date
         {
-            get { return tasks; }
-            set { this.tasks = value; }
+            get { return SelectedDate; }
+            set { SelectedDate = value; }
         }
-       
-        public void SetDate(string selectedDate)
-        {
-            this.SelectedDate = selectedDate;
-        }
-        public string GetDate()
-        {
-            return this.SelectedDate;
-        }
+
         public string GetInfo()
         {
             return $"Date:{SelectedDate},Person:{this.assignedPerson}";

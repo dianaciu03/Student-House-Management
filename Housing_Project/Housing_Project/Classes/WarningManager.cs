@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,53 +9,52 @@ using System.Xml;
 namespace Housing_Project.Classes
 {
     [DataContract]
-    public class ReportManager
+    public class WarningManager
     {
-        [DataMember] private int reportIdSeeder = 1;
-        [DataMember] private List<Report> reports = new List<Report>();
-        private const string filePath = @"..\..\..\..\Data\reportData.txt";
+        [DataMember] List<Warning> warnings = new List<Warning>();
+        private const string filePath = @"..\..\..\..\Data\warningData.txt";
 
-        public void AddReportToList(string title, string message, Tenant personAdressed)
+        public void AddWarningToList(Warning warning)
         {
-            reports.Add(new Report(reportIdSeeder, title, message, personAdressed));
-            reportIdSeeder++;
+            warnings.Add(warning);
         }
 
-        public void RemoveReportFromList(Report report)
+        public void RemoveWarningFromList(Warning warning)
         {
-            reports.Remove(report);
+            warnings.Remove(warning);
         }
 
-        public Report[] GetReports()
+        public List<Warning> GetWarningsTenant(Tenant tenant)
         {
-            return reports.ToArray();
+            List<Warning> warningsTenant = new List<Warning>();
+
+            foreach (Warning w in warnings)
+            {
+                if (w.PersonAdressed == tenant)
+                    warningsTenant.Add(w);
+            }
+            return warningsTenant;
         }
 
-        public Report GetReport(int index)
-        {
-            return reports[index];
-        }
-
-
-        public ReportManager LoadData()
+        public WarningManager LoadData()
         {
             try
             {
-                ReportManager savedData = new ReportManager();
+                WarningManager savedData = new WarningManager();
 
                 using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    Type typeToSerialize = typeof(ReportManager);
+                    Type typeToSerialize = typeof(WarningManager);
 
                     List<Type> auxiliaryTypes = new List<Type>()
                     {
-                        typeof(Report),
+                        typeof(Warning),
                     };
 
                     DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
                     XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
 
-                    savedData = (ReportManager)dcs.ReadObject(reader, true);
+                    savedData = (WarningManager)dcs.ReadObject(reader, true);
                     return savedData;
                 }
             }
@@ -67,18 +64,18 @@ namespace Housing_Project.Classes
             }
         }
 
-        public void WriteData(ReportManager data) //Param is data that needs to be saved
+        public void WriteData(WarningManager data) //Param is data that needs to be saved
         {
             try
             {
                 using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
                 using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
                 {
-                    Type typeToSerialize = typeof(ReportManager);
+                    Type typeToSerialize = typeof(WarningManager);
 
                     List<Type> auxiliaryTypes = new List<Type>()
                     {
-                        typeof(Report),
+                        typeof(Warning),
                     };
 
                     DataContractSerializer dcs = new(typeToSerialize);

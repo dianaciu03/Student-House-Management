@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
-    [Serializable]
+    [DataContract]
     public class Report
     {
-        private int reportID;
-        private string title;
-        private string message; 
-        private Tenant adressedPerson;
+        [DataMember] private int reportID;
+        [DataMember] private string title;
+        [DataMember] private string message;
+        [DataMember] private Tenant adressedPerson;
 
         public Report(int reportID, string title, string description, Tenant adressedPerson)
         {

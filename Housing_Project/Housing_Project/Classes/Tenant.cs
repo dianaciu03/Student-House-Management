@@ -13,17 +13,14 @@ using System.Windows.Forms;
 
 namespace Housing_Project.Classes
 {
-    [Serializable]
+    [DataContract]
     public class Tenant
     {
-        private string name;
-        private string email;
-        private string password;
-        private string phoneNumber;
-        private int roomNumber;
-        private List<Warning> warnings = new List<Warning>();
-        private List<cleaningTask> tasks = new List<cleaningTask>();
-        private List<string> emails = new List<string>();
+        [DataMember] private string name;
+        [DataMember] private string email;
+        [DataMember] private string password;
+        [DataMember] private string phoneNumber;
+        [DataMember] private int roomNumber;
 
         public Tenant(string name, string email, string phoneNumber)
         {
@@ -37,7 +34,6 @@ namespace Housing_Project.Classes
             this.phoneNumber = phoneNumber;
             this.email = email;
             this.password = password;
-    
        }   
 
         public string Name 
@@ -50,15 +46,6 @@ namespace Housing_Project.Classes
         {
             get { return email; }
             set { this.email = value; }
-        }
-
-        public void AddEmailToList()
-        {
-            emails.Add(email);
-        }
-        public List<string> GetEmailList()
-        {
-            return emails.ToList();
         }
 
         public string PhoneNumber
@@ -78,8 +65,6 @@ namespace Housing_Project.Classes
             get { return password; }
             set { password = value; }
         }
-
-        public List<Warning> Warnings { get { return warnings; } }
 
         public string GetInfo()
         {

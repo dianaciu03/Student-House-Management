@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
-    [Serializable]
+    [DataContract]
     public class Agreement
     {
-        private string title;
-        private int agreementID = 0;
-        private string description;
-        private List<Tenant> tenantsApproved = new List<Tenant>();
-        private List<Tenant> tenantsRejected = new List<Tenant>();
-        private List<Tenant> tenantsNotAnswered = new List<Tenant>();
-        private DateTime date;
+        [DataMember] private string title;
+        [DataMember] private int agreementID = 0;
+        [DataMember] private string description;
+        [DataMember] private List<Tenant> tenantsApproved = new List<Tenant>();
+        [DataMember] private List<Tenant> tenantsRejected = new List<Tenant>();
+        [DataMember] private List<Tenant> tenantsNotAnswered = new List<Tenant>();
+        [DataMember] private DateTime date;
 
         public Agreement(int id, string title, string description, DateTime date)
         {

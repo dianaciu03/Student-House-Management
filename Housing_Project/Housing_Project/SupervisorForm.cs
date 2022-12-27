@@ -23,78 +23,99 @@ namespace Housing_Project
 {
     public partial class FormSupervisor : Form
     {
-        //denitsa VVV
-        cleaningTask cleaning;
         CheckBox [] checkBoxes;
         private Supervisor currentUser;
         private UserManager userManager;
+        private AnnouncementManager announcementManager;
         private RuleManager ruleManager;
         private ReportManager reportManager;
-        cleaningTask task;
-        Announcement announcement;
+        private WarningManager warningManager;
+        private CleaningTaskManager cleaningTaskManager;
 
-        public FormSupervisor(Object currentUser, UserManager userManager, RuleManager ruleManager, ReportManager reportManager)
+        public FormSupervisor(Supervisor currentUser, UserManager userManager, AnnouncementManager announcementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
         {
             InitializeComponent();
-       
-            this.currentUser = (Supervisor)currentUser;
-            this.userManager = userManager;
-            this.ruleManager = ruleManager;
-            this.reportManager = reportManager;
-
-            foreach (Tenant t in userManager.Tenants)
-                cbSelectTenantToAssignTask.Items.Add(t);
-            
+            InitializeManagers(currentUser, userManager, announcementManager, ruleManager, reportManager, warningManager, cleaningTaskManager);
+            InitializeTenantComboBoxes();
 
             this.Text = $"{currentUser}";//upper bar text
             btnSubmitChanges.Visible = false;
             btnSubmitChangesTenant.Visible = false;
 
             checkBoxes = new CheckBox[]
-           {
+            {
                 cbCleanBathroom1,cbCleanBathroom2,cbCleanTheKitchen,cbCleanTheLivingRoom,cbCleanTheStarirs,cbTakeOutTheTrash
-
-           };
+            };
         }
 
-        //Update tab on click
-        private void tabControlSupervisor_Click(object sender, EventArgs e)
+        private void InitializeManagers(Supervisor currentUser, UserManager userManager, AnnouncementManager announcementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
+        {
+            this.currentUser = currentUser;
+            this.userManager = userManager;
+            this.announcementManager = announcementManager;
+            this.ruleManager = ruleManager;
+            this.reportManager = reportManager;
+            this.warningManager = warningManager;
+            this.cleaningTaskManager = cleaningTaskManager;
+
+            userManager.LoadData();
+            announcementManager.LoadData();
+            ruleManager.LoadData();
+            reportManager.LoadData();
+            warningManager.LoadData();
+            cleaningTaskManager.LoadData();
+        }
+
+        private void InitializeTenantComboBoxes()
+        {
+            foreach (Tenant t in userManager.Tenants)
+                cbSelectTenantToAssignTask.Items.Add(t);
+
+            foreach (Tenant t in userManager.Tenants)
+                cbTenantToSendWarning.Items.Add(t);
+        }
+
+        //Update content when chaging tabs
+        private void tabControlSupervisor_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (tabControlSupervisor.SelectedTab == tabRules)
             {
-                UpdateListBox("tabRules");
+                UpdateListBox();
                 ClearFields("tabRules");
             }
             else if (tabControlSupervisor.SelectedTab == tabContactInfo)
             {
-                UpdateListBox("tabContactInfo");
+                UpdateListBox();
                 ClearFields("tabContactInfoTenant");
                 ClearFields("tabContactInfoSupervisor");
             }
             else if (tabControlSupervisor.SelectedTab == tabManageReports)
             {
-                UpdateListBox("tabManageReports");
+                UpdateListBox();
                 ClearFields("tabManageReports");
+            }
+            else if (tabControlSupervisor.SelectedTab == tabAddEvents)
+            {
+                ClearFields("tabAddEventsAnnouncement");
             }
         }
 
         //Method to update the listbox from a tab
-        private void UpdateListBox(string tab)
+        private void UpdateListBox()
         {
-
-            if (tab == "tabRules")
+            if (tabControlSupervisor.SelectedTab == tabRules)
             {
                 rulesListBox.Items.Clear();
                 foreach (Rule r in ruleManager.GetRules())
                     rulesListBox.Items.Add(r);
             }
-            else if (tab == "tabContactInfo")
+            else if (tabControlSupervisor.SelectedTab == tabContactInfo)
             {
                 lbTenantsInfo.Items.Clear();
                 foreach (Tenant t in userManager.GetTenants())
                     lbTenantsInfo.Items.Add(t);
             }
-            else if (tab == "tabManageReports")
+            else if (tabControlSupervisor.SelectedTab == tabManageReports)
             {
                 lbReceivedReports.Items.Clear();
                 cbTenantToSendWarning.Items.Clear();
@@ -137,6 +158,22 @@ namespace Housing_Project
                 tbWarningSubject.Clear();
                 tbWarningDescription.Clear();
             }
+            else if (tab == "tabAddEventsCleaningTask")
+            {
+                cbSelectTenantToAssignTask.SelectedIndex = -1;
+                foreach (CheckBox checkBox in checkBoxes)
+                {
+                    if (checkBox.Checked)
+                    {
+                        checkBox.Checked = false;
+                    }
+                }
+            }
+            else if (tab == "tabAddEventsAnnouncements")
+            {
+                tbAnnouncementTitle.Clear();
+                tbAnnouncementDescription.Clear();
+            }
         }
         
         //
@@ -153,7 +190,7 @@ namespace Housing_Project
                 if (!String.IsNullOrEmpty(subject) && !String.IsNullOrEmpty(description))
                     ruleManager.AddRuleToList(subject, description, currentUser);
 
-                UpdateListBox("tabRules");
+                UpdateListBox();
             }
             catch (Exception)
             {
@@ -204,7 +241,7 @@ namespace Housing_Project
                 editbtnRules.Visible = true;
                 btnSubmitChanges.Visible = false;
 
-                UpdateListBox("tabRules");
+                UpdateListBox();
                 ClearFields("tabRules");
                 rulesListBox.SelectionMode = SelectionMode.One;
             }
@@ -234,7 +271,7 @@ namespace Housing_Project
                     userManager.AddTenantToList(tenant);
                 }
 
-                UpdateListBox("tabContactInfo");
+                UpdateListBox();
                 ClearFields("tabContactInfoTenant");
             }
             catch(Exception)
@@ -249,14 +286,14 @@ namespace Housing_Project
             try
             {
                 Tenant tenant = (Tenant)lbTenantsInfo.SelectedItem;
-                //indexboxUsers.Text = tenant.TenantID.ToString();
+                indexboxUsers.Text = (1 + lbTenantsInfo.SelectedIndex).ToString();
                 tbTenantEmail.Text = tenant.Email;
                 tbTenantName.Text = tenant.Name;
                 tbTenantPhone.Text = tenant.PhoneNumber;
 
                 edittenantbtn.Visible = false;
+                btnAddTenant.Visible = false;
                 btnSubmitChangesTenant.Visible = true;
-                lbTenantsInfo.SelectionMode = SelectionMode.None;
             }
             catch(Exception)
             {
@@ -279,8 +316,9 @@ namespace Housing_Project
                     tenant.PhoneNumber = tbTenantPhone.Text;
 
                 edittenantbtn.Visible = true;
+                btnAddTenant.Visible = true;
                 btnSubmitChangesTenant.Visible = false;
-                lbTenantsInfo.SelectionMode = SelectionMode.One;
+                ClearFields("tabContactInfoTenant");
             }
             catch (Exception)
             {
@@ -292,11 +330,22 @@ namespace Housing_Project
         //
         //MANAGE REPORTS TAB
         //
+
+        //Get more info if you double click on the report
         private void lbReceivedReports_DoubleClick(object sender, EventArgs e)
         {
-            int index = lbReceivedReports.SelectedIndex;
-            MessageBox.Show(reportManager.GetReport(index).GetInfoReport());
+            try
+            {
+                int index = lbReceivedReports.SelectedIndex;
+                MessageBox.Show(reportManager.GetReport(index).GetInfoReport());
+            }
+            catch(Exception)
+            {
+                return;
+            }
         }
+
+
         private void btnRemoveReport_Click(object sender, EventArgs e)
         {
             try
@@ -321,7 +370,7 @@ namespace Housing_Project
                 if(!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(message))
                 {
                     Warning warning = new Warning(title, message, warningAdressedTo, currentUser);
-                    userManager.AddWarningToTenantList(warningAdressedTo, warning);
+                    warningManager.AddWarningToList(warning);
                 }
             }
             catch (Exception)
@@ -335,43 +384,65 @@ namespace Housing_Project
         //
         private void btnSubmitTask_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Tenant assignedPerson = (Tenant)cbSelectTenantToAssignTask.SelectedItem; 
+                DateTime date = dateTimePickerTask.Value;
+                List<string> content = new List<string>();
 
+                foreach (CheckBox checkBox in checkBoxes)
+                {
+                    if (checkBox.Checked)
+                    {
+                        content.Add(checkBox.Text);
+                    }
+                }
 
-            List<cleaningTask> tasks = new List<cleaningTask>();
-            string assignedPerson1 = cbSelectTenantToAssignTask.Text; 
-            //foreach (CheckBox checkBox in checkBoxes)
-            //{
-            //    if (checkBox.Checked)
-            //    {
-            //        task.tasks1.Add(checkBox.Text);
-            //    }
-            //}
-           string date =  dateTimePicker1.Text;
-            task = new cleaningTask(assignedPerson1, date);
-            lbEvents.Items.Add(task.GetInfo());
+                if(content.Count > 0)
+                {
+                    CleaningTask cleaningTask = new CleaningTask(assignedPerson, date, content);
+                    cleaningTaskManager.AddCleaningTaskToList(cleaningTask);
+                    lbEvents.Items.Add(cleaningTask);
+                    ClearFields("tabAddEventsCleaningTask");
+                }
+            }
+            catch(Exception)
+            {
+                return;
+            }
         }
 
         private void btnSubmitAnnouncement_Click(object sender, EventArgs e)
         {
-            string announcement1 = tbAnnouncementTitle.Text;
+            string title = tbAnnouncementTitle.Text;
             string description = tbAnnouncementDescription.Text;
-            string date = dateTimePicker2.Text;
-            announcement = new Announcement(announcement1, description, date);
-            MessageBox.Show(announcement.GetAnnouncementInfo());
+            DateTime date = dateTimePickerAnnouncement.Value;
+
+            if(!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
+            {
+                Announcement announcement = new Announcement(title, description, date);
+                announcementManager.AddAnnouncementToList(announcement);
+                lbEvents.Items.Add(announcement);
+            }
         }
 
         //Log out button
         private void logoutpicturebox_Click(object sender, EventArgs e)
         {
             this.Hide();
-            LoginRegister loginpage = new LoginRegister();
+            LoginRegister loginPage = new LoginRegister();
             this.Close();
-            loginpage.ShowDialog();
+            loginPage.ShowDialog();
         }
 
-        private void tbAnnouncementDescription_TextChanged(object sender, EventArgs e)
+        private void FormSupervisor_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            announcementManager.WriteData(announcementManager);
+            userManager.WriteData(userManager);
+            ruleManager.WriteData(ruleManager);
+            reportManager.WriteData(reportManager);
+            warningManager.WriteData(warningManager);
+            cleaningTaskManager.WriteData(cleaningTaskManager);
         }
     }
 }

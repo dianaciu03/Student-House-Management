@@ -11,40 +11,143 @@ using System.Windows.Forms;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using Rule = Housing_Project.Classes.Rule;
 
 namespace Housing_Project
 {
     public partial class FormStudent : Form
     {
-        
-        CheckBox[] checkBoxes;
+        List<CheckBox> checkBoxes  = new List<CheckBox>();
         private Tenant currentUser;
         private UserManager userManager;
         private PaymentManager paymentManager;
         private AgreementManager agreementManager;
         private RuleManager ruleManager;
         private ReportManager reportManager;
+        private WarningManager warningManager;
+        private CleaningTaskManager cleaningTaskManager;
         
-        public FormStudent(Object currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager, ReportManager reportManager)
+        public FormStudent(Tenant currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
         {
-            
             InitializeComponent();
-            this.currentUser = (Tenant) currentUser;
+            InitializeManagers(currentUser, userManager, paymentManager, agreementManager, ruleManager, reportManager, warningManager, cleaningTaskManager);
+            InitializeStudentComboBoxes();
+
+            this.Text = $"{currentUser}";
+            UpdateListBox();
+
+            //Array of checkboxes
+            checkBoxes = new List<CheckBox>
+            {
+                cbSponges, cbDishSoap, cbPaperRolls, cbNapkins, cbGarbageBags, cbToiletPaper, cbLaundryPods, cbLaundrySoftener, cbSoap,
+                cbFreshener, cbMopCap, cbFloorCleaner, cbAntiGreaseSolution, cbAntiCalcarSolution, cbHygienizer, cbFiberCloth, cbGlassCleaner
+            };
+        }
+
+        private void tabControlStudent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ClearFiealds();
+            UpdateListBox();
+        }
+
+        private void InitializeManagers(Tenant currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
+        {
+            this.currentUser = currentUser;
             this.userManager = userManager;
             this.paymentManager = paymentManager;
             this.agreementManager = agreementManager;
             this.ruleManager = ruleManager;
             this.reportManager = reportManager;
+            this.warningManager = warningManager;
+            this.cleaningTaskManager = cleaningTaskManager;
 
-            //we need to add info to list boxes in contact info tab when we initialize the FormStudent
-            this.Text = $"{currentUser}";
+            userManager.LoadData();
+            paymentManager.LoadData();
+            agreementManager.LoadData();
+            ruleManager.LoadData();
+            reportManager.LoadData();
+            warningManager.LoadData();
+            cleaningTaskManager.LoadData();
+        }
 
-            //Array of checkboxes
-            checkBoxes = new CheckBox[]
+        private void InitializeStudentComboBoxes()
+        {
+            foreach (Tenant t in userManager.Tenants)
+                cbTenantsToReport.Items.Add(t);
+
+            foreach (Tenant t in userManager.Tenants)
+                cbTenantToReportTask.Items.Add(t);
+        }
+
+        private void UpdateListBox()
+        {
+            if(tabControlStudent.SelectedTab == tabHouseRules)
             {
-                cbSponges, cbDishSoap, cbPaperRolls, cbNapkins, cbGarbageBags, cbToiletPaper, cbLaundryPods, cbLaundrySoftener, cbSoap,
-                cbFreshener, cbMopCap, cbFloorCleaner, cbAntiGreaseSolution, cbAntiCalcarSolution, cbHygienizer, cbFiberCloth, cbGlassCleaner
-            };
+                lbHouseRules.Items.Clear();
+                lbTenantsContactInfo.Items.Clear();
+                lbSupervisorInfo.Items.Clear();
+
+                foreach (Rule r in ruleManager.GetRules())
+                    lbHouseRules.Items.Add(r);
+                foreach(Tenant t in userManager.GetTenants())
+                    lbTenantsContactInfo.Items.Add(t);
+                foreach(Supervisor s in userManager.GetSupervisors())
+                    lbSupervisorInfo.Items.Add(s);
+            }
+            else if(tabControlStudent.SelectedTab == tabEventSchedule)
+            {
+                lbEvents.Items.Clear();
+            }
+            else if(tabControlStudent.SelectedTab == tabSupplies)
+            {
+                lbPaymentsInfo.Items.Clear();
+                foreach (Payment p in paymentManager.GetPayments())
+                    lbPaymentsInfo.Items.Add(p);
+            }
+            else if (tabControlStudent.SelectedTab == tabAgreements)
+            {
+                lbAgreementsDisplay.Items.Clear();
+                foreach (Agreement a in agreementManager.GetAgreements())
+                    lbAgreementsDisplay.Items.Add(a);
+            }
+            else if (tabControlStudent.SelectedTab == tabReport)
+            {
+                lbWarnings.Items.Clear();
+                foreach (Warning w in warningManager.GetWarningsTenant(currentUser))
+                    lbWarnings.Items.Add(w);
+            }
+        }
+
+        private void ClearFiealds()
+        {
+            if (tabControlStudent.SelectedTab == tabEventSchedule)
+            {
+                cbReportTask.SelectedIndex = -1;
+                tbCommentReportTask.Clear();
+            }
+            else if (tabControlStudent.SelectedTab == tabSupplies)
+            {
+                foreach (CheckBox checkBox in checkBoxes)
+                {
+                    if (checkBox.Checked)
+                    {
+                        checkBox.Checked = false;
+                    }
+                }
+                tbTotalPrice.Clear();
+                tbOtherProducts.Clear();
+            }
+            else if (tabControlStudent.SelectedTab == tabAgreements)
+            {
+                tbProposalTitle.Clear();
+                tbReportContent.Clear();
+            }
+            else if (tabControlStudent.SelectedTab == tabReport)
+            {
+                tbReportTitle.Clear();
+                tbReportContent.Clear();
+                cbTenantsToReport.SelectedIndex = -1;
+            }
         }
 
         //
@@ -53,25 +156,34 @@ namespace Housing_Project
 
         private void btnSendReportTask_Click(object sender, EventArgs e)
         {
-            //nothing yet
+            try
+            {
+                string reportTitle = cbReportTask.Text;
+                string reportContent = tbCommentReportTask.Text;
+                Tenant personReported = (Tenant)cbTenantToReportTask.SelectedItem;
+
+                //needs implemenation
+            }
+            catch(Exception)
+            {
+                return;
+            }
         }
         
         private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
-            lbTasks.Items.Clear();
+            lbEvents.Items.Clear();
             DateTime selectedDate = eventCalendar.SelectionRange.Start;
-            List<Agreement> selectedAgreements = new List<Agreement>();
-            selectedAgreements = agreementManager.GetAgreementsOnDate(selectedDate);
             
-            foreach (Agreement agreementInfo in selectedAgreements)
+            foreach (Agreement agreementInfo in agreementManager.GetAgreementsOnDate(selectedDate))
             {
-                lbTasks.Items.Add(agreementInfo);
+                lbEvents.Items.Add(agreementInfo);
             }
 
         }
         private void lbTasks_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = lbTasks.SelectedIndex;
+            int index = lbEvents.SelectedIndex;
             MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
         }
 
@@ -81,14 +193,12 @@ namespace Housing_Project
 
         private void btnSubmitPayment_Click(object sender, EventArgs e)
         {
-            lbPaymentsInfo.Items.Clear();
-            List<string> items = new List<string>();
-
-            Tenant buyer = currentUser;
-            double totalPrice = 0;
- 
             try
             {
+                lbPaymentsInfo.Items.Clear();
+                List<string> items = new List<string>();
+                Tenant buyer = currentUser;
+                double totalPrice = 0;
                 totalPrice = Convert.ToDouble(tbTotalPrice.Text);
 
                 // Loop through the array of checkboxes
@@ -104,21 +214,14 @@ namespace Housing_Project
                     items.Add(tbOtherProducts.Text);
 
                 if (items.Count > 0 && totalPrice > 0)
-                    paymentManager.AddPaymentToList(items, buyer, totalPrice);
-                
-                //make method to update listboxes like in supervisor page
-                foreach (Payment p in paymentManager.GetPayments())
-                    lbPaymentsInfo.Items.Add(p);
-
-                foreach (CheckBox checkBox in checkBoxes)
                 {
-                    if (checkBox.Checked)
-                    {
-                        checkBox.Checked = false;
-                    }
+                    Payment payment = new Payment(items, buyer, totalPrice);
+                    paymentManager.AddPaymentToList(payment);
+                    paymentManager.WriteData(paymentManager);
                 }
-                tbTotalPrice.Clear();
-                tbOtherProducts.Clear();
+
+                UpdateListBox();
+                ClearFiealds();                
             }
             catch (Exception)
             {
@@ -149,10 +252,9 @@ namespace Housing_Project
                 if(!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
                 {
                     agreementManager.AddAgreementToList(title, description, date);
+                    agreementManager.WriteData(agreementManager);
                 }
-
-                foreach (Agreement a in agreementManager.GetAgreements()) 
-                    lbAgreementsDisplay.Items.Add(a);
+                UpdateListBox();
             }
             catch(Exception)
             {
@@ -180,21 +282,14 @@ namespace Housing_Project
                 tbReportContent.Text = "";
                 if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
                 {
-                    
+                    //needs implementation
                 }
 
-                foreach (Agreement a in agreementManager.GetAgreements())
-                    lbAgreementsDisplay.Items.Add(a);
             }
             catch(Exception)
             {
                 return;
             }
-        }
-
-        private void tabControlStudent_Click(object sender, EventArgs e)
-        {
-            //update tabs like in supervisor form
         }
 
         private void logoutpicturebox_Click(object sender, EventArgs e)
@@ -206,11 +301,17 @@ namespace Housing_Project
             
         }
 
-        private void lbPaymentsInfo_SelectedIndexChanged(object sender, EventArgs e)
+        private void FormStudent_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+            userManager.WriteData(userManager);
+            paymentManager.WriteData(paymentManager);
+            agreementManager.WriteData(agreementManager);
+            ruleManager.WriteData(ruleManager);
+            reportManager.WriteData(reportManager);
+            warningManager.WriteData(warningManager);
+            cleaningTaskManager.WriteData(cleaningTaskManager);
         }
 
-  
+
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,53 +9,59 @@ using System.Xml;
 namespace Housing_Project.Classes
 {
     [DataContract]
-    public class ReportManager
+    public class AnnouncementManager
     {
-        [DataMember] private int reportIdSeeder = 1;
-        [DataMember] private List<Report> reports = new List<Report>();
-        private const string filePath = @"..\..\..\..\Data\reportData.txt";
+        [DataMember] List<Announcement> announcements = new List<Announcement>();
+        private const string filePath = @"..\..\..\..\Data\announcementData.txt";
 
-        public void AddReportToList(string title, string message, Tenant personAdressed)
+        public void AddAnnouncementToList(Announcement announcement)
         {
-            reports.Add(new Report(reportIdSeeder, title, message, personAdressed));
-            reportIdSeeder++;
+            announcements.Add(announcement);
         }
 
-        public void RemoveReportFromList(Report report)
+        public void RemoveAnnouncementToList(Announcement announcement)
         {
-            reports.Remove(report);
+            announcements.Remove(announcement);
         }
 
-        public Report[] GetReports()
+        public List<Announcement> GetAnnouncements()
         {
-            return reports.ToArray();
+            return announcements;
         }
 
-        public Report GetReport(int index)
+        public List<Announcement> GetAnnouncementsOnDate(DateTime date)
         {
-            return reports[index];
+            List<Announcement> announcementsOnDate = new List<Announcement>();
+
+            foreach (Announcement a in announcements)
+            {
+                if (a.Date.Day == date.Day && a.Date.Month == date.Month && a.Date.Year == date.Year)
+                {
+                    announcementsOnDate.Add(a);
+                }
+            }
+            return announcementsOnDate;
         }
 
-
-        public ReportManager LoadData()
+        public AnnouncementManager LoadData()
         {
             try
             {
-                ReportManager savedData = new ReportManager();
+                AnnouncementManager savedData = new AnnouncementManager();
 
                 using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
                 {
-                    Type typeToSerialize = typeof(ReportManager);
+                    Type typeToSerialize = typeof(AnnouncementManager);
 
                     List<Type> auxiliaryTypes = new List<Type>()
                     {
-                        typeof(Report),
+                        typeof(Announcement),
                     };
 
                     DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
                     XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
 
-                    savedData = (ReportManager)dcs.ReadObject(reader, true);
+                    savedData = (AnnouncementManager)dcs.ReadObject(reader, true);
                     return savedData;
                 }
             }
@@ -67,18 +71,18 @@ namespace Housing_Project.Classes
             }
         }
 
-        public void WriteData(ReportManager data) //Param is data that needs to be saved
+        public void WriteData(AnnouncementManager data) //Param is data that needs to be saved
         {
             try
             {
                 using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
                 using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
                 {
-                    Type typeToSerialize = typeof(ReportManager);
+                    Type typeToSerialize = typeof(AnnouncementManager);
 
                     List<Type> auxiliaryTypes = new List<Type>()
                     {
-                        typeof(Report),
+                        typeof(Announcement),
                     };
 
                     DataContractSerializer dcs = new(typeToSerialize);

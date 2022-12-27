@@ -49,7 +49,6 @@
             this.loginpasswordlbl = new System.Windows.Forms.Label();
             this.loginbtn = new System.Windows.Forms.Button();
             this.tabControlLoginRegister = new System.Windows.Forms.TabControl();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tabPageRegister.SuspendLayout();
             this.tabPageLogin.SuspendLayout();
             this.tabControlLoginRegister.SuspendLayout();
@@ -278,7 +277,8 @@
             this.tabControlLoginRegister.Click += new System.EventHandler(this.tabControlLoginRegister_Click);
             // 
             // LoginRegister
-            // 
+            //
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginRegister_FormClosing);
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(736, 851);
@@ -317,6 +317,5 @@
         private Label loginpasswordlbl;
         private Button loginbtn;
         private TabControl tabControlLoginRegister;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

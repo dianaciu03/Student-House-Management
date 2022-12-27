@@ -1,28 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Housing_Project.Classes
 {
-    
+    [DataContract]
     public class Supervisor
     {
-        private string name;
-        private string email;
-        private string password;
-        private string phoneNumber;
-        private List<string> emails;
+        [DataMember] private string name;
+        [DataMember] private string email;
+        [DataMember] private string password;
+        [DataMember] private string phoneNumber;
 
-        public void AddEmailToList()
-        {
-            emails.Add(email);
-        }
-        public List<string> GetEmailList()
-        {
-            return emails.ToList();
-        }
         public Supervisor(string name, string email, string phoneNumber)
         {
             this.name = name;

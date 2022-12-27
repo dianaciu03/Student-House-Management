@@ -9,13 +9,13 @@ using System.Runtime.Serialization;
 
 namespace Housing_Project.Classes
 {
-    [Serializable]
+    [DataContract]
     public class Rule
     {
-        private int ruleID;
-        private string subject;
-        private string message;
-        private Supervisor sender;
+        [DataMember] private int ruleID;
+        [DataMember] private string subject;
+        [DataMember] private string message;
+        [DataMember] private Supervisor sender;
         
         public Rule(int ruleID, string subject, string message, Supervisor sender)
         {

@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using Microsoft.VisualBasic.ApplicationServices;
+using System.Runtime.CompilerServices;
+using System.Xml;
 
 namespace Housing_Project.Classes
 {
-    [Serializable]
+    [DataContract]
     public class PaymentManager
     {
-        private int paymentIdSeeder = 1;
-        private List<Payment> payments = new List<Payment>();
-
+        [DataMember] private List<Payment> payments = new List<Payment>();
+        private const string filePath = @"..\..\..\..\Data\paymentData.txt";
+        
         public bool IsPaymentComplete(Payment payment)
         {
             if (payment.TenantsNotPaidCount() == 0)
@@ -31,10 +33,9 @@ namespace Housing_Project.Classes
             return (double)payment.TotalPrice / numberTenants;
         }
 
-        public void AddPaymentToList(List<string> list, Tenant buyer, double totalPrice)
+        public void AddPaymentToList(Payment payment)
         {
-            payments.Add(new Payment(paymentIdSeeder, list, buyer, totalPrice));
-            paymentIdSeeder++;
+            payments.Add(payment);
         }
 
         public Payment[] GetPayments()
@@ -45,6 +46,58 @@ namespace Housing_Project.Classes
         public Payment GetPayment(int index)
         {
             return payments[index];
+        }
+
+        public PaymentManager LoadData()
+        {
+            try
+            {
+                PaymentManager savedData = new PaymentManager();
+
+                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    Type typeToSerialize = typeof(PaymentManager);
+
+                    List<Type> auxiliaryTypes = new List<Type>()
+                    {
+                        typeof(Payment),
+                    };
+
+                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
+                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+
+                    savedData = (PaymentManager)dcs.ReadObject(reader, true);
+                    return savedData;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void WriteData(PaymentManager data) //Param is data that needs to be saved
+        {
+            try
+            {
+                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
+                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    Type typeToSerialize = typeof(PaymentManager);
+
+                    List<Type> auxiliaryTypes = new List<Type>()
+                    {
+                        typeof(Payment),
+                    };
+
+                    DataContractSerializer dcs = new(typeToSerialize);
+                    dcs.WriteObject(fs, data);
+                }
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
     }
 }

@@ -298,7 +298,6 @@ namespace Housing_Project
         {
             this.Hide();
             LoginRegister loginpage= new LoginRegister();
-            this.Close();
             loginpage.ShowDialog();
             
         }

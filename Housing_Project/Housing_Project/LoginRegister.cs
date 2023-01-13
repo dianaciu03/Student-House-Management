@@ -100,6 +100,7 @@ namespace Housing_Project
                 string email = emailadresstxt.Text;
                 string phone = phonenumbertxt.Text;
                 string password = passwordtxt.Text;
+                bool exists = false; 
 
                 if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone) && !String.IsNullOrEmpty(password))
                 {
@@ -110,20 +111,23 @@ namespace Housing_Project
                         {
                             if (t.Email == email)
                             {
-                                registerlbl.Visible = true;
-                                registerlbl.Text = "Already registered with this email";
-                                ClearFields();
+                                exists = true;
                             }
-                            else
-                            {
-                                Tenant tenant = new Tenant(name, phone, email, password);
-                                userManager.AddTenantToList(tenant);
-                                MessageBox.Show("Account created successfully!");
-                                userManager.SaveRecruiter(userManager, "userData.txt");
-                                ClearFields();
-                            }
+                            
                         }
-
+                        if(exists == false)
+                        {
+                            Tenant tenant = new Tenant(name, phone, email, password);
+                            userManager.AddTenantToList(tenant);
+                            MessageBox.Show("Account created successfully!");
+                            userManager.SaveRecruiter(userManager, "userData.txt");
+                            ClearFields();
+                        }
+                        else
+                        {
+                            registerlbl.Visible = true;
+                            ClearFields();
+                        }
                     }
 
                     else if (email.Contains("supervisor.com"))
@@ -132,16 +136,19 @@ namespace Housing_Project
                         {
                             if (s.Email == email)
                             {
-                                registerlbl.Visible = true;
-                                registerlbl.Text = "Already registered with this email";
-                                ClearFields();
+                                exists = true;   
                             }
-                            else
+                            if(exists==false)
                             {
                                 Supervisor supervisor = new Supervisor(name, phone, email, password);
                                 userManager.AddSupervisorToList(supervisor);
                                 MessageBox.Show("Account created successfully!");
                                 userManager.SaveRecruiter(userManager, "userData.txt");
+                                ClearFields();
+                            }
+                            else
+                            {
+                                registerlbl.Visible = true;
                                 ClearFields();
                             }
                         } 
@@ -150,7 +157,7 @@ namespace Housing_Project
                 else
                 {
                     registerlbl.Visible = true;
-                    registerlbl.Text = "You need to complete all fields!";
+                    ClearFields();
                 }
             }
             catch(Exception ex)

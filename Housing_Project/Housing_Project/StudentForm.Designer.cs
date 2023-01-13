@@ -38,6 +38,8 @@
             this.lbHouseRules = new System.Windows.Forms.ListBox();
             this.lblHouseRules = new System.Windows.Forms.Label();
             this.tabEventSchedule = new System.Windows.Forms.TabPage();
+            this.cbTenantToReportTask = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnSendReportTask = new System.Windows.Forms.Button();
             this.tbCommentReportTask = new System.Windows.Forms.TextBox();
             this.lblAddCommentReportTask = new System.Windows.Forms.Label();
@@ -99,8 +101,6 @@
             this.lblWarnings = new System.Windows.Forms.Label();
             this.lblStudentHouseBV = new System.Windows.Forms.Label();
             this.logoutpicturebox = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cbTenantToReportTask = new System.Windows.Forms.ComboBox();
             this.tabControlStudent.SuspendLayout();
             this.tabHouseRules.SuspendLayout();
             this.tabEventSchedule.SuspendLayout();
@@ -227,6 +227,24 @@
             this.tabEventSchedule.TabIndex = 2;
             this.tabEventSchedule.Text = "Event Schedule";
             this.tabEventSchedule.UseVisualStyleBackColor = true;
+            // 
+            // cbTenantToReportTask
+            // 
+            this.cbTenantToReportTask.FormattingEnabled = true;
+            this.cbTenantToReportTask.Location = new System.Drawing.Point(210, 477);
+            this.cbTenantToReportTask.Name = "cbTenantToReportTask";
+            this.cbTenantToReportTask.Size = new System.Drawing.Size(431, 36);
+            this.cbTenantToReportTask.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(106, 481);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 32);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Tenant:";
             // 
             // btnSendReportTask
             // 
@@ -887,24 +905,6 @@
             this.logoutpicturebox.TabIndex = 3;
             this.logoutpicturebox.TabStop = false;
             this.logoutpicturebox.Click += new System.EventHandler(this.logoutpicturebox_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(106, 481);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 32);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Tenant:";
-            // 
-            // cbTenantToReportTask
-            // 
-            this.cbTenantToReportTask.FormattingEnabled = true;
-            this.cbTenantToReportTask.Location = new System.Drawing.Point(210, 477);
-            this.cbTenantToReportTask.Name = "cbTenantToReportTask";
-            this.cbTenantToReportTask.Size = new System.Drawing.Size(431, 36);
-            this.cbTenantToReportTask.TabIndex = 10;
             // 
             // FormStudent
             // 

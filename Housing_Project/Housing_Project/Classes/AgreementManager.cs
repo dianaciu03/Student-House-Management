@@ -71,6 +71,7 @@ namespace Housing_Project.Classes
                     List<Type> auxiliaryTypes = new List<Type>()
                     {
                         typeof(Agreement),
+                        typeof(Tenant)
                     };
 
                     DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);

@@ -18,6 +18,8 @@ namespace Housing_Project
         ReportManager reportManager = new ReportManager();
         RuleManager ruleManager = new RuleManager();
         WarningManager warningManager = new WarningManager();
+        FileManager fileManager = new FileManager();
+        
 
         public LoginRegister()
         {
@@ -26,27 +28,30 @@ namespace Housing_Project
             loginwrongcredentialslbl.Visible = false;
             registerlbl.Visible = false;
 
-            LoadData();  //load all data from the files
+            /*LoadData();*/  //load all data from the files
         }
 
         //Method to deserialise all managers with their specific content from the files
         public void LoadData()
         {
-            try
-            {
-                userManager = userManager.LoadData();
-                agreementManager = agreementManager.LoadData();
-                announcementManager = announcementManager.LoadData();
-                cleaningTaskManager = cleaningTaskManager.LoadData();
-                paymentManager = paymentManager.LoadData();
-                reportManager = reportManager.LoadData();
-                ruleManager = ruleManager.LoadData();
-                warningManager = warningManager.LoadData();
-            }
-            catch (Exception)
-            {
-                return;
-            }
+            //try
+            //{
+          
+            userManager = userManager.LoadRecruiter("userData.txt");
+            //agreementManager = fileManager.LoadRecruiter("agreementData.txt");
+
+            //announcementManager = announcementManager.LoadRecruiter("announcementData.txt");
+            //cleaningTaskManager = cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
+            //paymentManager = paymentManager.LoadRecruiter("paymentData.txt");
+
+            //reportManager = reportManager.LoadRecruiter("reportData.txt");
+            //ruleManager = ruleManager.LoadRecruiter("ruleData.txt");
+            //warningManager = warningManager.LoadRecruiter("warningData.txt");
+            //}
+            //catch (Exception)
+            //{
+            //    return;
+            //}
         }
 
         //Method to reset the fields
@@ -111,7 +116,7 @@ namespace Housing_Project
                                     Tenant tenant = new Tenant(name, phone, email, password);
                                     userManager.AddTenantToList(tenant);
                                     MessageBox.Show("Account created successfully!");
-                                    userManager.WriteData(userManager);
+                                    userManager.SaveRecruiter(userManager, "userData.txt");
                                     ClearFields();
                                 }
                             }
@@ -122,7 +127,7 @@ namespace Housing_Project
                             Tenant tenant = new Tenant(name, phone, email, password);
                             userManager.AddTenantToList(tenant);
                             MessageBox.Show("Account created successfully!");
-                            userManager.WriteData(userManager);
+                            userManager.SaveRecruiter(userManager, "userData.txt");
                             ClearFields();
                         }
                     }
@@ -144,7 +149,7 @@ namespace Housing_Project
                                     Supervisor supervisor = new Supervisor(name, phone, email, password);
                                     userManager.AddSupervisorToList(supervisor);
                                     MessageBox.Show("Account created successfully!");
-                                    userManager.WriteData(userManager);
+                                    userManager.SaveRecruiter(userManager, "userData.txt");
                                     ClearFields();
                                 }
                             } 
@@ -155,7 +160,7 @@ namespace Housing_Project
                             Supervisor supervisor = new Supervisor(name, phone, email, password);
                             userManager.AddSupervisorToList(supervisor);
                             MessageBox.Show("Account created successfully!");
-                            userManager.WriteData(userManager);
+                            userManager.SaveRecruiter(userManager, "userData.txt");
                             ClearFields();
                         }
                         
@@ -217,7 +222,7 @@ namespace Housing_Project
 
         private void LoginRegister_FormClosing(object sender, FormClosingEventArgs e)
         {
-            userManager.WriteData(userManager);
+            userManager.SaveRecruiter(userManager, "userData.txt");
         }
     }
 }

@@ -36,55 +36,59 @@ namespace Housing_Project.Classes
             return warningsTenant;
         }
 
-        public WarningManager LoadData()
+        public WarningManager? LoadRecruiter(string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                WarningManager savedData = new WarningManager();
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlDictionaryReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                                                new XmlDictionaryReaderQuotas());
 
-                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    Type typeToSerialize = typeof(WarningManager);
+                Type mainType = typeof(WarningManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Warning) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Warning),
-                    };
 
-                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
-                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                return (WarningManager?)serializer.ReadObject(reader);
 
-                    savedData = (WarningManager)dcs.ReadObject(reader, true);
-                    return savedData;
-                }
             }
-            catch (Exception)
+            catch (FileNotFoundException)
             {
-                throw;
+                return new WarningManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
             }
         }
 
-        public void WriteData(WarningManager data) //Param is data that needs to be saved
+        public void SaveRecruiter(WarningManager warningManager, string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
-                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    Type typeToSerialize = typeof(WarningManager);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Warning),
-                    };
+                Type mainType = typeof(WarningManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Warning) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    DataContractSerializer dcs = new(typeToSerialize);
-                    dcs.WriteObject(fs, data);
-                }
+                serializer.WriteObject(stream, warningManager);
+                stream.Flush();
             }
-            catch (Exception)
+            finally
             {
-                return;
+                if (stream != null)
+                    stream.Close();
             }
         }
     }

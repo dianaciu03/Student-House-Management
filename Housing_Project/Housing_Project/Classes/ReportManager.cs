@@ -39,55 +39,59 @@ namespace Housing_Project.Classes
         }
 
 
-        public ReportManager LoadData()
+        public ReportManager? LoadRecruiter(string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                ReportManager savedData = new ReportManager();
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlDictionaryReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                                                new XmlDictionaryReaderQuotas());
 
-                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    Type typeToSerialize = typeof(ReportManager);
+                Type mainType = typeof(ReportManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Report) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Report),
-                    };
 
-                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
-                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                return (ReportManager?)serializer.ReadObject(reader);
 
-                    savedData = (ReportManager)dcs.ReadObject(reader, true);
-                    return savedData;
-                }
             }
-            catch (Exception)
+            catch (FileNotFoundException)
             {
-                throw;
+                return new ReportManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
             }
         }
 
-        public void WriteData(ReportManager data) //Param is data that needs to be saved
+        public void SaveRecruiter(ReportManager reportManager, string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
-                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    Type typeToSerialize = typeof(ReportManager);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Report),
-                    };
+                Type mainType = typeof(ReportManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Report) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    DataContractSerializer dcs = new(typeToSerialize);
-                    dcs.WriteObject(fs, data);
-                }
+                serializer.WriteObject(stream, reportManager);
+                stream.Flush();
             }
-            catch (Exception)
+            finally
             {
-                return;
+                if (stream != null)
+                    stream.Close();
             }
         }
     }

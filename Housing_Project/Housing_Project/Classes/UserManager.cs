@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace Housing_Project.Classes
 {
@@ -46,57 +47,59 @@ namespace Housing_Project.Classes
             return supervisors.ToArray();
         }
 
-        public UserManager LoadData()
+        public UserManager? LoadRecruiter(string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                UserManager savedData = new UserManager();
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                                                new XmlDictionaryReaderQuotas());
 
-                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    Type typeToSerialize = typeof(UserManager);
+                Type mainType = typeof(UserManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(User) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Supervisor),
-                        typeof(Tenant),
-                    };
 
-                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
-                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                return (UserManager?)serializer.ReadObject(reader);
 
-                    savedData = (UserManager)dcs.ReadObject(reader, true);
-                    return savedData;
-                }
             }
-            catch (Exception)
+            catch (FileNotFoundException)
             {
-                throw;
+                return new UserManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
             }
         }
 
-        public void WriteData(UserManager data) //Param is data that needs to be saved
+        public void SaveRecruiter(UserManager userManager, string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write));
-                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    Type typeToSerialize = typeof(UserManager);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Supervisor),
-                        typeof(Tenant),
-                    };
+                Type mainType = typeof(UserManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(User) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    DataContractSerializer dcs = new(typeToSerialize);
-                    dcs.WriteObject(fs, data);
-                }
+                serializer.WriteObject(stream, userManager);
+                stream.Flush();
             }
-            catch (Exception)
+            finally
             {
-                return;
+                if (stream != null)
+                    stream.Close();
             }
         }
     }

@@ -38,55 +38,58 @@ namespace Housing_Project.Classes
             return cleaningTasksOnDate;
         }
 
-        public CleaningTaskManager LoadData()
+        public CleaningTaskManager? LoadRecruiter(string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                CleaningTaskManager savedData = new CleaningTaskManager();
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlDictionaryReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                                                new XmlDictionaryReaderQuotas());
 
-                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    Type typeToSerialize = typeof(CleaningTaskManager);
+                Type mainType = typeof(CleaningTaskManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(CleaningTask) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(CleaningTask),
-                    };
 
-                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
-                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                return (CleaningTaskManager?)serializer.ReadObject(reader);
 
-                    savedData = (CleaningTaskManager)dcs.ReadObject(reader, true);
-                    return savedData;
-                }
             }
-            catch (Exception)
+            catch (FileNotFoundException)
             {
-                throw;
+                return new CleaningTaskManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
             }
         }
-
-        public void WriteData(CleaningTaskManager data) //Param is data that needs to be saved
+        public void SaveRecruiter(CleaningTaskManager cleaningTaskManager, string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
-                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    Type typeToSerialize = typeof(CleaningTaskManager);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(CleaningTask),
-                    };
+                Type mainType = typeof(CleaningTaskManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(CleaningTask) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    DataContractSerializer dcs = new(typeToSerialize);
-                    dcs.WriteObject(fs, data);
-                }
+                serializer.WriteObject(stream, cleaningTaskManager);
+                stream.Flush();
             }
-            catch (Exception)
+            finally
             {
-                return;
+                if (stream != null)
+                    stream.Close();
             }
         }
     }

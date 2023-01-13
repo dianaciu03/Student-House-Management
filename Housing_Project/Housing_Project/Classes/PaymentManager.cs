@@ -48,55 +48,59 @@ namespace Housing_Project.Classes
             return payments[index];
         }
 
-        public PaymentManager LoadData()
+        public PaymentManager? LoadRecruiter(string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                PaymentManager savedData = new PaymentManager();
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                                                new XmlDictionaryReaderQuotas());
 
-                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    Type typeToSerialize = typeof(PaymentManager);
+                Type mainType = typeof(PaymentManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Payment) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Payment),
-                    };
 
-                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
-                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                return (PaymentManager?)serializer.ReadObject(reader);
 
-                    savedData = (PaymentManager)dcs.ReadObject(reader, true);
-                    return savedData;
-                }
             }
-            catch (Exception)
+            catch (FileNotFoundException)
             {
-                throw;
+                return new PaymentManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
             }
         }
 
-        public void WriteData(PaymentManager data) //Param is data that needs to be saved
+        public void SaveRecruiter(PaymentManager paymentManager , string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
-                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    Type typeToSerialize = typeof(PaymentManager);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Payment),
-                    };
+                Type mainType = typeof(PaymentManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Payment) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    DataContractSerializer dcs = new(typeToSerialize);
-                    dcs.WriteObject(fs, data);
-                }
+                serializer.WriteObject(stream, paymentManager);
+                stream.Flush();
             }
-            catch (Exception)
+            finally
             {
-                return;
+                if (stream != null)
+                    stream.Close();
             }
         }
     }

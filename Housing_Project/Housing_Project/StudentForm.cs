@@ -26,7 +26,7 @@ namespace Housing_Project
         private ReportManager reportManager;
         private WarningManager warningManager;
         private CleaningTaskManager cleaningTaskManager;
-        
+        FileManager fileManager = new FileManager();
         public FormStudent(Tenant currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
         {
             InitializeComponent();
@@ -61,13 +61,14 @@ namespace Housing_Project
             this.warningManager = warningManager;
             this.cleaningTaskManager = cleaningTaskManager;
 
-            userManager.LoadData();
-            paymentManager.LoadData();
-            agreementManager.LoadData();
-            ruleManager.LoadData();
-            reportManager.LoadData();
-            warningManager.LoadData();
-            cleaningTaskManager.LoadData();
+            //userManager.LoadRecruiter("userData.txt");
+            //paymentManager.LoadRecruiter("paymentData.txt");
+            //fileManager.LoadRecruiter("agreementData.txt");
+            
+            //ruleManager.LoadRecruiter("ruleData.txt");
+            //reportManager.LoadRecruiter("reportData.txt");
+            //warningManager.LoadRecruiter("warningData.txt");
+            //cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
         }
 
         private void InitializeStudentComboBoxes()
@@ -217,7 +218,7 @@ namespace Housing_Project
                 {
                     Payment payment = new Payment(items, buyer, totalPrice);
                     paymentManager.AddPaymentToList(payment);
-                    paymentManager.WriteData(paymentManager);
+                    paymentManager.SaveRecruiter(paymentManager, "paymentData.txt");
                 }
 
                 UpdateListBox();
@@ -252,7 +253,8 @@ namespace Housing_Project
                 if(!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
                 {
                     agreementManager.AddAgreementToList(title, description, date);
-                    agreementManager.WriteData(agreementManager);
+                    fileManager.SaveRecruiter(agreementManager, @"..\..\..\..\Data\agreementData.txt");
+                    
                 }
                 UpdateListBox();
             }
@@ -303,13 +305,14 @@ namespace Housing_Project
 
         private void FormStudent_FormClosing(object sender, FormClosingEventArgs e)
         {
-            userManager.WriteData(userManager);
-            paymentManager.WriteData(paymentManager);
-            agreementManager.WriteData(agreementManager);
-            ruleManager.WriteData(ruleManager);
-            reportManager.WriteData(reportManager);
-            warningManager.WriteData(warningManager);
-            cleaningTaskManager.WriteData(cleaningTaskManager);
+            userManager.SaveRecruiter(userManager, "userData.txt");
+            paymentManager.SaveRecruiter(paymentManager, "paymentData.txt");
+            fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
+            
+            ruleManager.SaveRecruiter(ruleManager, "ruleData.txt");
+            reportManager.SaveRecruiter(reportManager, "reportData.txt");
+            warningManager.SaveRecruiter(warningManager, "warningData.txt");
+            cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
         }
 
 

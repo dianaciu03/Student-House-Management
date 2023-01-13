@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Housing_Project.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -6,43 +7,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace Housing_Project.Classes
+namespace Housing_Project
 {
-    [DataContract]
-    public class AnnouncementManager
+    public class FileManagerAnnouncement
     {
-        [DataMember] List<Announcement> announcements = new List<Announcement>();
-        private const string filePath = @"..\..\..\..\Data\announcementData.txt";
-
-        public void AddAnnouncementToList(Announcement announcement)
+        public void SaveRecruiter(AnnouncementManager announcementManager, string fileName)
         {
-            announcements.Add(announcement);
-        }
+            FileStream? stream = null;
 
-        public void RemoveAnnouncementToList(Announcement announcement)
-        {
-            announcements.Remove(announcement);
-        }
-
-        public List<Announcement> GetAnnouncements()
-        {
-            return announcements;
-        }
-
-        public List<Announcement> GetAnnouncementsOnDate(DateTime date)
-        {
-            List<Announcement> announcementsOnDate = new List<Announcement>();
-
-            foreach (Announcement a in announcements)
+            try
             {
-                if (a.Date.Day == date.Day && a.Date.Month == date.Month && a.Date.Year == date.Year)
-                {
-                    announcementsOnDate.Add(a);
-                }
-            }
-            return announcementsOnDate;
-        }
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
 
+                Type mainType = typeof(AnnouncementManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Announcement) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
+
+                serializer.WriteObject(stream, announcementManager);
+                stream.Flush();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+        }
         public AnnouncementManager? LoadRecruiter(string fileName)
         {
             FileStream? stream = null;
@@ -74,7 +65,5 @@ namespace Housing_Project.Classes
                     stream.Close();
             }
         }
-
-
     }
 }

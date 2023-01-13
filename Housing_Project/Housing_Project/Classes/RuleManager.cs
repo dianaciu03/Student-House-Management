@@ -34,55 +34,59 @@ namespace Housing_Project.Classes
             return rules[index];
         }
 
-        public RuleManager LoadData()
+        public RuleManager? LoadRecruiter(string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                RuleManager savedData = new RuleManager();
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlDictionaryReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                                                new XmlDictionaryReaderQuotas());
 
-                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    Type typeToSerialize = typeof(RuleManager);
+                Type mainType = typeof(RuleManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Rule) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Rule),
-                    };
 
-                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
-                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                return (RuleManager?)serializer.ReadObject(reader);
 
-                    savedData = (RuleManager)dcs.ReadObject(reader, true);
-                    return savedData;
-                }
             }
-            catch (Exception)
+            catch (FileNotFoundException)
             {
-                throw;
+                return new RuleManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
             }
         }
 
-        public void WriteData(RuleManager data) //Param is data that needs to be saved
+        public void SaveRecruiter(RuleManager ruleManager, string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
-                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    Type typeToSerialize = typeof(RuleManager);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Rule),
-                    };
+                Type mainType = typeof(RuleManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Rule) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    DataContractSerializer dcs = new(typeToSerialize);
-                    dcs.WriteObject(fs, data);
-                }
+                serializer.WriteObject(stream, ruleManager);
+                stream.Flush();
             }
-            catch (Exception)
+            finally
             {
-                return;
+                if (stream != null)
+                    stream.Close();
             }
         }
     }

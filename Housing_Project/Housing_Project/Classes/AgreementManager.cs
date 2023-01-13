@@ -86,28 +86,7 @@ namespace Housing_Project.Classes
             }
         }
 
-        public void WriteData(AgreementManager data) //Param is data that needs to be saved
-        {
-            try
-            {
-                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write));
-                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    Type typeToSerialize = typeof(AgreementManager);
-
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Agreement),
-                    };
-
-                    DataContractSerializer dcs = new(typeToSerialize);
-                    dcs.WriteObject(fs, data);
-                }
-            }
-            catch (Exception)
-            {
-                return;
-            }
-        }
+       
+        
     }
 }

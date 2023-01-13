@@ -31,6 +31,7 @@ namespace Housing_Project
         private ReportManager reportManager;
         private WarningManager warningManager;
         private CleaningTaskManager cleaningTaskManager;
+        FileManagerAnnouncement fileManagerAnnouncement;
 
         public FormSupervisor(Supervisor currentUser, UserManager userManager, AnnouncementManager announcementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
         {
@@ -58,12 +59,12 @@ namespace Housing_Project
             this.warningManager = warningManager;
             this.cleaningTaskManager = cleaningTaskManager;
 
-            userManager.LoadData();
-            announcementManager.LoadData();
-            ruleManager.LoadData();
-            reportManager.LoadData();
-            warningManager.LoadData();
-            cleaningTaskManager.LoadData();
+            userManager.LoadRecruiter("userData.txt");
+            announcementManager.LoadRecruiter("announcementData.txt");
+            ruleManager.LoadRecruiter("ruleData.txt");
+            reportManager.LoadRecruiter("reportData.txt");
+            warningManager.LoadRecruiter("warningData.txt");
+            cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
         }
 
         private void InitializeTenantComboBoxes()
@@ -437,12 +438,13 @@ namespace Housing_Project
 
         private void FormSupervisor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            announcementManager.WriteData(announcementManager);
-            userManager.WriteData(userManager);
-            ruleManager.WriteData(ruleManager);
-            reportManager.WriteData(reportManager);
-            warningManager.WriteData(warningManager);
-            cleaningTaskManager.WriteData(cleaningTaskManager);
+            fileManagerAnnouncement.SaveRecruiter(announcementManager, "announcementData.txt");
+           
+            userManager.SaveRecruiter(userManager, "userData.txt");
+            ruleManager.SaveRecruiter(ruleManager, "ruleData.txt");
+            reportManager.SaveRecruiter(reportManager, "reportData.txt");
+            warningManager.SaveRecruiter(warningManager, "warningData.txt");
+            cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
         }
     }
 }

@@ -136,22 +136,23 @@ namespace Housing_Project
                         {
                             if (s.Email == email)
                             {
-                                exists = true;   
+                                exists = true;
                             }
-                            if(exists==false)
-                            {
-                                Supervisor supervisor = new Supervisor(name, phone, email, password);
-                                userManager.AddSupervisorToList(supervisor);
-                                MessageBox.Show("Account created successfully!");
-                                userManager.SaveRecruiter(userManager, "userData.txt");
-                                ClearFields();
-                            }
-                            else
-                            {
-                                registerlbl.Visible = true;
-                                ClearFields();
-                            }
-                        } 
+                        }
+                        if(exists==false)
+                        {
+                            Supervisor supervisor = new Supervisor(name, phone, email, password);
+                            userManager.AddSupervisorToList(supervisor);
+                            MessageBox.Show("Account created successfully!");
+                            userManager.SaveRecruiter(userManager, "userData.txt");
+                            ClearFields();
+                        }
+                        else
+                        {
+                            registerlbl.Visible = true;
+                            ClearFields();
+                        }
+                         
                     }
                 }
                 else

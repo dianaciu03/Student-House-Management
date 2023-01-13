@@ -438,13 +438,13 @@ namespace Housing_Project
 
         private void FormSupervisor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            fileManagerAnnouncement.SaveRecruiter(announcementManager, "announcementData.txt");
+            //fileManagerAnnouncement.SaveRecruiter(announcementManager, "announcementData.txt");
            
             userManager.SaveRecruiter(userManager, "userData.txt");
-            ruleManager.SaveRecruiter(ruleManager, "ruleData.txt");
-            reportManager.SaveRecruiter(reportManager, "reportData.txt");
-            warningManager.SaveRecruiter(warningManager, "warningData.txt");
-            cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
+            //ruleManager.SaveRecruiter(ruleManager, "ruleData.txt");
+            //reportManager.SaveRecruiter(reportManager, "reportData.txt");
+            //warningManager.SaveRecruiter(warningManager, "warningData.txt");
+            //cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
         }
     }
 }

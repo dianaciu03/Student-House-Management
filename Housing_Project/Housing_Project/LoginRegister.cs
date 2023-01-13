@@ -21,18 +21,21 @@ namespace Housing_Project
         FileManager fileManager = new FileManager();
         
 
+
+
         public LoginRegister()
         {
             InitializeComponent();
             tabControlLoginRegister.SelectTab("tabPageLogin");
             loginwrongcredentialslbl.Visible = false;
             registerlbl.Visible = false;
+            LoadData();
 
             /*LoadData();*/  //load all data from the files
         }
 
         //Method to deserialise all managers with their specific content from the files
-        public void LoadData()
+        private void LoadData()
         {
             //try
             //{
@@ -52,6 +55,7 @@ namespace Housing_Project
             //{
             //    return;
             //}
+            ;
         }
 
         //Method to reset the fields
@@ -101,69 +105,46 @@ namespace Housing_Project
                 {
                     if (email.Contains("student.com"))
                     {
-                        if (userManager.GetTenants().Length > 0)
+
+                        foreach (Tenant t in userManager.GetTenants())
                         {
-                            foreach (Tenant t in userManager.GetTenants())
+                            if (t.Email == email)
                             {
-                                if (t.Email == email)
-                                {
-                                    registerlbl.Visible = true;
-                                    registerlbl.Text = "Already registered with this email";
-                                    ClearFields();
-                                }
-                                else
-                                {
-                                    Tenant tenant = new Tenant(name, phone, email, password);
-                                    userManager.AddTenantToList(tenant);
-                                    MessageBox.Show("Account created successfully!");
-                                    userManager.SaveRecruiter(userManager, "userData.txt");
-                                    ClearFields();
-                                }
+                                registerlbl.Visible = true;
+                                registerlbl.Text = "Already registered with this email";
+                                ClearFields();
+                            }
+                            else
+                            {
+                                Tenant tenant = new Tenant(name, phone, email, password);
+                                userManager.AddTenantToList(tenant);
+                                MessageBox.Show("Account created successfully!");
+                                userManager.SaveRecruiter(userManager, "userData.txt");
+                                ClearFields();
                             }
                         }
-                            
-                        else
-                        {
-                            Tenant tenant = new Tenant(name, phone, email, password);
-                            userManager.AddTenantToList(tenant);
-                            MessageBox.Show("Account created successfully!");
-                            userManager.SaveRecruiter(userManager, "userData.txt");
-                            ClearFields();
-                        }
+
                     }
 
                     else if (email.Contains("supervisor.com"))
                     {
-                        if (userManager.GetSupervisors().Length > 0)
+                        foreach (Supervisor s in userManager.GetSupervisors())
                         {
-                            foreach (Supervisor s in userManager.GetSupervisors())
+                            if (s.Email == email)
                             {
-                                if (s.Email == email)
-                                {
-                                    registerlbl.Visible = true;
-                                    registerlbl.Text = "Already registered with this email";
-                                    ClearFields();
-                                }
-                                else
-                                {
-                                    Supervisor supervisor = new Supervisor(name, phone, email, password);
-                                    userManager.AddSupervisorToList(supervisor);
-                                    MessageBox.Show("Account created successfully!");
-                                    userManager.SaveRecruiter(userManager, "userData.txt");
-                                    ClearFields();
-                                }
-                            } 
-                        }
-
-                        else
-                        {
-                            Supervisor supervisor = new Supervisor(name, phone, email, password);
-                            userManager.AddSupervisorToList(supervisor);
-                            MessageBox.Show("Account created successfully!");
-                            userManager.SaveRecruiter(userManager, "userData.txt");
-                            ClearFields();
-                        }
-                        
+                                registerlbl.Visible = true;
+                                registerlbl.Text = "Already registered with this email";
+                                ClearFields();
+                            }
+                            else
+                            {
+                                Supervisor supervisor = new Supervisor(name, phone, email, password);
+                                userManager.AddSupervisorToList(supervisor);
+                                MessageBox.Show("Account created successfully!");
+                                userManager.SaveRecruiter(userManager, "userData.txt");
+                                ClearFields();
+                            }
+                        } 
                     }
                 }
                 else
@@ -190,6 +171,9 @@ namespace Housing_Project
         {
             string email = loginemailtxt.Text;
             string password = loginpasswordtxt.Text;
+            bool foundUser = false;
+            Tenant tenant = new Tenant("", "", "", "");
+            Supervisor supervisor = new Supervisor("", "", "", "");
 
             if (email.Contains("student.com"))
             {
@@ -197,12 +181,16 @@ namespace Housing_Project
                 {
                     if (t.Email == email && t.Password == password)
                     {
-                        OpenUser(t);
-                        break;
-                    }
-                    else
-                        loginwrongcredentialslbl.Visible = true;
+                        foundUser = true;
+                        tenant = t; 
+                    } 
                 }
+                if (foundUser == true)
+                {
+                    OpenUser(tenant);
+                }
+                else
+                    loginwrongcredentialslbl.Visible = true;
             }
 
             else if (email.Contains("supervisor.com"))
@@ -211,12 +199,16 @@ namespace Housing_Project
                 {
                     if (s.Email == email && s.Password == password)
                     {
-                        OpenUser(s);
-                        break;
+                        foundUser = true;
+                        supervisor = s;
                     }
-                    else
-                        loginwrongcredentialslbl.Visible = true;
                 }
+                if(foundUser == true)
+                {
+                    OpenUser(supervisor);
+                }
+                else
+                    loginwrongcredentialslbl.Visible = true;
             }
         }
 

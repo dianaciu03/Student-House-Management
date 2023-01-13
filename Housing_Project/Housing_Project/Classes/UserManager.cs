@@ -16,7 +16,6 @@ namespace Housing_Project.Classes
     {
         [DataMember] private List<Tenant> tenants = new List<Tenant>();
         [DataMember] private List<Supervisor> supervisors = new List<Supervisor>();
-        private const string filePath = @"..\..\..\..\Data\userData.txt";
 
         public List<Tenant> Tenants { get { return tenants; } }
 
@@ -60,7 +59,7 @@ namespace Housing_Project.Classes
 
                 Type mainType = typeof(UserManager);
                 List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(User) };
+                    = new List<Type> { typeof(Tenant), typeof(Supervisor) };
                 DataContractSerializer serializer
                     = new DataContractSerializer(mainType, auxiliaryTypes);
 
@@ -89,7 +88,7 @@ namespace Housing_Project.Classes
 
                 Type mainType = typeof(UserManager);
                 List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(User) };
+                    = new List<Type> { typeof(Tenant), typeof(Supervisor) };
                 DataContractSerializer serializer
                     = new DataContractSerializer(mainType, auxiliaryTypes);
 

@@ -376,8 +376,7 @@ namespace Housing_Project
             userManager.SaveRecruiter(userManager, "userData.txt");
             paymentManager.SaveRecruiter(paymentManager, "paymentData.txt");
             fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
-            
-            ruleManager.SaveRecruiter(ruleManager, "ruleData.txt");
+
             reportManager.SaveRecruiter(reportManager, "reportData.txt");
             warningManager.SaveRecruiter(warningManager, "warningData.txt");
             cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");

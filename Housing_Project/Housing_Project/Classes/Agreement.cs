@@ -10,13 +10,17 @@ namespace Housing_Project.Classes
     [DataContract]
     public class Agreement
     {
-        [DataMember] private string title;
-        [DataMember] private int agreementID = 0;
-        [DataMember] private string description;
-        [DataMember] private List<Tenant> tenantsApproved = new List<Tenant>();
-        [DataMember] private List<Tenant> tenantsRejected = new List<Tenant>();
-        [DataMember] private List<Tenant> tenantsNotAnswered = new List<Tenant>();
-        [DataMember] private DateTime date;
+        [DataMember] string title;
+        [DataMember] int agreementID = 0;
+        [DataMember] string description;
+        [DataMember] public bool completion;
+        [DataMember] public int agreeVotes;
+        [DataMember] public int disagreeVotes;
+        [DataMember] public List<Vote> Votes { get; set; }
+        [DataMember] List<Tenant> tenantsApproved = new List<Tenant>();
+        [DataMember] List<Tenant> tenantsRejected = new List<Tenant>();
+        [DataMember] List<Tenant> tenantsNotAnswered = new List<Tenant>();
+        [DataMember] DateTime date;
 
         public Agreement(int id, string title, string description, DateTime date)
         {
@@ -24,6 +28,12 @@ namespace Housing_Project.Classes
             this.title = title;
             this.description = description;
             this.date = date;
+            this.Votes = new List<Vote>();
+        }
+
+        public Agreement(int id, string title, string description, DateTime date, List<Vote> submisions) : this(id, title, description, date)
+        {
+            this.Votes = submisions;
         }
 
         public string Title { get { return title; } }
@@ -70,11 +80,64 @@ namespace Housing_Project.Classes
         {
             return $"{agreementID}. {title} - {date}";
         }
-
+        public List<Tenant> GetAllTenantsWhoVoted()
+        {
+            List<Tenant> list = new List<Tenant>();
+            foreach(Tenant tenat in TenantsApproved)
+            {
+                list.Add(tenat);
+            }
+            foreach(Tenant tenant in tenantsRejected)
+            {
+                list.Add(tenant);
+            }
+            return list;
+        }
+        public int GetNumAgreeVotes()
+        {
+            return tenantsApproved.Count();
+        }
+        public int GetNumDisagreeVotes()
+        {
+            return tenantsRejected.Count();
+        }
         public override string ToString()
         {
             return GetInfoAgreementDisplay();
         }
+        public void TaskCompletion(ListBox source, ListBox destination)
+        {
+            ListBox.SelectedObjectCollection sourceItems = source.SelectedItems;
+            foreach (var item in sourceItems)
+            {
+                destination.Items.Add(item);
+            }
+            while (source.SelectedItems.Count > 0)
+            {
+                source.Items.Remove(source.SelectedItems[0]);
+            }
+        }
 
+        public void TenantVoteAgree(Tenant tenant) 
+        { 
+            tenantsApproved.Add(tenant); 
+            if(tenantsApproved.Count() >= 3)
+            {
+                completion = true;
+            }
+        }
+        public bool TenantVoteDisagree(Tenant tenant) 
+        { 
+            tenantsRejected.Add(tenant); 
+            if(tenantsRejected.Count() >= 3)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
+
 }

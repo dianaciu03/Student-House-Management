@@ -13,10 +13,17 @@ namespace Housing_Project.Classes
     [DataContract]
     public class AgreementManager
     {
+        Tenant sessionTenant;
+        private List<Agreement> completedAgreements = new List<Agreement>();
+        private List<Agreement> noncompletedAgreements = new List<Agreement>();
         [DataMember] private int agreementIdSeeder = 1;
         [DataMember] private List<Agreement> agreements = new List<Agreement>();
         private const string filePath = @"..\..\..\..\Data\agreementData.txt";
 
+        public void SetSessionTenant(Tenant tenant)
+        {
+            sessionTenant= tenant;
+        }
         public void AddAgreementToList(string title, string description, DateTime date)
         {
             agreements.Add(new Agreement(agreementIdSeeder, title, description, date));
@@ -38,6 +45,33 @@ namespace Housing_Project.Classes
         {
             return agreements.ToArray();
         }
+        public Agreement[] GetCompletedAgreements()
+        {
+            SortAgreements();
+            return completedAgreements.ToArray();
+        }
+        public Agreement[] GetNoncompletedAgreements()
+        {
+            SortAgreements();
+            return noncompletedAgreements.ToArray();
+        }
+
+        private void SortAgreements()
+        {
+            completedAgreements = new List<Agreement>();
+            noncompletedAgreements= new List<Agreement>();
+            foreach (Agreement agreement in agreements)
+            {
+                if(agreement.completion == true)
+                {
+                    completedAgreements.Add(agreement);
+                }
+                else
+                {
+                    noncompletedAgreements.Add(agreement);
+                }
+            }
+        }
 
         public Agreement GetAgreement(int index)
         {
@@ -57,6 +91,90 @@ namespace Housing_Project.Classes
             }
             return agreementsOnDate;
         }
+        public int[] GetAgreementVotesByID(int id)
+        {
+            for (int i = 0; i < agreements.Count(); i++)
+            {
+                if (i == id)
+                {
+                    int[] ints = {agreements[i].GetNumAgreeVotes(), agreements[i].GetNumDisagreeVotes() };
+                    return ints;
+                }
+            }
+            return null;
+        }
+        
+        public void CompleteAgreementById(int id)
+        {
+            for (int i = 0; i < agreements.Count(); i++)
+            {
+                if (i == id)
+                {
+                    agreements[i].completion= true;
+                }
+            }
+        }
+
+        public void AgreeToAgreement(int id)
+        {
+            for (int i = 0; i < agreements.Count(); i++)
+            {
+                if (i == id)
+                {
+                    agreements[i].agreeVotes += 1;
+                    agreements[i].TenantVoteAgree(sessionTenant);
+
+                }
+            }
+        }
+
+        public void DisagreeToAgreement(int id)
+        {
+            bool votedAgainst;
+            for (int i = 0; i < agreements.Count(); i++)
+            {
+                if (i == id)
+                {
+                    agreements[i].disagreeVotes += 1;
+                    votedAgainst = agreements[i].TenantVoteDisagree(sessionTenant);
+                    if(votedAgainst)
+                    {
+                        agreements.RemoveAt(i);
+                    }
+                }
+            }
+        }
+        public bool HasTenantVotedForAgreementByID(int id)
+        {
+            bool tenantFound = false;
+            for (int i = 0; i < agreements.Count(); i++)
+            {
+                if (i == id)
+                {
+                    foreach(Tenant tenant in agreements[i].GetAllTenantsWhoVoted())
+                    {
+                        if(tenant == sessionTenant)
+                        {
+                            tenantFound =  true;
+                        }
+                    }
+                }
+            }
+            return tenantFound;
+        }
+
+        public void CastVote(Agreement agreement, Vote vote)
+        {
+            agreement = agreements.Find(agreement => agreement.Title.Equals(agreement.Title));
+
+            if (agreement == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            agreement.Votes.Add(vote);
+        }
+
 
         public AgreementManager LoadData()
         {

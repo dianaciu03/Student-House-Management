@@ -38,6 +38,9 @@
             this.lbHouseRules = new System.Windows.Forms.ListBox();
             this.lblHouseRules = new System.Windows.Forms.Label();
             this.tabEventSchedule = new System.Windows.Forms.TabPage();
+            this.lblCompletedEvents = new System.Windows.Forms.Label();
+            this.btnTaskCompleted = new System.Windows.Forms.Button();
+            this.lbCompletedTasks = new System.Windows.Forms.ListBox();
             this.cbTenantToReportTask = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSendReportTask = new System.Windows.Forms.Button();
@@ -78,6 +81,12 @@
             this.cbDishSoap = new System.Windows.Forms.CheckBox();
             this.cbSponges = new System.Windows.Forms.CheckBox();
             this.tabAgreements = new System.Windows.Forms.TabPage();
+            this.rbDisagree = new System.Windows.Forms.RadioButton();
+            this.rbAgree = new System.Windows.Forms.RadioButton();
+            this.lblPendingAgreements = new System.Windows.Forms.Label();
+            this.btnCheckStatus = new System.Windows.Forms.Button();
+            this.btnSubmitVote = new System.Windows.Forms.Button();
+            this.lbPendingAgreements = new System.Windows.Forms.ListBox();
             this.lbAgreementsDisplay = new System.Windows.Forms.ListBox();
             this.lblAgreements = new System.Windows.Forms.Label();
             this.gbMakeAProposal = new System.Windows.Forms.GroupBox();
@@ -154,7 +163,7 @@
             this.lbSupervisorInfo.ItemHeight = 23;
             this.lbSupervisorInfo.Location = new System.Drawing.Point(629, 329);
             this.lbSupervisorInfo.Name = "lbSupervisorInfo";
-            this.lbSupervisorInfo.Size = new System.Drawing.Size(530, 326);
+            this.lbSupervisorInfo.Size = new System.Drawing.Size(530, 303);
             this.lbSupervisorInfo.TabIndex = 5;
             // 
             // lbTenantsContactInfo
@@ -164,7 +173,7 @@
             this.lbTenantsContactInfo.ItemHeight = 23;
             this.lbTenantsContactInfo.Location = new System.Drawing.Point(22, 329);
             this.lbTenantsContactInfo.Name = "lbTenantsContactInfo";
-            this.lbTenantsContactInfo.Size = new System.Drawing.Size(530, 326);
+            this.lbTenantsContactInfo.Size = new System.Drawing.Size(530, 303);
             this.lbTenantsContactInfo.TabIndex = 4;
             // 
             // lblSupervisorContactInfo
@@ -194,7 +203,7 @@
             this.lbHouseRules.ItemHeight = 23;
             this.lbHouseRules.Location = new System.Drawing.Point(22, 71);
             this.lbHouseRules.Name = "lbHouseRules";
-            this.lbHouseRules.Size = new System.Drawing.Size(1137, 188);
+            this.lbHouseRules.Size = new System.Drawing.Size(1137, 165);
             this.lbHouseRules.TabIndex = 1;
             // 
             // lblHouseRules
@@ -209,6 +218,9 @@
             // 
             // tabEventSchedule
             // 
+            this.tabEventSchedule.Controls.Add(this.lblCompletedEvents);
+            this.tabEventSchedule.Controls.Add(this.btnTaskCompleted);
+            this.tabEventSchedule.Controls.Add(this.lbCompletedTasks);
             this.tabEventSchedule.Controls.Add(this.cbTenantToReportTask);
             this.tabEventSchedule.Controls.Add(this.label1);
             this.tabEventSchedule.Controls.Add(this.btnSendReportTask);
@@ -227,6 +239,39 @@
             this.tabEventSchedule.TabIndex = 2;
             this.tabEventSchedule.Text = "Event Schedule";
             this.tabEventSchedule.UseVisualStyleBackColor = true;
+            this.tabEventSchedule.Click += new System.EventHandler(this.tabEventSchedule_Click);
+            // 
+            // lblCompletedEvents
+            // 
+            this.lblCompletedEvents.AutoSize = true;
+            this.lblCompletedEvents.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblCompletedEvents.Location = new System.Drawing.Point(434, 47);
+            this.lblCompletedEvents.Name = "lblCompletedEvents";
+            this.lblCompletedEvents.Size = new System.Drawing.Size(212, 31);
+            this.lblCompletedEvents.TabIndex = 13;
+            this.lblCompletedEvents.Text = "Completed Events:";
+            // 
+            // btnTaskCompleted
+            // 
+            this.btnTaskCompleted.Location = new System.Drawing.Point(336, 312);
+            this.btnTaskCompleted.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTaskCompleted.Name = "btnTaskCompleted";
+            this.btnTaskCompleted.Size = new System.Drawing.Size(165, 47);
+            this.btnTaskCompleted.TabIndex = 12;
+            this.btnTaskCompleted.Text = "Task Completed";
+            this.btnTaskCompleted.UseVisualStyleBackColor = true;
+            this.btnTaskCompleted.Click += new System.EventHandler(this.btnTaskCompleted_Click);
+            // 
+            // lbCompletedTasks
+            // 
+            this.lbCompletedTasks.FormattingEnabled = true;
+            this.lbCompletedTasks.ItemHeight = 28;
+            this.lbCompletedTasks.Location = new System.Drawing.Point(434, 83);
+            this.lbCompletedTasks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbCompletedTasks.Name = "lbCompletedTasks";
+            this.lbCompletedTasks.Size = new System.Drawing.Size(371, 200);
+            this.lbCompletedTasks.TabIndex = 11;
+            this.lbCompletedTasks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbCompletedTasks_MouseDoubleClick);
             // 
             // cbTenantToReportTask
             // 
@@ -248,7 +293,7 @@
             // 
             // btnSendReportTask
             // 
-            this.btnSendReportTask.Location = new System.Drawing.Point(499, 554);
+            this.btnSendReportTask.Location = new System.Drawing.Point(499, 555);
             this.btnSendReportTask.Name = "btnSendReportTask";
             this.btnSendReportTask.Size = new System.Drawing.Size(142, 45);
             this.btnSendReportTask.TabIndex = 8;
@@ -258,7 +303,7 @@
             // 
             // tbCommentReportTask
             // 
-            this.tbCommentReportTask.Location = new System.Drawing.Point(700, 418);
+            this.tbCommentReportTask.Location = new System.Drawing.Point(699, 419);
             this.tbCommentReportTask.Multiline = true;
             this.tbCommentReportTask.Name = "tbCommentReportTask";
             this.tbCommentReportTask.Size = new System.Drawing.Size(431, 181);
@@ -267,7 +312,7 @@
             // lblAddCommentReportTask
             // 
             this.lblAddCommentReportTask.AutoSize = true;
-            this.lblAddCommentReportTask.Location = new System.Drawing.Point(700, 387);
+            this.lblAddCommentReportTask.Location = new System.Drawing.Point(699, 387);
             this.lblAddCommentReportTask.Name = "lblAddCommentReportTask";
             this.lblAddCommentReportTask.Size = new System.Drawing.Size(141, 28);
             this.lblAddCommentReportTask.TabIndex = 6;
@@ -276,7 +321,7 @@
             // cbReportTask
             // 
             this.cbReportTask.FormattingEnabled = true;
-            this.cbReportTask.Location = new System.Drawing.Point(210, 418);
+            this.cbReportTask.Location = new System.Drawing.Point(210, 419);
             this.cbReportTask.Name = "cbReportTask";
             this.cbReportTask.Size = new System.Drawing.Size(431, 36);
             this.cbReportTask.TabIndex = 5;
@@ -285,7 +330,7 @@
             // 
             this.lblReportTask.AutoSize = true;
             this.lblReportTask.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblReportTask.Location = new System.Drawing.Point(51, 418);
+            this.lblReportTask.Location = new System.Drawing.Point(51, 419);
             this.lblReportTask.Name = "lblReportTask";
             this.lblReportTask.Size = new System.Drawing.Size(153, 32);
             this.lblReportTask.TabIndex = 4;
@@ -295,7 +340,7 @@
             // 
             this.eventCalendar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.eventCalendar.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.eventCalendar.Location = new System.Drawing.Point(869, 86);
+            this.eventCalendar.Location = new System.Drawing.Point(869, 85);
             this.eventCalendar.MaxSelectionCount = 1;
             this.eventCalendar.Name = "eventCalendar";
             this.eventCalendar.TabIndex = 0;
@@ -306,9 +351,9 @@
             this.lbEvents.FormattingEnabled = true;
             this.lbEvents.HorizontalScrollbar = true;
             this.lbEvents.ItemHeight = 28;
-            this.lbEvents.Location = new System.Drawing.Point(51, 82);
+            this.lbEvents.Location = new System.Drawing.Point(51, 83);
             this.lbEvents.Name = "lbEvents";
-            this.lbEvents.Size = new System.Drawing.Size(665, 228);
+            this.lbEvents.Size = new System.Drawing.Size(367, 200);
             this.lbEvents.TabIndex = 3;
             this.lbEvents.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbTasks_MouseDoubleClick);
             // 
@@ -316,11 +361,11 @@
             // 
             this.lblTasksFor.AutoSize = true;
             this.lblTasksFor.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTasksFor.Location = new System.Drawing.Point(51, 47);
+            this.lblTasksFor.Location = new System.Drawing.Point(51, 46);
             this.lblTasksFor.Name = "lblTasksFor";
-            this.lblTasksFor.Size = new System.Drawing.Size(137, 32);
+            this.lblTasksFor.Size = new System.Drawing.Size(196, 32);
             this.lblTasksFor.TabIndex = 1;
-            this.lblTasksFor.Text = "Events for:";
+            this.lblTasksFor.Text = "Pending Events:";
             // 
             // tabSupplies
             // 
@@ -657,6 +702,12 @@
             // 
             // tabAgreements
             // 
+            this.tabAgreements.Controls.Add(this.rbDisagree);
+            this.tabAgreements.Controls.Add(this.rbAgree);
+            this.tabAgreements.Controls.Add(this.lblPendingAgreements);
+            this.tabAgreements.Controls.Add(this.btnCheckStatus);
+            this.tabAgreements.Controls.Add(this.btnSubmitVote);
+            this.tabAgreements.Controls.Add(this.lbPendingAgreements);
             this.tabAgreements.Controls.Add(this.lbAgreementsDisplay);
             this.tabAgreements.Controls.Add(this.lblAgreements);
             this.tabAgreements.Controls.Add(this.gbMakeAProposal);
@@ -668,21 +719,90 @@
             this.tabAgreements.Text = "Agreements";
             this.tabAgreements.UseVisualStyleBackColor = true;
             // 
+            // rbDisagree
+            // 
+            this.rbDisagree.AutoSize = true;
+            this.rbDisagree.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rbDisagree.Location = new System.Drawing.Point(550, 117);
+            this.rbDisagree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbDisagree.Name = "rbDisagree";
+            this.rbDisagree.Size = new System.Drawing.Size(109, 32);
+            this.rbDisagree.TabIndex = 10;
+            this.rbDisagree.TabStop = true;
+            this.rbDisagree.Text = "Disagree";
+            this.rbDisagree.UseVisualStyleBackColor = true;
+            // 
+            // rbAgree
+            // 
+            this.rbAgree.AutoSize = true;
+            this.rbAgree.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.rbAgree.Location = new System.Drawing.Point(550, 76);
+            this.rbAgree.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rbAgree.Name = "rbAgree";
+            this.rbAgree.Size = new System.Drawing.Size(85, 32);
+            this.rbAgree.TabIndex = 9;
+            this.rbAgree.TabStop = true;
+            this.rbAgree.Text = "Agree";
+            this.rbAgree.UseVisualStyleBackColor = true;
+            // 
+            // lblPendingAgreements
+            // 
+            this.lblPendingAgreements.AutoSize = true;
+            this.lblPendingAgreements.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblPendingAgreements.Location = new System.Drawing.Point(27, 32);
+            this.lblPendingAgreements.Name = "lblPendingAgreements";
+            this.lblPendingAgreements.Size = new System.Drawing.Size(253, 32);
+            this.lblPendingAgreements.TabIndex = 8;
+            this.lblPendingAgreements.Text = "Pending Agreements";
+            // 
+            // btnCheckStatus
+            // 
+            this.btnCheckStatus.Location = new System.Drawing.Point(550, 255);
+            this.btnCheckStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCheckStatus.Name = "btnCheckStatus";
+            this.btnCheckStatus.Size = new System.Drawing.Size(146, 51);
+            this.btnCheckStatus.TabIndex = 7;
+            this.btnCheckStatus.Text = "Check Status";
+            this.btnCheckStatus.UseVisualStyleBackColor = true;
+            this.btnCheckStatus.Click += new System.EventHandler(this.btnCheckStatus_Click);
+            // 
+            // btnSubmitVote
+            // 
+            this.btnSubmitVote.Location = new System.Drawing.Point(550, 175);
+            this.btnSubmitVote.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnSubmitVote.Name = "btnSubmitVote";
+            this.btnSubmitVote.Size = new System.Drawing.Size(146, 52);
+            this.btnSubmitVote.TabIndex = 6;
+            this.btnSubmitVote.Text = "Submit Vote";
+            this.btnSubmitVote.UseVisualStyleBackColor = true;
+            this.btnSubmitVote.Click += new System.EventHandler(this.btnSubmitVote_Click);
+            // 
+            // lbPendingAgreements
+            // 
+            this.lbPendingAgreements.FormattingEnabled = true;
+            this.lbPendingAgreements.ItemHeight = 28;
+            this.lbPendingAgreements.Location = new System.Drawing.Point(27, 76);
+            this.lbPendingAgreements.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lbPendingAgreements.Name = "lbPendingAgreements";
+            this.lbPendingAgreements.Size = new System.Drawing.Size(481, 228);
+            this.lbPendingAgreements.TabIndex = 5;
+            this.lbPendingAgreements.SelectedIndexChanged += new System.EventHandler(this.lbPendingAgreements_SelectedIndexChanged);
+            this.lbPendingAgreements.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbPendingAgreements_MouseDoubleClick);
+            // 
             // lbAgreementsDisplay
             // 
             this.lbAgreementsDisplay.FormattingEnabled = true;
             this.lbAgreementsDisplay.ItemHeight = 28;
-            this.lbAgreementsDisplay.Location = new System.Drawing.Point(30, 76);
+            this.lbAgreementsDisplay.Location = new System.Drawing.Point(27, 375);
             this.lbAgreementsDisplay.Name = "lbAgreementsDisplay";
-            this.lbAgreementsDisplay.Size = new System.Drawing.Size(521, 564);
+            this.lbAgreementsDisplay.Size = new System.Drawing.Size(668, 256);
             this.lbAgreementsDisplay.TabIndex = 2;
-            this.lbAgreementsDisplay.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbAgreementsDisplay_MouseDoubleClick);
             // 
             // lblAgreements
             // 
             this.lblAgreements.AutoSize = true;
             this.lblAgreements.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblAgreements.Location = new System.Drawing.Point(27, 28);
+            this.lblAgreements.Location = new System.Drawing.Point(27, 325);
             this.lblAgreements.Name = "lblAgreements";
             this.lblAgreements.Size = new System.Drawing.Size(152, 32);
             this.lblAgreements.TabIndex = 1;
@@ -887,7 +1007,7 @@
             this.lblStudentHouseBV.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblStudentHouseBV.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblStudentHouseBV.Image = global::Housing_Project.Properties.Resources.house;
-            this.lblStudentHouseBV.Location = new System.Drawing.Point(11, 21);
+            this.lblStudentHouseBV.Location = new System.Drawing.Point(-33, -63);
             this.lblStudentHouseBV.Name = "lblStudentHouseBV";
             this.lblStudentHouseBV.Size = new System.Drawing.Size(1122, 77);
             this.lblStudentHouseBV.TabIndex = 1;
@@ -1012,5 +1132,14 @@
         private ListBox lbWarnings;
         private ComboBox cbTenantToReportTask;
         private Label label1;
+        private Button btnTaskCompleted;
+        private ListBox lbCompletedTasks;
+        private ListBox lbPendingAgreements;
+        private Label lblPendingAgreements;
+        private Button btnCheckStatus;
+        private Label lblCompletedEvents;
+        private RadioButton rbDisagree;
+        private RadioButton rbAgree;
+        private Button btnSubmitVote;
     }
 }

@@ -190,15 +190,16 @@ namespace Housing_Project
                     if (t.Email == email && t.Password == password)
                     {
                         foundUser = true;
-                        tenant = t; 
-                    } 
-                }
-                if (foundUser == true)
-                {
-                    OpenUser(tenant);
-                }
-                else
-                    loginwrongcredentialslbl.Visible = true;
+                        tenant = t;
+                    }
+                }    
+                    if (foundUser == true)
+                    {
+                        OpenUser(tenant);
+                    }
+                    else
+                        loginwrongcredentialslbl.Visible = true;
+                
             }
 
             else if (email.Contains("supervisor.com"))

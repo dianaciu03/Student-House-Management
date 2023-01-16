@@ -60,6 +60,7 @@ namespace Housing_Project
             this.reportManager = reportManager;
             this.warningManager = warningManager;
             this.cleaningTaskManager = cleaningTaskManager;
+            agreementManager.SetSessionTenant(currentUser);
 
             //userManager.LoadRecruiter("userData.txt");
             //paymentManager.LoadRecruiter("paymentData.txt");
@@ -107,8 +108,11 @@ namespace Housing_Project
             }
             else if (tabControlStudent.SelectedTab == tabAgreements)
             {
+                lbPendingAgreements.Items.Clear();
+                foreach (Agreement a in agreementManager.GetNoncompletedAgreements())
+                    lbPendingAgreements.Items.Add(a);
                 lbAgreementsDisplay.Items.Clear();
-                foreach (Agreement a in agreementManager.GetAgreements())
+                foreach (Agreement a in agreementManager.GetCompletedAgreements())
                     lbAgreementsDisplay.Items.Add(a);
             }
             else if (tabControlStudent.SelectedTab == tabReport)
@@ -170,21 +174,37 @@ namespace Housing_Project
                 return;
             }
         }
-        
+        private void btnTaskCompleted_Click(object sender, EventArgs e)
+        {
+            agreementManager.CompleteAgreementById(lbEvents.SelectedIndex);
+
+        }
         private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
             lbEvents.Items.Clear();
+            lbCompletedTasks.Items.Clear();
             DateTime selectedDate = eventCalendar.SelectionRange.Start;
             
             foreach (Agreement agreementInfo in agreementManager.GetAgreementsOnDate(selectedDate))
             {
-                lbEvents.Items.Add(agreementInfo);
+                if (agreementInfo.completion == false)
+                {
+                    lbEvents.Items.Add(agreementInfo);
+                }
+                else if (agreementInfo.completion == true)
+                {
+                    lbCompletedTasks.Items.Add(agreementInfo);
+                }
             }
-
         }
         private void lbTasks_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int index = lbEvents.SelectedIndex;
+            MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+        }
+        private void lbCompletedTasks_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int index = lbCompletedTasks.SelectedIndex;
             MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
         }
 
@@ -242,7 +262,7 @@ namespace Housing_Project
         //
         private void btnSubmitProposal_Click(object sender, EventArgs e)
         {
-            lbAgreementsDisplay.Items.Clear();
+            lbPendingAgreements.Items.Clear();
 
             try
             {
@@ -250,7 +270,7 @@ namespace Housing_Project
                 string description = tbProposalContent.Text;
                 DateTime date = dateTimePickerAgreements.Value;
 
-                if(!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
+                if(!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(description))
                 {
                     agreementManager.AddAgreementToList(title, description, date);
                     fileManager.SaveRecruiter(agreementManager, @"..\..\..\..\Data\agreementData.txt");
@@ -263,13 +283,50 @@ namespace Housing_Project
                 return;
             }
         }
-
-        private void lbAgreementsDisplay_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void lbPendingAgreements_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = lbAgreementsDisplay.SelectedIndex;
+            int index = lbPendingAgreements.SelectedIndex;
             MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
         }
+        private void btnSubmitVote_Click(object sender, EventArgs e)
+        {
+            string itemString = lbPendingAgreements.SelectedItem.ToString();
+            int id = Convert.ToInt32(itemString.Split(".")[0]) -1;
+            if (rbAgree.Checked)
+            {
+                agreementManager.AgreeToAgreement(id);
+            }
+            if (rbDisagree.Checked)
+            {
+                agreementManager.DisagreeToAgreement(id);
+            }
+            lbPendingAgreements_SelectedIndexChanged(sender, e);
+        }
+        private void lbPendingAgreements_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string itemString = lbPendingAgreements.SelectedItem.ToString();
+            int id = Convert.ToInt32(itemString.Split(".")[0]) - 1;
+            if (agreementManager.HasTenantVotedForAgreementByID(id))
+            {
+                rbAgree.Visible= false;
+                rbDisagree.Visible= false;
+                btnSubmitVote.Visible= false;
+            }
+            else
+            {
+                rbAgree.Visible= true;
+                rbDisagree.Visible= true;
+                btnSubmitVote.Visible= true;
+            }
 
+        }
+        private void btnCheckStatus_Click(object sender, EventArgs e)
+        {
+            string itemString = lbPendingAgreements.SelectedItem.ToString();
+            int id = Convert.ToInt32(itemString.Split(".")[0]) - 1;
+            int[] votes = agreementManager.GetAgreementVotesByID(id);
+            MessageBox.Show($"Agree: {votes[0]}\n\nDisagree: {votes[1]}");
+        }
 
         //
         //REPORT TAB
@@ -314,6 +371,21 @@ namespace Housing_Project
             cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
         }
 
+      
+        
+        private void tabEventSchedule_Click(object sender, EventArgs e)
+        {
+            if (lbCompletedTasks.SelectedIndex != -1)
+            {
+                lbEvents.Items.Add(lbCompletedTasks.SelectedValue);
+            }
+        }
 
+        private void tabAgreements_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        
     }
 }

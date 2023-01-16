@@ -36,8 +36,6 @@
             this.indexBox = new System.Windows.Forms.TextBox();
             this.editbtnRules = new System.Windows.Forms.Button();
             this.lbldescriptionrules = new System.Windows.Forms.Label();
-            this.lblsubjectrules = new System.Windows.Forms.Label();
-            this.subjecttxt = new System.Windows.Forms.RichTextBox();
             this.btnSubmitChanges = new System.Windows.Forms.Button();
             this.btnAddRule = new System.Windows.Forms.Button();
             this.tbRule = new System.Windows.Forms.RichTextBox();
@@ -161,8 +159,6 @@
             this.gbEditRules.Controls.Add(this.indexBox);
             this.gbEditRules.Controls.Add(this.editbtnRules);
             this.gbEditRules.Controls.Add(this.lbldescriptionrules);
-            this.gbEditRules.Controls.Add(this.lblsubjectrules);
-            this.gbEditRules.Controls.Add(this.subjecttxt);
             this.gbEditRules.Controls.Add(this.btnSubmitChanges);
             this.gbEditRules.Controls.Add(this.btnAddRule);
             this.gbEditRules.Controls.Add(this.tbRule);
@@ -206,29 +202,11 @@
             // lbldescriptionrules
             // 
             this.lbldescriptionrules.AutoSize = true;
-            this.lbldescriptionrules.Location = new System.Drawing.Point(16, 156);
+            this.lbldescriptionrules.Location = new System.Drawing.Point(16, 86);
             this.lbldescriptionrules.Name = "lbldescriptionrules";
             this.lbldescriptionrules.Size = new System.Drawing.Size(112, 28);
             this.lbldescriptionrules.TabIndex = 9;
             this.lbldescriptionrules.Text = "Description";
-            // 
-            // lblsubjectrules
-            // 
-            this.lblsubjectrules.AutoSize = true;
-            this.lblsubjectrules.Location = new System.Drawing.Point(16, 67);
-            this.lblsubjectrules.Name = "lblsubjectrules";
-            this.lblsubjectrules.Size = new System.Drawing.Size(81, 28);
-            this.lblsubjectrules.TabIndex = 8;
-            this.lblsubjectrules.Text = "Subject:";
-            // 
-            // subjecttxt
-            // 
-            this.subjecttxt.Location = new System.Drawing.Point(16, 99);
-            this.subjecttxt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.subjecttxt.Name = "subjecttxt";
-            this.subjecttxt.Size = new System.Drawing.Size(381, 40);
-            this.subjecttxt.TabIndex = 7;
-            this.subjecttxt.Text = "";
             // 
             // btnSubmitChanges
             // 
@@ -254,10 +232,10 @@
             // 
             // tbRule
             // 
-            this.tbRule.Location = new System.Drawing.Point(16, 188);
+            this.tbRule.Location = new System.Drawing.Point(16, 118);
             this.tbRule.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbRule.Name = "tbRule";
-            this.tbRule.Size = new System.Drawing.Size(381, 149);
+            this.tbRule.Size = new System.Drawing.Size(381, 219);
             this.tbRule.TabIndex = 3;
             this.tbRule.Text = "";
             // 
@@ -965,7 +943,6 @@
             // 
             // FormSupervisor
             // 
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSupervisor_FormClosing);
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1061, 792);
@@ -975,6 +952,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormSupervisor";
             this.Text = "Supervisor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSupervisor_FormClosing);
             this.tabControlSupervisor.ResumeLayout(false);
             this.tabRules.ResumeLayout(false);
             this.tabRules.PerformLayout();
@@ -1061,8 +1039,6 @@
         private Label lblAnnouncementTitle;
         private ListBox lbEvents;
         private Label lbldescriptionrules;
-        private Label lblsubjectrules;
-        private RichTextBox subjecttxt;
         private Button editbtnRules;
         private Label editingrulenumberrules;
         private TextBox indexBox;

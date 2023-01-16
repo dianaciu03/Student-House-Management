@@ -30,8 +30,6 @@ namespace Housing_Project
             loginwrongcredentialslbl.Visible = false;
             registerlbl.Visible = false;
             LoadData();
-
-            /*LoadData();*/  //load all data from the files
         }
 
         //Method to deserialise all managers with their specific content from the files
@@ -41,6 +39,7 @@ namespace Housing_Project
             //{
           
             userManager = userManager.LoadRecruiter("userData.txt");
+            ruleManager = ruleManager.LoadRuleManagerData();
             //agreementManager = fileManager.LoadRecruiter("agreementData.txt");
 
             //announcementManager = announcementManager.LoadRecruiter("announcementData.txt");

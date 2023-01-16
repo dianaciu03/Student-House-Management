@@ -13,25 +13,17 @@ namespace Housing_Project.Classes
     public class Rule
     {
         [DataMember] private int ruleID;
-        [DataMember] private string subject;
         [DataMember] private string message;
         [DataMember] private Supervisor sender;
-        
-        public Rule(int ruleID, string subject, string message, Supervisor sender)
+
+        public Rule(int ruleID, string message, Supervisor sender)
         {
             this.ruleID = ruleID;
-            this.subject = subject;
             this.message = message;
             this.sender = sender;
         }
 
         public int RuleID { get { return ruleID; } }
-
-        public string Subject 
-        {   
-            get { return subject; } 
-            set { subject = value; }
-        }
 
         public string Message
         {
@@ -47,12 +39,12 @@ namespace Housing_Project.Classes
 
         public string GetInfoRuleDisplay()
         {
-            return $"{this.RuleID}. {this.subject} added by {this.sender}";
+            return $"{this.RuleID}. {this.message}";
         }
 
         public string GetInfoRule()
         {
-            return $"{this.subject}\n\n{this.message}\n\nAdded by {this.sender}";
+            return $"{this.message}\n\nAdded by {this.sender}";
         }
 
         public override string ToString()

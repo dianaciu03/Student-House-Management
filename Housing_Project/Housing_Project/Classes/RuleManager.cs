@@ -16,11 +16,11 @@ namespace Housing_Project.Classes
     {
         [DataMember] private int ruleIdSeeder = 1;
         [DataMember] private List<Rule> rules = new List<Rule>();
-        private const string filePath = @"..\..\..\..\Data\ruleData.txt";
+        private const string filePathRuleData = @"..\..\..\..\Data\ruleData.txt";
 
-        public void AddRuleToList(string title, string message, Supervisor sender)
+        public void AddRuleToList(string message, Supervisor sender)
         {
-            rules.Add(new Rule(ruleIdSeeder, title, message, sender));
+            rules.Add(new Rule(ruleIdSeeder, message, sender));
             ruleIdSeeder++;
         }
 
@@ -29,64 +29,57 @@ namespace Housing_Project.Classes
             return rules.ToArray();
         }
 
-        public Rule GetRule(int index)
+        public RuleManager LoadRuleManagerData()
         {
-            return rules[index];
-        }
-
-        public RuleManager? LoadRecruiter(string fileName)
-        {
-            FileStream? stream = null;
-
             try
             {
-                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                XmlDictionaryReader reader
-                    = XmlDictionaryReader.CreateTextReader(stream,
-                                                new XmlDictionaryReaderQuotas());
+                RuleManager ruleManager = new RuleManager();
 
-                Type mainType = typeof(RuleManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(Rule) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
+                using (FileStream fs = new(filePathRuleData, FileMode.Open, FileAccess.Read))
+                {
+                    Type typeToSerialize = typeof(RuleManager);
 
+                    List<Type> auxiliaryTypes = new List<Type>()
+                    {
+                        typeof(Rule),
+                        typeof(Supervisor)
+                    };
 
-                return (RuleManager?)serializer.ReadObject(reader);
+                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
+                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                    ruleManager = (RuleManager)dcs.ReadObject(reader, true);
 
+                    return ruleManager;
+                }
             }
-            catch (FileNotFoundException)
+            catch (Exception)
             {
-                return new RuleManager();
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
+                throw;
             }
         }
 
-        public void SaveRecruiter(RuleManager ruleManager, string fileName)
+        public void WriteRuleManagerData(RuleManager data)
         {
-            FileStream? stream = null;
-
             try
             {
-                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+                using (FileStream ClearFile = new(filePathRuleData, FileMode.Truncate, FileAccess.Write)) ;
+                using (FileStream fs = new(filePathRuleData, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    Type typeToSerialize = typeof(RuleManager);
 
-                Type mainType = typeof(RuleManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(Rule) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
+                    List<Type> auxiliaryTypes = new List<Type>()
+                    {
+                        typeof(Rule),
+                        typeof(Supervisor)
+                    };
 
-                serializer.WriteObject(stream, ruleManager);
-                stream.Flush();
+                    DataContractSerializer dcs = new(typeToSerialize);
+                    dcs.WriteObject(fs, data);
+                }
             }
-            finally
+            catch (Exception)
             {
-                if (stream != null)
-                    stream.Close();
+                return;
             }
         }
     }

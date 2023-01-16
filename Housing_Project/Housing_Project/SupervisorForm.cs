@@ -59,9 +59,7 @@ namespace Housing_Project
             this.warningManager = warningManager;
             this.cleaningTaskManager = cleaningTaskManager;
 
-            userManager.LoadRecruiter("userData.txt");
             announcementManager.LoadRecruiter("announcementData.txt");
-            ruleManager.LoadRecruiter("ruleData.txt");
             reportManager.LoadRecruiter("reportData.txt");
             warningManager.LoadRecruiter("warningData.txt");
             cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
@@ -135,7 +133,6 @@ namespace Housing_Project
             if (tab == "tabRules")
             {
                 indexBox.Clear();
-                subjecttxt.Clear();
                 tbRule.Clear();
             }
             else if (tab == "tabContactInfoTenant")
@@ -176,7 +173,7 @@ namespace Housing_Project
                 tbAnnouncementDescription.Clear();
             }
         }
-        
+
         //
         //RULE TAB
         //
@@ -185,13 +182,12 @@ namespace Housing_Project
         {
             try
             {
-                string subject = subjecttxt.Text;
                 string description = tbRule.Text;
 
-                if (!String.IsNullOrEmpty(subject) && !String.IsNullOrEmpty(description))
-                    ruleManager.AddRuleToList(subject, description, currentUser);
-
+                if (!String.IsNullOrEmpty(description))
+                    ruleManager.AddRuleToList(description, currentUser);
                 UpdateListBox();
+                ruleManager.WriteRuleManagerData(ruleManager);
             }
             catch (Exception)
             {
@@ -200,10 +196,10 @@ namespace Housing_Project
         }
 
         //Open message box for more details about selected rule
-        private void rulesListBox_DoubleClick(object sender, EventArgs e) 
+        private void rulesListBox_DoubleClick(object sender, EventArgs e)
         {
-            int index = rulesListBox.SelectedIndex;
-            MessageBox.Show(ruleManager.GetRule(index).GetInfoRule());
+            Rule rule = (Rule)rulesListBox.SelectedItem;
+            MessageBox.Show(rule.GetInfoRule());
         }
 
         //Push details about the selected rule back in the textboxes
@@ -211,15 +207,13 @@ namespace Housing_Project
         {
             try
             {
+                btnSubmitChanges.Visible = true;
+                editingrulenumberrules.Visible = true;
+                indexBox.Visible = true;
+
                 Rule rule = (Rule)rulesListBox.SelectedItem;
                 indexBox.Text = rule.RuleID.ToString();
-                subjecttxt.Text = rule.Subject;
                 tbRule.Text = rule.Message;
-
-                editbtnRules.Visible = false;
-                btnSubmitChanges.Visible = true;
-
-                rulesListBox.SelectionMode = SelectionMode.None;
             }
             catch (Exception)
             {
@@ -232,19 +226,17 @@ namespace Housing_Project
         {
             try
             {
-                Rule rule = (Rule)rulesListBox.SelectedItem;
+                btnSubmitChanges.Visible = false;
+                editingrulenumberrules.Visible = false;
+                indexBox.Visible = false;
 
-                if (!String.IsNullOrEmpty(subjecttxt.Text))
-                    rule.Subject = subjecttxt.Text;
+                Rule rule = (Rule)rulesListBox.SelectedItem;
                 if (!String.IsNullOrEmpty(tbRule.Text))
                     rule.Message = tbRule.Text;
 
-                editbtnRules.Visible = true;
-                btnSubmitChanges.Visible = false;
-
                 UpdateListBox();
+                ruleManager.WriteRuleManagerData(ruleManager);
                 ClearFields("tabRules");
-                rulesListBox.SelectionMode = SelectionMode.One;
             }
             catch (Exception)
             {

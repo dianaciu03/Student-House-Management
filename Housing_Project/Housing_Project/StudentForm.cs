@@ -12,6 +12,7 @@ using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Rule = Housing_Project.Classes.Rule;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Housing_Project
 {
@@ -207,7 +208,13 @@ namespace Housing_Project
             int index = lbCompletedTasks.SelectedIndex;
             MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
         }
-
+        private void tabEventSchedule_Click(object sender, EventArgs e)
+        {
+            if (lbCompletedTasks.SelectedIndex != -1)
+            {
+                lbEvents.Items.Add(lbCompletedTasks.SelectedValue);
+            }
+        }
         //
         //SUPPLIES TAB
         //
@@ -273,9 +280,9 @@ namespace Housing_Project
                 if(!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(description))
                 {
                     agreementManager.AddAgreementToList(title, description, date);
-                    fileManager.SaveRecruiter(agreementManager, @"..\..\..\..\Data\agreementData.txt");
+                    fileManager.SaveRecruiter(agreementManager, "agreementData.txt"); 
                     
-                }
+                }       
                 UpdateListBox();
             }
             catch(Exception)
@@ -318,7 +325,7 @@ namespace Housing_Project
                 rbDisagree.Visible= true;
                 btnSubmitVote.Visible= true;
             }
-
+            fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
         }
         private void btnCheckStatus_Click(object sender, EventArgs e)
         {
@@ -333,24 +340,29 @@ namespace Housing_Project
         //
         private void btnSubmitReport_Click(object sender, EventArgs e)
         {
+            
+            string title = tbReportTitle.Text;
+            string description = tbReportContent.Text;
             try
             {
-                string title = tbReportTitle.Text;
-                string description = tbReportContent.Text;
-                tbReportTitle.Text = "";
-                tbReportContent.Text = "";
-                if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
+                Tenant personAdress = (Tenant)cbTenantsToReport.SelectedItem;
+
+                if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(description))
                 {
-                    //needs implementation
+                    reportManager.AddReportToList(title, description, personAdress);
+                    reportManager.SaveRecruiter(reportManager, "reportData.txt");                                                                                                                                                                                                                                                                                                                                                                                                             
                 }
 
             }
             catch(Exception)
             {
-                return;
+                MessageBox.Show("Invalid input!");
             }
         }
 
+        //
+        //Logout
+        //
         private void logoutpicturebox_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -373,19 +385,6 @@ namespace Housing_Project
 
       
         
-        private void tabEventSchedule_Click(object sender, EventArgs e)
-        {
-            if (lbCompletedTasks.SelectedIndex != -1)
-            {
-                lbEvents.Items.Add(lbCompletedTasks.SelectedValue);
-            }
-        }
-
-        private void tabAgreements_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
+    
     }
 }

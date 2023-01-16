@@ -65,5 +65,10 @@ namespace Housing_Project
                     stream.Close();
             }
         }
+
+        internal void SaveRecruiter(ReportManager reportManager, string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

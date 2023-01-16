@@ -16,7 +16,6 @@ namespace Housing_Project.Classes
         [DataMember] public bool completion;
         [DataMember] public int agreeVotes;
         [DataMember] public int disagreeVotes;
-        [DataMember] public List<Vote> Votes { get; set; }
         [DataMember] List<Tenant> tenantsApproved = new List<Tenant>();
         [DataMember] List<Tenant> tenantsRejected = new List<Tenant>();
         [DataMember] List<Tenant> tenantsNotAnswered = new List<Tenant>();
@@ -28,13 +27,8 @@ namespace Housing_Project.Classes
             this.title = title;
             this.description = description;
             this.date = date;
-            this.Votes = new List<Vote>();
         }
 
-        public Agreement(int id, string title, string description, DateTime date, List<Vote> submisions) : this(id, title, description, date)
-        {
-            this.Votes = submisions;
-        }
 
         public string Title { get { return title; } }
 

@@ -162,20 +162,6 @@ namespace Housing_Project.Classes
             }
             return tenantFound;
         }
-
-        public void CastVote(Agreement agreement, Vote vote)
-        {
-            agreement = agreements.Find(agreement => agreement.Title.Equals(agreement.Title));
-
-            if (agreement == null)
-            {
-                throw new NotImplementedException();
-            }
-
-            agreement.Votes.Add(vote);
-        }
-
-
         public AgreementManager LoadData()
         {
             try

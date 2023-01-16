@@ -47,6 +47,10 @@ namespace Housing_Project
             {
                 cbCleanBathroom1,cbCleanBathroom2,cbCleanTheKitchen,cbCleanTheLivingRoom,cbCleanTheStarirs,cbTakeOutTheTrash
             };
+            foreach (var item in reportManager.GetReports())
+            {
+                lbReceivedReports.Items.Add(item.GetInfoReport());
+            }
         }
 
         private void InitializeManagers(Supervisor currentUser, UserManager userManager, AnnouncementManager announcementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
@@ -63,6 +67,7 @@ namespace Housing_Project
             reportManager.LoadRecruiter("reportData.txt");
             warningManager.LoadRecruiter("warningData.txt");
             cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
+            reportManager = reportManager.LoadRecruiter("reportData.txt");
         }
 
         private void InitializeTenantComboBoxes()
@@ -327,15 +332,7 @@ namespace Housing_Project
         //Get more info if you double click on the report
         private void lbReceivedReports_DoubleClick(object sender, EventArgs e)
         {
-            try
-            {
-                int index = lbReceivedReports.SelectedIndex;
-                MessageBox.Show(reportManager.GetReport(index).GetInfoReport());
-            }
-            catch(Exception)
-            {
-                return;
-            }
+
         }
 
 

@@ -37,8 +37,6 @@ namespace Housing_Project.Classes
         {
             return reports[index];
         }
-
-
         public ReportManager? LoadRecruiter(string fileName)
         {
             FileStream? stream = null;

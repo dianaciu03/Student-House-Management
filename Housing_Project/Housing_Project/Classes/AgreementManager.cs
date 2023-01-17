@@ -79,7 +79,7 @@ namespace Housing_Project.Classes
             {
                 return agreements[index];
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw;
             }

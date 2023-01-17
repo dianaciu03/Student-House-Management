@@ -31,6 +31,20 @@ namespace Housing_Project
         //Method to deserialise all managers with their specific content from the files
         private void LoadData()
         {
+            try
+            {
+                userManager = userManager.LoadRecruiter("userData.txt");
+                ruleManager = ruleManager.LoadRuleManagerData();
+                reportManager = reportManager.LoadReportManagerData();
+                //announcementManager.LoadRecruiter("announcementData.txt");
+                //warningManager.LoadRecruiter("warningData.txt");
+                //cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
             userManager = userManager.LoadRecruiter("userData.txt");
             ruleManager = ruleManager.LoadRuleManagerData();
             warningManager = warningManager.LoadRecruiter("warningData.txt");
@@ -39,7 +53,7 @@ namespace Housing_Project
         //Method to reset the fields
         private void ClearFields()
         {
-            //Login field
+            //Login fields
             loginpasswordtxt.Clear();
             loginemailtxt.Clear();
             //Register fields
@@ -205,9 +219,5 @@ namespace Housing_Project
             }
         }
 
-        private void LoginRegister_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            userManager.SaveRecruiter(userManager, "userData.txt");
-        }
     }
 }

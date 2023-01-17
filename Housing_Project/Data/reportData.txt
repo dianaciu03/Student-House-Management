@@ -1,0 +1,1 @@
+<ReportManager xmlns="http://schemas.datacontract.org/2004/07/Housing_Project.Classes" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><reports><Report><adressedPerson i:nil="true"/><message>xdcfgbjhnkml,</message><title>noise</title></Report></reports></ReportManager>

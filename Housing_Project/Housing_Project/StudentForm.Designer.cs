@@ -135,7 +135,7 @@
             this.tabControlStudent.Name = "tabControlStudent";
             this.tabControlStudent.Padding = new System.Drawing.Point(45, 5);
             this.tabControlStudent.SelectedIndex = 0;
-            this.tabControlStudent.Size = new System.Drawing.Size(1209, 725);
+            this.tabControlStudent.Size = new System.Drawing.Size(1209, 736);
             this.tabControlStudent.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControlStudent.TabIndex = 0;
             this.tabControlStudent.SelectedIndexChanged += new System.EventHandler(this.tabControlStudent_SelectedIndexChanged);
@@ -151,8 +151,8 @@
             this.tabHouseRules.Controls.Add(this.lblHouseRules);
             this.tabHouseRules.Location = new System.Drawing.Point(4, 41);
             this.tabHouseRules.Name = "tabHouseRules";
-            this.tabHouseRules.Padding = new System.Windows.Forms.Padding(3);
-            this.tabHouseRules.Size = new System.Drawing.Size(1201, 680);
+            this.tabHouseRules.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabHouseRules.Size = new System.Drawing.Size(1201, 691);
             this.tabHouseRules.TabIndex = 0;
             this.tabHouseRules.Text = "House Rules & Contact Info";
             this.tabHouseRules.UseVisualStyleBackColor = true;
@@ -161,8 +161,9 @@
             // 
             this.lbSupervisorInfo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbSupervisorInfo.FormattingEnabled = true;
+            this.lbSupervisorInfo.HorizontalScrollbar = true;
             this.lbSupervisorInfo.ItemHeight = 23;
-            this.lbSupervisorInfo.Location = new System.Drawing.Point(629, 329);
+            this.lbSupervisorInfo.Location = new System.Drawing.Point(629, 392);
             this.lbSupervisorInfo.Name = "lbSupervisorInfo";
             this.lbSupervisorInfo.Size = new System.Drawing.Size(530, 280);
             this.lbSupervisorInfo.TabIndex = 5;
@@ -171,8 +172,9 @@
             // 
             this.lbTenantsContactInfo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbTenantsContactInfo.FormattingEnabled = true;
+            this.lbTenantsContactInfo.HorizontalScrollbar = true;
             this.lbTenantsContactInfo.ItemHeight = 23;
-            this.lbTenantsContactInfo.Location = new System.Drawing.Point(22, 329);
+            this.lbTenantsContactInfo.Location = new System.Drawing.Point(22, 392);
             this.lbTenantsContactInfo.Name = "lbTenantsContactInfo";
             this.lbTenantsContactInfo.Size = new System.Drawing.Size(530, 280);
             this.lbTenantsContactInfo.TabIndex = 4;
@@ -181,7 +183,7 @@
             // 
             this.lblSupervisorContactInfo.AutoSize = true;
             this.lblSupervisorContactInfo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblSupervisorContactInfo.Location = new System.Drawing.Point(744, 277);
+            this.lblSupervisorContactInfo.Location = new System.Drawing.Point(744, 340);
             this.lblSupervisorContactInfo.Name = "lblSupervisorContactInfo";
             this.lblSupervisorContactInfo.Size = new System.Drawing.Size(311, 32);
             this.lblSupervisorContactInfo.TabIndex = 3;
@@ -191,7 +193,7 @@
             // 
             this.lblTenantsContactInfo.AutoSize = true;
             this.lblTenantsContactInfo.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTenantsContactInfo.Location = new System.Drawing.Point(149, 277);
+            this.lblTenantsContactInfo.Location = new System.Drawing.Point(149, 340);
             this.lblTenantsContactInfo.Name = "lblTenantsContactInfo";
             this.lblTenantsContactInfo.Size = new System.Drawing.Size(247, 32);
             this.lblTenantsContactInfo.TabIndex = 2;
@@ -204,7 +206,7 @@
             this.lbHouseRules.ItemHeight = 23;
             this.lbHouseRules.Location = new System.Drawing.Point(22, 71);
             this.lbHouseRules.Name = "lbHouseRules";
-            this.lbHouseRules.Size = new System.Drawing.Size(1137, 142);
+            this.lbHouseRules.Size = new System.Drawing.Size(1137, 234);
             this.lbHouseRules.TabIndex = 1;
             this.lbHouseRules.SelectedIndexChanged += new System.EventHandler(this.lbHouseRules_SelectedIndexChanged);
             // 
@@ -235,10 +237,10 @@
             this.tabEventSchedule.Controls.Add(this.lbEvents);
             this.tabEventSchedule.Controls.Add(this.lblTasksFor);
             this.tabEventSchedule.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabEventSchedule.Location = new System.Drawing.Point(4, 41);
+            this.tabEventSchedule.Location = new System.Drawing.Point(4, 78);
             this.tabEventSchedule.Name = "tabEventSchedule";
-            this.tabEventSchedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEventSchedule.Size = new System.Drawing.Size(1201, 680);
+            this.tabEventSchedule.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabEventSchedule.Size = new System.Drawing.Size(1201, 643);
             this.tabEventSchedule.TabIndex = 2;
             this.tabEventSchedule.Text = "Event Schedule";
             this.tabEventSchedule.UseVisualStyleBackColor = true;
@@ -377,10 +379,10 @@
             this.tabSupplies.Controls.Add(this.lbPaymentsInfo);
             this.tabSupplies.Controls.Add(this.gbSupplies);
             this.tabSupplies.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabSupplies.Location = new System.Drawing.Point(4, 41);
+            this.tabSupplies.Location = new System.Drawing.Point(4, 78);
             this.tabSupplies.Name = "tabSupplies";
-            this.tabSupplies.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSupplies.Size = new System.Drawing.Size(1201, 680);
+            this.tabSupplies.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabSupplies.Size = new System.Drawing.Size(1201, 643);
             this.tabSupplies.TabIndex = 3;
             this.tabSupplies.Text = "Supplies";
             this.tabSupplies.UseVisualStyleBackColor = true;
@@ -716,10 +718,10 @@
             this.tabAgreements.Controls.Add(this.lbAgreementsDisplay);
             this.tabAgreements.Controls.Add(this.lblAgreements);
             this.tabAgreements.Controls.Add(this.gbMakeAProposal);
-            this.tabAgreements.Location = new System.Drawing.Point(4, 41);
+            this.tabAgreements.Location = new System.Drawing.Point(4, 78);
             this.tabAgreements.Name = "tabAgreements";
-            this.tabAgreements.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAgreements.Size = new System.Drawing.Size(1201, 680);
+            this.tabAgreements.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabAgreements.Size = new System.Drawing.Size(1201, 643);
             this.tabAgreements.TabIndex = 4;
             this.tabAgreements.Text = "Agreements";
             this.tabAgreements.UseVisualStyleBackColor = true;
@@ -898,10 +900,10 @@
             this.tabReport.Controls.Add(this.lbWarnings);
             this.tabReport.Controls.Add(this.gbFileAReport);
             this.tabReport.Controls.Add(this.lblWarnings);
-            this.tabReport.Location = new System.Drawing.Point(4, 41);
+            this.tabReport.Location = new System.Drawing.Point(4, 78);
             this.tabReport.Name = "tabReport";
-            this.tabReport.Padding = new System.Windows.Forms.Padding(3);
-            this.tabReport.Size = new System.Drawing.Size(1201, 680);
+            this.tabReport.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabReport.Size = new System.Drawing.Size(1201, 643);
             this.tabReport.TabIndex = 5;
             this.tabReport.Text = "Report a problem ";
             this.tabReport.UseVisualStyleBackColor = true;

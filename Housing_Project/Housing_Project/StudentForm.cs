@@ -80,7 +80,6 @@ namespace Housing_Project
         
         private void UpdateListBox()
         {
-            //VVVV
             if(tabControlStudent.SelectedTab == tabHouseRules)
             {
                 lbHouseRules.Items.Clear();
@@ -92,9 +91,9 @@ namespace Housing_Project
                 
                 
                 foreach(Tenant t in userManager.GetTenants())
-                    lbTenantsContactInfo.Items.Add(t);
+                    lbTenantsContactInfo.Items.Add(t.GetInfo());
                 foreach(Supervisor s in userManager.GetSupervisors())
-                    lbSupervisorInfo.Items.Add(s);
+                    lbSupervisorInfo.Items.Add(s.GetInfo());
             }
             else if(tabControlStudent.SelectedTab == tabEventSchedule)
             {
@@ -333,21 +332,35 @@ namespace Housing_Project
         //
         //REPORT TAB
         //
+
+        //Create a report and send it to the supervisor
         private void btnSubmitReport_Click(object sender, EventArgs e)
         {
-            
-            string title = tbReportTitle.Text;
-            string description = tbReportContent.Text;
             try
             {
+                string title = tbReportTitle.Text;
+                string description = tbReportContent.Text;
                 Tenant personAdress = (Tenant)cbTenantsToReport.SelectedItem;
 
                 if (!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(description))
                 {
-                    reportManager.AddReportToList(title, description, personAdress);
-                    reportManager.SaveRecruiter(reportManager, "reportData.txt");                                                                                                                                                                                                                                                                                                                                                                                                             
+                    if(personAdress != null)
+                    {
+                        Report report = new Report(title, description, personAdress);
+                        reportManager.AddReportToList(report);
+                        reportManager.WriteReportManagerData(reportManager);
+                        MessageBox.Show("Report has been sent successfully!");
+                        ClearFiealds();
+                    }                        
+                    else
+                    {
+                        Report report = new Report(title, description);
+                        reportManager.AddReportToList(report);
+                        reportManager.WriteReportManagerData(reportManager);
+                        MessageBox.Show("Report has been sent successfully!");
+                        ClearFiealds();
+                    }                                                                                                                                                                                                                                                                                                                                                                                                             
                 }
-
             }
             catch(Exception)
             {
@@ -368,10 +381,10 @@ namespace Housing_Project
         private void FormStudent_FormClosing(object sender, FormClosingEventArgs e)
         {
             userManager.SaveRecruiter(userManager, "userData.txt");
+
             paymentManager.SaveRecruiter(paymentManager, "paymentData.txt");
             fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
 
-            reportManager.SaveRecruiter(reportManager, "reportData.txt");
             warningManager.SaveRecruiter(warningManager, "warningData.txt");
             cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
         }

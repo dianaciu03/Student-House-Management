@@ -33,6 +33,7 @@ namespace Housing_Project
         {
             userManager = userManager.LoadRecruiter("userData.txt");
             ruleManager = ruleManager.LoadRuleManagerData();
+            warningManager = warningManager.LoadRecruiter("warningData.txt");
         }
 
         //Method to reset the fields

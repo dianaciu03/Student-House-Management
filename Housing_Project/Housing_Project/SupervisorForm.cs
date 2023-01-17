@@ -65,7 +65,7 @@ namespace Housing_Project
 
             announcementManager.LoadRecruiter("announcementData.txt");
             reportManager.LoadRecruiter("reportData.txt");
-            warningManager.LoadRecruiter("warningData.txt");
+
             cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
             reportManager = reportManager.LoadRecruiter("reportData.txt");
         }
@@ -358,7 +358,12 @@ namespace Housing_Project
                 {
                     Warning warning = new Warning(title, message, warningAdressedTo, currentUser);
                     warningManager.AddWarningToList(warning);
+                    MessageBox.Show("Warning sent successfully!");
+                    warningManager.SaveRecruiter(warningManager, "warningData.txt");
                 }
+                cbTenantToSendWarning.Text = "";
+                tbWarningDescription.Text = "";
+                tbWarningSubject.Text = "";
             }
             catch (Exception)
             {
@@ -431,6 +436,11 @@ namespace Housing_Project
             //reportManager.SaveRecruiter(reportManager, "reportData.txt");
             //warningManager.SaveRecruiter(warningManager, "warningData.txt");
             //cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
+        }
+
+        private void lbTenantsInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

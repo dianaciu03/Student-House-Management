@@ -33,16 +33,20 @@ namespace Housing_Project
             InitializeComponent();
             InitializeManagers(currentUser, userManager, paymentManager, agreementManager, ruleManager, reportManager, warningManager, cleaningTaskManager);
             InitializeStudentComboBoxes();
-
             this.Text = $"{currentUser}";
             UpdateListBox();
-
+            
             //Array of checkboxes
             checkBoxes = new List<CheckBox>
             {
                 cbSponges, cbDishSoap, cbPaperRolls, cbNapkins, cbGarbageBags, cbToiletPaper, cbLaundryPods, cbLaundrySoftener, cbSoap,
                 cbFreshener, cbMopCap, cbFloorCleaner, cbAntiGreaseSolution, cbAntiCalcarSolution, cbHygienizer, cbFiberCloth, cbGlassCleaner
             };
+            
+            foreach (var item in warningManager.GetWarningsTenant(currentUser))
+            {
+                lbWarnings.Items.Add(item.GetInfoWarningDisplay());
+            }
         }
 
         private void tabControlStudent_SelectedIndexChanged(object sender, EventArgs e)
@@ -71,8 +75,9 @@ namespace Housing_Project
 
             foreach (Tenant t in userManager.Tenants)
                 cbTenantToReportTask.Items.Add(t);
+            foreach(Warning w in warningManager.GetWarningsTenant(currentUser)) { lbWarnings.Items.Add(w); }    
         }
-
+        
         private void UpdateListBox()
         {
             //VVVV
@@ -84,6 +89,8 @@ namespace Housing_Project
 
                 foreach (Rule r in ruleManager.GetRules())
                     lbHouseRules.Items.Add(r);
+                
+                
                 foreach(Tenant t in userManager.GetTenants())
                     lbTenantsContactInfo.Items.Add(t);
                 foreach(Supervisor s in userManager.GetSupervisors())
@@ -112,7 +119,9 @@ namespace Housing_Project
             {
                 lbWarnings.Items.Clear();
                 foreach (Warning w in warningManager.GetWarningsTenant(currentUser))
-                    lbWarnings.Items.Add(w);
+                {
+                    lbWarnings.Items.Add(w.GetInfoWarning());
+                }
                 //^^^^ this needs fixing
             }
         }
@@ -365,6 +374,25 @@ namespace Housing_Project
             reportManager.SaveRecruiter(reportManager, "reportData.txt");
             warningManager.SaveRecruiter(warningManager, "warningData.txt");
             cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
+        }
+
+        private void gbFileAReport_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbWarnings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.warningManager = warningManager.LoadRecruiter("warningData.txt");
+            foreach (var item in warningManager.GetWarningsTenant(this.currentUser))
+            {
+                lbWarnings.Items.Add(item.GetInfoWarningDisplay());
+            }
+        }
+
+        private void lbHouseRules_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

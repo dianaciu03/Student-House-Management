@@ -30,7 +30,7 @@ namespace Housing_Project.Classes
 
             foreach (Warning w in warnings)
             {
-                if (w.PersonAdressed == tenant)
+                if (w.PersonAdressed.Email == tenant.Email)
                     warningsTenant.Add(w);
             }
             return warningsTenant;
@@ -57,10 +57,10 @@ namespace Housing_Project.Classes
                 return (WarningManager?)serializer.ReadObject(reader);
 
             }
-            catch (FileNotFoundException)
-            {
-                return new WarningManager();
-            }
+            //catch (FileNotFoundException)
+            //{
+            //    return new WarningManager();
+            //}
             finally
             {
                 if (stream != null)

@@ -98,6 +98,10 @@ namespace Housing_Project
             else if(tabControlStudent.SelectedTab == tabEventSchedule)
             {
                 lbEvents.Items.Clear();
+                foreach (CleaningTask t in cleaningTaskManager.GetCleaningTasks())
+                {
+                    lbEvents.Items.Add(t.GetInfo());
+                }
             }
             else if(tabControlStudent.SelectedTab == tabSupplies)
             {

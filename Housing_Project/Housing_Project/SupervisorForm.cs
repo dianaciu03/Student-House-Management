@@ -463,7 +463,8 @@ namespace Housing_Project
                 {
                     CleaningTask cleaningTask = new CleaningTask(assignedPerson, date, content);
                     cleaningTaskManager.AddCleaningTaskToList(cleaningTask);
-                    lbEvents.Items.Add(cleaningTask);
+                    lbEvents.Items.Add(cleaningTask.GetInfo());
+                    cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
                     ClearFields("tabAddEventsCleaningTask");
                 }
             }

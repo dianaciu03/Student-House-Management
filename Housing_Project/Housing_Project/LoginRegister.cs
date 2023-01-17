@@ -39,7 +39,7 @@ namespace Housing_Project
                 paymentManager = paymentManager.LoadPaymentManagerData();
                 //announcementManager.LoadRecruiter("announcementData.txt");
                 //warningManager.LoadRecruiter("warningData.txt");
-                //cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
+                cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
             }
             catch (Exception)
             {

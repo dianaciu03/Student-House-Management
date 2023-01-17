@@ -462,6 +462,7 @@
             // 
             // tbOtherProducts
             // 
+            this.tbOtherProducts.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbOtherProducts.Location = new System.Drawing.Point(283, 324);
             this.tbOtherProducts.Multiline = true;
             this.tbOtherProducts.Name = "tbOtherProducts";
@@ -949,6 +950,7 @@
             // 
             // tbReportTitle
             // 
+            this.tbReportTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbReportTitle.Location = new System.Drawing.Point(75, 47);
             this.tbReportTitle.Name = "tbReportTitle";
             this.tbReportTitle.Size = new System.Drawing.Size(477, 39);
@@ -977,6 +979,7 @@
             // 
             // tbReportContent
             // 
+            this.tbReportContent.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbReportContent.Location = new System.Drawing.Point(121, 101);
             this.tbReportContent.Multiline = true;
             this.tbReportContent.Name = "tbReportContent";
@@ -985,6 +988,7 @@
             // 
             // cbTenantsToReport
             // 
+            this.cbTenantsToReport.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbTenantsToReport.FormattingEnabled = true;
             this.cbTenantsToReport.Location = new System.Drawing.Point(650, 101);
             this.cbTenantsToReport.Name = "cbTenantsToReport";

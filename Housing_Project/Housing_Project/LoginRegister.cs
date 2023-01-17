@@ -46,10 +46,8 @@ namespace Housing_Project
                 return;
             }
         }
-            userManager = userManager.LoadRecruiter("userData.txt");
-            ruleManager = ruleManager.LoadRuleManagerData();
-            warningManager = warningManager.LoadRecruiter("warningData.txt");
-        }
+
+    
 
         //Method to reset the fields
         private void ClearFields()
@@ -97,9 +95,9 @@ namespace Housing_Project
 
                 if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone) && !String.IsNullOrEmpty(password))
                 {
+                    //check if the person is a student
                     if (email.Contains("student.com"))
                     {
-
                         foreach (Tenant t in userManager.GetTenants())
                         {
                             if (t.Email == email)
@@ -122,7 +120,7 @@ namespace Housing_Project
                             ClearFields();
                         }
                     }
-
+                    //check if the person is a supervisor
                     else if (email.Contains("supervisor.com"))
                     {
                         foreach (Supervisor s in userManager.GetSupervisors())

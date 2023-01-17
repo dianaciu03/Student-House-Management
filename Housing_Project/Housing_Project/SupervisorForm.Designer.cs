@@ -554,7 +554,6 @@
             this.lbTenantsInfo.Name = "lbTenantsInfo";
             this.lbTenantsInfo.Size = new System.Drawing.Size(530, 284);
             this.lbTenantsInfo.TabIndex = 9;
-            this.lbTenantsInfo.SelectedIndexChanged += new System.EventHandler(this.lbTenantsInfo_SelectedIndexChanged);
             // 
             // tabManageReports
             // 

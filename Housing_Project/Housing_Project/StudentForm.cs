@@ -121,7 +121,6 @@ namespace Housing_Project
                 {
                     lbWarnings.Items.Add(w.GetInfoWarning());
                 }
-                //^^^^ this needs fixing
             }
         }
 
@@ -281,6 +280,7 @@ namespace Housing_Project
                     
                 }       
                 UpdateListBox();
+                ClearFiealds();
             }
             catch(Exception) {}
         }

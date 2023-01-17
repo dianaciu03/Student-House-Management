@@ -17,17 +17,6 @@ namespace Housing_Project.Classes
         [DataMember] private List<Payment> payments = new List<Payment>();
         private const string filePath = @"..\..\..\..\Data\paymentData.txt";
         
-        public bool IsPaymentComplete(Payment payment)
-        {
-            if (payment.TenantsNotPaidCount() == 0)
-            {
-                payments.Remove(payment);
-                return true;
-            }
-            else
-                return false;
-        }
-
         public double CalculatePricePerPerson(Payment payment, int numberTenants)
         {
             return (double)payment.TotalPrice / numberTenants;
@@ -48,60 +37,55 @@ namespace Housing_Project.Classes
             return payments[index];
         }
 
-        public PaymentManager? LoadRecruiter(string fileName)
+        public PaymentManager LoadPaymentManagerData()
         {
-            FileStream? stream = null;
-
             try
             {
-                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                XmlReader reader
-                    = XmlDictionaryReader.CreateTextReader(stream,
-                                                new XmlDictionaryReaderQuotas());
+                PaymentManager paymentManager = new PaymentManager();
 
-                Type mainType = typeof(PaymentManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(Payment) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
+                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    Type typeToSerialize = typeof(PaymentManager);
 
+                    List<Type> auxiliaryTypes = new List<Type>()
+                    {
+                        typeof(Payment),
+                        typeof(Tenant)
+                    };
 
-                return (PaymentManager?)serializer.ReadObject(reader);
+                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
+                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                    paymentManager = (PaymentManager)dcs.ReadObject(reader, true);
 
+                    return paymentManager;
+                }
             }
-            catch (FileNotFoundException)
+            catch (Exception)
             {
-                return new PaymentManager();
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
+                throw;
             }
         }
 
-        public void SaveRecruiter(PaymentManager paymentManager , string fileName)
+        public void WritePaymentManagerData(PaymentManager data)
         {
-            FileStream? stream = null;
-
             try
             {
-                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
+                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    Type typeToSerialize = typeof(PaymentManager);
 
-                Type mainType = typeof(PaymentManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(Payment) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
+                    List<Type> auxiliaryTypes = new List<Type>()
+                    {
+                        typeof(Payment),
+                        typeof(Tenant)
+                    };
 
-                serializer.WriteObject(stream, paymentManager);
-                stream.Flush();
+                    DataContractSerializer dcs = new(typeToSerialize);
+                    dcs.WriteObject(fs, data);
+                }
             }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
+            catch (Exception) { }
         }
     }
 }

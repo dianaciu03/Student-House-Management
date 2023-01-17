@@ -151,7 +151,7 @@
             this.tabHouseRules.Controls.Add(this.lblHouseRules);
             this.tabHouseRules.Location = new System.Drawing.Point(4, 41);
             this.tabHouseRules.Name = "tabHouseRules";
-            this.tabHouseRules.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabHouseRules.Padding = new System.Windows.Forms.Padding(3);
             this.tabHouseRules.Size = new System.Drawing.Size(1201, 691);
             this.tabHouseRules.TabIndex = 0;
             this.tabHouseRules.Text = "House Rules & Contact Info";
@@ -236,10 +236,10 @@
             this.tabEventSchedule.Controls.Add(this.lbEvents);
             this.tabEventSchedule.Controls.Add(this.lblTasksFor);
             this.tabEventSchedule.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabEventSchedule.Location = new System.Drawing.Point(4, 78);
+            this.tabEventSchedule.Location = new System.Drawing.Point(4, 41);
             this.tabEventSchedule.Name = "tabEventSchedule";
-            this.tabEventSchedule.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabEventSchedule.Size = new System.Drawing.Size(1201, 643);
+            this.tabEventSchedule.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEventSchedule.Size = new System.Drawing.Size(1201, 691);
             this.tabEventSchedule.TabIndex = 2;
             this.tabEventSchedule.Text = "Event Schedule";
             this.tabEventSchedule.UseVisualStyleBackColor = true;
@@ -378,10 +378,10 @@
             this.tabSupplies.Controls.Add(this.lbPaymentsInfo);
             this.tabSupplies.Controls.Add(this.gbSupplies);
             this.tabSupplies.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tabSupplies.Location = new System.Drawing.Point(4, 78);
+            this.tabSupplies.Location = new System.Drawing.Point(4, 41);
             this.tabSupplies.Name = "tabSupplies";
-            this.tabSupplies.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabSupplies.Size = new System.Drawing.Size(1201, 643);
+            this.tabSupplies.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSupplies.Size = new System.Drawing.Size(1201, 691);
             this.tabSupplies.TabIndex = 3;
             this.tabSupplies.Text = "Supplies";
             this.tabSupplies.UseVisualStyleBackColor = true;
@@ -404,8 +404,7 @@
             this.lbPaymentsInfo.Name = "lbPaymentsInfo";
             this.lbPaymentsInfo.Size = new System.Drawing.Size(524, 452);
             this.lbPaymentsInfo.TabIndex = 1;
-            this.lbPaymentsInfo.DoubleClick += new System.EventHandler(this.btnSubmitProposal_Click);
-            this.lbPaymentsInfo.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbPaymentsInfo_MouseDoubleClick);
+            this.lbPaymentsInfo.DoubleClick += new System.EventHandler(this.lbPaymentsInfo_DoubleClick);
             // 
             // gbSupplies
             // 
@@ -717,10 +716,10 @@
             this.tabAgreements.Controls.Add(this.lbAgreementsDisplay);
             this.tabAgreements.Controls.Add(this.lblAgreements);
             this.tabAgreements.Controls.Add(this.gbMakeAProposal);
-            this.tabAgreements.Location = new System.Drawing.Point(4, 78);
+            this.tabAgreements.Location = new System.Drawing.Point(4, 41);
             this.tabAgreements.Name = "tabAgreements";
-            this.tabAgreements.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabAgreements.Size = new System.Drawing.Size(1201, 643);
+            this.tabAgreements.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAgreements.Size = new System.Drawing.Size(1201, 691);
             this.tabAgreements.TabIndex = 4;
             this.tabAgreements.Text = "Agreements";
             this.tabAgreements.UseVisualStyleBackColor = true;
@@ -899,10 +898,10 @@
             this.tabReport.Controls.Add(this.lbWarnings);
             this.tabReport.Controls.Add(this.gbFileAReport);
             this.tabReport.Controls.Add(this.lblWarnings);
-            this.tabReport.Location = new System.Drawing.Point(4, 78);
+            this.tabReport.Location = new System.Drawing.Point(4, 41);
             this.tabReport.Name = "tabReport";
-            this.tabReport.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabReport.Size = new System.Drawing.Size(1201, 643);
+            this.tabReport.Padding = new System.Windows.Forms.Padding(3);
+            this.tabReport.Size = new System.Drawing.Size(1201, 691);
             this.tabReport.TabIndex = 5;
             this.tabReport.Text = "Report a problem ";
             this.tabReport.UseVisualStyleBackColor = true;

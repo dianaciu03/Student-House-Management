@@ -260,7 +260,7 @@ namespace Housing_Project
                     Tenant tenant = new Tenant(name, email, phone);
                     userManager.AddTenantToList(tenant);
                 }
-
+                userManager.SaveRecruiter(userManager, "userData.txt");
                 UpdateListBox();
                 ClearFields("tabContactInfoTenant");
             }
@@ -309,6 +309,7 @@ namespace Housing_Project
                 btnAddTenant.Visible = true;
                 btnSubmitChangesTenant.Visible = false;
                 ClearFields("tabContactInfoSupervisor");
+                userManager.SaveRecruiter(userManager, "userData.txt");
             }
             catch (Exception)
             {
@@ -333,6 +334,7 @@ namespace Housing_Project
 
                 UpdateListBox();
                 ClearFields("tabContactInfoTenant");
+                userManager.SaveRecruiter(userManager, "userData.txt");
             }
             catch (Exception)
             {
@@ -378,7 +380,8 @@ namespace Housing_Project
                 btnEditSupervisor.Visible = true;
                 btnAddSupervisor.Visible = true;
                 btnSubmitChangesSupervisor.Visible = false;
-                ClearFields("tabContactInfoTenant");
+                ClearFields("tabContactInfoSupervisor");
+                userManager.SaveRecruiter(userManager, "userData.txt");
             }
             catch (Exception)
             {
@@ -404,6 +407,7 @@ namespace Housing_Project
             {
                 Report report = (Report)lbReceivedReports.SelectedItem;
                 reportManager.RemoveReportFromList(report);
+                reportManager.WriteReportManagerData(reportManager);
             }
             catch(Exception)
             {

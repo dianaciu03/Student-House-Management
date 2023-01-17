@@ -233,9 +233,8 @@ namespace Housing_Project
                 {
                     Payment payment = new Payment(items, buyer, totalPrice);
                     paymentManager.AddPaymentToList(payment);
-                    paymentManager.SaveRecruiter(paymentManager, "paymentData.txt");
+                    paymentManager.WritePaymentManagerData(paymentManager);
                 }
-
                 UpdateListBox();
                 ClearFiealds();                
             }
@@ -245,11 +244,12 @@ namespace Housing_Project
             }
         }
 
-        private void lbPaymentsInfo_MouseDoubleClick(object sender, MouseEventArgs e)
+        //Get more details about a payment
+        private void lbPaymentsInfo_DoubleClick(object sender, EventArgs e)
         {
-            int index = lbPaymentsInfo.SelectedIndex;
-            double pricePerPerson = paymentManager.CalculatePricePerPerson(paymentManager.GetPayment(index), userManager.NumberOfTenants());
-            MessageBox.Show(paymentManager.GetPayment(index).GetInfoPayment(pricePerPerson));
+            Payment payment = (Payment)lbPaymentsInfo.SelectedItem;
+            double pricePerPerson = paymentManager.CalculatePricePerPerson(payment, userManager.NumberOfTenants());
+            MessageBox.Show(payment.GetInfoPayment(pricePerPerson));
         }
 
         //
@@ -371,13 +371,12 @@ namespace Housing_Project
 
         private void FormStudent_FormClosing(object sender, FormClosingEventArgs e)
         {
-            userManager.SaveRecruiter(userManager, "userData.txt");
-
-            paymentManager.SaveRecruiter(paymentManager, "paymentData.txt");
             fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
 
             warningManager.SaveRecruiter(warningManager, "warningData.txt");
             cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
         }
+
+
     }
 }

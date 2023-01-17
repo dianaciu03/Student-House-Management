@@ -13,8 +13,6 @@ namespace Housing_Project.Classes
         [DataMember] private List<string> items = new List<string>();
         [DataMember] private Tenant buyer;
         [DataMember] private double totalPrice;
-        [DataMember] private List<Tenant> tenantsPaid = new List<Tenant>();
-        [DataMember] private List<Tenant> tenantsNotPaid = new List<Tenant>();
 
         public Payment(List<string> list, Tenant buyer, double totalPrice)
         {
@@ -23,32 +21,8 @@ namespace Housing_Project.Classes
             this.totalPrice = totalPrice;
         }
 
-        public List<string> Items { get { return items; } }
-
-        public Tenant Tenant { get { return buyer; } }
-
         public double TotalPrice { get { return totalPrice; } }
 
-        public void InitializeTenantsNotPaid(List<Tenant> tenants)
-        {
-            this.tenantsNotPaid = tenants;
-        }
-
-        public void AddTenantsPaid(Tenant tenant)
-        {
-            tenantsNotPaid.Remove(tenant);
-            tenantsPaid.Add(tenant);
-        }
-
-        public void AddItem(string item)
-        {
-            items.Add(item);
-        }
-
-        public int TenantsNotPaidCount()
-        {
-            return tenantsNotPaid.Count;
-        }
 
         public string GetInfoPayment(double pricePerPerson)
         {

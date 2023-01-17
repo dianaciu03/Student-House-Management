@@ -36,6 +36,7 @@ namespace Housing_Project
                 userManager = userManager.LoadRecruiter("userData.txt");
                 ruleManager = ruleManager.LoadRuleManagerData();
                 reportManager = reportManager.LoadReportManagerData();
+                paymentManager = paymentManager.LoadPaymentManagerData();
                 //announcementManager.LoadRecruiter("announcementData.txt");
                 //warningManager.LoadRecruiter("warningData.txt");
                 //cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");

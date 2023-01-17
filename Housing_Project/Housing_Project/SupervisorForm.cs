@@ -427,7 +427,12 @@ namespace Housing_Project
                 {
                     Warning warning = new Warning(title, message, warningAdressedTo, currentUser);
                     warningManager.AddWarningToList(warning);
+                    MessageBox.Show("Warning sent successfully!");
+                    warningManager.SaveRecruiter(warningManager, "warningData.txt");
                 }
+                cbTenantToSendWarning.Text = "";
+                tbWarningDescription.Text = "";
+                tbWarningSubject.Text = "";
             }
             catch (Exception)
             {

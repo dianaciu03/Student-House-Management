@@ -46,6 +46,10 @@ namespace Housing_Project
                 return;
             }
         }
+            userManager = userManager.LoadRecruiter("userData.txt");
+            ruleManager = ruleManager.LoadRuleManagerData();
+            warningManager = warningManager.LoadRecruiter("warningData.txt");
+        }
 
         //Method to reset the fields
         private void ClearFields()

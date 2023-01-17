@@ -208,6 +208,7 @@
             this.lbHouseRules.Name = "lbHouseRules";
             this.lbHouseRules.Size = new System.Drawing.Size(1137, 234);
             this.lbHouseRules.TabIndex = 1;
+            this.lbHouseRules.SelectedIndexChanged += new System.EventHandler(this.lbHouseRules_SelectedIndexChanged);
             // 
             // lblHouseRules
             // 
@@ -915,6 +916,7 @@
             this.lbWarnings.Name = "lbWarnings";
             this.lbWarnings.Size = new System.Drawing.Size(1085, 228);
             this.lbWarnings.TabIndex = 9;
+            this.lbWarnings.SelectedIndexChanged += new System.EventHandler(this.lbWarnings_SelectedIndexChanged);
             // 
             // gbFileAReport
             // 
@@ -933,6 +935,7 @@
             this.gbFileAReport.TabIndex = 8;
             this.gbFileAReport.TabStop = false;
             this.gbFileAReport.Text = "File a report";
+            this.gbFileAReport.Enter += new System.EventHandler(this.gbFileAReport_Enter);
             // 
             // lblReportDescription
             // 

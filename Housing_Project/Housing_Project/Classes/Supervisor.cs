@@ -54,7 +54,7 @@ namespace Housing_Project.Classes
         }
         public string GetInfo()
         {
-            return $"Name: {Name} || Email: {Email} || Phone Number: {PhoneNumber} ";
+            return $"{Name} || Email: {Email} || Phone Number: {PhoneNumber} ";
         }
 
         public override string ToString()

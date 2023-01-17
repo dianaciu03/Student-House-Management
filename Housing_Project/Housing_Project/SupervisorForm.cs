@@ -38,6 +38,7 @@ namespace Housing_Project
             InitializeComponent();
             InitializeManagers(currentUser, userManager, announcementManager, ruleManager, reportManager, warningManager, cleaningTaskManager);
             InitializeTenantComboBoxes();
+            UpdateListBox();
 
             this.Text = $"{currentUser}";//upper bar text
             btnSubmitChanges.Visible = false;
@@ -118,6 +119,9 @@ namespace Housing_Project
                 lbTenantsInfo.Items.Clear();
                 foreach (Tenant t in userManager.GetTenants())
                     lbTenantsInfo.Items.Add(t);
+                lbSupervisorsInfo.Items.Clear();
+                foreach (Supervisor s in userManager.GetSupervisors())
+                    lbSupervisorsInfo.Items.Add(s);
             }
             else if (tabControlSupervisor.SelectedTab == tabManageReports)
             {
@@ -316,6 +320,76 @@ namespace Housing_Project
                 edittenantbtn.Visible = true;
                 btnAddTenant.Visible = true;
                 btnSubmitChangesTenant.Visible = false;
+                ClearFields("tabContactInfoSupervisor");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        //Manage Supervisor Details
+        private void btnAddSupervisor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string email = tbSupervisorEmail.Text;
+                string name = tbSupervisorName.Text;
+                string phone = tbSupervisorPhone.Text;
+
+                if (!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone))
+                {
+                    Supervisor supervisor = new Supervisor(name, email, phone);
+                    userManager.AddSupervisorToList(supervisor);
+                }
+
+                UpdateListBox();
+                ClearFields("tabContactInfoTenant");
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        //Push details about the selected tenant back in the textboxes
+        private void btnEditSupervisor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Supervisor supervisor = (Supervisor)lbSupervisorsInfo.SelectedItem;
+                indexboxUsers.Text = (1 + lbSupervisorsInfo.SelectedIndex).ToString();
+                tbSupervisorEmail.Text = supervisor.Email;
+                tbSupervisorName.Text = supervisor.Name;
+                tbSupervisorPhone.Text = supervisor.PhoneNumber;
+
+                btnEditSupervisor.Visible = false;
+                btnAddSupervisor.Visible = false;
+                btnSubmitChangesSupervisor.Visible = true;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
+
+        //Submit changes made to the supervisor
+        private void btnSubmitChangesSupervisor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Supervisor supervisor = (Supervisor)lbSupervisorsInfo.SelectedItem;
+
+                if (!String.IsNullOrEmpty(tbSupervisorName.Text))
+                    supervisor.Name = tbSupervisorName.Text;
+                if (!String.IsNullOrEmpty(tbSupervisorEmail.Text))
+                    supervisor.Email = tbSupervisorEmail.Text;
+                if (!String.IsNullOrEmpty(tbSupervisorPhone.Text))
+                    supervisor.PhoneNumber = tbSupervisorPhone.Text;
+
+                btnEditSupervisor.Visible = true;
+                btnAddSupervisor.Visible = true;
+                btnSubmitChangesSupervisor.Visible = false;
                 ClearFields("tabContactInfoTenant");
             }
             catch (Exception)
@@ -432,5 +506,7 @@ namespace Housing_Project
             //warningManager.SaveRecruiter(warningManager, "warningData.txt");
             //cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
         }
+
+
     }
 }

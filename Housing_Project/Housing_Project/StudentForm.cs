@@ -75,7 +75,6 @@ namespace Housing_Project
 
         private void UpdateListBox()
         {
-            //VVVV
             if(tabControlStudent.SelectedTab == tabHouseRules)
             {
                 lbHouseRules.Items.Clear();
@@ -85,9 +84,9 @@ namespace Housing_Project
                 foreach (Rule r in ruleManager.GetRules())
                     lbHouseRules.Items.Add(r);
                 foreach(Tenant t in userManager.GetTenants())
-                    lbTenantsContactInfo.Items.Add(t);
+                    lbTenantsContactInfo.Items.Add(t.GetInfo());
                 foreach(Supervisor s in userManager.GetSupervisors())
-                    lbSupervisorInfo.Items.Add(s);
+                    lbSupervisorInfo.Items.Add(s.GetInfo());
             }
             else if(tabControlStudent.SelectedTab == tabEventSchedule)
             {

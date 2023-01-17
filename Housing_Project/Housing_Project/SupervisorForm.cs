@@ -41,17 +41,11 @@ namespace Housing_Project
             UpdateListBox();
 
             this.Text = $"{currentUser}";//upper bar text
-            btnSubmitChanges.Visible = false;
-            btnSubmitChangesTenant.Visible = false;
 
             checkBoxes = new CheckBox[]
             {
                 cbCleanBathroom1,cbCleanBathroom2,cbCleanTheKitchen,cbCleanTheLivingRoom,cbCleanTheStarirs,cbTakeOutTheTrash
             };
-            foreach (var item in reportManager.GetReports())
-            {
-                lbReceivedReports.Items.Add(item.GetInfoReport());
-            }
         }
 
         private void InitializeManagers(Supervisor currentUser, UserManager userManager, AnnouncementManager announcementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
@@ -63,12 +57,6 @@ namespace Housing_Project
             this.reportManager = reportManager;
             this.warningManager = warningManager;
             this.cleaningTaskManager = cleaningTaskManager;
-
-            announcementManager.LoadRecruiter("announcementData.txt");
-            reportManager.LoadRecruiter("reportData.txt");
-            warningManager.LoadRecruiter("warningData.txt");
-            cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
-            reportManager = reportManager.LoadRecruiter("reportData.txt");
         }
 
         private void InitializeTenantComboBoxes()
@@ -405,8 +393,11 @@ namespace Housing_Project
         //Get more info if you double click on the report
         private void lbReceivedReports_DoubleClick(object sender, EventArgs e)
         {
-
+            Report report = (Report)lbReceivedReports.SelectedItem;
+            MessageBox.Show(report.GetInfoReport());
         }
+
+        //When an issue is solved, the report is removed
         private void btnRemoveReport_Click(object sender, EventArgs e)
         {
             try

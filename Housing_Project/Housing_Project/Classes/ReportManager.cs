@@ -13,14 +13,12 @@ namespace Housing_Project.Classes
     [DataContract]
     public class ReportManager
     {
-        [DataMember] private int reportIdSeeder = 1;
         [DataMember] private List<Report> reports = new List<Report>();
         private const string filePath = @"..\..\..\..\Data\reportData.txt";
 
-        public void AddReportToList(string title, string message, Tenant personAdressed)
+        public void AddReportToList(Report report)
         {
-            reports.Add(new Report(reportIdSeeder, title, message, personAdressed));
-            reportIdSeeder++;
+            reports.Add(report);
         }
 
         public void RemoveReportFromList(Report report)
@@ -33,62 +31,55 @@ namespace Housing_Project.Classes
             return reports.ToArray();
         }
 
-        public Report GetReport(int index)
+        public ReportManager LoadReportManagerData()
         {
-            return reports[index];
-        }
-        public ReportManager? LoadRecruiter(string fileName)
-        {
-            FileStream? stream = null;
-
             try
             {
-                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                XmlDictionaryReader reader
-                    = XmlDictionaryReader.CreateTextReader(stream,
-                                                new XmlDictionaryReaderQuotas());
+                ReportManager reportManager = new ReportManager();
 
-                Type mainType = typeof(ReportManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(Report) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
+                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    Type typeToSerialize = typeof(ReportManager);
 
-                return (ReportManager?)serializer.ReadObject(reader);
+                    List<Type> auxiliaryTypes = new List<Type>()
+                    {
+                        typeof(Report),
+                        typeof(Tenant)
+                    };
+
+                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
+                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
+                    reportManager = (ReportManager)dcs.ReadObject(reader, true);
+
+                    return reportManager;
+                }
             }
-            catch (FileNotFoundException)
+            catch (Exception)
             {
-                return new ReportManager();
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
+                throw;
             }
         }
 
-        public void SaveRecruiter(ReportManager reportManager, string fileName)
+        public void WriteReportManagerData(ReportManager data)
         {
-            FileStream? stream = null;
-
             try
             {
-                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
+                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    Type typeToSerialize = typeof(ReportManager);
 
-                Type mainType = typeof(ReportManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(Report) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
+                    List<Type> auxiliaryTypes = new List<Type>()
+                    {
+                        typeof(Report),
+                        typeof(Tenant)
+                    };
 
-                serializer.WriteObject(stream, reportManager);
-                stream.Flush();
+                    DataContractSerializer dcs = new(typeToSerialize);
+                    dcs.WriteObject(fs, data);
+                }
             }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
+            catch (Exception) { }
         }
     }
 }

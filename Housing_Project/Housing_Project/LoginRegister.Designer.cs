@@ -316,7 +316,6 @@
             this.Controls.Add(this.tabControlLoginRegister);
             this.Name = "LoginRegister";
             this.Text = "Login/Register";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginRegister_FormClosing);
             this.tabPageRegister.ResumeLayout(false);
             this.tabPageRegister.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

@@ -575,14 +575,14 @@
             this.gbReports.Controls.Add(this.lblReceivedReports);
             this.gbReports.Location = new System.Drawing.Point(15, 31);
             this.gbReports.Name = "gbReports";
-            this.gbReports.Size = new System.Drawing.Size(470, 463);
+            this.gbReports.Size = new System.Drawing.Size(470, 488);
             this.gbReports.TabIndex = 7;
             this.gbReports.TabStop = false;
             this.gbReports.Text = "Reports";
             // 
             // btnRemoveReport
             // 
-            this.btnRemoveReport.Location = new System.Drawing.Point(134, 391);
+            this.btnRemoveReport.Location = new System.Drawing.Point(134, 414);
             this.btnRemoveReport.Name = "btnRemoveReport";
             this.btnRemoveReport.Size = new System.Drawing.Size(165, 49);
             this.btnRemoveReport.TabIndex = 7;
@@ -597,7 +597,7 @@
             this.lbReceivedReports.ItemHeight = 23;
             this.lbReceivedReports.Location = new System.Drawing.Point(6, 67);
             this.lbReceivedReports.Name = "lbReceivedReports";
-            this.lbReceivedReports.Size = new System.Drawing.Size(458, 234);
+            this.lbReceivedReports.Size = new System.Drawing.Size(458, 303);
             this.lbReceivedReports.TabIndex = 4;
             this.lbReceivedReports.DoubleClick += new System.EventHandler(this.lbReceivedReports_DoubleClick);
             // 
@@ -620,9 +620,9 @@
             this.gbReport.Controls.Add(this.btnSendWarning);
             this.gbReport.Controls.Add(this.cbTenantToSendWarning);
             this.gbReport.Controls.Add(this.lblSelectTenant);
-            this.gbReport.Location = new System.Drawing.Point(507, 31);
+            this.gbReport.Location = new System.Drawing.Point(548, 31);
             this.gbReport.Name = "gbReport";
-            this.gbReport.Size = new System.Drawing.Size(474, 463);
+            this.gbReport.Size = new System.Drawing.Size(474, 488);
             this.gbReport.TabIndex = 6;
             this.gbReport.TabStop = false;
             this.gbReport.Text = "Warning";
@@ -632,7 +632,7 @@
             this.tbWarningDescription.Location = new System.Drawing.Point(31, 168);
             this.tbWarningDescription.Multiline = true;
             this.tbWarningDescription.Name = "tbWarningDescription";
-            this.tbWarningDescription.Size = new System.Drawing.Size(421, 179);
+            this.tbWarningDescription.Size = new System.Drawing.Size(421, 202);
             this.tbWarningDescription.TabIndex = 10;
             // 
             // lblWarningDescription
@@ -664,7 +664,7 @@
             // 
             // btnSendWarning
             // 
-            this.btnSendWarning.Location = new System.Drawing.Point(157, 391);
+            this.btnSendWarning.Location = new System.Drawing.Point(157, 414);
             this.btnSendWarning.Name = "btnSendWarning";
             this.btnSendWarning.Size = new System.Drawing.Size(173, 49);
             this.btnSendWarning.TabIndex = 6;
@@ -946,7 +946,7 @@
             this.lblStudentHouseBV.Image = global::Housing_Project.Properties.Resources.house;
             this.lblStudentHouseBV.Location = new System.Drawing.Point(14, 20);
             this.lblStudentHouseBV.Name = "lblStudentHouseBV";
-            this.lblStudentHouseBV.Size = new System.Drawing.Size(983, 77);
+            this.lblStudentHouseBV.Size = new System.Drawing.Size(983, 93);
             this.lblStudentHouseBV.TabIndex = 4;
             this.lblStudentHouseBV.Text = "Student House BV";
             this.lblStudentHouseBV.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

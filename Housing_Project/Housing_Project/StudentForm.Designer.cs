@@ -41,13 +41,6 @@
             this.lblCompletedEvents = new System.Windows.Forms.Label();
             this.btnTaskCompleted = new System.Windows.Forms.Button();
             this.lbCompletedTasks = new System.Windows.Forms.ListBox();
-            this.cbTenantToReportTask = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnSendReportTask = new System.Windows.Forms.Button();
-            this.tbCommentReportTask = new System.Windows.Forms.TextBox();
-            this.lblAddCommentReportTask = new System.Windows.Forms.Label();
-            this.cbReportTask = new System.Windows.Forms.ComboBox();
-            this.lblReportTask = new System.Windows.Forms.Label();
             this.eventCalendar = new System.Windows.Forms.MonthCalendar();
             this.lbEvents = new System.Windows.Forms.ListBox();
             this.lblTasksFor = new System.Windows.Forms.Label();
@@ -226,13 +219,6 @@
             this.tabEventSchedule.Controls.Add(this.lblCompletedEvents);
             this.tabEventSchedule.Controls.Add(this.btnTaskCompleted);
             this.tabEventSchedule.Controls.Add(this.lbCompletedTasks);
-            this.tabEventSchedule.Controls.Add(this.cbTenantToReportTask);
-            this.tabEventSchedule.Controls.Add(this.label1);
-            this.tabEventSchedule.Controls.Add(this.btnSendReportTask);
-            this.tabEventSchedule.Controls.Add(this.tbCommentReportTask);
-            this.tabEventSchedule.Controls.Add(this.lblAddCommentReportTask);
-            this.tabEventSchedule.Controls.Add(this.cbReportTask);
-            this.tabEventSchedule.Controls.Add(this.lblReportTask);
             this.tabEventSchedule.Controls.Add(this.eventCalendar);
             this.tabEventSchedule.Controls.Add(this.lbEvents);
             this.tabEventSchedule.Controls.Add(this.lblTasksFor);
@@ -250,7 +236,7 @@
             // 
             this.lblCompletedEvents.AutoSize = true;
             this.lblCompletedEvents.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblCompletedEvents.Location = new System.Drawing.Point(434, 47);
+            this.lblCompletedEvents.Location = new System.Drawing.Point(51, 379);
             this.lblCompletedEvents.Name = "lblCompletedEvents";
             this.lblCompletedEvents.Size = new System.Drawing.Size(212, 31);
             this.lblCompletedEvents.TabIndex = 13;
@@ -258,7 +244,7 @@
             // 
             // btnTaskCompleted
             // 
-            this.btnTaskCompleted.Location = new System.Drawing.Point(336, 312);
+            this.btnTaskCompleted.Location = new System.Drawing.Point(855, 320);
             this.btnTaskCompleted.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTaskCompleted.Name = "btnTaskCompleted";
             this.btnTaskCompleted.Size = new System.Drawing.Size(165, 47);
@@ -271,81 +257,18 @@
             // 
             this.lbCompletedTasks.FormattingEnabled = true;
             this.lbCompletedTasks.ItemHeight = 28;
-            this.lbCompletedTasks.Location = new System.Drawing.Point(434, 83);
+            this.lbCompletedTasks.Location = new System.Drawing.Point(51, 414);
             this.lbCompletedTasks.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lbCompletedTasks.Name = "lbCompletedTasks";
-            this.lbCompletedTasks.Size = new System.Drawing.Size(371, 200);
+            this.lbCompletedTasks.Size = new System.Drawing.Size(746, 256);
             this.lbCompletedTasks.TabIndex = 11;
             this.lbCompletedTasks.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbCompletedTasks_MouseDoubleClick);
-            // 
-            // cbTenantToReportTask
-            // 
-            this.cbTenantToReportTask.FormattingEnabled = true;
-            this.cbTenantToReportTask.Location = new System.Drawing.Point(210, 477);
-            this.cbTenantToReportTask.Name = "cbTenantToReportTask";
-            this.cbTenantToReportTask.Size = new System.Drawing.Size(431, 36);
-            this.cbTenantToReportTask.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(106, 481);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 32);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Tenant:";
-            // 
-            // btnSendReportTask
-            // 
-            this.btnSendReportTask.Location = new System.Drawing.Point(499, 555);
-            this.btnSendReportTask.Name = "btnSendReportTask";
-            this.btnSendReportTask.Size = new System.Drawing.Size(142, 45);
-            this.btnSendReportTask.TabIndex = 8;
-            this.btnSendReportTask.Text = "Send Report";
-            this.btnSendReportTask.UseVisualStyleBackColor = true;
-            this.btnSendReportTask.Click += new System.EventHandler(this.btnSendReportTask_Click);
-            // 
-            // tbCommentReportTask
-            // 
-            this.tbCommentReportTask.Location = new System.Drawing.Point(699, 419);
-            this.tbCommentReportTask.Multiline = true;
-            this.tbCommentReportTask.Name = "tbCommentReportTask";
-            this.tbCommentReportTask.Size = new System.Drawing.Size(431, 181);
-            this.tbCommentReportTask.TabIndex = 7;
-            // 
-            // lblAddCommentReportTask
-            // 
-            this.lblAddCommentReportTask.AutoSize = true;
-            this.lblAddCommentReportTask.Location = new System.Drawing.Point(699, 387);
-            this.lblAddCommentReportTask.Name = "lblAddCommentReportTask";
-            this.lblAddCommentReportTask.Size = new System.Drawing.Size(141, 28);
-            this.lblAddCommentReportTask.TabIndex = 6;
-            this.lblAddCommentReportTask.Text = "Add comment:";
-            // 
-            // cbReportTask
-            // 
-            this.cbReportTask.FormattingEnabled = true;
-            this.cbReportTask.Location = new System.Drawing.Point(210, 419);
-            this.cbReportTask.Name = "cbReportTask";
-            this.cbReportTask.Size = new System.Drawing.Size(431, 36);
-            this.cbReportTask.TabIndex = 5;
-            // 
-            // lblReportTask
-            // 
-            this.lblReportTask.AutoSize = true;
-            this.lblReportTask.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblReportTask.Location = new System.Drawing.Point(51, 419);
-            this.lblReportTask.Name = "lblReportTask";
-            this.lblReportTask.Size = new System.Drawing.Size(153, 32);
-            this.lblReportTask.TabIndex = 4;
-            this.lblReportTask.Text = "Report task:";
             // 
             // eventCalendar
             // 
             this.eventCalendar.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.eventCalendar.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.eventCalendar.Location = new System.Drawing.Point(869, 85);
+            this.eventCalendar.Location = new System.Drawing.Point(855, 83);
             this.eventCalendar.MaxSelectionCount = 1;
             this.eventCalendar.Name = "eventCalendar";
             this.eventCalendar.TabIndex = 0;
@@ -358,7 +281,7 @@
             this.lbEvents.ItemHeight = 28;
             this.lbEvents.Location = new System.Drawing.Point(51, 83);
             this.lbEvents.Name = "lbEvents";
-            this.lbEvents.Size = new System.Drawing.Size(367, 200);
+            this.lbEvents.Size = new System.Drawing.Size(746, 284);
             this.lbEvents.TabIndex = 3;
             this.lbEvents.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbTasks_MouseDoubleClick);
             // 
@@ -366,7 +289,7 @@
             // 
             this.lblTasksFor.AutoSize = true;
             this.lblTasksFor.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTasksFor.Location = new System.Drawing.Point(51, 45);
+            this.lblTasksFor.Location = new System.Drawing.Point(51, 48);
             this.lblTasksFor.Name = "lblTasksFor";
             this.lblTasksFor.Size = new System.Drawing.Size(196, 32);
             this.lblTasksFor.TabIndex = 1;
@@ -1090,11 +1013,6 @@
         private MonthCalendar eventCalendar;
         private Label lblTasksFor;
         private ListBox lbEvents;
-        private Label lblReportTask;
-        private ComboBox cbReportTask;
-        private TextBox tbCommentReportTask;
-        private Label lblAddCommentReportTask;
-        private Button btnSendReportTask;
         private GroupBox gbSupplies;
         private CheckBox cbDishSoap;
         private CheckBox cbSponges;
@@ -1144,8 +1062,6 @@
         private DateTimePicker dateTimePickerAgreements;
         private PictureBox logoutpicturebox;
         private ListBox lbWarnings;
-        private ComboBox cbTenantToReportTask;
-        private Label label1;
         private Button btnTaskCompleted;
         private ListBox lbCompletedTasks;
         private ListBox lbPendingAgreements;

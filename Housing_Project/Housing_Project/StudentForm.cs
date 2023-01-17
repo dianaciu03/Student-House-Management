@@ -73,9 +73,8 @@ namespace Housing_Project
             foreach (Tenant t in userManager.Tenants)
                 cbTenantsToReport.Items.Add(t);
 
-            foreach (Tenant t in userManager.Tenants)
-                cbTenantToReportTask.Items.Add(t);
-            foreach(Warning w in warningManager.GetWarningsTenant(currentUser)) { lbWarnings.Items.Add(w); }    
+            foreach(Warning w in warningManager.GetWarningsTenant(currentUser))
+                lbWarnings.Items.Add(w);
         }
         
         private void UpdateListBox()
@@ -130,12 +129,7 @@ namespace Housing_Project
 
         private void ClearFiealds()
         {
-            if (tabControlStudent.SelectedTab == tabEventSchedule)
-            {
-                cbReportTask.SelectedIndex = -1;
-                tbCommentReportTask.Clear();
-            }
-            else if (tabControlStudent.SelectedTab == tabSupplies)
+            if (tabControlStudent.SelectedTab == tabSupplies)
             {
                 foreach (CheckBox checkBox in checkBoxes)
                 {
@@ -164,18 +158,6 @@ namespace Housing_Project
         //EVENT SCHEDULE TAB
         //
 
-        private void btnSendReportTask_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string reportTitle = cbReportTask.Text;
-                string reportContent = tbCommentReportTask.Text;
-                Tenant personReported = (Tenant)cbTenantToReportTask.SelectedItem;
-
-                //needs implemenation
-            }
-            catch(Exception) {}
-        }
         private void btnTaskCompleted_Click(object sender, EventArgs e)
         {
             agreementManager.CompleteAgreementById(lbEvents.SelectedIndex);

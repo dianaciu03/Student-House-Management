@@ -37,8 +37,8 @@ namespace Housing_Project
                 ruleManager = ruleManager.LoadRuleManagerData();
                 reportManager = reportManager.LoadReportManagerData();
                 paymentManager = paymentManager.LoadPaymentManagerData();
-                //announcementManager.LoadRecruiter("announcementData.txt");
-                //warningManager.LoadRecruiter("warningData.txt");
+                announcementManager.LoadRecruiter("announcementData.txt");
+                warningManager.LoadRecruiter("warningData.txt");
                 cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
             }
             catch (Exception)

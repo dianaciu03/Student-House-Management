@@ -450,6 +450,7 @@
             this.btnSubmitChangesTenant.TabIndex = 15;
             this.btnSubmitChangesTenant.Text = "Submit changes";
             this.btnSubmitChangesTenant.UseVisualStyleBackColor = true;
+            this.btnSubmitChangesTenant.Visible = false;
             this.btnSubmitChangesTenant.Click += new System.EventHandler(this.btnSubmitChangesTenant_Click);
             // 
             // tbRoomNumber

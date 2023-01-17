@@ -45,6 +45,5 @@ namespace Housing_Project.Classes
         {
             return GetInfoWarningDisplay();
         }
-
     }
 }

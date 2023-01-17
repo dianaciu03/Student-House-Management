@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.tabPageRegister = new System.Windows.Forms.TabPage();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.registerlbl = new System.Windows.Forms.Label();
             this.passwordlbl = new System.Windows.Forms.Label();
             this.emailadresslbl = new System.Windows.Forms.Label();
             this.phonenumberlbl = new System.Windows.Forms.Label();
@@ -40,6 +42,7 @@
             this.registerbtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPageLogin = new System.Windows.Forms.TabPage();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.loginpasswordtxt = new System.Windows.Forms.TextBox();
             this.loginemailtxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,15 +51,18 @@
             this.loginpasswordlbl = new System.Windows.Forms.Label();
             this.loginbtn = new System.Windows.Forms.Button();
             this.tabControlLoginRegister = new System.Windows.Forms.TabControl();
-            this.registerlbl = new System.Windows.Forms.Label();
             this.tabPageRegister.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPageLogin.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControlLoginRegister.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPageRegister
             // 
-            this.tabPageRegister.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageRegister.BackColor = System.Drawing.Color.Transparent;
+            this.tabPageRegister.BackgroundImage = global::Housing_Project.Properties.Resources._360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP;
+            this.tabPageRegister.Controls.Add(this.pictureBox2);
             this.tabPageRegister.Controls.Add(this.registerlbl);
             this.tabPageRegister.Controls.Add(this.passwordlbl);
             this.tabPageRegister.Controls.Add(this.emailadresslbl);
@@ -75,6 +81,27 @@
             this.tabPageRegister.Size = new System.Drawing.Size(445, 506);
             this.tabPageRegister.TabIndex = 1;
             this.tabPageRegister.Text = "Create account";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Housing_Project.Properties.Resources.register_18;
+            this.pictureBox2.Location = new System.Drawing.Point(170, 20);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(35, 28);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 29;
+            this.pictureBox2.TabStop = false;
+            // 
+            // registerlbl
+            // 
+            this.registerlbl.AutoSize = true;
+            this.registerlbl.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.registerlbl.ForeColor = System.Drawing.Color.Red;
+            this.registerlbl.Location = new System.Drawing.Point(9, 440);
+            this.registerlbl.Name = "registerlbl";
+            this.registerlbl.Size = new System.Drawing.Size(412, 37);
+            this.registerlbl.TabIndex = 28;
+            this.registerlbl.Text = "Already registered with this email";
             // 
             // passwordlbl
             // 
@@ -172,7 +199,9 @@
             // 
             // tabPageLogin
             // 
-            this.tabPageLogin.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageLogin.BackColor = System.Drawing.Color.Transparent;
+            this.tabPageLogin.BackgroundImage = global::Housing_Project.Properties.Resources._360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP;
+            this.tabPageLogin.Controls.Add(this.pictureBox1);
             this.tabPageLogin.Controls.Add(this.loginpasswordtxt);
             this.tabPageLogin.Controls.Add(this.loginemailtxt);
             this.tabPageLogin.Controls.Add(this.label1);
@@ -187,6 +216,16 @@
             this.tabPageLogin.Size = new System.Drawing.Size(445, 506);
             this.tabPageLogin.TabIndex = 0;
             this.tabPageLogin.Text = "Login Form";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Housing_Project.Properties.Resources._lock;
+            this.pictureBox1.Location = new System.Drawing.Point(84, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(45, 58);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
             // 
             // loginpasswordtxt
             // 
@@ -219,7 +258,7 @@
             // 
             this.loginwrongcredentialslbl.AutoSize = true;
             this.loginwrongcredentialslbl.Font = new System.Drawing.Font("Segoe UI", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.loginwrongcredentialslbl.ForeColor = System.Drawing.Color.Red;
+            this.loginwrongcredentialslbl.ForeColor = System.Drawing.Color.DodgerBlue;
             this.loginwrongcredentialslbl.Location = new System.Drawing.Point(20, 451);
             this.loginwrongcredentialslbl.Name = "loginwrongcredentialslbl";
             this.loginwrongcredentialslbl.Size = new System.Drawing.Size(241, 37);
@@ -273,21 +312,11 @@
             this.tabControlLoginRegister.TabIndex = 17;
             this.tabControlLoginRegister.Click += new System.EventHandler(this.tabControlLoginRegister_Click);
             // 
-            // registerlbl
-            // 
-            this.registerlbl.AutoSize = true;
-            this.registerlbl.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.registerlbl.ForeColor = System.Drawing.Color.Red;
-            this.registerlbl.Location = new System.Drawing.Point(9, 440);
-            this.registerlbl.Name = "registerlbl";
-            this.registerlbl.Size = new System.Drawing.Size(412, 37);
-            this.registerlbl.TabIndex = 28;
-            this.registerlbl.Text = "Already registered with this email";
-            // 
             // LoginRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Housing_Project.Properties.Resources._360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP;
             this.ClientSize = new System.Drawing.Size(644, 634);
             this.Controls.Add(this.tabControlLoginRegister);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -296,8 +325,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginRegister_FormClosing);
             this.tabPageRegister.ResumeLayout(false);
             this.tabPageRegister.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPageLogin.ResumeLayout(false);
             this.tabPageLogin.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControlLoginRegister.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -326,5 +357,7 @@
         private Button loginbtn;
         private TabControl tabControlLoginRegister;
         private Label registerlbl;
+        private PictureBox pictureBox1;
+        private PictureBox pictureBox2;
     }
 }

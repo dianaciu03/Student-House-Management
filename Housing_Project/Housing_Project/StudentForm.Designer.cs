@@ -143,6 +143,7 @@
             // 
             // tabHouseRules
             // 
+            this.tabHouseRules.BackgroundImage = global::Housing_Project.Properties.Resources._360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP;
             this.tabHouseRules.Controls.Add(this.lbSupervisorInfo);
             this.tabHouseRules.Controls.Add(this.lbTenantsContactInfo);
             this.tabHouseRules.Controls.Add(this.lblSupervisorContactInfo);
@@ -223,6 +224,7 @@
             // 
             // tabEventSchedule
             // 
+            this.tabEventSchedule.BackgroundImage = global::Housing_Project.Properties.Resources._360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP;
             this.tabEventSchedule.Controls.Add(this.lblCompletedEvents);
             this.tabEventSchedule.Controls.Add(this.btnTaskCompleted);
             this.tabEventSchedule.Controls.Add(this.lbCompletedTasks);
@@ -379,6 +381,7 @@
             // 
             // tabSupplies
             // 
+            this.tabSupplies.BackgroundImage = global::Housing_Project.Properties.Resources._360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP;
             this.tabSupplies.Controls.Add(this.lblPayments);
             this.tabSupplies.Controls.Add(this.lbPaymentsInfo);
             this.tabSupplies.Controls.Add(this.gbSupplies);
@@ -736,6 +739,7 @@
             // 
             // tabAgreements
             // 
+            this.tabAgreements.BackgroundImage = global::Housing_Project.Properties.Resources._360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP;
             this.tabAgreements.Controls.Add(this.rbDisagree);
             this.tabAgreements.Controls.Add(this.rbAgree);
             this.tabAgreements.Controls.Add(this.lblPendingAgreements);
@@ -926,6 +930,7 @@
             // 
             // tabReport
             // 
+            this.tabReport.BackgroundImage = global::Housing_Project.Properties.Resources._360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP;
             this.tabReport.Controls.Add(this.lbWarnings);
             this.tabReport.Controls.Add(this.gbFileAReport);
             this.tabReport.Controls.Add(this.lblWarnings);
@@ -951,6 +956,7 @@
             // 
             // gbFileAReport
             // 
+            this.gbFileAReport.BackColor = System.Drawing.SystemColors.Window;
             this.gbFileAReport.Controls.Add(this.lblReportDescription);
             this.gbFileAReport.Controls.Add(this.tbReportTitle);
             this.gbFileAReport.Controls.Add(this.lblReportTitle);

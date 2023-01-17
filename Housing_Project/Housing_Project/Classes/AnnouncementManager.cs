@@ -74,7 +74,5 @@ namespace Housing_Project.Classes
                     stream.Close();
             }
         }
-
-
     }
 }

@@ -75,7 +75,14 @@ namespace Housing_Project.Classes
 
         public Agreement GetAgreement(int index)
         {
-            return agreements[index];
+            try
+            {
+                return agreements[index];
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
         public List<Agreement> GetAgreementsOnDate(DateTime date)
@@ -123,7 +130,6 @@ namespace Housing_Project.Classes
                 {
                     agreements[i].agreeVotes += 1;
                     agreements[i].TenantVoteAgree(sessionTenant);
-
                 }
             }
         }
@@ -190,8 +196,5 @@ namespace Housing_Project.Classes
                 throw;
             }
         }
-
-       
-        
     }
 }

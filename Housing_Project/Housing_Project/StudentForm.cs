@@ -62,15 +62,6 @@ namespace Housing_Project
             this.warningManager = warningManager;
             this.cleaningTaskManager = cleaningTaskManager;
             agreementManager.SetSessionTenant(currentUser);
-
-            //userManager.LoadRecruiter("userData.txt");
-            //paymentManager.LoadRecruiter("paymentData.txt");
-            //fileManager.LoadRecruiter("agreementData.txt");
-            
-            //ruleManager.LoadRecruiter("ruleData.txt");
-            //reportManager.LoadRecruiter("reportData.txt");
-            //warningManager.LoadRecruiter("warningData.txt");
-            //cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
         }
 
         private void InitializeStudentComboBoxes()
@@ -84,6 +75,7 @@ namespace Housing_Project
 
         private void UpdateListBox()
         {
+            //VVVV
             if(tabControlStudent.SelectedTab == tabHouseRules)
             {
                 lbHouseRules.Items.Clear();
@@ -121,6 +113,7 @@ namespace Housing_Project
                 lbWarnings.Items.Clear();
                 foreach (Warning w in warningManager.GetWarningsTenant(currentUser))
                     lbWarnings.Items.Add(w);
+                //^^^^ this needs fixing
             }
         }
 
@@ -170,15 +163,11 @@ namespace Housing_Project
 
                 //needs implemenation
             }
-            catch(Exception)
-            {
-                return;
-            }
+            catch(Exception) {}
         }
         private void btnTaskCompleted_Click(object sender, EventArgs e)
         {
             agreementManager.CompleteAgreementById(lbEvents.SelectedIndex);
-
         }
         private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
@@ -285,10 +274,7 @@ namespace Housing_Project
                 }       
                 UpdateListBox();
             }
-            catch(Exception)
-            {
-                return;
-            }
+            catch(Exception) {}
         }
         private void lbPendingAgreements_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -368,7 +354,6 @@ namespace Housing_Project
             this.Hide();
             LoginRegister loginpage= new LoginRegister();
             loginpage.ShowDialog();
-            
         }
 
         private void FormStudent_FormClosing(object sender, FormClosingEventArgs e)
@@ -381,9 +366,5 @@ namespace Housing_Project
             warningManager.SaveRecruiter(warningManager, "warningData.txt");
             cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
         }
-
-      
-        
-    
     }
 }

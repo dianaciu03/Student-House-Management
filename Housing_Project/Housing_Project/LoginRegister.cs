@@ -19,10 +19,6 @@ namespace Housing_Project
         RuleManager ruleManager = new RuleManager();
         WarningManager warningManager = new WarningManager();
         FileManager fileManager = new FileManager();
-        
-
-
-
         public LoginRegister()
         {
             InitializeComponent();
@@ -35,26 +31,8 @@ namespace Housing_Project
         //Method to deserialise all managers with their specific content from the files
         private void LoadData()
         {
-            //try
-            //{
-          
             userManager = userManager.LoadRecruiter("userData.txt");
             ruleManager = ruleManager.LoadRuleManagerData();
-            //agreementManager = fileManager.LoadRecruiter("agreementData.txt");
-
-            //announcementManager = announcementManager.LoadRecruiter("announcementData.txt");
-            //cleaningTaskManager = cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
-            //paymentManager = paymentManager.LoadRecruiter("paymentData.txt");
-
-            //reportManager = reportManager.LoadRecruiter("reportData.txt");
-            //ruleManager = ruleManager.LoadRecruiter("ruleData.txt");
-            //warningManager = warningManager.LoadRecruiter("warningData.txt");
-            //}
-            //catch (Exception)
-            //{
-            //    return;
-            //}
-            ;
         }
 
         //Method to reset the fields
@@ -151,7 +129,10 @@ namespace Housing_Project
                             registerlbl.Visible = true;
                             ClearFields();
                         }
-                         
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid email");
                     }
                 }
                 else
@@ -163,7 +144,6 @@ namespace Housing_Project
             catch(Exception ex)
             {
                 MessageBox.Show(ex.ToString());
-                return;
             }
         }
 
@@ -192,13 +172,12 @@ namespace Housing_Project
                         tenant = t;
                     }
                 }    
-                    if (foundUser == true)
-                    {
-                        OpenUser(tenant);
-                    }
-                    else
-                        loginwrongcredentialslbl.Visible = true;
-                
+                if (foundUser == true)
+                {
+                    OpenUser(tenant);
+                }
+                else
+                    loginwrongcredentialslbl.Visible = true;
             }
 
             else if (email.Contains("supervisor.com"))
@@ -211,12 +190,17 @@ namespace Housing_Project
                         supervisor = s;
                     }
                 }
-                if(foundUser == true)
+
+                if (foundUser == true)
                 {
                     OpenUser(supervisor);
                 }
                 else
                     loginwrongcredentialslbl.Visible = true;
+            }
+            else
+            {
+                loginwrongcredentialslbl.Visible = true;
             }
         }
 

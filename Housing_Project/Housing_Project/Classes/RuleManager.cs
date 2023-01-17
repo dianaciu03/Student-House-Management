@@ -77,10 +77,7 @@ namespace Housing_Project.Classes
                     dcs.WriteObject(fs, data);
                 }
             }
-            catch (Exception)
-            {
-                return;
-            }
+            catch (Exception) {}
         }
     }
 }

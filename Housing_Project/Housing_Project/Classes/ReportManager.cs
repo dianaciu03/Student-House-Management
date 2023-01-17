@@ -54,9 +54,7 @@ namespace Housing_Project.Classes
                 DataContractSerializer serializer
                     = new DataContractSerializer(mainType, auxiliaryTypes);
 
-
                 return (ReportManager?)serializer.ReadObject(reader);
-
             }
             catch (FileNotFoundException)
             {

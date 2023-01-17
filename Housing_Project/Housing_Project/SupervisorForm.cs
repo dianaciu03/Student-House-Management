@@ -322,7 +322,6 @@ namespace Housing_Project
             {
                 return;
             }
-
         }
 
         //
@@ -334,8 +333,6 @@ namespace Housing_Project
         {
 
         }
-
-
         private void btnRemoveReport_Click(object sender, EventArgs e)
         {
             try

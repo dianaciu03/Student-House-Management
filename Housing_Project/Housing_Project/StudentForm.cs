@@ -27,11 +27,12 @@ namespace Housing_Project
         private ReportManager reportManager;
         private WarningManager warningManager;
         private CleaningTaskManager cleaningTaskManager;
+        private AnnouncementManager announcementManager;
         FileManager fileManager = new FileManager();
-        public FormStudent(Tenant currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
+        public FormStudent(Tenant currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager, AnnouncementManager announcementManager)
         {
             InitializeComponent();
-            InitializeManagers(currentUser, userManager, paymentManager, agreementManager, ruleManager, reportManager, warningManager, cleaningTaskManager);
+            InitializeManagers(currentUser, userManager, paymentManager, agreementManager, ruleManager, reportManager, warningManager, cleaningTaskManager, announcementManager);
             InitializeStudentComboBoxes();
             this.Text = $"{currentUser}";
             UpdateListBox();
@@ -42,11 +43,6 @@ namespace Housing_Project
                 cbSponges, cbDishSoap, cbPaperRolls, cbNapkins, cbGarbageBags, cbToiletPaper, cbLaundryPods, cbLaundrySoftener, cbSoap,
                 cbFreshener, cbMopCap, cbFloorCleaner, cbAntiGreaseSolution, cbAntiCalcarSolution, cbHygienizer, cbFiberCloth, cbGlassCleaner
             };
-            
-            foreach (var item in warningManager.GetWarningsTenant(currentUser))
-            {
-                lbWarnings.Items.Add(item.GetInfoWarningDisplay());
-            }
         }
 
         private void tabControlStudent_SelectedIndexChanged(object sender, EventArgs e)
@@ -55,8 +51,9 @@ namespace Housing_Project
             UpdateListBox();
         }
 
-        private void InitializeManagers(Tenant currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
+        private void InitializeManagers(Tenant currentUser, UserManager userManager, PaymentManager paymentManager, AgreementManager agreementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager, AnnouncementManager announcementManager)
         {
+            this.announcementManager = announcementManager;
             this.currentUser = currentUser;
             this.userManager = userManager;
             this.paymentManager = paymentManager;
@@ -65,7 +62,11 @@ namespace Housing_Project
             this.reportManager = reportManager;
             this.warningManager = warningManager;
             this.cleaningTaskManager = cleaningTaskManager;
+            // agreementManager.LoadData(); TODO
+            this.warningManager = warningManager.LoadWarnings();
             agreementManager.SetSessionTenant(currentUser);
+            this.cleaningTaskManager=cleaningTaskManager.LoadTasks();
+            this.announcementManager=announcementManager.LoadAnnouncement();
         }
 
         private void InitializeStudentComboBoxes()
@@ -79,7 +80,7 @@ namespace Housing_Project
         
         private void UpdateListBox()
         {
-            if(tabControlStudent.SelectedTab == tabHouseRules)
+            if (tabControlStudent.SelectedTab == tabHouseRules)
             {
                 lbHouseRules.Items.Clear();
                 lbTenantsContactInfo.Items.Clear();
@@ -87,22 +88,18 @@ namespace Housing_Project
 
                 foreach (Rule r in ruleManager.GetRules())
                     lbHouseRules.Items.Add(r);
-                
-                
-                foreach(Tenant t in userManager.GetTenants())
+
+
+                foreach (Tenant t in userManager.GetTenants())
                     lbTenantsContactInfo.Items.Add(t.GetInfo());
-                foreach(Supervisor s in userManager.GetSupervisors())
+                foreach (Supervisor s in userManager.GetSupervisors())
                     lbSupervisorInfo.Items.Add(s.GetInfo());
             }
-            else if(tabControlStudent.SelectedTab == tabEventSchedule)
+            else if (tabControlStudent.SelectedTab == tabEventSchedule)
             {
-                lbEvents.Items.Clear();
-                foreach (CleaningTask t in cleaningTaskManager.GetCleaningTasks())
-                {
-                    lbEvents.Items.Add(t.GetInfo());
-                }
+
             }
-            else if(tabControlStudent.SelectedTab == tabSupplies)
+            else if (tabControlStudent.SelectedTab == tabSupplies)
             {
                 lbPaymentsInfo.Items.Clear();
                 foreach (Payment p in paymentManager.GetPayments())
@@ -179,12 +176,21 @@ namespace Housing_Project
                     lbCompletedTasks.Items.Add(agreementInfo);
                 }
             }
+            foreach(CleaningTask cleaningTask in cleaningTaskManager.GetCleaningTaskOnDate(selectedDate))
+            {
+                lbEvents.Items.Add(cleaningTask.GetInfo());
+            }
+            foreach (Announcement announcement in announcementManager.GetAnnouncementsOnDate(selectedDate))
+            {
+                lbEvents.Items.Add(announcement.GetAnnouncementInfo());
+            }
         }
-        private void lbTasks_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void lbTasks_MouseDoubleClick(object sender, MouseEventArgs e)//lbvents
         {
             int index = lbEvents.SelectedIndex;
             MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
         }
+
         private void lbCompletedTasks_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int index = lbCompletedTasks.SelectedIndex;
@@ -367,9 +373,9 @@ namespace Housing_Project
         private void FormStudent_FormClosing(object sender, FormClosingEventArgs e)
         {
             fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
-
-            warningManager.SaveRecruiter(warningManager, "warningData.txt");
-            cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
+            announcementManager.SaveAnnouncement(announcementManager);
+            warningManager.SaveWarnings(warningManager);
+            cleaningTaskManager.SaveRecruiter(cleaningTaskManager);
         }
 
         private void gbFileAReport_Enter(object sender, EventArgs e)
@@ -379,7 +385,7 @@ namespace Housing_Project
 
         private void lbWarnings_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.warningManager = warningManager.LoadRecruiter("warningData.txt");
+            this.warningManager = warningManager.LoadWarnings();
             foreach (var item in warningManager.GetWarningsTenant(this.currentUser))
             {
                 lbWarnings.Items.Add(item.GetInfoWarningDisplay());

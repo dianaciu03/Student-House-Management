@@ -15,6 +15,7 @@ namespace Housing_Project.Classes
         [DataMember] private string password;
         [DataMember] private string phoneNumber;
 
+        public Supervisor() { }
         public Supervisor(string name, string email, string phoneNumber)
         {
             this.name = name;

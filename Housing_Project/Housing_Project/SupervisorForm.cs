@@ -428,7 +428,7 @@ namespace Housing_Project
                     Warning warning = new Warning(title, message, warningAdressedTo, currentUser);
                     warningManager.AddWarningToList(warning);
                     MessageBox.Show("Warning sent successfully!");
-                    warningManager.SaveRecruiter(warningManager, "warningData.txt");
+                    warningManager.SaveWarnings(warningManager);
                 }
                 cbTenantToSendWarning.Text = "";
                 tbWarningDescription.Text = "";
@@ -461,10 +461,11 @@ namespace Housing_Project
 
                 if(content.Count > 0)
                 {
+
                     CleaningTask cleaningTask = new CleaningTask(assignedPerson, date, content);
                     cleaningTaskManager.AddCleaningTaskToList(cleaningTask);
                     lbEvents.Items.Add(cleaningTask.GetInfo());
-                    cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
+                    cleaningTaskManager.SaveRecruiter(cleaningTaskManager);
                     ClearFields("tabAddEventsCleaningTask");
                 }
             }
@@ -480,11 +481,20 @@ namespace Housing_Project
             string description = tbAnnouncementDescription.Text;
             DateTime date = dateTimePickerAnnouncement.Value;
 
-            if(!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
+            if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
             {
-                Announcement announcement = new Announcement(title, description, date);
-                announcementManager.AddAnnouncementToList(announcement);
-                lbEvents.Items.Add(announcement);
+                try
+                {
+
+                    if (!String.IsNullOrEmpty(title) && !String.IsNullOrEmpty(description))
+                    {
+                        Announcement announcement = new Announcement(title, description, date);
+                        announcementManager.AddAnnouncementToList(announcement);
+                        lbEvents.Items.Add(announcement.GetAnnouncementInfo());
+                        announcementManager.SaveAnnouncement(announcementManager);
+                    }
+                }
+                catch(Exception) { return; }
             }
         }
 

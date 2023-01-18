@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml;
 
 namespace Housing_Project.Classes
 {
-    [DataContract]
+    
     public class CleaningTaskManager
     {
-        [DataMember] List<CleaningTask> cleaningTasks = new List<CleaningTask>();
+        [JsonInclude]
+        public List<CleaningTask> cleaningTasks = new List<CleaningTask>();
         private const string filePath = @"..\..\..\..\Data\cleaningTaskData.txt";
 
         public void AddCleaningTaskToList(CleaningTask cleaningTask)
@@ -19,12 +22,21 @@ namespace Housing_Project.Classes
             cleaningTasks.Add(cleaningTask);
         }
 
-        public List<CleaningTask> GetCleaningTasks()
+        public CleaningTask GetCleaningTasks(int index)
         {
-            return cleaningTasks;
+            try
+            {
+                return cleaningTasks[index];
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
-        public List<CleaningTask> GetAnnouncementsOnDate(DateTime date)
+        public List<CleaningTask> GetCleaningTaskOnDate(DateTime date)
         {
             List<CleaningTask> cleaningTasksOnDate = new List<CleaningTask>();
 
@@ -38,59 +50,20 @@ namespace Housing_Project.Classes
             return cleaningTasksOnDate;
         }
 
-        public CleaningTaskManager? LoadRecruiter(string fileName)
+        public CleaningTaskManager? LoadTasks()
         {
-            FileStream? stream = null;
-
-            try
-            {
-                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                XmlDictionaryReader reader
-                    = XmlDictionaryReader.CreateTextReader(stream,
-                                                new XmlDictionaryReaderQuotas());
-
-                Type mainType = typeof(CleaningTaskManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(CleaningTask) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
-
-
-                return (CleaningTaskManager?)serializer.ReadObject(reader);
-
-            }
-            catch (FileNotFoundException)
-            {
-                return new CleaningTaskManager();
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
+            string jsonString = File.ReadAllText(filePath);
+            CleaningTaskManager cleaningTaskManager = JsonSerializer.Deserialize<CleaningTaskManager>(jsonString)!;
+            return cleaningTaskManager;
         }
-        public void SaveRecruiter(CleaningTaskManager cleaningTaskManager, string fileName)
+        public void SaveRecruiter(CleaningTaskManager cleaningTaskManager)
         {
-            FileStream? stream = null;
-
-            try
+            var options = new JsonSerializerOptions
             {
-                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
-
-                Type mainType = typeof(CleaningTaskManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(CleaningTask) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
-
-                serializer.WriteObject(stream, cleaningTaskManager);
-                stream.Flush();
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
+                IncludeFields = true,
+            };
+            string jsonstring = JsonSerializer.Serialize(cleaningTaskManager, options);
+            File.WriteAllText(filePath, jsonstring);
         }
     }
 }

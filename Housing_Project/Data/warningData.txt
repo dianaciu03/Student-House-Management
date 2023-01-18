@@ -1,0 +1,1 @@
+{"Warnings":[{"Title":"asdfgh","Message":"qwerty","PersonAdressed":{"Name":"bln","Email":"bln@student.com","PhoneNumber":"121233","RoomNumber":0,"Password":"bln"},"Sender":{"Name":"rob","Email":"rob@supervisor.com","PhoneNumber":"123131","Password":"rob"}}]}

@@ -22,6 +22,8 @@ namespace Housing_Project.Classes
         [DataMember] private string phoneNumber;
         [DataMember] private int roomNumber;
 
+        public Tenant() { }
+
         public Tenant(string name, string email, string phoneNumber)
         {
             this.name = name;

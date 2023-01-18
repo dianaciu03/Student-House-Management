@@ -37,9 +37,9 @@ namespace Housing_Project
                 ruleManager = ruleManager.LoadRuleManagerData();
                 reportManager = reportManager.LoadReportManagerData();
                 paymentManager = paymentManager.LoadPaymentManagerData();
-                announcementManager.LoadRecruiter("announcementData.txt");
-                warningManager.LoadRecruiter("warningData.txt");
-                cleaningTaskManager.LoadRecruiter("cleaningTaskData.txt");
+                announcementManager.LoadAnnouncement();
+                warningManager.LoadWarnings();
+                cleaningTaskManager.LoadTasks();
             }
             catch (Exception)
             {
@@ -69,7 +69,7 @@ namespace Housing_Project
             if (t == typeof(Tenant)) //if the user is a tenant it will open the TenantForm
             {
                 this.Hide();
-                FormStudent student = new FormStudent((Tenant)user, userManager, paymentManager, agreementManager, ruleManager, reportManager, warningManager, cleaningTaskManager);
+                FormStudent student = new FormStudent((Tenant)user, userManager, paymentManager, agreementManager, ruleManager, reportManager, warningManager, cleaningTaskManager, announcementManager);
                 student.ShowDialog();
                 this.Close();
             }
@@ -217,6 +217,5 @@ namespace Housing_Project
                 loginwrongcredentialslbl.Visible = true;
             }
         }
-
     }
 }

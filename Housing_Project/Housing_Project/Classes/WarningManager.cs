@@ -2,33 +2,41 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml;
 
 namespace Housing_Project.Classes
 {
-    [DataContract]
+    [Serializable]
     public class WarningManager
     {
-        [DataMember] List<Warning> warnings = new List<Warning>();
-        private const string filePath = @"..\..\..\..\Data\warningData.txt";
+        [JsonInclude]
+        public List<Warning> Warnings { get; set; }
+        const string filePath = @"..\..\..\..\Data\warningData.txt";
 
+        public WarningManager() 
+        {
+            Warnings = new List<Warning>();
+        }
         public void AddWarningToList(Warning warning)
         {
-            warnings.Add(warning);
+            Warnings.Add(warning);
         }
 
         public void RemoveWarningFromList(Warning warning)
         {
-            warnings.Remove(warning);
+            Warnings.Remove(warning);
         }
 
         public List<Warning> GetWarningsTenant(Tenant tenant)
         {
             List<Warning> warningsTenant = new List<Warning>();
 
-            foreach (Warning w in warnings)
+            foreach (Warning w in Warnings)
             {
                 if (w.PersonAdressed.Email == tenant.Email)
                     warningsTenant.Add(w);
@@ -36,60 +44,23 @@ namespace Housing_Project.Classes
             return warningsTenant;
         }
 
-        public WarningManager? LoadRecruiter(string fileName)
+        public WarningManager? LoadWarnings()
         {
-            FileStream? stream = null;
 
-            try
-            {
-                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                XmlDictionaryReader reader
-                    = XmlDictionaryReader.CreateTextReader(stream,
-                                                new XmlDictionaryReaderQuotas());
-
-                Type mainType = typeof(WarningManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(Warning) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
-
-
-                return (WarningManager?)serializer.ReadObject(reader);
-
-            }
-            //catch (FileNotFoundException)
-            //{
-            //    return new WarningManager();
-            //}
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
+            string jsonString = File.ReadAllText(filePath);
+            WarningManager warningManager = JsonSerializer.Deserialize<WarningManager>(jsonString)!;
+            return warningManager;
         }
 
-        public void SaveRecruiter(WarningManager warningManager, string fileName)
+        public void SaveWarnings(WarningManager warningManager)
         {
-            FileStream? stream = null;
-
-            try
+            var options = new JsonSerializerOptions
             {
-                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
-
-                Type mainType = typeof(WarningManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(Warning) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
-
-                serializer.WriteObject(stream, warningManager);
-                stream.Flush();
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
-        }
+                IncludeFields = true,
+            };
+            string jsonstring = JsonSerializer.Serialize(warningManager, options);
+            File.WriteAllText(filePath, jsonstring);
+        }  
+          
     }
 }

@@ -16,6 +16,7 @@ namespace Housing_Project.Classes
         [DataMember] private Tenant assignedPerson;
         [DataMember] private DateTime SelectedDate;
         [DataMember] private List<string> content;
+        public CleaningTask() { }
         
         public CleaningTask(Tenant assignedPerson, DateTime selectedDate, List<string> content)
         {

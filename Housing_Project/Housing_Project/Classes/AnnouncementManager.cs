@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Xml;
 
 namespace Housing_Project.Classes
 {
-    [DataContract]
     public class AnnouncementManager
     {
-        [DataMember] List<Announcement> announcements = new List<Announcement>();
+        [JsonInclude]
+        public List<Announcement> announcements = new List<Announcement>();
         private const string filePath = @"..\..\..\..\Data\announcementData.txt";
 
         public void AddAnnouncementToList(Announcement announcement)
@@ -24,9 +26,18 @@ namespace Housing_Project.Classes
             announcements.Remove(announcement);
         }
 
-        public List<Announcement> GetAnnouncements()
+        public Announcement GetAnnouncements(int index)
         {
-            return announcements;
+            try
+            {
+                return announcements[index];
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
 
         public List<Announcement> GetAnnouncementsOnDate(DateTime date)
@@ -42,37 +53,20 @@ namespace Housing_Project.Classes
             }
             return announcementsOnDate;
         }
-
-        public AnnouncementManager? LoadRecruiter(string fileName)
+        public void SaveAnnouncement(AnnouncementManager announcementManager)
         {
-            FileStream? stream = null;
-
-            try
+            var options = new JsonSerializerOptions
             {
-                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                XmlDictionaryReader reader
-                    = XmlDictionaryReader.CreateTextReader(stream,
-                                                new XmlDictionaryReaderQuotas());
-
-                Type mainType = typeof(AnnouncementManager);
-                List<Type> auxiliaryTypes
-                    = new List<Type> { typeof(Announcement) };
-                DataContractSerializer serializer
-                    = new DataContractSerializer(mainType, auxiliaryTypes);
-
-
-                return (AnnouncementManager?)serializer.ReadObject(reader);
-
-            }
-            catch (FileNotFoundException)
-            {
-                return new AnnouncementManager();
-            }
-            finally
-            {
-                if (stream != null)
-                    stream.Close();
-            }
+                IncludeFields = true,
+            };
+            string jsonstring = JsonSerializer.Serialize(announcementManager, options);
+            File.WriteAllText(filePath, jsonstring);
+        }
+        public AnnouncementManager? LoadAnnouncement()
+        {
+            string jsonString = File.ReadAllText(filePath);
+            AnnouncementManager announcementManager = JsonSerializer.Deserialize<AnnouncementManager>(jsonString)!;
+            return announcementManager;
         }
     }
 }

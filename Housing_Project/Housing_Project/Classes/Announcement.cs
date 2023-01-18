@@ -13,6 +13,7 @@ namespace Housing_Project.Classes
         [DataMember] private string title;
         [DataMember] private string description;
         [DataMember] private DateTime date;
+        public Announcement() { }
 
         public Announcement(string title, string description, DateTime date)
         {

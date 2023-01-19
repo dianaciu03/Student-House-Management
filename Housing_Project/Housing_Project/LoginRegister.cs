@@ -37,6 +37,7 @@ namespace Housing_Project
                 ruleManager = ruleManager.LoadRuleManagerData();
                 reportManager = reportManager.LoadReportManagerData();
                 paymentManager = paymentManager.LoadPaymentManagerData();
+                agreementManager = agreementManager.LoadData();
                 announcementManager.LoadAnnouncement();
                 warningManager.LoadWarnings();
                 cleaningTaskManager.LoadTasks();

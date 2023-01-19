@@ -62,11 +62,12 @@ namespace Housing_Project
             this.reportManager = reportManager;
             this.warningManager = warningManager;
             this.cleaningTaskManager = cleaningTaskManager;
-            // agreementManager.LoadData(); TODO
+           
             this.warningManager = warningManager.LoadWarnings();
             agreementManager.SetSessionTenant(currentUser);
             this.cleaningTaskManager=cleaningTaskManager.LoadTasks();
             this.announcementManager=announcementManager.LoadAnnouncement();
+            this.agreementManager = agreementManager.LoadData();
         }
 
         private void InitializeStudentComboBoxes()
@@ -268,7 +269,8 @@ namespace Housing_Project
                 if(!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(description))
                 {
                     agreementManager.AddAgreementToList(title, description, date);
-                    fileManager.SaveRecruiter(agreementManager, "agreementData.txt"); 
+                    //fileManager.SaveRecruiter(agreementManager, "agreementData.txt"); 
+                    agreementManager.SaveRecruiter(agreementManager);
                     
                 }       
                 UpdateListBox();
@@ -287,10 +289,18 @@ namespace Housing_Project
             int id = Convert.ToInt32(itemString.Split(".")[0]) -1;
             if (rbAgree.Checked)
             {
+                rbAgree.Visible = true;
+                rbDisagree.Visible = true;
+                btnSubmitVote.Visible= true;    
                 agreementManager.AgreeToAgreement(id);
+                foreach (Agreement a in agreementManager.GetAgreements())
+                    lbAgreementsDisplay.Items.Add(a);
             }
             if (rbDisagree.Checked)
             {
+                rbAgree.Visible = true;
+                rbDisagree.Visible = true;
+                btnSubmitVote.Visible = true;
                 agreementManager.DisagreeToAgreement(id);
             }
             lbPendingAgreements_SelectedIndexChanged(sender, e);
@@ -311,7 +321,8 @@ namespace Housing_Project
                 rbDisagree.Visible= true;
                 btnSubmitVote.Visible= true;
             }
-            fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
+            agreementManager.SaveRecruiter(agreementManager);
+            //fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
         }
         private void btnCheckStatus_Click(object sender, EventArgs e)
         {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.Xml;
+using System.Text.Json;
 
 namespace Housing_Project.Classes
 {
@@ -170,31 +171,18 @@ namespace Housing_Project.Classes
         }
         public AgreementManager LoadData()
         {
-            try
+            string jsonString = File.ReadAllText(filePath);
+            AgreementManager agreementManager = JsonSerializer.Deserialize<AgreementManager>(jsonString)!;
+            return agreementManager;
+        }
+        public void SaveRecruiter(AgreementManager agreementManager)
+        {
+            var options = new JsonSerializerOptions
             {
-                AgreementManager savedData = new AgreementManager();
-
-                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    Type typeToSerialize = typeof(AnnouncementManager);
-
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Agreement),
-                        typeof(Tenant)
-                    };
-
-                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
-                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
-
-                    savedData = (AgreementManager)dcs.ReadObject(reader, true);
-                    return savedData;
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+                IncludeFields = true,
+            };
+            string jsonstring = JsonSerializer.Serialize(agreementManager, options);
+            File.WriteAllText(filePath, jsonstring);
         }
     }
 }

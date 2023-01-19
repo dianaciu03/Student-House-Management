@@ -22,7 +22,7 @@ namespace Housing_Project.Classes
             cleaningTasks.Add(cleaningTask);
         }
 
-        public CleaningTask GetCleaningTasks(int index)
+        public CleaningTask GetCleaningTask(int index)
         {
             try
             {
@@ -34,6 +34,19 @@ namespace Housing_Project.Classes
                 throw;
             }
             
+        }
+        public List<CleaningTask> GetCleaningTasks()
+        {
+            try
+            {
+                return cleaningTasks;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         public List<CleaningTask> GetCleaningTaskOnDate(DateTime date)

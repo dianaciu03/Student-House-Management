@@ -98,7 +98,21 @@ namespace Housing_Project
             }
             else if (tabControlStudent.SelectedTab == tabEventSchedule)
             {
-
+                try
+                {
+                    lbEvents.Items.Clear();
+                    foreach (Announcement announcement in announcementManager.GetAnnouncemens())
+                    {
+                        lbEvents.Items.Add(announcement.Title);
+                    }
+                    foreach (CleaningTask task in cleaningTaskManager.GetCleaningTasks())
+                    {
+                        lbEvents.Items.Add(task.GetInfo());
+                    }
+                }
+                catch (Exception e)
+                {
+                }
             }
             else if (tabControlStudent.SelectedTab == tabSupplies)
             {

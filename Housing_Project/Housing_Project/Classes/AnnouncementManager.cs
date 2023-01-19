@@ -26,7 +26,7 @@ namespace Housing_Project.Classes
             announcements.Remove(announcement);
         }
 
-        public Announcement GetAnnouncements(int index)
+        public Announcement GetAnnouncement(int index)
         {
             try
             {
@@ -34,10 +34,20 @@ namespace Housing_Project.Classes
             }
             catch (Exception)
             {
-
                 throw;
             }
-            
+
+        }
+        public List<Announcement> GetAnnouncemens()
+        {
+            try
+            {
+                return announcements;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public List<Announcement> GetAnnouncementsOnDate(DateTime date)

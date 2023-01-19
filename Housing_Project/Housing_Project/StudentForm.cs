@@ -188,14 +188,21 @@ namespace Housing_Project
         }
         private void lbTasks_MouseDoubleClick(object sender, MouseEventArgs e)//lbvents
         {
-            int index = lbEvents.SelectedIndex;
-            MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+            if (lbEvents.Items.Count>0)
+            {
+                int index = lbEvents.SelectedIndex;
+                MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+            }
+            
         }
 
         private void lbCompletedTasks_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = lbCompletedTasks.SelectedIndex;
-            MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+            if (lbCompletedTasks.Items.Count > 0)
+            {
+                int index = lbCompletedTasks.SelectedIndex;
+                MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+            }
         }
         private void tabEventSchedule_Click(object sender, EventArgs e)
         {
@@ -280,8 +287,11 @@ namespace Housing_Project
         }
         private void lbPendingAgreements_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = lbPendingAgreements.SelectedIndex;
-            MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+            if (lbPendingAgreements.Items.Count > 0)
+            {
+                int index = lbPendingAgreements.SelectedIndex;
+                MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+            }
         }
         private void btnSubmitVote_Click(object sender, EventArgs e)
         {
@@ -307,22 +317,27 @@ namespace Housing_Project
         }
         private void lbPendingAgreements_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string itemString = lbPendingAgreements.SelectedItem.ToString();
-            int id = Convert.ToInt32(itemString.Split(".")[0]) - 1;
-            if (agreementManager.HasTenantVotedForAgreementByID(id))
+            try
             {
-                rbAgree.Visible= false;
-                rbDisagree.Visible= false;
-                btnSubmitVote.Visible= false;
+                string itemString = lbPendingAgreements.SelectedItem.ToString();
+                int id = Convert.ToInt32(itemString.Split(".")[0]) - 1;
+                if (agreementManager.HasTenantVotedForAgreementByID(id))
+                {
+                    rbAgree.Visible = false;
+                    rbDisagree.Visible = false;
+                    btnSubmitVote.Visible = false;
+                }
+                else
+                {
+                    rbAgree.Visible = true;
+                    rbDisagree.Visible = true;
+                    btnSubmitVote.Visible = true;
+                }
+                agreementManager.SaveRecruiter(agreementManager);
+                //fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
             }
-            else
-            {
-                rbAgree.Visible= true;
-                rbDisagree.Visible= true;
-                btnSubmitVote.Visible= true;
-            }
-            agreementManager.SaveRecruiter(agreementManager);
-            //fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
+            catch (Exception exception) {}
+            
         }
         private void btnCheckStatus_Click(object sender, EventArgs e)
         {
@@ -396,14 +411,33 @@ namespace Housing_Project
 
         private void lbWarnings_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.warningManager = warningManager.LoadWarnings();
-            foreach (var item in warningManager.GetWarningsTenant(this.currentUser))
+            try
             {
-                lbWarnings.Items.Add(item.GetInfoWarningDisplay());
+                this.warningManager = warningManager.LoadWarnings();
+                foreach (var item in warningManager.GetWarningsTenant(this.currentUser))
+                {
+                    lbWarnings.Items.Add(item.GetInfoWarningDisplay());
+                }
             }
+            catch (Exception exception) {}
         }
 
-        private void lbHouseRules_SelectedIndexChanged(object sender, EventArgs e)
+        private void lbAgreementsDisplay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbPaymentsInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbCompletedTasks_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

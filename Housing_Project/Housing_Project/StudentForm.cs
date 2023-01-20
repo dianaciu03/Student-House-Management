@@ -74,7 +74,12 @@ namespace Housing_Project
         private void InitializeStudentComboBoxes()
         {
             foreach (Tenant t in userManager.Tenants)
-                cbTenantsToReport.Items.Add(t);
+            {
+                if (t != currentUser)
+                {
+                    cbTenantsToReport.Items.Add(t);
+                }
+            }
 
             foreach(Warning w in warningManager.GetWarningsTenant(currentUser))
                 lbWarnings.Items.Add(w);
@@ -242,7 +247,7 @@ namespace Housing_Project
                 {
                     Payment payment = new Payment(items, buyer, totalPrice);
                     paymentManager.AddPaymentToList(payment);
-                    paymentManager.WritePaymentManagerData(paymentManager);
+                    paymentManager.WritePaymentManagerData(paymentManager, "paymentData.txt");
                 }
                 UpdateListBox();
                 ClearFiealds();                
@@ -367,7 +372,7 @@ namespace Housing_Project
                     {
                         Report report = new Report(title, description, personAdress);
                         reportManager.AddReportToList(report);
-                        reportManager.WriteReportManagerData(reportManager);
+                        reportManager.SaveReport(reportManager, "reportData.txt");
                         MessageBox.Show("Report has been sent successfully!");
                         ClearFiealds();
                     }                        
@@ -375,7 +380,7 @@ namespace Housing_Project
                     {
                         Report report = new Report(title, description);
                         reportManager.AddReportToList(report);
-                        reportManager.WriteReportManagerData(reportManager);
+                        reportManager.SaveReport(reportManager, "reportData.txt");
                         MessageBox.Show("Report has been sent successfully!");
                         ClearFiealds();
                     }                                                                                                                                                                                                                                                                                                                                                                                                             

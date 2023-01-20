@@ -15,7 +15,7 @@ namespace Housing_Project.Classes
     public class PaymentManager
     {
         [DataMember] private List<Payment> payments = new List<Payment>();
-        private const string filePath = @"..\..\..\..\Data\paymentData.txt";
+        //private const string filePath = @"..\..\..\..\Data\paymentData.txt";
         
         public double CalculatePricePerPerson(Payment payment, int numberTenants)
         {
@@ -37,55 +37,61 @@ namespace Housing_Project.Classes
             return payments[index];
         }
 
-        public PaymentManager LoadPaymentManagerData()
+        public PaymentManager LoadPaymentManagerData(string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                PaymentManager paymentManager = new PaymentManager();
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                        new XmlDictionaryReaderQuotas());
 
-                using (FileStream fs = new(filePath, FileMode.Open, FileAccess.Read))
-                {
-                    Type typeToSerialize = typeof(PaymentManager);
+                Type mainType = typeof(PaymentManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Payment) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Payment),
-                        typeof(Tenant)
-                    };
 
-                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
-                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
-                    paymentManager = (PaymentManager)dcs.ReadObject(reader, true);
+                return (PaymentManager?)serializer.ReadObject(reader);
 
-                    return paymentManager;
-                }
             }
             catch (Exception)
             {
-                throw;
+                return new PaymentManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
             }
         }
 
-        public void WritePaymentManagerData(PaymentManager data)
+        public void WritePaymentManagerData(PaymentManager paymentManager, string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                using (FileStream ClearFile = new(filePath, FileMode.Truncate, FileAccess.Write)) ;
-                using (FileStream fs = new(filePath, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    Type typeToSerialize = typeof(PaymentManager);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Payment),
-                        typeof(Tenant)
-                    };
+                Type mainType = typeof(PaymentManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Payment) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    DataContractSerializer dcs = new(typeToSerialize);
-                    dcs.WriteObject(fs, data);
-                }
+                serializer.WriteObject(stream, paymentManager);
+                stream.Flush();
             }
-            catch (Exception) { }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+            
         }
     }
 }

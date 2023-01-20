@@ -16,7 +16,7 @@ namespace Housing_Project.Classes
     {
         [DataMember] private int ruleIdSeeder = 1;
         [DataMember] private List<Rule> rules = new List<Rule>();
-        private const string filePathRuleData = @"..\..\..\..\Data\ruleData.txt";
+        //private const string filePathRuleData = @"..\..\..\..\Data\ruleData.txt";
 
         public void AddRuleToList(string message, Supervisor sender)
         {
@@ -29,55 +29,60 @@ namespace Housing_Project.Classes
             return rules.ToArray();
         }
 
-        public RuleManager LoadRuleManagerData()
+        public RuleManager LoadRuleManagerData(string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                RuleManager ruleManager = new RuleManager();
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                        new XmlDictionaryReaderQuotas());
 
-                using (FileStream fs = new(filePathRuleData, FileMode.Open, FileAccess.Read))
-                {
-                    Type typeToSerialize = typeof(RuleManager);
+                Type mainType = typeof(RuleManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Rule), typeof(Supervisor) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Rule),
-                        typeof(Supervisor)
-                    };
 
-                    DataContractSerializer dcs = new(typeToSerialize, auxiliaryTypes);
-                    XmlDictionaryReader reader = XmlDictionaryReader.CreateTextReader(fs, new XmlDictionaryReaderQuotas());
-                    ruleManager = (RuleManager)dcs.ReadObject(reader, true);
+                return (RuleManager?)serializer.ReadObject(reader);
 
-                    return ruleManager;
-                }
             }
             catch (Exception)
             {
-                throw;
+                return new RuleManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
             }
         }
 
-        public void WriteRuleManagerData(RuleManager data)
+        public void WriteRuleManagerData(RuleManager ruleManager, string fileName)
         {
+            FileStream? stream = null;
+
             try
             {
-                using (FileStream ClearFile = new(filePathRuleData, FileMode.Truncate, FileAccess.Write)) ;
-                using (FileStream fs = new(filePathRuleData, FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    Type typeToSerialize = typeof(RuleManager);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
 
-                    List<Type> auxiliaryTypes = new List<Type>()
-                    {
-                        typeof(Rule),
-                        typeof(Supervisor)
-                    };
+                Type mainType = typeof(RuleManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Rule), typeof(Supervisor) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
 
-                    DataContractSerializer dcs = new(typeToSerialize);
-                    dcs.WriteObject(fs, data);
-                }
+                serializer.WriteObject(stream, ruleManager);
+                stream.Flush();
             }
-            catch (Exception) {}
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
         }
     }
 }

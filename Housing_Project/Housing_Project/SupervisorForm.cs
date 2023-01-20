@@ -199,7 +199,7 @@ namespace Housing_Project
                 if (!String.IsNullOrEmpty(description))
                     ruleManager.AddRuleToList(description, currentUser);
                 UpdateListBox();
-                ruleManager.WriteRuleManagerData(ruleManager);
+                ruleManager.WriteRuleManagerData( ruleManager, "ruleData.txt");
             }
             catch (Exception)
             {
@@ -247,7 +247,7 @@ namespace Housing_Project
                     rule.Message = tbRule.Text;
 
                 UpdateListBox();
-                ruleManager.WriteRuleManagerData(ruleManager);
+                ruleManager.WriteRuleManagerData(ruleManager, "ruleData.txt");
                 ClearFields("tabRules");
             }
             catch (Exception)
@@ -422,7 +422,7 @@ namespace Housing_Project
             {
                 Report report = (Report)lbReceivedReports.SelectedItem;
                 reportManager.RemoveReportFromList(report);
-                reportManager.WriteReportManagerData(reportManager);
+                reportManager.SaveReport(reportManager, "reportData.txt");
             }
             catch(Exception)
             {

@@ -34,11 +34,10 @@ namespace Housing_Project
             try
             {
                 userManager = userManager.LoadRecruiter("userData.txt");
-                ruleManager = ruleManager.LoadRuleManagerData();
-                reportManager = reportManager.LoadReportManagerData();
-                paymentManager = paymentManager.LoadPaymentManagerData();
+                ruleManager = ruleManager.LoadRuleManagerData("ruleData.txt");
+                reportManager = reportManager.LoadReport("reportData.txt");
+                paymentManager = paymentManager.LoadPaymentManagerData("paymentData.txt");
                 agreementManager = agreementManager.LoadAgreement("agreementData.txt");
-                //announcementManager = announcementManager.LoadAnnouncement();
                 announcementManager = announcementManager.LoadAnnouncement("announcementData.txt");
                 warningManager = warningManager.LoadWarning("warningData.txt");
                 cleaningTaskManager = cleaningTaskManager.LoadCleaningTask("cleaningTaskData.txt");

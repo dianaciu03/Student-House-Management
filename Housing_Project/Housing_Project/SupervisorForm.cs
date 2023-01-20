@@ -200,6 +200,7 @@ namespace Housing_Project
                     ruleManager.AddRuleToList(description, currentUser);
                 UpdateListBox();
                 ruleManager.WriteRuleManagerData( ruleManager, "ruleData.txt");
+                tbRule.Clear();
             }
             catch (Exception)
             {
@@ -328,7 +329,7 @@ namespace Housing_Project
                 edittenantbtn.Visible = true;
                 btnAddTenant.Visible = true;
                 btnSubmitChangesTenant.Visible = false;
-                ClearFields("tabContactInfoSupervisor");
+                ClearFields("tabContactInfoTenant");
                 userManager.SaveRecruiter(userManager, "userData.txt");
             }
             catch (Exception)
@@ -353,7 +354,7 @@ namespace Housing_Project
                 }
 
                 UpdateListBox();
-                ClearFields("tabContactInfoTenant");
+                ClearFields("tabContactInfoSupervisor");
                 userManager.SaveRecruiter(userManager, "userData.txt");
             }
             catch (Exception)
@@ -518,6 +519,8 @@ namespace Housing_Project
                         lbEvents.Items.Add(announcement.GetAnnouncementInfo());
                         announcementManager.SaveAnnouncement(announcementManager, "announcementData.txt");
                     }
+                    tbAnnouncementTitle.Clear();
+                    tbAnnouncementDescription.Clear();
                 }
                 catch(Exception) { return; }
             }

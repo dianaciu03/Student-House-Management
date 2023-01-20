@@ -316,6 +316,7 @@ namespace Housing_Project
                 }       
                 UpdateListBox();
                 ClearFiealds();
+                tbProposalContent.Clear();
             }
             catch(Exception) {}
         }

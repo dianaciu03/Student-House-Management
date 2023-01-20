@@ -1,0 +1,1 @@
+{"cleaningTasks":[{"Content":null,"AssignedPerson":{"Name":"alex","Email":"student.com","PhoneNumber":"1212","RoomNumber":0,"Password":"123"},"Date":"2025-09-05T00:41:10"}]}

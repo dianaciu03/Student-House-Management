@@ -784,7 +784,7 @@
             this.gbMakeAProposal.Size = new System.Drawing.Size(381, 364);
             this.gbMakeAProposal.TabIndex = 0;
             this.gbMakeAProposal.TabStop = false;
-            this.gbMakeAProposal.Text = "Make a proposal";
+            this.gbMakeAProposal.Text = "Propose an agreement";
             // 
             // lblDate
             // 

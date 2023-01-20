@@ -10,11 +10,13 @@ using System.Xml;
 
 namespace Housing_Project.Classes
 {
+    [DataContract]
     public class AnnouncementManager
     {
-        [JsonInclude]
+        //[JsonInclude]
+        [DataMember]
         public List<Announcement> announcements = new List<Announcement>();
-        private const string filePath = @"..\..\..\..\Data\announcementData.txt";
+        //private const string filePath = @"..\..\..\..\Data\announcementData.txt";
 
         public void AddAnnouncementToList(Announcement announcement)
         {
@@ -63,20 +65,59 @@ namespace Housing_Project.Classes
             }
             return announcementsOnDate;
         }
-        public void SaveAnnouncement(AnnouncementManager announcementManager)
+        public void SaveAnnouncement(AnnouncementManager announcementManager, string fileName)
         {
-            var options = new JsonSerializerOptions
+            FileStream? stream = null;
+
+            try
             {
-                IncludeFields = true,
-            };
-            string jsonstring = JsonSerializer.Serialize(announcementManager, options);
-            File.WriteAllText(filePath, jsonstring);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+
+                Type mainType = typeof(AnnouncementManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Announcement) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
+
+                serializer.WriteObject(stream, announcementManager);
+                stream.Flush();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
         }
-        public AnnouncementManager? LoadAnnouncement()
+        public AnnouncementManager? LoadAnnouncement(string fileName)
         {
-            string jsonString = File.ReadAllText(filePath);
-            AnnouncementManager announcementManager = JsonSerializer.Deserialize<AnnouncementManager>(jsonString)!;
-            return announcementManager;
+            FileStream? stream = null;
+
+            try
+            {
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                        new XmlDictionaryReaderQuotas());
+
+                Type mainType = typeof(AnnouncementManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Announcement) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
+
+
+                return (AnnouncementManager?)serializer.ReadObject(reader);
+
+            }
+            catch (Exception)
+            {
+                return new AnnouncementManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
         }
     }
 }

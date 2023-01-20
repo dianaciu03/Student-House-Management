@@ -37,10 +37,11 @@ namespace Housing_Project
                 ruleManager = ruleManager.LoadRuleManagerData();
                 reportManager = reportManager.LoadReportManagerData();
                 paymentManager = paymentManager.LoadPaymentManagerData();
-                agreementManager = agreementManager.LoadData();
-                announcementManager.LoadAnnouncement();
-                warningManager.LoadWarnings();
-                cleaningTaskManager.LoadTasks();
+                agreementManager = agreementManager.LoadAgreement("agreementData.txt");
+                //announcementManager = announcementManager.LoadAnnouncement();
+                announcementManager = announcementManager.LoadAnnouncement("announcementData.txt");
+                warningManager = warningManager.LoadWarning("warningData.txt");
+                cleaningTaskManager = cleaningTaskManager.LoadCleaningTask("cleaningTaskData.txt");
             }
             catch (Exception)
             {

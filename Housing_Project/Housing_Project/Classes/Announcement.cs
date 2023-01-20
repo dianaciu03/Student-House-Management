@@ -30,7 +30,7 @@ namespace Housing_Project.Classes
 
         public string GetAnnouncementInfo()
         {
-            return $"Title:{title},Description:{description},Date:{date}";
+            return $"Title: {title}, Description: {description}, Date: {date}";
         }
     }
 }

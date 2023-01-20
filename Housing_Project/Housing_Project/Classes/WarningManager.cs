@@ -43,24 +43,77 @@ namespace Housing_Project.Classes
             }
             return warningsTenant;
         }
-
-        public WarningManager? LoadWarnings()
+        public void SaveWarning(WarningManager warningManager, string fileName)
         {
+            FileStream? stream = null;
 
-            string jsonString = File.ReadAllText(filePath);
-            WarningManager warningManager = JsonSerializer.Deserialize<WarningManager>(jsonString)!;
-            return warningManager;
-        }
-
-        public void SaveWarnings(WarningManager warningManager)
-        {
-            var options = new JsonSerializerOptions
+            try
             {
-                IncludeFields = true,
-            };
-            string jsonstring = JsonSerializer.Serialize(warningManager, options);
-            File.WriteAllText(filePath, jsonstring);
-        }  
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+
+                Type mainType = typeof(WarningManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Warning)};
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
+
+                serializer.WriteObject(stream, warningManager);
+                stream.Flush();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+        }
+        public WarningManager? LoadWarning(string fileName)
+        {
+            FileStream? stream = null;
+
+            try
+            {
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                        new XmlDictionaryReaderQuotas());
+
+                Type mainType = typeof(WarningManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Warning)};
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
+
+
+                return (WarningManager?)serializer.ReadObject(reader);
+
+            }
+            catch (Exception)
+            {
+                return new WarningManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+        }
+        //public WarningManager? LoadWarnings()
+        //{
+
+        //    string jsonString = File.ReadAllText(filePath);
+        //    WarningManager warningManager = JsonSerializer.Deserialize<WarningManager>(jsonString)!;
+        //    return warningManager;
+        //}
+
+        //public void SaveWarnings(WarningManager warningManager)
+        //{
+        //    var options = new JsonSerializerOptions
+        //    {
+        //        IncludeFields = true,
+        //    };
+        //    string jsonstring = JsonSerializer.Serialize(warningManager, options);
+        //    File.WriteAllText(filePath, jsonstring);
+        //}  
           
     }
 }

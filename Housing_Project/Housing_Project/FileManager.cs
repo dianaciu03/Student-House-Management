@@ -34,6 +34,7 @@ namespace Housing_Project
                     stream.Close();
             }
         }
+        
         public AgreementManager? LoadRecruiter(string fileName)
         {
             FileStream? stream = null;
@@ -55,7 +56,7 @@ namespace Housing_Project
                 return (AgreementManager?)serializer.ReadObject(reader);
 
             }
-            catch (FileNotFoundException)
+            catch (Exception)
             {
                 return new AgreementManager();
             }

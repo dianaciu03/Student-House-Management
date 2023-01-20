@@ -41,7 +41,7 @@ namespace Housing_Project.Classes
 
         public string GetInfo()
         {
-            return $"Date:{SelectedDate},Person:{this.assignedPerson}";
+            return $"Date: {SelectedDate}, Person: {this.assignedPerson}";
         }
     }
 }

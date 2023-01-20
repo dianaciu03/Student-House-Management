@@ -63,11 +63,12 @@ namespace Housing_Project
             this.warningManager = warningManager;
             this.cleaningTaskManager = cleaningTaskManager;
            
-            this.warningManager = warningManager.LoadWarnings();
+            this.warningManager = warningManager.LoadWarning("warningData.txt");
             agreementManager.SetSessionTenant(currentUser);
-            this.cleaningTaskManager=cleaningTaskManager.LoadTasks();
-            this.announcementManager=announcementManager.LoadAnnouncement();
-            this.agreementManager = agreementManager.LoadData();
+            this.cleaningTaskManager=cleaningTaskManager.LoadCleaningTask("cleaningTaskData.txt");
+            this.announcementManager=announcementManager.LoadAnnouncement("announcementData.txt");
+
+            this.agreementManager = agreementManager.LoadAgreement("agreementData.txt");
         }
 
         private void InitializeStudentComboBoxes()
@@ -98,21 +99,7 @@ namespace Housing_Project
             }
             else if (tabControlStudent.SelectedTab == tabEventSchedule)
             {
-                try
-                {
-                    lbEvents.Items.Clear();
-                    foreach (Announcement announcement in announcementManager.GetAnnouncemens())
-                    {
-                        lbEvents.Items.Add(announcement.Title);
-                    }
-                    foreach (CleaningTask task in cleaningTaskManager.GetCleaningTasks())
-                    {
-                        lbEvents.Items.Add(task.GetInfo());
-                    }
-                }
-                catch (Exception e)
-                {
-                }
+                monthCalendar_DateChanged(this,DateRangeEventArgs.Empty);
             }
             else if (tabControlStudent.SelectedTab == tabSupplies)
             {
@@ -123,10 +110,10 @@ namespace Housing_Project
             else if (tabControlStudent.SelectedTab == tabAgreements)
             {
                 lbPendingAgreements.Items.Clear();
-                foreach (Agreement a in agreementManager.GetNoncompletedAgreements())
+                foreach (Agreement a in agreementManager.GetNoncompletedAgreements(agreementManager))
                     lbPendingAgreements.Items.Add(a);
                 lbAgreementsDisplay.Items.Clear();
-                foreach (Agreement a in agreementManager.GetCompletedAgreements())
+                foreach (Agreement a in agreementManager.GetCompletedAgreements(agreementManager))
                     lbAgreementsDisplay.Items.Add(a);
             }
             else if (tabControlStudent.SelectedTab == tabReport)
@@ -174,7 +161,7 @@ namespace Housing_Project
         {
             agreementManager.CompleteAgreementById(lbEvents.SelectedIndex);
         }
-        private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
+        private void monthCalendar_DateChanged(object sender, EventArgs e)
         {
             lbEvents.Items.Clear();
             lbCompletedTasks.Items.Clear();
@@ -290,8 +277,8 @@ namespace Housing_Project
                 if(!string.IsNullOrEmpty(title) && !string.IsNullOrEmpty(description))
                 {
                     agreementManager.AddAgreementToList(title, description, date);
-                    //fileManager.SaveRecruiter(agreementManager, "agreementData.txt"); 
-                    agreementManager.SaveRecruiter(agreementManager);
+                    agreementManager.SaveAgreement(agreementManager, "agreementData.txt");
+                    //agreementManager.SaveRecruiter(agreementManager);
                     
                 }       
                 UpdateListBox();
@@ -347,10 +334,10 @@ namespace Housing_Project
                     rbDisagree.Visible = true;
                     btnSubmitVote.Visible = true;
                 }
-                agreementManager.SaveRecruiter(agreementManager);
+                agreementManager.SaveAgreement(agreementManager, "agreementData.txt");
                 //fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
             }
-            catch (Exception exception) {}
+            catch (Exception exception){}
             
         }
         private void btnCheckStatus_Click(object sender, EventArgs e)
@@ -412,10 +399,10 @@ namespace Housing_Project
 
         private void FormStudent_FormClosing(object sender, FormClosingEventArgs e)
         {
-            fileManager.SaveRecruiter(agreementManager, "agreementData.txt");
-            announcementManager.SaveAnnouncement(announcementManager);
-            warningManager.SaveWarnings(warningManager);
-            cleaningTaskManager.SaveRecruiter(cleaningTaskManager);
+            agreementManager.SaveAgreement(agreementManager, "agreementData.txt");
+            announcementManager.SaveAnnouncement(announcementManager, "announcementData.txt");
+            warningManager.SaveWarning(warningManager, "warningData.txt");
+            cleaningTaskManager.SaveCleaningTask(cleaningTaskManager, "cleaningTaskData.txt");
         }
 
         private void gbFileAReport_Enter(object sender, EventArgs e)
@@ -425,15 +412,7 @@ namespace Housing_Project
 
         private void lbWarnings_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                this.warningManager = warningManager.LoadWarnings();
-                foreach (var item in warningManager.GetWarningsTenant(this.currentUser))
-                {
-                    lbWarnings.Items.Add(item.GetInfoWarningDisplay());
-                }
-            }
-            catch (Exception exception) {}
+            
         }
 
         private void lbAgreementsDisplay_SelectedIndexChanged(object sender, EventArgs e)

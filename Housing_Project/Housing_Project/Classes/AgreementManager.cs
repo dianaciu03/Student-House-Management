@@ -14,12 +14,12 @@ namespace Housing_Project.Classes
     [DataContract]
     public class AgreementManager
     {
-        Tenant sessionTenant;
-        private List<Agreement> completedAgreements = new List<Agreement>();
-        private List<Agreement> noncompletedAgreements = new List<Agreement>();
+        [DataMember] Tenant sessionTenant;
+        [DataMember] private List<Agreement> completedAgreements = new List<Agreement>();
+        [DataMember] private List<Agreement> noncompletedAgreements = new List<Agreement>();
         [DataMember] private int agreementIdSeeder = 1;
         [DataMember] private List<Agreement> agreements = new List<Agreement>();
-        private const string filePath = @"..\..\..\..\Data\agreementData.txt";
+        //private const string filePath = @"..\..\..\..\Data\agreementData.txt";
 
         public void SetSessionTenant(Tenant tenant)
         {
@@ -30,7 +30,6 @@ namespace Housing_Project.Classes
             agreements.Add(new Agreement(agreementIdSeeder, title, description, date));
             agreementIdSeeder++;
         }
-
         public bool IsAgreementComplete(Agreement agreement)
         {
             if (agreement.TenantsNotAnsweredCount() == 0)
@@ -41,27 +40,25 @@ namespace Housing_Project.Classes
             else
                 return false;
         }
-
         public Agreement[] GetAgreements()
         {
             return agreements.ToArray();
         }
-        public Agreement[] GetCompletedAgreements()
+        public Agreement[] GetCompletedAgreements(AgreementManager agreementManager)
         {
-            SortAgreements();
+            SortAgreements(agreementManager);
             return completedAgreements.ToArray();
         }
-        public Agreement[] GetNoncompletedAgreements()
+        public Agreement[] GetNoncompletedAgreements(AgreementManager agreementManager)
         {
-            SortAgreements();
+            SortAgreements(agreementManager);
             return noncompletedAgreements.ToArray();
         }
-
-        private void SortAgreements()
+        private void SortAgreements(AgreementManager agreementManager)
         {
             completedAgreements = new List<Agreement>();
             noncompletedAgreements= new List<Agreement>();
-            foreach (Agreement agreement in agreements)
+            foreach (Agreement agreement in agreementManager.GetAgreements())
             {
                 if(agreement.completion == true)
                 {
@@ -73,7 +70,6 @@ namespace Housing_Project.Classes
                 }
             }
         }
-
         public Agreement GetAgreement(int index)
         {
             try
@@ -85,7 +81,6 @@ namespace Housing_Project.Classes
                 throw;
             }
         }
-
         public List<Agreement> GetAgreementsOnDate(DateTime date)
         {
             List<Agreement> agreementsOnDate = new List<Agreement>();
@@ -169,20 +164,60 @@ namespace Housing_Project.Classes
             }
             return tenantFound;
         }
-        public AgreementManager LoadData()
+
+        public void SaveAgreement(AgreementManager agreementManager, string fileName)
         {
-            string jsonString = File.ReadAllText(filePath);
-            AgreementManager agreementManager = JsonSerializer.Deserialize<AgreementManager>(jsonString)!;
-            return agreementManager;
-        }
-        public void SaveRecruiter(AgreementManager agreementManager)
-        {
-            var options = new JsonSerializerOptions
+            FileStream? stream = null;
+
+            try
             {
-                IncludeFields = true,
-            };
-            string jsonstring = JsonSerializer.Serialize(agreementManager, options);
-            File.WriteAllText(filePath, jsonstring);
+                stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.Write);
+
+                Type mainType = typeof(AgreementManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Agreement) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
+
+                serializer.WriteObject(stream, agreementManager);
+                stream.Flush();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
+        }
+        public AgreementManager? LoadAgreement(string fileName)
+        {
+            FileStream? stream = null;
+
+            try
+            {
+                stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                XmlReader reader
+                    = XmlDictionaryReader.CreateTextReader(stream,
+                        new XmlDictionaryReaderQuotas());
+
+                Type mainType = typeof(AgreementManager);
+                List<Type> auxiliaryTypes
+                    = new List<Type> { typeof(Agreement) };
+                DataContractSerializer serializer
+                    = new DataContractSerializer(mainType, auxiliaryTypes);
+
+
+                return (AgreementManager?)serializer.ReadObject(reader);
+
+            }
+            catch (Exception)
+            {
+                return new AgreementManager();
+            }
+            finally
+            {
+                if (stream != null)
+                    stream.Close();
+            }
         }
     }
 }

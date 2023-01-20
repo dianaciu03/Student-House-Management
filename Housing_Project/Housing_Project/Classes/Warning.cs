@@ -38,7 +38,7 @@ namespace Housing_Project.Classes
 
         public string GetInfoWarning()
         {
-            return $"{this.title}\n\n{this.message}\n\nSent by {this.sender}";
+            return $"{this.title} {this.message} Sent by: {this.sender}";
         }
 
         public override string ToString()

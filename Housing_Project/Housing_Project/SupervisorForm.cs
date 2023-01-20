@@ -31,7 +31,7 @@ namespace Housing_Project
         private ReportManager reportManager;
         private WarningManager warningManager;
         private CleaningTaskManager cleaningTaskManager;
-        FileManagerAnnouncement fileManagerAnnouncement;
+        //FileManagerAnnouncement fileManagerAnnouncement;
 
         public FormSupervisor(Supervisor currentUser, UserManager userManager, AnnouncementManager announcementManager, RuleManager ruleManager, ReportManager reportManager, WarningManager warningManager, CleaningTaskManager cleaningTaskManager)
         {
@@ -89,6 +89,7 @@ namespace Housing_Project
             }
             else if (tabControlSupervisor.SelectedTab == tabAddEvents)
             {
+                UpdateListBox();
                 ClearFields("tabAddEventsAnnouncement");
             }
         }
@@ -121,6 +122,20 @@ namespace Housing_Project
 
                 foreach (Report r in reportManager.GetReports())
                     lbReceivedReports.Items.Add(r);
+            }
+            else if (tabControlSupervisor.SelectedTab == tabAddEvents)
+            {
+                lbEvents.Items.Clear();
+
+                foreach (Announcement a in announcementManager.GetAnnouncemens())
+                {
+                    lbEvents.Items.Add(a.Title);
+                }
+
+                foreach (CleaningTask t in cleaningTaskManager.GetCleaningTasks())
+                {
+                    lbEvents.Items.Add(t.GetInfo());
+                }
             }
         }
 
@@ -428,7 +443,7 @@ namespace Housing_Project
                     Warning warning = new Warning(title, message, warningAdressedTo, currentUser);
                     warningManager.AddWarningToList(warning);
                     MessageBox.Show("Warning sent successfully!");
-                    warningManager.SaveWarnings(warningManager);
+                    warningManager.SaveWarning(warningManager, "warningData.txt");
                 }
                 cbTenantToSendWarning.Text = "";
                 tbWarningDescription.Text = "";
@@ -465,7 +480,7 @@ namespace Housing_Project
                     CleaningTask cleaningTask = new CleaningTask(assignedPerson, date, content);
                     cleaningTaskManager.AddCleaningTaskToList(cleaningTask);
                     lbEvents.Items.Add(cleaningTask.GetInfo());
-                    cleaningTaskManager.SaveRecruiter(cleaningTaskManager);
+                    cleaningTaskManager.SaveCleaningTask(cleaningTaskManager, "cleaningTaskData.txt");
                     ClearFields("tabAddEventsCleaningTask");
                 }
             }
@@ -491,7 +506,7 @@ namespace Housing_Project
                         Announcement announcement = new Announcement(title, description, date);
                         announcementManager.AddAnnouncementToList(announcement);
                         lbEvents.Items.Add(announcement.GetAnnouncementInfo());
-                        announcementManager.SaveAnnouncement(announcementManager);
+                        announcementManager.SaveAnnouncement(announcementManager, "announcementData.txt");
                     }
                 }
                 catch(Exception) { return; }
@@ -517,7 +532,5 @@ namespace Housing_Project
             //warningManager.SaveRecruiter(warningManager, "warningData.txt");
             //cleaningTaskManager.SaveRecruiter(cleaningTaskManager, "cleaningTaskData.txt");
         }
-
-
     }
 }

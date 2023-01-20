@@ -58,10 +58,8 @@
             this.edittenantbtn = new System.Windows.Forms.Button();
             this.btnAddTenant = new System.Windows.Forms.Button();
             this.btnSubmitChangesTenant = new System.Windows.Forms.Button();
-            this.tbRoomNumber = new System.Windows.Forms.TextBox();
             this.tbTenantPhone = new System.Windows.Forms.TextBox();
             this.tbTenantEmail = new System.Windows.Forms.TextBox();
-            this.lblRoomNr = new System.Windows.Forms.Label();
             this.lblTenantPhone = new System.Windows.Forms.Label();
             this.lblTenantEmail = new System.Windows.Forms.Label();
             this.tbTenantName = new System.Windows.Forms.TextBox();
@@ -147,7 +145,7 @@
             this.tabRules.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tabRules.Location = new System.Drawing.Point(4, 30);
             this.tabRules.Name = "tabRules";
-            this.tabRules.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabRules.Padding = new System.Windows.Forms.Padding(3);
             this.tabRules.Size = new System.Drawing.Size(934, 472);
             this.tabRules.TabIndex = 0;
             this.tabRules.Text = "Rules";
@@ -406,10 +404,8 @@
             this.gbEditTenant.Controls.Add(this.edittenantbtn);
             this.gbEditTenant.Controls.Add(this.btnAddTenant);
             this.gbEditTenant.Controls.Add(this.btnSubmitChangesTenant);
-            this.gbEditTenant.Controls.Add(this.tbRoomNumber);
             this.gbEditTenant.Controls.Add(this.tbTenantPhone);
             this.gbEditTenant.Controls.Add(this.tbTenantEmail);
-            this.gbEditTenant.Controls.Add(this.lblRoomNr);
             this.gbEditTenant.Controls.Add(this.lblTenantPhone);
             this.gbEditTenant.Controls.Add(this.lblTenantEmail);
             this.gbEditTenant.Controls.Add(this.tbTenantName);
@@ -458,14 +454,6 @@
             this.btnSubmitChangesTenant.Visible = false;
             this.btnSubmitChangesTenant.Click += new System.EventHandler(this.btnSubmitChangesTenant_Click);
             // 
-            // tbRoomNumber
-            // 
-            this.tbRoomNumber.Location = new System.Drawing.Point(94, 136);
-            this.tbRoomNumber.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tbRoomNumber.Name = "tbRoomNumber";
-            this.tbRoomNumber.Size = new System.Drawing.Size(71, 25);
-            this.tbRoomNumber.TabIndex = 14;
-            // 
             // tbTenantPhone
             // 
             this.tbTenantPhone.Location = new System.Drawing.Point(94, 109);
@@ -481,15 +469,6 @@
             this.tbTenantEmail.Name = "tbTenantEmail";
             this.tbTenantEmail.Size = new System.Drawing.Size(253, 25);
             this.tbTenantEmail.TabIndex = 12;
-            // 
-            // lblRoomNr
-            // 
-            this.lblRoomNr.AutoSize = true;
-            this.lblRoomNr.Location = new System.Drawing.Point(14, 139);
-            this.lblRoomNr.Name = "lblRoomNr";
-            this.lblRoomNr.Size = new System.Drawing.Size(68, 19);
-            this.lblRoomNr.TabIndex = 11;
-            this.lblRoomNr.Text = "Room no:";
             // 
             // lblTenantPhone
             // 
@@ -1064,10 +1043,8 @@
         private Label lblSupervisorName;
         private Button btnAddTenant;
         private Button btnSubmitChangesTenant;
-        private TextBox tbRoomNumber;
         private TextBox tbTenantPhone;
         private TextBox tbTenantEmail;
-        private Label lblRoomNr;
         private Label lblTenantPhone;
         private Label lblTenantEmail;
         private TextBox tbTenantName;

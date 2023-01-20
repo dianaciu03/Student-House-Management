@@ -152,7 +152,7 @@ namespace Housing_Project
                 tbTenantName.Clear();
                 tbTenantEmail.Clear();
                 tbTenantPhone.Clear();
-                tbRoomNumber.Clear();
+                //tbRoomNumber.Clear();
                 indexboxUsers.Clear();
             }
             else if (tab == "tabContactInfoSupervisor")
@@ -273,9 +273,9 @@ namespace Housing_Project
                 string name = tbTenantName.Text;
                 string email = tbTenantEmail.Text;
                 string phone = tbTenantPhone.Text;
-                int roomNumber = Convert.ToInt32(tbRoomNumber.Text);
+                //int roomNumber = Convert.ToInt32(tbRoomNumber.Text);
 
-                if(!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone) && !String.IsNullOrEmpty(roomNumber.ToString())) 
+                if(!String.IsNullOrEmpty(name) && !String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(phone)) 
                 {
                     Tenant tenant = new Tenant(name, email, phone);
                     userManager.AddTenantToList(tenant);

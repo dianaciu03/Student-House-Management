@@ -49,8 +49,6 @@ namespace Housing_Project
             }
         }
 
-    
-
         //Method to reset the fields
         private void ClearFields()
         {

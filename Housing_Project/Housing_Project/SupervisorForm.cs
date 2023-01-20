@@ -210,8 +210,13 @@ namespace Housing_Project
         //Open message box for more details about selected rule
         private void rulesListBox_DoubleClick(object sender, EventArgs e)
         {
-            Rule rule = (Rule)rulesListBox.SelectedItem;
-            MessageBox.Show(rule.GetInfoRule());
+            try
+            {
+                Rule rule = (Rule)rulesListBox.SelectedItem;
+                MessageBox.Show(rule.GetInfoRule());
+            }
+            catch (Exception exception){}
+
         }
 
         //Push details about the selected rule back in the textboxes
@@ -411,8 +416,13 @@ namespace Housing_Project
         //Get more info if you double click on the report
         private void lbReceivedReports_DoubleClick(object sender, EventArgs e)
         {
-            Report report = (Report)lbReceivedReports.SelectedItem;
-            MessageBox.Show(report.GetInfoReport());
+            try
+            {
+                Report report = (Report)lbReceivedReports.SelectedItem;
+                MessageBox.Show(report.GetInfoReport());
+            }
+            catch (Exception exception){}
+
         }
 
         //When an issue is solved, the report is removed

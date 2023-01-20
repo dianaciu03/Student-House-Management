@@ -176,7 +176,7 @@ namespace Housing_Project
             {
                 if (agreementInfo.completion == false)
                 {
-                    lbEvents.Items.Add(agreementInfo);
+                    lbEvents.Items.Add(agreementInfo.GetInfoAgreementDisplay());
                 }
                 else if (agreementInfo.completion == true)
                 {
@@ -194,12 +194,36 @@ namespace Housing_Project
         }
         private void lbTasks_MouseDoubleClick(object sender, MouseEventArgs e)//lbvents
         {
-            if (lbEvents.Items.Count>0)
+            try
             {
-                int index = lbEvents.SelectedIndex;
-                MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+                if (lbEvents.Items.Count > 0)
+                {
+                    foreach (Announcement announcement in announcementManager.GetAnnouncemens())
+                    {
+                        if (lbEvents.SelectedItem.ToString() == announcement.GetAnnouncementInfo().ToString())
+                        {
+                            MessageBox.Show(announcement.GetAnnouncementInfo()); // edit the message box
+                        }
+                    }
+                    foreach (CleaningTask cleaningTask in cleaningTaskManager.GetCleaningTasks())
+                    {
+                        if (lbEvents.SelectedItem.ToString() == cleaningTask.GetInfo().ToString())// edit the message box
+                        {
+                            MessageBox.Show(cleaningTask.GetInfo());
+                        }
+                    }
+                    foreach (Agreement agreement in agreementManager.GetAgreements())
+                    {
+                        if (lbEvents.SelectedItem.ToString() == agreement.GetInfoAgreementDisplay().ToString())// edit the message box
+                        {
+                            MessageBox.Show(agreement.GetInfoAgreement());
+                        }
+                    }
+                    //int index = lbEvents.SelectedIndex;
+
+                }
             }
-            
+            catch (Exception exception) {}
         }
 
         private void lbCompletedTasks_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -261,9 +285,13 @@ namespace Housing_Project
         //Get more details about a payment
         private void lbPaymentsInfo_DoubleClick(object sender, EventArgs e)
         {
-            Payment payment = (Payment)lbPaymentsInfo.SelectedItem;
-            double pricePerPerson = paymentManager.CalculatePricePerPerson(payment, userManager.NumberOfTenants());
-            MessageBox.Show(payment.GetInfoPayment(pricePerPerson));
+            try
+            {
+                Payment payment = (Payment)lbPaymentsInfo.SelectedItem;
+                double pricePerPerson = paymentManager.CalculatePricePerPerson(payment, userManager.NumberOfTenants());
+                MessageBox.Show(payment.GetInfoPayment(pricePerPerson));
+            }
+            catch (Exception exception){}
         }
 
         //
@@ -293,11 +321,16 @@ namespace Housing_Project
         }
         private void lbPendingAgreements_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (lbPendingAgreements.Items.Count > 0)
+            try
             {
-                int index = lbPendingAgreements.SelectedIndex;
-                MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+                if (lbPendingAgreements.Items.Count > 0)
+                {
+                    int index = lbPendingAgreements.SelectedIndex;
+                    MessageBox.Show(agreementManager.GetAgreement(index).GetInfoAgreement());
+                }
             }
+            catch (Exception exception){}
+
         }
         private void btnSubmitVote_Click(object sender, EventArgs e)
         {
